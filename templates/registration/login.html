@@ -1,0 +1,20 @@
+{% include "global/head.html" %}
+
+<body>
+    {% include "global/header.html"%}
+
+
+    <main class="main-container">
+        <h2>Login</h2>
+        
+        <form method="POST">
+            {%csrf_token%}
+            {{form.as_p}}
+            <button type="submit">Login</button>
+        </form>
+
+    </main>
+
+    
+</body>
+</html>

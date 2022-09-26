@@ -1,0 +1,39 @@
+{% include "global/head.html" %}
+
+<body>
+    {% include "global/header.html"%}
+
+
+    <main class="main-container">
+        <div class="container">
+            <h1>HelpDesk</h1>
+            
+            <h2>
+                <a href="{%url "new_demand"%}">
+                    <i class="fa-sharp fa-solid fa-circle-check main-logo-icon"></i>
+                    Abrir Chamado
+                </a>
+            </h2>
+    
+            <h2>
+                <a href="{%url "demands_list"%}">
+                    <i class="fa-sharp fa-solid fa-list-check main-logo-icon"></i>
+                    Listar Chamados
+                </a>
+            </h2>
+        </div>
+
+        <div class="container">
+            <h1>Kanban</h1>
+
+        </div>
+
+
+
+        
+
+    </main>
+
+    
+</body>
+</html>
