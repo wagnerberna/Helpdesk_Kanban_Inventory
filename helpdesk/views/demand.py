@@ -9,7 +9,7 @@ demand_view_set = DemandViewSet()
 
 # Create your views here.
 @login_required
-def demand(request):
+def demand_list(request):
     try:
         all_demands = demand_view_set.get_all(request)
         # print(all_demands)
@@ -18,7 +18,7 @@ def demand(request):
 
         return render(
             request,
-            "helpdesk/pages/demand_main.html",
+            "helpdesk/pages/demand_list.html",
             context,
         )
     except Exception as error:

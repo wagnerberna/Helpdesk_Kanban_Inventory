@@ -61,6 +61,14 @@ h6 {
     font-family: var(--font-primary);
 }
 
+table,
+thead,
+th,
+tr,
+td {
+    border: 1px solid black;
+}
+
 body {
     font-size: 1.6rem;
     font-family: var(--font-primary);
@@ -76,7 +84,7 @@ body {
 .main-header-container {
     background: var(--color-primary-dark);
     display: flex;
-    justify-content:space-between;
+    justify-content: space-between;
 
 }
 
