@@ -81,7 +81,7 @@ def demand_list_by_user(request):
         user_id = request.user.pk
         user_name = request.user.username
 
-        print("REQUEST::::", user_id, user_name)
+        # print("REQUEST::::", user_id, user_name)
 
         all_demands = demand_view_set.get_by_user(user_id)
 

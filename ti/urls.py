@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.contrib.auth import views
 from django.urls import include, path
 
-from ti.views.home import home
+from ti.views.home import home, logout_user
 
 # Importar views do Django de autenticação
 # criar Urls de login e logout
@@ -11,8 +11,9 @@ from ti.views.home import home
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("login/", views.LoginView.as_view(), name="login"),
-    path("logout/", views.LogoutView.as_view(), name="logout"),
-    path("", home),
+    path("logout/", logout_user, name="logout"),
+    # path("logout/", views.LogoutView.as_view(), name="logout"),
+    path("", home, name="home"),
     # path("about/", about),
     path("helpdesk/", include("helpdesk.urls")),
     path("kanban/", include("kanban.urls")),
