@@ -56,7 +56,7 @@ class Demand(models.Model):
     attendant = models.ForeignKey(
         Support, on_delete=models.SET_NULL, null=True, blank=True
     )
-    status = models.ForeignKey(Status, on_delete=models.SET_NULL, null=True)
+    status = models.ForeignKey(Status, on_delete=models.SET_NULL, null=True, default=1)
     solution = models.TextField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateField(auto_now=True)

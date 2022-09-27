@@ -1,0 +1,20 @@
+{% include "global/head.html" %}
+
+<body>
+    {% include "global/header.html"%}
+
+
+    <main class="main-container">
+        <h1>PG HelpDesk principal</h1>
+        <h2>Chamado Abertos:</h2>    
+        {%include "helpdesk/partials/demand_user_table.html"%}
+
+        <a href="{%url "new_demand"%}">Abrir Chamado</a>
+
+        
+
+    </main>
+
+    
+</body>
+</html>
