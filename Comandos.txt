@@ -26,3 +26,10 @@ application = Cling(get_wsgi_application())
 
 Settings.py
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+css:
+froms bootstrap Django 
+pip install django-bootstrap-form
+installed_apps add: "bootstrapform"
+{%load bootstrap%}
+{{form|bootstrap}}

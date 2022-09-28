@@ -89,7 +89,7 @@ def demand_list_by_user(request):
 
         return render(
             request,
-            "helpdesk/pages/demand_list_all.html",
+            "helpdesk/pages/demand_list_user.html",
             context,
         )
     except Exception as error:

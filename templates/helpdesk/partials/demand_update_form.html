@@ -1,7 +1,9 @@
+{%load bootstrap%}
+
 <div class="container">
     <form method="POST" enctype="multipart/form-data">
         {%csrf_token%}
-        {{form}}
-        <button type=submit>Atualizar</button>
+        {{form|bootstrap}}
+        <button type=submit class="btn btn-success">Atualizar</button>
     </form>
 </div>
