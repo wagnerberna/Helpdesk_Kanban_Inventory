@@ -1,5 +1,6 @@
 {% include "helpdesk/partials/head.html" %}
 
+
 <body>
     {% include "helpdesk/partials/header.html"%}
 

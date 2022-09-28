@@ -1,15 +1,8 @@
-{% include "global/head.html" %}
+{% extends 'helpdesk/pages/demand_base.html' %}
 
-<body>
-    {% include "global/header.html"%}
+{% block main %}
 
+    <h2>Confirmar deletar o chamado {{demand.id}}?</h2>
+    {%include "helpdesk/partials/demand_delete_confirm.html"%}
 
-    <main class="main-container">
-        <h2>Confirmar deletar o chamado {{demand.id}}?</h2>
-        {%include "helpdesk/partials/demand_delete_confirm.html"%}
-
-    </main>
-
-    
-</body>
-</html>
+{% endblock main %}

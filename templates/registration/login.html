@@ -1,9 +1,8 @@
-{% include "global/head.html" %}
+{% extends 'global/base.html' %}
+{% block head_title %}Sistemas TI{% endblock head_title %}
+{% block header_title %}Sistemas TI{% endblock header_title %}
 
-<body>
-    {% include "global/header.html"%}
-
-
+{% block main %}
     <main class="main-container">
         <h2>Login</h2>
         
@@ -12,9 +11,4 @@
             {{form.as_p}}
             <button type="submit">Login</button>
         </form>
-
-    </main>
-
-    
-</body>
-</html>
+{% endblock main %}
