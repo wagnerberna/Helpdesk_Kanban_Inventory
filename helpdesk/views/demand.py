@@ -97,5 +97,27 @@ def demand_list_by_user(request):
         raise
 
 
+@login_required
+def demand_list_support(request):
+    try:
+        user_id = request.user.pk
+        user_name = request.user.username
+
+        # print("REQUEST::::", user_id, user_name)
+
+        all_demands = demand_view_set.get_by_support(user_id)
+
+        context = {"title": "Demandas", "all_demands": all_demands}
+
+        return render(
+            request,
+            "helpdesk/pages/demand_list_all.html",
+            context,
+        )
+    except Exception as error:
+        print("Internal error:", error)
+        raise
+
+
 def about(request):
     return HttpResponse("Sistema TI de Helpdesk")

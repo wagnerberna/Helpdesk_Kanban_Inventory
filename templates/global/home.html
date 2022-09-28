@@ -1,8 +1,5 @@
 {% extends 'global/base.html' %}
-
 {% block head_title %}Sistemas TI{% endblock head_title %}
-
-
 {% block header_title %}Sistemas TI{% endblock header_title %}
 {% block main %}
     <div class="container">
@@ -21,6 +18,18 @@
                 Listar Chamados
             </a>
         </h2>
+    </div>
+    <div class="container">
+        <h1>Support</h1>
+        <h2>
+            <a href="{%url "demands_list_all"%}">
+                <i class="fa-sharp fa-solid fa-user-alien main-logo-icon"></i>
+                Suporte
+            </a>
+        </h2>
+
+
+
     </div>
 
     <div class="container">

@@ -4,6 +4,7 @@ from helpdesk.views.demand import (
     demand_delete,
     demand_list_all,
     demand_list_by_user,
+    demand_list_support,
     demand_update,
     new_demand,
 )
@@ -19,5 +20,6 @@ urlpatterns = [
     path("demand/<int:id>/", demand_update, name="demand_update"),
     path("delete/<int:id>/", demand_delete, name="demand_delete"),
     path("support/", demand_list_all, name="demands_list_all"),
+    path("support_technical/", demand_list_support, name="support_technical"),
     # path("about/", about),
 ]

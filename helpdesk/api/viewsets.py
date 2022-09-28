@@ -23,7 +23,10 @@ class DemandViewSet(viewsets.ModelViewSet):
         return queryset
 
     def get_by_user(self, user):
-
         queryset = Demand.objects.filter(user_name=user)
-        print("QUERY:::", queryset)
+        # print("QUERY:::", queryset)
+        return queryset
+
+    def get_by_support(self, user):
+        queryset = Demand.objects.filter(attendant=user)
         return queryset

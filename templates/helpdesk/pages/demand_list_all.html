@@ -2,7 +2,13 @@
 
 {% block main %}
 
-    <h1>PG HelpDesk principal</h1>
+    <h2>
+        <a href="{%url "support_technical"%}">
+            <i class="fa-sharp fa-solid fa-list-tree main-logo-icon"></i>
+            Meus Chamados
+        </a>
+    </h2>
+
     <h2>Chamado Abertos:</h2>    
     {%include "helpdesk/partials/demand_all_table.html"%}
 
