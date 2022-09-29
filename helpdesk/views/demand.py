@@ -8,13 +8,19 @@ from helpdesk.models import Demand
 demand_view_set = DemandViewSet()
 
 # Create your views here.
+# pesquisa busca pelo name e se não encontrar passa None
 @login_required
 def demand_list_all(request):
     try:
-        all_demands = demand_view_set.get_all(request)
+        search_form = request.GET.get("search", None)
+        print(search_form)
+        if search_form:
+            demands = demand_view_set.get_by_user(search_form)
+        else:
+            demands = demand_view_set.get_all(request)
         # print(all_demands)
 
-        context = {"title": "Demandas", "all_demands": all_demands}
+        context = {"title": "Demandas", "all_demands": demands}
 
         return render(
             request,
@@ -101,7 +107,6 @@ def demand_list_by_user(request):
 def demand_list_support(request):
     try:
         user_id = request.user.pk
-        user_name = request.user.username
 
         # print("REQUEST::::", user_id, user_name)
 

@@ -1,6 +1,12 @@
-    <div class="search-container">
-        <form action="">
-            <input type="search" class="search-input" name="search">
-            <button type="submit"><i class="fa fa-search"></i></button>
-        </form>
-    </div>
+{%load bootstrap%}
+
+<div class="search-container">
+    <form action="">
+        {%csrf_token%}
+        {{form|bootstrap}}
+        <input type="search" class="search-input" name="search">
+        {%csrf_token%}
+        {{form|bootstrap}}
+        <button type="submit"><i class="fa fa-search"></i></button>
+    </form>
+</div>
