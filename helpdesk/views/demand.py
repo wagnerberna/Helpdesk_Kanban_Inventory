@@ -12,10 +12,28 @@ demand_view_set = DemandViewSet()
 @login_required
 def demand_list_all(request):
     try:
-        search_form = request.GET.get("search", None)
-        print(search_form)
-        if search_form:
-            demands = demand_view_set.get_by_user(search_form)
+        search_text = request.GET.get("search", None)
+        search_field = request.GET.get("search", None)
+
+        print(search_text, search_field)
+        if search_text and search_field:
+            if search_field == "id":
+                demands = demand_view_set.get_by_user(search_text)
+                if search_field == "user_name":
+                    demands = demand_view_set.get_by_user(search_text)
+                if search_field == "title":
+                    demands = demand_view_set.get_by_user(search_text)
+                if search_field == "description":
+                    demands = demand_view_set.get_by_user(search_text)
+                if search_field == "category":
+                    demands = demand_view_set.get_by_user(search_text)
+                if search_field == "attendant":
+                    demands = demand_view_set.get_by_user(search_text)
+                if search_field == "status":
+                    demands = demand_view_set.get_by_user(search_text)
+                if search_field == "solution":
+                    demands = demand_view_set.get_by_user(search_text)
+
         else:
             demands = demand_view_set.get_all(request)
         # print(all_demands)
