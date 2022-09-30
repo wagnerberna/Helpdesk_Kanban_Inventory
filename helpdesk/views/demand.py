@@ -1,44 +1,46 @@
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
-from django.shortcuts import get_object_or_404, redirect, render
-from helpdesk.api.viewsets import DemandViewSet
+from django.shortcuts import redirect, render
+from helpdesk.api.viewsets import DemandFilterViewSet, DemandViewSet, UserViewSet
 from helpdesk.forms import DemandFormCreate, DemandFormUpdate
-from helpdesk.models import Demand
 
 demand_view_set = DemandViewSet()
+demand_filter_view_set = DemandFilterViewSet()
+user_view_set = UserViewSet()
 
-# Create your views here.
 # pesquisa busca pelo name e se não encontrar passa None
 @login_required
-def demand_list_all(request):
+def demand_view_list_all(request):
     try:
-        search_text = request.GET.get("search", None)
-        search_field = request.GET.get("search", None)
+        search_input = request.GET.get("search_input", None)
+        search_field = request.GET.get("search_field", None)
+        print(search_input, search_field)
 
-        print(search_text, search_field)
-        if search_text and search_field:
+        if search_input and search_field:
             if search_field == "id":
-                demands = demand_view_set.get_by_user(search_text)
-                if search_field == "user_name":
-                    demands = demand_view_set.get_by_user(search_text)
-                if search_field == "title":
-                    demands = demand_view_set.get_by_user(search_text)
-                if search_field == "description":
-                    demands = demand_view_set.get_by_user(search_text)
-                if search_field == "category":
-                    demands = demand_view_set.get_by_user(search_text)
-                if search_field == "attendant":
-                    demands = demand_view_set.get_by_user(search_text)
-                if search_field == "status":
-                    demands = demand_view_set.get_by_user(search_text)
-                if search_field == "solution":
-                    demands = demand_view_set.get_by_user(search_text)
+                demands = demand_view_set.get_by_id(search_input)
+            if search_field == "user_name":
+                user_find = user_view_set.get_user_by_name(search_input)
+                print("user find:::", user_find)
+                # print(user_find.id)
+                # demands = demand_filter_view_set.get_by_user_name(user_find)
+            if search_field == "title":
+                demands = demand_view_set.get_by_user_id(search_input)
+            if search_field == "description":
+                demands = demand_view_set.get_by_user_id(search_input)
+            if search_field == "category":
+                demands = demand_view_set.get_by_user_id(search_input)
+            if search_field == "attendant":
+                demands = demand_view_set.get_by_user_id(search_input)
+            if search_field == "status":
+                demands = demand_view_set.get_by_user_id(search_input)
+            if search_field == "solution":
+                demands = demand_view_set.get_by_user_id(search_input)
 
         else:
             demands = demand_view_set.get_all(request)
         # print(all_demands)
 
-        context = {"title": "Demandas", "all_demands": demands}
+        context = {"all_demands": demands}
 
         return render(
             request,
@@ -55,18 +57,23 @@ def demand_list_all(request):
 # redireciona para a rota da lista pelo apelido
 # Request .post pega o formulário, files as medias
 @login_required
-def new_demand(request):
-    form = DemandFormCreate(request.POST or None, request.FILES or None)
-    if form.is_valid():
-        form.save()
-        return redirect("demands_list_by_user")
+def demand_view_create(request):
+    try:
+        form = DemandFormCreate(request.POST or None, request.FILES or None)
+        if form.is_valid():
+            form.save()
+            return redirect("demands_list_by_user")
 
-    return render(request, "helpdesk/pages/demand_create.html", {"form": form})
+        return render(request, "helpdesk/pages/demand_create.html", {"form": form})
+
+    except Exception as error:
+        print("Internal error:", error)
+        raise
 
 
 # passa uma instância
 @login_required
-def demand_update(request, id):
+def demand_view_update(request, id):
     try:
         print("ID:::", id)
         demand = demand_view_set.get_by_id(id)
@@ -76,7 +83,7 @@ def demand_update(request, id):
 
         if form.is_valid():
             form.save()
-            return redirect("demands_list_by_user")
+            return redirect("home")
 
         return render(request, "helpdesk/pages/demand_update.html", {"form": form})
     except Exception as error:
@@ -85,7 +92,7 @@ def demand_update(request, id):
 
 
 @login_required
-def demand_delete(request, id):
+def demand_view_delete(request, id):
     try:
         demand = demand_view_set.get_by_id(id)
 
@@ -100,16 +107,16 @@ def demand_delete(request, id):
 
 
 @login_required
-def demand_list_by_user(request):
+def demand_view_list_by_user(request):
     try:
         user_id = request.user.pk
         user_name = request.user.username
 
         # print("REQUEST::::", user_id, user_name)
 
-        all_demands = demand_view_set.get_by_user(user_id)
+        all_demands = demand_view_set.get_by_user_id(user_id)
 
-        context = {"title": "Demandas", "all_demands": all_demands}
+        context = {"all_demands": all_demands}
 
         return render(
             request,
@@ -122,7 +129,7 @@ def demand_list_by_user(request):
 
 
 @login_required
-def demand_list_support(request):
+def demand_view_list_support(request):
     try:
         user_id = request.user.pk
 
@@ -130,7 +137,7 @@ def demand_list_support(request):
 
         all_demands = demand_view_set.get_by_support(user_id)
 
-        context = {"title": "Demandas", "all_demands": all_demands}
+        context = {"all_demands": all_demands}
 
         return render(
             request,
@@ -140,7 +147,3 @@ def demand_list_support(request):
     except Exception as error:
         print("Internal error:", error)
         raise
-
-
-def about(request):
-    return HttpResponse("Sistema TI de Helpdesk")
