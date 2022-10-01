@@ -25,7 +25,7 @@ class DemandViewSet(viewsets.ModelViewSet):
 
     def get_by_user_id(self, user_id):
         queryset = Demand.objects.filter(user_name=user_id)
-        # print("QUERY:::", queryset)
+        print("QUERY:::", queryset)
         return queryset
 
     def get_by_support(self, user_id):

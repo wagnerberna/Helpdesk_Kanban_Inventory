@@ -2,11 +2,7 @@
 
 {% block main %}
 
-    {% include "helpdesk/partials/demand_search.html" %}
-
     <h2>Chamado Abertos:</h2>    
     {%include "helpdesk/partials/demand_user_table.html"%}
-
-    <a href="{%url "new_demand"%}">Abrir Chamado</a>
 
 {% endblock main %}

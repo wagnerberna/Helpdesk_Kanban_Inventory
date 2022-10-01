@@ -5,15 +5,13 @@
     {% include "helpdesk/partials/demand_search.html" %}
 
     <h2>
-        <a href="{%url "support_technical"%}">
+        <a href="{%url "support_by_technical"%}">
             <i class="fa-sharp fa-solid fa-list-tree main-logo-icon"></i>
             Meus Chamados
         </a>
     </h2>
 
     <h2>Chamado Abertos:</h2>    
-    {%include "helpdesk/partials/demand_all_table.html"%}
-
-    <a href="{%url "new_demand"%}">Abrir Chamado</a>
+    {%include "helpdesk/partials/support_all_table.html"%}
 
 {% endblock main %}
