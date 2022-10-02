@@ -1,3 +1,5 @@
+from multiprocessing import context
+
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 from helpdesk.api.viewsets import DemandFilterViewSet, DemandViewSet, UserViewSet
@@ -56,11 +58,12 @@ def demand_view_list_by_user(request):
 def demand_view_create(request):
     try:
         form = DemandFormCreate(request.POST or None, request.FILES or None)
+        context = {"form": form}
         if form.is_valid():
             form.save()
             return redirect("demands_list_by_user")
 
-        return render(request, "helpdesk/pages/demand_create.html", {"form": form})
+        return render(request, "helpdesk/pages/demand_create.html", context)
 
     except Exception as error:
         print("Internal error:", error)
@@ -68,35 +71,48 @@ def demand_view_create(request):
 
 
 # passa uma instância
-@login_required
-def demand_view_update(request, id):
-    try:
-        print("ID:::", id)
-        demand = demand_view_set.get_by_id(id)
-        # demand = get_object_or_404(Demand, pk=id)
-        # print(demand)
-        form = DemandFormUpdate(request.POST or None, instance=demand)
+# @login_required
+# def demand_view_update(request, id):
+#     try:
+#         print("ID:::", id)
+#         demand = demand_view_set.get_by_id(id)
+#         # demand = get_object_or_404(Demand, pk=id)
+#         # print(demand)
+#         form = DemandFormUpdate(request.POST or None, instance=demand)
 
-        if form.is_valid():
-            form.save()
-            return redirect("demands_list_by_user")
+#         if form.is_valid():
+#             form.save()
+#             return redirect("demands_list_by_user")
 
-        return render(request, "helpdesk/pages/demand_update.html", {"form": form})
-    except Exception as error:
-        print("Internal error:", error)
-        raise
+#         return render(request, "helpdesk/pages/demand_update.html", {"form": form})
+#     except Exception as error:
+#         print("Internal error:", error)
+#         raise
 
 
 @login_required
 def demand_view_delete(request, id):
     try:
         demand = demand_view_set.get_by_id(id)
+        context = {"demand": demand}
 
         if request.method == "POST":
             demand.delete()
             return redirect("demands_list_by_user")
 
-        return render(request, "helpdesk/pages/demand_delete.html", {"demand": demand})
+        return render(request, "helpdesk/pages/demand_delete.html", context)
+    except Exception as error:
+        print("Internal error:", error)
+        raise
+
+
+@login_required
+def demand_view_details(request, id):
+    try:
+        demand = demand_view_set.get_by_id(id)
+        context = {"demand": demand}
+
+        return render(request, "helpdesk/pages/demand_details.html", context)
     except Exception as error:
         print("Internal error:", error)
         raise

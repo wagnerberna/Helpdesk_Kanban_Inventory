@@ -44,7 +44,29 @@ def support_view_list_all(request):
 
         return render(
             request,
-            "helpdesk/pages/support_list_all.html",
+            "helpdesk/pages/support_list_demand.html",
+            context,
+        )
+    except Exception as error:
+        print("Internal error:", error)
+        raise
+
+
+@login_required
+def support_view_list_by_technical(request):
+    try:
+        user_id = request.user.pk
+
+        # print("REQUEST::::", user_id, user_name)
+
+        all_demands = demand_view_set.get_by_support(user_id)
+        print(all_demands)
+
+        context = {"all_demands": all_demands}
+
+        return render(
+            request,
+            "helpdesk/pages/support_list_demand.html",
             context,
         )
     except Exception as error:
@@ -66,7 +88,9 @@ def support_view_update(request, id):
             form.save()
             return redirect("support_list_all")
 
-        return render(request, "helpdesk/pages/demand_update.html", {"form": form})
+        return render(
+            request, "helpdesk/pages/support_update_demand.html", {"form": form}
+        )
     except Exception as error:
         print("Internal error:", error)
         raise
@@ -85,25 +109,3 @@ def support_view_update(request, id):
 #     except Exception as error:
 #         print("Internal error:", error)
 #         raise
-
-
-@login_required
-def support_view_list_by_technical(request):
-    try:
-        user_id = request.user.pk
-
-        # print("REQUEST::::", user_id, user_name)
-
-        all_demands = demand_view_set.get_by_support(user_id)
-        print(all_demands)
-
-        context = {"all_demands": all_demands}
-
-        return render(
-            request,
-            "helpdesk/pages/support_list_all.html",
-            context,
-        )
-    except Exception as error:
-        print("Internal error:", error)
-        raise

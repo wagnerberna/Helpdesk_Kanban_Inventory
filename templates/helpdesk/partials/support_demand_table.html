@@ -4,25 +4,22 @@
     <table class="demand-table">
         <thead>
             <th >ID</th>
+            <th>Nome</th>
             <th>Título</th>
             <th>categoria</th>
             <th>Atendente</th>
             <th>Status</th>
             <th>Acessar</th>
         </thead>
-        {%for demand in demands%}
+        {%for demand in all_demands%}
         <tr>
             <td>{{demand.id}}</td>
+            <td>{{demand.user_name}}</td>
             <td>{{demand.title}}</td>
             <td>{{demand.category}}</td>
             <td>{{demand.attendant}}</td>
             <td>{{demand.status}}</td>
-            <td>
-                <a href="{%url "demand_details" demand.id%}"><i class="fa-sharp fa-solid fa-folder-open main-logo-icon"></i></a>
-                <a href="{%url "demand_delete" demand.id%}"><i class="fa-sharp fa-solid fa-trash-can main-logo-icon"></i></a>
-            </td>
-
-            
+            <td><a href="{%url "support_update" demand.id%}"><button class="btn btn-primary">Abrir</button></a>
         </tr>
         {%endfor%}
     </table>
