@@ -1,5 +1,4 @@
-from multiprocessing import context
-
+from django import forms
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 from helpdesk.api.viewsets import DemandFilterViewSet, DemandViewSet, UserViewSet
@@ -57,8 +56,13 @@ def demand_view_list_by_user(request):
 @login_required
 def demand_view_create(request):
     try:
+        user_id = request.user.pk
         form = DemandFormCreate(request.POST or None, request.FILES or None)
+        form.fields["user_name"].initial = user_id
+        form.fields["user_name"].widget = forms.HiddenInput()
+
         context = {"form": form}
+
         if form.is_valid():
             form.save()
             return redirect("demands_list_by_user")
