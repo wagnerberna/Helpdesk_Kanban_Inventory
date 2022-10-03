@@ -1,3 +1,4 @@
+from django import forms
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 from helpdesk.api.viewsets import DemandFilterViewSet, DemandViewSet, UserViewSet
@@ -83,14 +84,19 @@ def support_view_update(request, id):
         # demand = get_object_or_404(Demand, pk=id)
         # print(demand)
         form = DemandFormUpdate(request.POST or None, instance=demand)
+        # form.fields["description"].widget.attrs["readonly"] = True
+        form.fields["user_name"].widget.attrs["disabled"] = True
+        form.fields["category"].widget.attrs["disabled"] = True
+        form.fields["title"].widget.attrs["disabled"] = True
+        form.fields["description"].widget.attrs["disabled"] = True
+
+        context = {"form": form}
 
         if form.is_valid():
             form.save()
             return redirect("support_list_all")
 
-        return render(
-            request, "helpdesk/pages/support_update_demand.html", {"form": form}
-        )
+        return render(request, "helpdesk/pages/support_update_demand.html", context)
     except Exception as error:
         print("Internal error:", error)
         raise

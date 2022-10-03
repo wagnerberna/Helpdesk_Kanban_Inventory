@@ -2,6 +2,7 @@ from dataclasses import Field
 
 from django import forms
 from django.forms import ModelForm
+from requests import request
 
 from .models import Demand
 
@@ -18,6 +19,7 @@ class DemandFormCreate(ModelForm):
             "description": "Descrição:",
             "image": "Imagem:",
         }
+        # widget = {"user_name": forms.HiddenInput()}
 
 
 class DemandFormUpdate(ModelForm):
@@ -33,3 +35,13 @@ class DemandFormUpdate(ModelForm):
             "status",
             "solution",
         ]
+        labels = {
+            "user_name": "Nome",
+            "category": "Categoria:",
+            "title": "Título:",
+            "description": "Descrição:",
+            "image": "Imagem:",
+            "attendant": "Técnico:",
+            "status": "Status:",
+            "solution": "Solução",
+        }
