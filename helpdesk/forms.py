@@ -11,6 +11,13 @@ class DemandFormCreate(ModelForm):
     class Meta:
         model = Demand
         fields = ["user_name", "category", "title", "description", "image"]
+        labels = {
+            "user_name": "Nome",
+            "category": "Categoria:",
+            "title": "Título:",
+            "description": "Descrição:",
+            "image": "Imagem:",
+        }
 
 
 class DemandFormUpdate(ModelForm):
