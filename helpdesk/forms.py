@@ -45,3 +45,37 @@ class DemandFormUpdate(ModelForm):
             "status": "Status:",
             "solution": "Solução",
         }
+
+
+class SupportFormUpdateView(ModelForm):
+    class Meta:
+        model = Demand
+        fields = [
+            "user_name",
+            "category",
+            "title",
+            "description",
+            "image",
+        ]
+        labels = {
+            "user_name": "Nome",
+            "category": "Categoria:",
+            "title": "Título:",
+            "description": "Descrição:",
+            "image": "Imagem:",
+        }
+
+
+class SupportFormUpdate(ModelForm):
+    class Meta:
+        model = Demand
+        fields = [
+            "attendant",
+            "status",
+            "solution",
+        ]
+        labels = {
+            "attendant": "Técnico:",
+            "status": "Status:",
+            "solution": "Solução",
+        }

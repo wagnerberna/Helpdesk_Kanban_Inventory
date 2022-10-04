@@ -1,6 +1,10 @@
 {%load bootstrap%}
 
 <div class="container">
+    <form enctype="multipart/form-data">
+        {%csrf_token%}
+        {{form_view|bootstrap}}
+    </form>
     <form method="POST" enctype="multipart/form-data">
         {%csrf_token%}
         {{form|bootstrap}}

@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 from helpdesk.api.viewsets import DemandFilterViewSet, DemandViewSet, UserViewSet
-from helpdesk.forms import DemandFormCreate, DemandFormUpdate
+from helpdesk.forms import SupportFormUpdate, SupportFormUpdateView
 
 demand_view_set = DemandViewSet()
 demand_filter_view_set = DemandFilterViewSet()
@@ -83,14 +83,19 @@ def support_view_update(request, id):
         demand = demand_view_set.get_by_id(id)
         # demand = get_object_or_404(Demand, pk=id)
         # print(demand)
-        form = DemandFormUpdate(request.POST or None, instance=demand)
-        # form.fields["description"].widget.attrs["readonly"] = True
-        form.fields["user_name"].widget.attrs["disabled"] = True
-        form.fields["category"].widget.attrs["disabled"] = True
-        form.fields["title"].widget.attrs["disabled"] = True
-        form.fields["description"].widget.attrs["disabled"] = True
+        form_view = SupportFormUpdateView(request.POST or None, instance=demand)
+        form = SupportFormUpdate(request.POST or None, instance=demand)
 
-        context = {"form": form}
+        form_view.fields["user_name"].widget.attrs["disabled"] = True
+        form_view.fields["category"].widget.attrs["disabled"] = True
+
+        # form.fields["user_name"].widget["disabled_choices"] = True
+        # form.fields["category"].widget["disabled_choices"] = True
+
+        form_view.fields["title"].widget.attrs["readonly"] = True
+        form_view.fields["description"].widget.attrs["readonly"] = True
+
+        context = {"form": form, "form_view": form_view}
 
         if form.is_valid():
             form.save()
