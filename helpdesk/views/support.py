@@ -12,6 +12,9 @@ user_view_set = UserViewSet()
 @login_required
 def support_view_list_all(request):
     try:
+        user_id = request.user.pk
+        user_name = request.user.username
+
         search_input = request.GET.get("search_input", None)
         search_field = request.GET.get("search_field", None)
         print(search_input, search_field)
@@ -19,9 +22,11 @@ def support_view_list_all(request):
         if search_input and search_field:
             if search_field == "id":
                 demands = demand_view_set.get_by_id(search_input)
+                print("id find:::", demands)
             if search_field == "user_name":
-                user_find = user_view_set.get_user_by_name(search_input)
-                print("user find:::", user_find)
+                user_find = demand_filter_view_set.get_by_user_name(search_input)
+                print("---user find:::", user_find)
+                demands = demand_view_set
                 # print(user_find.id)
                 # demands = demand_filter_view_set.get_by_user_name(user_find)
             if search_field == "title":
@@ -61,7 +66,7 @@ def support_view_list_by_technical(request):
         # print("REQUEST::::", user_id, user_name)
 
         all_demands = demand_view_set.get_by_support(user_id)
-        print(all_demands)
+        # print(all_demands)
 
         context = {"all_demands": all_demands}
 
@@ -80,7 +85,7 @@ def support_view_list_by_technical(request):
 @login_required
 def support_view_update(request, id):
     try:
-        print("ID:::", id)
+        # print("ID:::", id)
         demand = demand_view_set.get_by_id(id)
         # demand = get_object_or_404(Demand, pk=id)
         # print(demand)

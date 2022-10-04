@@ -46,8 +46,8 @@ class UserViewSet(viewsets.ModelViewSet):
 
 
 class DemandFilterViewSet(viewsets.ModelViewSet):
-    queryset = Demand.objects.all().order_by("-id")
-    serializer_class = DemandSerializer
+    queryset = User.objects.all().order_by("-id")
+    serializer_class = UserSerializer
 
     def get_by_user_name(self, user_name):
         queryset = Demand.objects.filter(user_name=user_name)

@@ -15,10 +15,10 @@ def demand_view_list_by_user(request):
         user_id = request.user.pk
         user_name = request.user.username
 
-        print("REQUEST::::", user_id, user_name)
+        # print("REQUEST::::", user_id, user_name)
 
         demands = demand_view_set.get_by_user_id(user_id)
-        print("Demands:::", demands)
+        # print("Demands:::", demands)
 
         context = {"demands": demands}
 
@@ -60,7 +60,7 @@ def demand_view_create(request):
 @login_required
 def demand_view_details(request, id):
     try:
-        print("ID:::", id)
+        # print("ID:::", id)
 
         demand = demand_view_set.get_by_id(id)
         # user_id = request.user.pk
