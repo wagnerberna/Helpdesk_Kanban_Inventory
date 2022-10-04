@@ -76,6 +76,7 @@ def support_view_list_by_technical(request):
 
 
 # passa uma instância
+# readonly ou disable in text form
 @login_required
 def support_view_update(request, id):
     try:
@@ -88,8 +89,8 @@ def support_view_update(request, id):
 
         form_view.fields["user_name"].widget.attrs["disabled"] = True
         form_view.fields["category"].widget.attrs["disabled"] = True
-        form_view.fields["title"].widget.attrs["readonly"] = True
-        form_view.fields["description"].widget.attrs["readonly"] = True
+        form_view.fields["title"].widget.attrs["disabled"] = True
+        form_view.fields["description"].widget.attrs["disabled"] = True
 
         context = {"form": form, "form_view": form_view}
 
