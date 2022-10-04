@@ -88,10 +88,6 @@ def support_view_update(request, id):
 
         form_view.fields["user_name"].widget.attrs["disabled"] = True
         form_view.fields["category"].widget.attrs["disabled"] = True
-
-        # form.fields["user_name"].widget["disabled_choices"] = True
-        # form.fields["category"].widget["disabled_choices"] = True
-
         form_view.fields["title"].widget.attrs["readonly"] = True
         form_view.fields["description"].widget.attrs["readonly"] = True
 
@@ -105,18 +101,3 @@ def support_view_update(request, id):
     except Exception as error:
         print("Internal error:", error)
         raise
-
-
-# @login_required
-# def support_view_delete(request, id):
-#     try:
-#         demand = demand_view_set.get_by_id(id)
-
-#         if request.method == "POST":
-#             demand.delete()
-#             return redirect("demands_list_by_user")
-
-#         return render(request, "helpdesk/pages/demand_delete.html", {"demand": demand})
-#     except Exception as error:
-#         print("Internal error:", error)
-#         raise
