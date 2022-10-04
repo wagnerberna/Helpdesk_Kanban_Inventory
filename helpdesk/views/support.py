@@ -17,14 +17,14 @@ def support_view_list_all(request):
 
         search_input = request.GET.get("search_input", None)
         search_field = request.GET.get("search_field", None)
-        print(search_input, search_field)
+        print("!!!Busca!!!", search_input, search_field)
 
         if search_input and search_field:
             if search_field == "id":
                 demands = demand_view_set.get_by_id(search_input)
                 print("id find:::", demands)
             if search_field == "user_name":
-                user_find = demand_filter_view_set.get_by_user_name(search_input)
+                user_find = user_view_set.get_user_by_name(search_input)
                 print("---user find:::", user_find)
                 demands = demand_view_set
                 # print(user_find.id)

@@ -18,6 +18,6 @@ urlpatterns = [
     path("helpdesk/", include("helpdesk.router.urls_user")),
     path("helpdesk/", include("helpdesk.router.urls_support")),
     path("kanban/", include("kanban.urls")),
-    path("kanban/api/", include("kanban.api.urls")),
-    path("helpdesk/api/", include("helpdesk.api.urls")),
+    # path("kanban/api/", include("kanban.api.urls")),
+    # path("helpdesk/api/", include("helpdesk.api.urls")),
 ]

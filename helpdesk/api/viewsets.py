@@ -50,5 +50,7 @@ class DemandFilterViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
 
     def get_by_user_name(self, user_name):
-        queryset = Demand.objects.filter(user_name=user_name)
+        print("MODEL!!!")
+
+        queryset = Demand.objects.filter(username=user_name)
         return queryset
