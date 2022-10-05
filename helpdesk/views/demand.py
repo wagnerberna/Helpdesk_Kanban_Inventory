@@ -1,23 +1,25 @@
 from django import forms
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import redirect, render
-from helpdesk.api.viewsets import DemandFilterViewSet, DemandViewSet, UserViewSet
-from helpdesk.forms import DemandFormCreate, DemandFormUpdate
+from django.shortcuts import get_object_or_404, redirect, render
 
-demand_view_set = DemandViewSet()
-demand_filter_view_set = DemandFilterViewSet()
-user_view_set = UserViewSet()
+# from helpdesk.api.viewsets import DemandFilterViewSet, DemandViewSet, UserViewSet
+from helpdesk.forms import DemandFormCreate, DemandFormUpdate
+from helpdesk.models import Demand
+
+# demand_view_set = DemandViewSet()
+# demand_filter_view_set = DemandFilterViewSet()
+# user_view_set = UserViewSet()
 
 
 @login_required
 def demand_view_list_by_user(request):
     try:
-        user_id = request.user.pk
+        id = request.user.pk
         user_name = request.user.username
 
         # print("REQUEST::::", user_id, user_name)
 
-        demands = demand_view_set.get_by_user_id(user_id)
+        demands = Demand.objects.filter(user_name=id)
         # print("Demands:::", demands)
 
         context = {"demands": demands}
@@ -62,7 +64,7 @@ def demand_view_details(request, id):
     try:
         # print("ID:::", id)
 
-        demand = demand_view_set.get_by_id(id)
+        demand = get_object_or_404(Demand, pk=id)
         # user_id = request.user.pk
         form = DemandFormUpdate(request.POST or None, instance=demand)
         form.fields["user_name"].widget = forms.HiddenInput()
@@ -85,7 +87,7 @@ def demand_view_details(request, id):
 @login_required
 def demand_view_delete(request, id):
     try:
-        demand = demand_view_set.get_by_id(id)
+        demand = get_object_or_404(Demand, pk=id)
         context = {"demand": demand}
 
         if request.method == "POST":

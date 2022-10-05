@@ -1,26 +1,26 @@
 from django import forms
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from helpdesk.api.serializers import DemandFilterSerializer
-from helpdesk.api.viewsets import (
-    DemandFilterViewSet,
-    DemandViewSet,
-    StatusViewSet,
-    UserViewSet,
-)
+# from helpdesk.api.viewsets import (
+#     DemandFilterViewSet,
+#     DemandViewSet,
+#     StatusViewSet,
+#     UserViewSet,
+# )
 from helpdesk.forms import SupportFormUpdate, SupportFormUpdateView
 from helpdesk.models import Demand
 
-demand_view_set = DemandViewSet()
-demand_filter_view_set = DemandFilterViewSet()
-user_view_set = UserViewSet()
-status_view_set = StatusViewSet()
+# demand_view_set = DemandViewSet()
+# demand_filter_view_set = DemandFilterViewSet()
+# user_view_set = UserViewSet()
+# status_view_set = StatusViewSet()
 
 # pesquisa busca pelo name e se não encontrar passa None
 @login_required
 def support_view_list_all(request):
     try:
-        demands = demand_view_set.get_all(request)
+        demands = Demand.objects.all().order_by("-id")
         demand_filter = DemandFilterSerializer(request.GET, queryset=demands)
 
         print(demand_filter)
@@ -43,10 +43,10 @@ def support_view_list_by_technical(request):
 
         # print("REQUEST::::", user_id, user_name)
 
-        all_demands = demand_view_set.get_by_support(user_id)
-        # print(all_demands)
+        demands = get_object_or_404(Demand, pk=id)
+        # print(demands)
 
-        context = {"all_demands": all_demands}
+        context = {"demands": demands}
 
         return render(
             request,
@@ -64,7 +64,7 @@ def support_view_list_by_technical(request):
 def support_view_update(request, id):
     try:
         # print("ID:::", id)
-        demand = demand_view_set.get_by_id(id)
+        demand = get_object_or_404(Demand, pk=id)
         # demand = get_object_or_404(Demand, pk=id)
         # print(demand)
         form_view = SupportFormUpdateView(request.POST or None, instance=demand)
