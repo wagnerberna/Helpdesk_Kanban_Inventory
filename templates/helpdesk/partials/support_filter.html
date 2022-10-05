@@ -1,6 +1,9 @@
-<div class="container-search">
+{%load bootstrap%}
+
+<div class="container">
     <form action="", method="GET">
-        {{demand_filter.form.as_p}}
+        {% comment %} {{demand_filter.form.as_p}} {% endcomment %}
+        {{demand_filter.form|bootstrap}}
         <button type="submit"><i class="fa-sharp fa-solid fa-magnifying-glass"></i></button>
     </form>
 </div>
