@@ -2,19 +2,9 @@ from django import forms
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 from helpdesk.api.serializers import DemandFilterSerializer
-# from helpdesk.api.viewsets import (
-#     DemandFilterViewSet,
-#     DemandViewSet,
-#     StatusViewSet,
-#     UserViewSet,
-# )
 from helpdesk.forms import SupportFormUpdate, SupportFormUpdateView
 from helpdesk.models import Demand
 
-# demand_view_set = DemandViewSet()
-# demand_filter_view_set = DemandFilterViewSet()
-# user_view_set = UserViewSet()
-# status_view_set = StatusViewSet()
 
 # pesquisa busca pelo name e se não encontrar passa None
 @login_required

@@ -1,14 +1,8 @@
 from django import forms
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
-
-# from helpdesk.api.viewsets import DemandFilterViewSet, DemandViewSet, UserViewSet
 from helpdesk.forms import DemandFormCreate, DemandFormUpdate
 from helpdesk.models import Demand
-
-# demand_view_set = DemandViewSet()
-# demand_filter_view_set = DemandFilterViewSet()
-# user_view_set = UserViewSet()
 
 
 @login_required
