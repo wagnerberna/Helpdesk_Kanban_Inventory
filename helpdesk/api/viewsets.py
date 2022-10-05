@@ -1,10 +1,15 @@
+import django_filters
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
-from helpdesk.api.serializers import DemandSerializer, UserSerializer
-from helpdesk.models import Demand
+from helpdesk.api.serializers import (
+    DemandFilterSerializer,
+    DemandSerializer,
+    StatusSerializer,
+    UserSerializer,
+)
+from helpdesk.models import Demand, Status
 from rest_framework import viewsets
 from rest_framework.decorators import action
-from rest_framework.response import Response
 
 
 # ordernar por ID decrescente
@@ -37,7 +42,7 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all().order_by("-id")
     serializer_class = UserSerializer
 
-    def get_user_by_name(self, user_name):
+    def get_id_by_name(self, user_name):
         queryset = User.objects.filter(username=user_name)
         return queryset
 
@@ -45,12 +50,26 @@ class UserViewSet(viewsets.ModelViewSet):
 # __icontains
 
 
-class DemandFilterViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all().order_by("-id")
-    serializer_class = UserSerializer
+class StatusViewSet(viewsets.ModelViewSet):
+    queryset = Status.objects.all()
+    serializer_class = StatusSerializer
 
-    def get_by_user_name(self, user_name):
-        print("MODEL!!!")
-
-        queryset = Demand.objects.filter(username=user_name)
+    def get_id_by_status_name(self, status_name):
+        queryset = Status.objects.filter(name=status_name)
+        print("QUERYSET STATUS:::", queryset)
         return queryset
+
+
+class DemandFilterViewSet(viewsets.ModelViewSet):
+    queryset = Demand.objects.all().order_by("-id")
+    serializer_class = DemandFilterSerializer
+
+    # def demand_list_by_title(self, title):
+    #     queryset = Demand.
+
+
+# def get_by_status(self, status):
+#     print("MODEL!!!")
+
+#     queryset = Demand.objects.filter(status=status)
+#     return queryset

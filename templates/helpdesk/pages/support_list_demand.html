@@ -2,7 +2,9 @@
 
 {% block main %}
 
-    {% include "helpdesk/partials/demand_search.html" %}
+    {% comment %} {% include "helpdesk/partials/demand_search.html" %} {% endcomment %}
+    {% include "helpdesk/partials/demand_filter.html" %}
+
 
     <h2>
         <a href="{%url "support_by_technical"%}">

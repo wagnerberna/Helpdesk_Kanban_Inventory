@@ -1,6 +1,5 @@
 <div class="container">
     <h2>Lista de Demandas:</h2>
-
     <table class="demand-table">
         <thead>
             <th >ID</th>
@@ -11,7 +10,9 @@
             <th>Status</th>
             <th>Acessar</th>
         </thead>
-        {%for demand in all_demands%}
+        {% comment %} {%for demand in all_demands%} {% endcomment %}
+        {%for demand in demand_filter.qs%}
+
         <tr>
             <td>{{demand.id}}</td>
             <td>{{demand.user_name}}</td>
