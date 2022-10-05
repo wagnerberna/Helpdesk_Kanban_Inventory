@@ -17,55 +17,23 @@ user_view_set = UserViewSet()
 status_view_set = StatusViewSet()
 
 # pesquisa busca pelo name e se não encontrar passa None
-# @login_required
-# def support_view_list_all(request):
-#     try:
-#         user_id = request.user.pk
-#         user_name = request.user.username
+@login_required
+def support_view_list_all(request):
+    try:
+        demands = demand_view_set.get_all(request)
+        demand_filter = DemandFilterSerializer(request.GET, queryset=demands)
 
-#         search_input = request.GET.get("search_input", None)
-#         search_field = request.GET.get("search_field", None)
-#         print("!!!Busca!!!", search_input, search_field)
+        print(demand_filter)
+        context = {"all_demands": demands, "demand_filter": demand_filter}
 
-#         if search_input and search_field:
-#             if search_field == "id":
-#                 demands = demand_view_set.get_by_id(search_input)
-#                 print("id find:::", demands)
-#             if search_field == "user_name":
-#                 user_find = user_view_set.get_id_by_name(search_input)
-#                 print("---user find:::", user_find)
-#                 # demands = demand_view_set
-#                 # print(user_find.id)
-#                 # demands = demand_filter_view_set.get_by_user_name(user_find)
-#             if search_field == "title":
-#                 demands = demand_view_set.get_by_user_id(search_input)
-#             if search_field == "description":
-#                 demands = demand_view_set.get_by_user_id(search_input)
-#             if search_field == "category":
-#                 demands = demand_view_set.get_by_user_id(search_input)
-#             if search_field == "attendant":
-#                 demands = demand_view_set.get_by_user_id(search_input)
-#             if search_field == "status":
-#                 id_status = status_view_set.get_id_by_status_name(search_input)
-
-#                 demands = demand_view_set.get_by_user_id(search_input)
-#             if search_field == "solution":
-#                 demands = demand_view_set.get_by_user_id(search_input)
-
-#         else:
-#             demands = demand_view_set.get_all(request)
-#         # print(all_demands)
-
-#         context = {"all_demands": demands}
-
-#         return render(
-#             request,
-#             "helpdesk/pages/support_list_demand.html",
-#             context,
-#         )
-#     except Exception as error:
-#         print("Internal error:", error)
-#         raise
+        return render(
+            request,
+            "helpdesk/pages/support_list_demand.html",
+            context,
+        )
+    except Exception as error:
+        print("Internal error:", error)
+        raise
 
 
 @login_required
@@ -115,25 +83,6 @@ def support_view_update(request, id):
             return redirect("support_list_all")
 
         return render(request, "helpdesk/pages/support_update_demand.html", context)
-    except Exception as error:
-        print("Internal error:", error)
-        raise
-
-
-@login_required
-def support_view_list_all(request):
-    try:
-        demands = demand_view_set.get_all(request)
-        demand_filter = DemandFilterSerializer(request.GET, queryset=demands)
-
-        print(demand_filter)
-        context = {"all_demands": demands, "demand_filter": demand_filter}
-
-        return render(
-            request,
-            "helpdesk/pages/support_list_demand.html",
-            context,
-        )
     except Exception as error:
         print("Internal error:", error)
         raise
