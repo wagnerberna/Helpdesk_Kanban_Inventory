@@ -2,10 +2,6 @@
 
 {% block main %}
 
-    {% comment %} {% include "helpdesk/partials/demand_search.html" %} {% endcomment %}
-    {% include "helpdesk/partials/demand_filter.html" %}
-
-
     <h2>
         <a href="{%url "support_by_technical"%}">
             <i class="fa-sharp fa-solid fa-list-tree main-logo-icon"></i>
@@ -13,7 +9,10 @@
         </a>
     </h2>
 
-    <h2>Chamado Abertos:</h2>    
+    <h2>Filtros:</h2>
+    {% include "helpdesk/partials/support_filter.html" %}
+
+    <h2>Chamados:</h2>    
     {%include "helpdesk/partials/support_demand_table.html"%}
 
 {% endblock main %}
