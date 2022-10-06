@@ -5,11 +5,29 @@ from helpdesk.api.serializers import DemandFilterSerializer
 from helpdesk.forms import SupportFormUpdate, SupportFormUpdateView
 from helpdesk.models import Demand, Support
 
+#  <QuerySet [<Support: wagner.berna>]>
+# print("check:::", check.values("user_name")[0])
+
+
+@login_required
+def check_user_permission(request):
+    id = request.user.pk
+    check = get_object_or_404(Support, user_name=id)
+
+    # check = Support.objects.filter(user_name=id)
+    # print("check:::", check)
+    # print("check:::", check.values("user_name")[0])
+
+    # if not check:
+    #     print("IFFFFFF")
+    #     return redirect("access_denied")
+
 
 # pesquisa busca pelo name e se não encontrar passa None
 @login_required
 def support_view_list_all(request):
     try:
+        check_user_permission(request)
         demands = (
             Demand.objects.all().order_by("-id").exclude(status__name="Finalizado")
         )

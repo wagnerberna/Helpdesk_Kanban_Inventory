@@ -12,3 +12,7 @@ def home(request):
 def logout_user(request):
     logout(request)
     return redirect("home")
+
+
+def access_denied(request):
+    return render(request, "global/access_denied.html", context={"title": "Home"})
