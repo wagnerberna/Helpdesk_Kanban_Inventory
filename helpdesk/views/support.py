@@ -17,10 +17,31 @@ def support_view_list_all(request):
 
         print(demand_filter)
         context = {"all_demands": demands, "demand_filter": demand_filter}
+        template_path = "helpdesk/pages/support_list_all_demand.html"
 
         return render(
             request,
-            "helpdesk/pages/support_list_all_demand.html",
+            template_path,
+            context,
+        )
+    except Exception as error:
+        print("Internal error:", error)
+        raise
+
+
+@login_required
+def support_view_list_done(request):
+    try:
+        demands = Demand.objects.filter(status__name="Finalizado").order_by("-id")
+        demand_filter = DemandFilterSerializer(request.GET, queryset=demands)
+
+        print(demand_filter)
+        context = {"all_demands": demands, "demand_filter": demand_filter}
+        template_path = "helpdesk/pages/support_list_all_demand.html"
+
+        return render(
+            request,
+            template_path,
             context,
         )
     except Exception as error:
@@ -41,10 +62,11 @@ def support_view_list_by_technical(request):
         print(demands)
 
         context = {"demands": demands}
+        template_path = "helpdesk/pages/support_list_technical_demand.html"
 
         return render(
             request,
-            "helpdesk/pages/support_list_technical_demand.html",
+            template_path,
             context,
         )
     except Exception as error:
@@ -71,12 +93,13 @@ def support_view_update(request, id):
 
         # template =
         context = {"form": form, "form_view": form_view}
+        template_path = "helpdesk/pages/support_update_demand.html"
 
         if form.is_valid():
             form.save()
             return redirect("support_list_all")
 
-        return render(request, "helpdesk/pages/support_update_demand.html", context)
+        return render(request, template_path, context)
     except Exception as error:
         print("Internal error:", error)
         raise

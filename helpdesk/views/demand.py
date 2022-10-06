@@ -17,10 +17,11 @@ def demand_view_list_by_user(request):
         # print("Demands:::", demands)
 
         context = {"demands": demands}
+        template_path = "helpdesk/pages/demand_list_user.html"
 
         return render(
             request,
-            "helpdesk/pages/demand_list_user.html",
+            template_path,
             context,
         )
     except Exception as error:
@@ -41,12 +42,13 @@ def demand_view_create(request):
         form.fields["user_name"].widget = forms.HiddenInput()
 
         context = {"form": form}
+        template_path = "helpdesk/pages/demand_create.html"
 
         if form.is_valid():
             form.save()
             return redirect("demands_list_by_user")
 
-        return render(request, "helpdesk/pages/demand_create.html", context)
+        return render(request, template_path, context)
 
     except Exception as error:
         print("Internal error:", error)
@@ -70,8 +72,9 @@ def demand_view_details(request, id):
         form.fields["solution"].widget.attrs["disabled"] = True
 
         context = {"form": form}
+        template_path = "helpdesk/pages/demand_details.html"
 
-        return render(request, "helpdesk/pages/demand_details.html", context)
+        return render(request, template_path, context)
 
     except Exception as error:
         print("Internal error:", error)
@@ -83,12 +86,13 @@ def demand_view_delete(request, id):
     try:
         demand = get_object_or_404(Demand, pk=id)
         context = {"demand": demand}
+        template_path = "helpdesk/pages/demand_delete.html"
 
         if request.method == "POST":
             demand.delete()
             return redirect("demands_list_by_user")
 
-        return render(request, "helpdesk/pages/demand_delete.html", context)
+        return render(request, template_path, context)
     except Exception as error:
         print("Internal error:", error)
         raise
