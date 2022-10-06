@@ -13,4 +13,5 @@ urlpatterns = [
         support_view_list_by_technical,
         name="support_by_technical",
     ),
+    path("support_done/", support_view_list_all, name="support_list_done"),
 ]

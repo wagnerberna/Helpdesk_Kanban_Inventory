@@ -10,7 +10,9 @@ from helpdesk.models import Demand, Support
 @login_required
 def support_view_list_all(request):
     try:
-        demands = Demand.objects.all().order_by("-id")
+        demands = (
+            Demand.objects.all().order_by("-id").exclude(status__name="Finalizado")
+        )
         demand_filter = DemandFilterSerializer(request.GET, queryset=demands)
 
         print(demand_filter)
