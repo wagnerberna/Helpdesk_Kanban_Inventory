@@ -1,0 +1,28 @@
+<div class="container">
+    <h2>Lista de Demandas:</h2>
+    <table class="demand-table">
+        <thead>
+            <th >ID</th>
+            <th>Nome</th>
+            <th>Título</th>
+            <th>categoria</th>
+            <th>Atendente</th>
+            <th>Status</th>
+            <th>Acessar</th>
+        </thead>
+
+        {%for demand in demands%}
+
+        <tr>
+            <td>{{demand.id}}</td>
+            <td>{{demand.user_name}}</td>
+            <td>{{demand.title}}</td>
+            <td>{{demand.category}}</td>
+            <td>{{demand.attendant}}</td>
+            <td>{{demand.status}}</td>
+            <td><a href="{%url "support_update" demand.id%}"><i class="fa-sharp fa-solid fa-folder-open main-logo-icon"></i></a>
+        </tr>
+        {%endfor%}
+    </table>
+    
+</div>

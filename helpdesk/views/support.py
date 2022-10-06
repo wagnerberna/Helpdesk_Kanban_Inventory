@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 from helpdesk.api.serializers import DemandFilterSerializer
 from helpdesk.forms import SupportFormUpdate, SupportFormUpdateView
-from helpdesk.models import Demand
+from helpdesk.models import Demand, Support
 
 
 # pesquisa busca pelo name e se não encontrar passa None
@@ -18,7 +18,7 @@ def support_view_list_all(request):
 
         return render(
             request,
-            "helpdesk/pages/support_list_demand.html",
+            "helpdesk/pages/support_list_all_demand.html",
             context,
         )
     except Exception as error:
@@ -26,21 +26,23 @@ def support_view_list_all(request):
         raise
 
 
+# "__" consulta o campo na tabela estrangeira
 @login_required
 def support_view_list_by_technical(request):
     try:
-        user_id = request.user.pk
+        id = request.user.pk
+        # user_name = request.user.username
 
-        # print("REQUEST::::", user_id, user_name)
+        # print("REQUEST::::", id)
 
-        demands = get_object_or_404(Demand, pk=id)
-        # print(demands)
+        demands = Demand.objects.filter(attendant__user_name=id)
+        print(demands)
 
         context = {"demands": demands}
 
         return render(
             request,
-            "helpdesk/pages/support_list_demand.html",
+            "helpdesk/pages/support_list_technical_demand.html",
             context,
         )
     except Exception as error:

@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 from helpdesk.forms import DemandFormCreate, DemandFormUpdate
-from helpdesk.models import Demand
+from helpdesk.models import Demand, Support
 
 
 @login_required
