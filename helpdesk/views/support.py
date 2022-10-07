@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect, render
 from helpdesk.api.serializers import DemandFilterSerializer
 from helpdesk.forms import SupportFormUpdate, SupportFormUpdateView
@@ -8,26 +9,31 @@ from helpdesk.models import Demand, Support
 #  <QuerySet [<Support: wagner.berna>]>
 # print("check:::", check.values("user_name")[0])
 
+# Retorna erro 404
+# @login_required
+# def check_user_permission(request):
+#     id = request.user.pk
+#     check = get_object_or_404(Support, user_name=id)
+#     return check
+
 
 @login_required
-def check_user_permission(request):
+def check_user_access(request):
     id = request.user.pk
-    check = get_object_or_404(Support, user_name=id)
-
-    # check = Support.objects.filter(user_name=id)
-    # print("check:::", check)
-    # print("check:::", check.values("user_name")[0])
-
-    # if not check:
-    #     print("IFFFFFF")
-    #     return redirect("access_denied")
+    check = Support.objects.filter(user_name=id)
+    if not check:
+        return False
+    else:
+        return True
 
 
-# pesquisa busca pelo name e se não encontrar passa None
 @login_required
 def support_view_list_all(request):
     try:
-        check_user_permission(request)
+        check_access = check_user_access(request)
+        if not check_access:
+            return redirect("access_denied")
+
         demands = (
             Demand.objects.all().order_by("-id").exclude(status__name="Finalizado")
         )
@@ -50,6 +56,10 @@ def support_view_list_all(request):
 @login_required
 def support_view_list_done(request):
     try:
+        check_access = check_user_access(request)
+        if not check_access:
+            return redirect("access_denied")
+
         demands = Demand.objects.filter(status__name="Finalizado").order_by("-id")
         demand_filter = DemandFilterSerializer(request.GET, queryset=demands)
 
@@ -71,6 +81,10 @@ def support_view_list_done(request):
 @login_required
 def support_view_list_by_technical(request):
     try:
+        check_access = check_user_access(request)
+        if not check_access:
+            return redirect("access_denied")
+
         id = request.user.pk
         # user_name = request.user.username
 
@@ -97,6 +111,10 @@ def support_view_list_by_technical(request):
 @login_required
 def support_view_update(request, id):
     try:
+        check_access = check_user_access(request)
+        if not check_access:
+            return redirect("access_denied")
+
         # print("ID:::", id)
         demand = get_object_or_404(Demand, pk=id)
         # demand = get_object_or_404(Demand, pk=id)
