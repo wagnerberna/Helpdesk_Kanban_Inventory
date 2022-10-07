@@ -30,13 +30,31 @@ class StatusSerializer(serializers.ModelSerializer):
 
 
 class DemandFilterSerializer(django_filters.FilterSet):
-    # id
-    # user_name
     title = django_filters.CharFilter(lookup_expr="icontains")
-    # category
     description = django_filters.CharFilter(lookup_expr="icontains")
-    # attendant
-    # status
+    solution = django_filters.CharFilter(lookup_expr="icontains")
+
+    class Meta:
+        model = Demand
+        fields = (
+            "title",
+            "category",
+            "description",
+            "attendant",
+            "solution",
+        )
+        # labels = {
+        #     "title": "Título:",
+        #     "category": "Categoria:",
+        #     "description": "Descrição:",
+        #     "attendant": "Técnico:",
+        #     "solution": "Solução",
+        # }
+
+
+class SupportFilterSerializer(django_filters.FilterSet):
+    title = django_filters.CharFilter(lookup_expr="icontains")
+    description = django_filters.CharFilter(lookup_expr="icontains")
     solution = django_filters.CharFilter(lookup_expr="icontains")
 
     class Meta:

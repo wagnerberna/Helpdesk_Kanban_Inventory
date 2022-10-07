@@ -1,23 +1,48 @@
 from django import forms
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
+from helpdesk.api.serializers import DemandFilterSerializer
 from helpdesk.forms import DemandFormCreate, DemandFormUpdate
-from helpdesk.models import Demand, Support
+from helpdesk.models import Demand
 
 
 @login_required
 def demand_view_list_by_user(request):
     try:
         id = request.user.pk
-        user_name = request.user.username
-
+        # user_name = request.user.username
         # print("REQUEST::::", user_id, user_name)
-
-        demands = Demand.objects.filter(user_name=id)
+        demands = Demand.objects.filter(user_name=id).exclude(status__name="Finalizado")
         # print("Demands:::", demands)
 
         context = {"demands": demands}
         template_path = "helpdesk/pages/demand_list_user.html"
+
+        return render(
+            request,
+            template_path,
+            context,
+        )
+    except Exception as error:
+        print("Internal error:", error)
+        raise
+
+
+@login_required
+def demand_view_list_done(request):
+    try:
+        id = request.user.pk
+        demands = (
+            Demand.objects.filter(user_name=id)
+            .filter(status__name="Finalizado")
+            .order_by("-id")
+        )
+        # print("Demands:::", demands)
+
+        demand_filter = DemandFilterSerializer(request.GET, queryset=demands)
+
+        context = {"demands": demands, "demand_filter": demand_filter}
+        template_path = "helpdesk/pages/demand_done_filter_list.html"
 
         return render(
             request,
@@ -59,7 +84,6 @@ def demand_view_create(request):
 def demand_view_details(request, id):
     try:
         # print("ID:::", id)
-
         demand = get_object_or_404(Demand, pk=id)
         # user_id = request.user.pk
         form = DemandFormUpdate(request.POST or None, instance=demand)

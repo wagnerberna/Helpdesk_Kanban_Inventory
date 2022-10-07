@@ -1,8 +1,6 @@
-from django import forms
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect, render
-from helpdesk.api.serializers import DemandFilterSerializer
+from helpdesk.api.serializers import SupportFilterSerializer
 from helpdesk.forms import SupportFormUpdate, SupportFormUpdateView
 from helpdesk.models import Demand, Support
 
@@ -37,7 +35,7 @@ def support_view_list_all(request):
         demands = (
             Demand.objects.all().order_by("-id").exclude(status__name="Finalizado")
         )
-        demand_filter = DemandFilterSerializer(request.GET, queryset=demands)
+        demand_filter = SupportFilterSerializer(request.GET, queryset=demands)
 
         print(demand_filter)
         context = {"all_demands": demands, "demand_filter": demand_filter}
@@ -61,7 +59,7 @@ def support_view_list_done(request):
             return redirect("access_denied")
 
         demands = Demand.objects.filter(status__name="Finalizado").order_by("-id")
-        demand_filter = DemandFilterSerializer(request.GET, queryset=demands)
+        demand_filter = SupportFilterSerializer(request.GET, queryset=demands)
 
         print(demand_filter)
         context = {"all_demands": demands, "demand_filter": demand_filter}

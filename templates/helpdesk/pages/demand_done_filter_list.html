@@ -1,0 +1,11 @@
+{% extends 'helpdesk/pages/demand_base.html' %}
+
+{% block main %}
+
+    <h2>Filtros:</h2>
+    {% include "helpdesk/partials/support_filter.html" %}
+
+    <h2>Chamado Abertos:</h2>    
+    {%include "helpdesk/partials/demand_filter_table.html"%}
+
+{% endblock main %}
