@@ -7,7 +7,6 @@ from rest_framework import serializers
 class DemandSerializer(serializers.ModelSerializer):
     class Meta:
         model = Demand
-        # fields = ["user_name", "status"]
         fields = "__all__"
 
 
