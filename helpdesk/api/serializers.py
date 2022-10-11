@@ -50,13 +50,6 @@ class DemandFilterSerializer(django_filters.FilterSet):
             "attendant",
             "solution",
         )
-        # labels = {
-        #     "title": "Título:",
-        #     "category": "Categoria:",
-        #     "description": "Descrição:",
-        #     "attendant": "Técnico:",
-        #     "solution": "Solução",
-        # }
 
 
 class SupportFilterSerializer(django_filters.FilterSet):
