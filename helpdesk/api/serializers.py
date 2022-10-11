@@ -1,6 +1,6 @@
 import django_filters
 from django.contrib.auth.models import User
-from helpdesk.models import Demand, Status
+from helpdesk.models import Category, Demand, Status, Support
 from rest_framework import serializers
 
 
@@ -30,12 +30,19 @@ class StatusSerializer(serializers.ModelSerializer):
 
 
 class DemandFilterSerializer(django_filters.FilterSet):
-    title = django_filters.CharFilter(lookup_expr="icontains")
-    description = django_filters.CharFilter(lookup_expr="icontains")
-    solution = django_filters.CharFilter(lookup_expr="icontains")
+    title = django_filters.CharFilter(lookup_expr="icontains", label="Título:")
+    category = django_filters.ModelChoiceFilter(
+        label="Categoria:", queryset=Category.objects.all()
+    )
+    description = django_filters.CharFilter(lookup_expr="icontains", label="Descrição:")
+    attendant = django_filters.ModelChoiceFilter(
+        label="Técnico:", queryset=Support.objects.all()
+    )
+    solution = django_filters.CharFilter(lookup_expr="icontains", label="Solução:")
 
     class Meta:
         model = Demand
+
         fields = (
             "title",
             "category",
