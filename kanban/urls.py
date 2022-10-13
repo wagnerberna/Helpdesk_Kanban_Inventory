@@ -1,8 +1,7 @@
 from django.urls import path
 
-from kanban.views.site import about, home
+from kanban.views.kanban import manager
 
 urlpatterns = [
-    path("", home),
-    path("about/", about),
+    path("manager/", manager, name="kanban_manager"),
 ]

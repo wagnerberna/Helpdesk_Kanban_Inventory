@@ -1,0 +1,25 @@
+{% extends 'kanban/pages/kanban_base.html' %}
+
+{% block main %}
+    <h1>Gerenciamento Quadro Kanban</h1>
+
+    <h2>
+        <a href="{%url "kanban_manager"%}">
+            <i class="fa-sharp fa-solid fa-list-check main-logo-icon"></i>
+            Lista de Projetos
+        </a>
+    </h2>
+    <h2>
+        <a href="{%url "kanban_manager"%}">
+            <i class="fa-sharp fa-solid fa-circle-check main-logo-icon"></i>
+            Adicionar Projeto
+        </a>
+    </h2>
+    <h2>
+        <a href="{%url "kanban_manager"%}">
+            <i class="fa-sharp fa-solid fa-circle-check main-logo-icon"></i>
+            Adicionar Atividade
+        </a>
+    </h2>
+
+{% endblock main %}
