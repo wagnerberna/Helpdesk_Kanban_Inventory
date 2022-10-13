@@ -63,7 +63,8 @@ class Team(models.Model):
         db_table = "kanban_team"
 
     def __str__(self):
-        return self.user_name
+        return "%s" % self.user_name
+
         # return "%s / Time: %s" % (self.user_name, self.user_name)
 
 
