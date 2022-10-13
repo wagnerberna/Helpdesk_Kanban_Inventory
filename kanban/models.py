@@ -32,7 +32,8 @@ class Project(models.Model):
         db_table = "kanban_project"
 
     def __str__(self):
-        return "Projeto: %s / Status: %s" % (self.name, self.status)
+        return self.name
+        # return "Projeto: %s / Status: %s" % (self.name, self.status)
 
 
 class Category(models.Model):
@@ -62,7 +63,8 @@ class Team(models.Model):
         db_table = "kanban_team"
 
     def __str__(self):
-        return "%s / Time: %s" % (self.user_name, self.user_name)
+        return self.user_name
+        # return "%s / Time: %s" % (self.user_name, self.user_name)
 
 
 # task_owner (pode ficar em branco(no formulário para salvar), e o valor padrão é None)
@@ -86,9 +88,10 @@ class Task(models.Model):
         db_table = "kanban_task"
 
     def __str__(self):
-        return "Tarefa: %s / Projeto: %s, Responsável: %s, Status: %s" % (
-            self.name,
-            self.project,
-            self.task_owner,
-            self.status,
-        )
+        return self.title
+        # return "Tarefa: %s / Projeto: %s, Responsável: %s, Status: %s" % (
+        #     self.name,
+        #     self.project,
+        #     self.task_owner,
+        #     self.status,
+        # )
