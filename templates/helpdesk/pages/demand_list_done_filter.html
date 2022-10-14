@@ -2,10 +2,16 @@
 
 {% block main %}
 
+<div class="container">  
     <h2>Filtros:</h2>
-    {% include "helpdesk/partials/support_filter.html" %}
 
-    <h2>Chamado Abertos:</h2>    
+    {% include "helpdesk/partials/support_filter.html" %}
+    
+    <h2>Chamado Finalizados:</h2>
+
     {%include "helpdesk/partials/demand_filter_table.html"%}
+
+</div>
+
 
 {% endblock main %}

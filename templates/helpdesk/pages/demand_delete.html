@@ -2,7 +2,11 @@
 
 {% block main %}
 
-    <h2>Confirmar deletar o chamado {{demand.id}}?</h2>
-    {%include "helpdesk/partials/demand_delete_confirm.html"%}
+    <div class="container">
+        <h2>Confirmar deletar o chamado {{demand.id}}?</h2>
+
+        {%include "helpdesk/partials/demand_delete_confirm.html"%}
+        
+    </div>
 
 {% endblock main %}

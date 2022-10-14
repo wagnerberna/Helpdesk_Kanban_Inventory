@@ -16,7 +16,7 @@ def demand_view_list_by_user(request):
         # print("Demands:::", demands)
 
         context = {"demands": demands}
-        template_path = "helpdesk/pages/demand_list_user.html"
+        template_path = "helpdesk/pages/demand_list_open.html"
 
         return render(
             request,
@@ -42,7 +42,7 @@ def demand_view_list_done(request):
         demand_filter = DemandFilterSerializer(request.GET, queryset=demands)
 
         context = {"demands": demands, "demand_filter": demand_filter}
-        template_path = "helpdesk/pages/demand_done_filter_list.html"
+        template_path = "helpdesk/pages/demand_list_done_filter.html"
 
         return render(
             request,

@@ -2,17 +2,22 @@
 
 {% block main %}
 
-<h2>
-    <a href="{%url "support_by_technical"%}">
-        <i class="fa-sharp fa-solid fa-user-secret main-logo-icon"></i>
-        Meus Chamados
-    </a>
-</h2>
-
+<div class="container">
+    
     <h2>Filtros:</h2>
     {% include "helpdesk/partials/support_filter.html" %}
-
+    
     <h2>Chamados:</h2>    
     {%include "helpdesk/partials/support_demand_all_filter_table.html"%}
+    
+    <h2>
+        <a href="{%url "support_by_technical"%}">
+            <i class="fa-sharp fa-solid fa-user-secret main-logo-icon"></i>
+            Meus Chamados
+        </a>
+    </h2>
+
+</div>
+
 
 {% endblock main %}

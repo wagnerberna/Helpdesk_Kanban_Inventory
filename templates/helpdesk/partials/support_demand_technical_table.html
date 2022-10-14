@@ -2,6 +2,7 @@
     <table class="demand-table">
         <thead>
             <th >ID</th>
+            <th>Data Abertura</th>
             <th>Nome</th>
             <th>Título</th>
             <th>categoria</th>
@@ -14,6 +15,7 @@
 
         <tr>
             <td>{{demand.id}}</td>
+            <td>{{demand.created_at|date:"d-m-y"}}</td>
             <td>{{demand.user_name}}</td>
             <td>{{demand.title}}</td>
             <td>{{demand.category}}</td>

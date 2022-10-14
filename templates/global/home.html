@@ -24,37 +24,39 @@
             </a>
         </h2>
     </div>
-    <div class="container">
-        <h1>Supporte</h1>
-        <h2>
-            <a href="{%url "support_list_all"%}">
-                <i class="fa-sharp fa-solid fa-list main-logo-icon"></i>
-                Fila de Chamados
-            </a>
-        </h2>
-        <h2>
-            <a href="{%url "support_by_technical"%}">
-                <i class="fa-sharp fa-solid fa-user-secret main-logo-icon"></i>
-                Meus Chamados
-            </a>
-        </h2>
-        <h2>
-            <a href="{%url "support_list_done"%}">
-                <i class="fa-sharp fa-solid fa-check-double main-logo-icon"></i>
-                Chamados Finalizados
-            </a>
-        </h2>
-    </div>
+    {%if support_check%}
+        <div class="container">
+            <h1>Supporte</h1>
+            <h2>
+                <a href="{%url "support_list_all"%}">
+                    <i class="fa-sharp fa-solid fa-list main-logo-icon"></i>
+                    Fila de Chamados
+                </a>
+            </h2>
+            <h2>
+                <a href="{%url "support_by_technical"%}">
+                    <i class="fa-sharp fa-solid fa-user-secret main-logo-icon"></i>
+                    Meus Chamados
+                </a>
+            </h2>
+            <h2>
+                <a href="{%url "support_list_done"%}">
+                    <i class="fa-sharp fa-solid fa-check-double main-logo-icon"></i>
+                    Chamados Finalizados
+                </a>
+            </h2>
+        </div>
 
-    <div class="container">
-        <h1>Kanban</h1>
-        <h2>
-            <a href="{%url "kanban_manager"%}">
-                {% comment %} <i class="fa-sharp fa-solid fa-check-double main-logo-icon"></i> {% endcomment %}
-                Gerenciamento
-            </a>
-        </h2>
-
-    </div>
+        <div class="container">
+            <h1>Kanban</h1>
+            <h2>
+                <a href="{%url "kanban_manager"%}">
+                    {% comment %} <i class="fa-sharp fa-solid fa-check-double main-logo-icon"></i> {% endcomment %}
+                    Gerenciamento - Em Desenvolvimento!!!
+                </a>
+            </h2>
+        </div>
+    {% endif %}
+    
 {% endblock main %}
 

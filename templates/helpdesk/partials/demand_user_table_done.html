@@ -2,6 +2,8 @@
     <table class="demand-table">
         <thead>
             <th >ID</th>
+            <th>Data Abertura</th>
+            <th>Data Encerramento</th>
             <th>Título</th>
             <th>categoria</th>
             <th>Atendente</th>
@@ -11,6 +13,8 @@
         {%for demand in demands%}
         <tr>
             <td>{{demand.id}}</td>
+            <td>{{demand.created_at|date:"d-m-y"}}</td>
+            <td>{{demand.updated_at|date:"d-m-y"}}</td>
             <td>{{demand.title}}</td>
             <td>{{demand.category}}</td>
             <td>{{demand.attendant}}</td>

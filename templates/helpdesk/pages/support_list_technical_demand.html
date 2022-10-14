@@ -2,14 +2,17 @@
 
 {% block main %}
 
+<div class="container">
     <h2>
         <a href="{%url "support_by_technical"%}">
             <i class="fa-sharp fa-solid fa-list-tree main-logo-icon"></i>
             Meus Chamados
         </a>
     </h2>
-
+    
     <h2>Chamados:</h2>    
     {%include "helpdesk/partials/support_demand_technical_table.html"%}
+
+</div>
 
 {% endblock main %}
