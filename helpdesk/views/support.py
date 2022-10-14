@@ -27,7 +27,7 @@ def check_user_access(request):
 
 
 @login_required
-def support_view_list_all(request):
+def support_view_list_open(request):
     try:
         check_access = check_user_access(request)
         if not check_access:
@@ -40,7 +40,7 @@ def support_view_list_all(request):
 
         print(demand_filter)
         context = {"all_demands": demands, "demand_filter": demand_filter}
-        template_path = "helpdesk/pages/support_list_all_demand.html"
+        template_path = "helpdesk/pages/support_list_demands_open.html"
 
         return render(
             request,
@@ -64,7 +64,7 @@ def support_view_list_done(request):
 
         print(demand_filter)
         context = {"all_demands": demands, "demand_filter": demand_filter}
-        template_path = "helpdesk/pages/support_list_all_demand.html"
+        template_path = "helpdesk/pages/support_list_demands_done.html"
 
         return render(
             request,
@@ -93,7 +93,7 @@ def support_view_list_by_technical(request):
         print(demands)
 
         context = {"demands": demands}
-        template_path = "helpdesk/pages/support_list_technical_demand.html"
+        template_path = "helpdesk/pages/support_list_by_technical.html"
 
         return render(
             request,

@@ -1,0 +1,23 @@
+{% extends 'helpdesk/pages/helpdesk_base.html' %}
+
+{% block main %}
+
+<div class="container">
+    
+    <h2>Filtros:</h2>
+    {% include "helpdesk/partials/support_filter.html" %}
+    
+    
+    <h2>Chamados Abertos:</h2> 
+    {%include "helpdesk/partials/support_demands_open_filter_table.html"%}
+    
+    <h2>
+        <a href="{%url "support_by_technical"%}">
+            <i class="fa-sharp fa-solid fa-user-secret main-logo-icon"></i>
+            Meus Chamados
+        </a>
+    </h2>
+
+</div>
+
+{% endblock main %}
