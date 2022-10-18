@@ -12,6 +12,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("login/", views.LoginView.as_view(), name="login"),
     path("logout/", logout_user, name="logout"),
+    path("changepassword/", logout_user, name="changepassword"),
     path("access_denied/", access_denied, name="access_denied"),
     path("", home, name="home"),
     # path("about/", about),

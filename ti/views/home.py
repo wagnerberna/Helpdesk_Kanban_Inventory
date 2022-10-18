@@ -1,5 +1,6 @@
-from django.contrib.auth import logout
+from django.contrib.auth import logout, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import PasswordChangeForm
 from django.shortcuts import redirect, render
 from helpdesk.models import Support
 
@@ -27,6 +28,22 @@ def home(request):
 def logout_user(request):
     logout(request)
     return redirect("home")
+
+
+@login_required
+def ChangePassword(request):
+    if request.method == "POST":
+        form_passoword = PasswordChangeForm(request.user, request.POST)
+        if form_passoword.is_valid():
+            user = form_passoword.save()
+            update_session_auth_hash(request, user)
+            return redirect("index")
+    else:
+        form_passoword = PasswordChangeForm(request.user)
+
+    template_path = "alterar_senha.html"
+    context = {"form_passoword": form_passoword}
+    return render(request, template_path, context)
 
 
 def access_denied(request):
