@@ -37,11 +37,11 @@ def ChangePassword(request):
         if form_passoword.is_valid():
             user = form_passoword.save()
             update_session_auth_hash(request, user)
-            return redirect("index")
+            return redirect("home")
     else:
         form_passoword = PasswordChangeForm(request.user)
 
-    template_path = "alterar_senha.html"
+    template_path = "ti/pages/change_password.html"
     context = {"form_passoword": form_passoword}
     return render(request, template_path, context)
 
