@@ -24,14 +24,15 @@
                     <i class="fa-sharp fa-solid fa-house main-logo-icon"></i>{% block header_title %}{% endblock header_title %}
                 </a>
             </div>
-            <div class="main-logo-center">
+            <div>
                 <img class="main-logo-client" src="{%static "global/image/logo-client.jpg"%}" alt="logo-principal">
             </div>
             
-            <div class="main-logo-left">
-                <a href={%url "changepassword"%}>
+            <div>
+                <a class="main-logo-left" href={%url "changepassword"%}>
                     <i class="fa-sharp fa-solid fa-user main-logo-icon"></i>
-                </a>{{user.username}}
+                    {{user.username}}
+                </a>
                 
                 <a class="main-logo-left" href="{%url "logout"%}">
                     <i class="fa-sharp fa-solid fa-right-from-bracket main-logo-icon"></i>

@@ -125,9 +125,18 @@ body {
 
 
 .main-logo-icon {
+    /* color: var(--color-white); */
     margin-right: 2rem;
     margin-left: 2rem;
     text-decoration: none;
+}
+
+.main-logo-user {
+    /* color: var(--color-white); */
+    margin-right: 2rem;
+    margin-left: 2rem;
+
+    /* text-decoration: none; */
 }
 
 .main-logo-left {
@@ -150,3 +159,7 @@ body {
     text-decoration: none;
     text-align: center;
 }
+
+/* .tab-link:hover {
+    color: var(--color-merco-azul);
+} */
