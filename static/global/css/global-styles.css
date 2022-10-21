@@ -34,6 +34,7 @@
     --color-gray-7: #4b4b4b;
     --color-gray-8: #323232;
     --color-gray-9: #191919;
+    --color-merco-azul: #1F1D41;
 
     --font-primary: sans-serif;
     --font-headings: "Roboto Slab", serif;
@@ -91,7 +92,7 @@ body {
 }
 
 .main-header-container {
-    background: var(--color-primary-dark);
+    background: var(--color-merco-azul);
     display: flex;
     justify-content: space-between;
 
@@ -102,16 +103,26 @@ body {
 }
 
 .main-logo {
+    font-size: 3rem;
+    color: var(--color-white);
+    text-decoration: none;
+    /* align-items: center; */
+    /* display: flex; */
+    /* justify-content: center; */
+    /* text-align: center; */
+    /* flex-flow: row nowrap; */
+    /* width: fit-content; */
+}
+
+.main-logo-client {
     font-size: 4rem;
     color: var(--color-white);
     text-decoration: none;
-    /* text-align: center; */
-    /* display: flex;
-    flex-flow: row nowrap; */
-    /* align-items: center;
-    justify-content: center;
-    width: fit-content; */
+    width: 200px;
+    position: relative;
+    top: 5%
 }
+
 
 .main-logo-icon {
     margin-right: 2rem;
@@ -123,5 +134,19 @@ body {
     font-size: 2rem;
     color: var(--color-white);
     text-decoration: none;
+    text-align: left;
+}
+
+.main-logo-right {
+    font-size: 2rem;
+    color: var(--color-white);
+    text-decoration: none;
     text-align: right;
+}
+
+.main-logo-center {
+    font-size: 2rem;
+    color: var(--color-white);
+    text-decoration: none;
+    text-align: center;
 }
