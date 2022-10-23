@@ -29,7 +29,7 @@ end
 # unset irrelevant variables
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/media/wagner/HD-250GB2/0-cursos-python/Django/project05_front_back_service_desk/.venv"
+set -gx VIRTUAL_ENV "/media/wagner/HD-250GB2/django-helpdesk/.venv"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH
