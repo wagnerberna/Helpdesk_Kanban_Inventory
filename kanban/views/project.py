@@ -125,7 +125,7 @@ def project_view_delete(request, id):
 
         if request.method == "POST":
             project.delete()
-            return redirect("kanban_projects_open")
+            return redirect("projects_open")
 
         return render(
             request,

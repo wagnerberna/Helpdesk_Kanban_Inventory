@@ -14,7 +14,7 @@ urlpatterns = [
     path(
         "projects_open/",
         project_view_open,
-        name="kanban_projects_open",
+        name="projects_open",
     ),
     path("projects_done/", project_view_done, name="projects_done"),
     path(
