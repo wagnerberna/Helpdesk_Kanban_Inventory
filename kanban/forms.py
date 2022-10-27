@@ -3,7 +3,7 @@ from django.forms import ModelForm
 from .models import Project
 
 
-class ProjectFormCreate(ModelForm):
+class ProjectForm(ModelForm):
     class Meta:
         model = Project
         fields = ["name", "status", "description"]
