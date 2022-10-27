@@ -1,0 +1,10 @@
+{%load bootstrap%}
+
+<div class="container">
+    <form action={%url "kanban_add_project"%} method="POST">
+        {%csrf_token%}
+        {{form|bootstrap}}
+        <button type=submit class="btn btn-primary">Cadastrar</button>
+    </form>
+
+</div>

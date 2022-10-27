@@ -1,10 +1,9 @@
-from dataclasses import Field
-
-from django import forms
+# from django import forms
 from django.forms import ModelForm
-from requests import request
 
 from .models import Demand
+
+# from requests import request
 
 
 # importa model para criar o formulário

@@ -2,6 +2,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 
+from kanban.forms import ProjectFormCreate
 from kanban.models import Category, Project, Task, Team
 
 # from kanban.api.serializers import KanbanFilterSerializer
@@ -44,8 +45,13 @@ def project_view_create(request):
         if not check_access:
             return redirect("access_denied")
 
-        context = {"xxx": ""}
-        template_path = "kanban/pages/kanban_manager.html"
+        form = ProjectFormCreate(request.POST or None)
+        context = {"form": form}
+        template_path = "kanban/pages/project_create.html"
+
+        if form.is_valid():
+            form.save()
+            return redirect("kanban_manager")
 
         return render(
             request,
@@ -59,14 +65,16 @@ def project_view_create(request):
 
 
 @login_required
-def project_view_delete(request):
+def kanban_view_project_list_open(request):
     try:
         check_access = check_user_access(request)
         if not check_access:
             return redirect("access_denied")
 
-        context = {"xxx": ""}
-        template_path = "kanban/pages/kanban_manager.html"
+        projects = Project.objects.filter(status__name="Finalizado").order_by("-id")
+
+        context = {"projects": projects}
+        template_path = "kanban/pages/project_list_done.html"
 
         return render(
             request,
