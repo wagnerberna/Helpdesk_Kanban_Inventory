@@ -62,7 +62,7 @@ def support_view_list_done(request):
         demands = Demand.objects.filter(status__name="Finalizado").order_by("-id")
         demand_filter = SupportFilterSerializer(request.GET, queryset=demands)
 
-        print(demand_filter)
+        # print(demand_filter)
         context = {"all_demands": demands, "demand_filter": demand_filter}
         template_path = "helpdesk/pages/support_list_demands_done.html"
 

@@ -12,3 +12,9 @@ class ProjectFormCreate(ModelForm):
             "status": "Status:",
             "description": "Descrição:",
         }
+
+
+# class ProjectFormUpdate(ModelForm):
+#     class Meta:
+#         model = Project
+#         fields = ["name", "status", "description"]

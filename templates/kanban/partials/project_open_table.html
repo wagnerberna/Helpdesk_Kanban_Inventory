@@ -4,7 +4,8 @@
             <th >ID</th>
             <th>Nome</th>
             <th>Status</th>
-            <th>Data Encerramento</th>
+            <th>Data Abertura</th>
+            <th>Acessar</th>
         </thead>
 
         {%for project in projects%}
@@ -13,7 +14,8 @@
             <td>{{project.id}}</td>
             <td>{{project.name}}</td>
             <td>{{project.status}}</td>
-            <td>{{project.updated_at|date:"d-m-y"}}</td>
+            <td>{{project.created_at|date:"d-m-y"}}</td>
+            {% comment %} <td><a href="{%url "" demand.id%}"><i class="fa-sharp fa-solid fa-folder-open main-logo-icon"></i></a> {% endcomment %}
         </tr>
         {%endfor%}
     </table>
