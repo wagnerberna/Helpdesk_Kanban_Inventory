@@ -101,6 +101,10 @@ def project_view_update(request, id):
         context = {"form": form}
         template_path = "kanban/pages/project_update.html"
 
+        if form.is_valid():
+            form.save()
+            return redirect("projects_open")
+
         return render(
             request,
             template_path,

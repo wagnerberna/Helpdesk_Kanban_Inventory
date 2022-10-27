@@ -20,15 +20,15 @@ urlpatterns = [
     path(
         "project_update/<int:id>/",
         project_view_update,
-        name="kanban_project_update",
+        name="project_update",
     ),
     path(
         "project_delete/<int:id>/",
         project_view_delete,
-        name="kanban_project_delete",
+        name="project_delete",
     ),
     path("add_project/", project_view_create, name="project_add"),
     # path("list_category/", manager_view, name="kanban_list_category"),
     # path("add_category/", manager_view, name="kanban_add_category"),
-    path("add_task/", manager_view, name="kanban_add_task"),
+    path("add_task/", manager_view, name="task_add"),
 ]

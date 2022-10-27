@@ -15,8 +15,8 @@
             <td>{{project.name}}</td>
             <td>{{project.status}}</td>
             <td>{{project.created_at|date:"d-m-y"}}</td>
-            <td><a href="{%url "kanban_project_update" project.id%}"><i class="fa-sharp fa-solid fa-folder-open main-logo-icon"></i></a>
-                <a href="{%url "kanban_project_delete" project.id%}"><i class="fa-sharp fa-solid fa-trash-can main-logo-icon"></i></a>
+            <td><a href="{%url "project_update" project.id%}"><i class="fa-sharp fa-solid fa-folder-open main-logo-icon"></i></a>
+                <a href="{%url "project_delete" project.id%}"><i class="fa-sharp fa-solid fa-trash-can main-logo-icon"></i></a>
             </td>
             
         </tr>
