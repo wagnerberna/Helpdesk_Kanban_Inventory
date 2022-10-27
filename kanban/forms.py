@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 
-from .models import Project
+from .models import Project, Task
 
 
 class ProjectForm(ModelForm):
@@ -14,7 +14,15 @@ class ProjectForm(ModelForm):
         }
 
 
-# class ProjectFormUpdate(ModelForm):
-#     class Meta:
-#         model = Project
-#         fields = ["name", "status", "description"]
+class TaskForm(ModelForm):
+    class Meta:
+        model = Task
+        fields = ["title", "project", "category", "task_owner", "status", "description"]
+        labels = {
+            "title": "Título:",
+            "project": "Projeto:",
+            "category": "Categoria:",
+            "task_owner": "Dono da Tarefa:",
+            "status": "Status:",
+            "description": "Descrição:",
+        }
