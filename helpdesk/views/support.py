@@ -4,26 +4,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from helpdesk.api.serializers import SupportFilterSerializer
 from helpdesk.forms import SupportFormUpdate, SupportFormUpdateView
 from helpdesk.models import Demand, Support
-
-#  <QuerySet [<Support: wagner.berna>]>
-# print("check:::", check.values("user_name")[0])
-
-# Retorna erro 404
-# @login_required
-# def check_user_permission(request):
-#     id = request.user.pk
-#     check = get_object_or_404(Support, user_name=id)
-#     return check
-
-
-@login_required
-def check_user_access(request):
-    id = request.user.pk
-    check = Support.objects.filter(user_name=id)
-    if not check:
-        return False
-    else:
-        return True
+from helpdesk.service.check_user_access import check_user_access
 
 
 @login_required

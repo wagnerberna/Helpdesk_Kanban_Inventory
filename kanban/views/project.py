@@ -3,16 +3,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 
 from kanban.forms import ProjectForm
 from kanban.models import Project, Team
-
-
-@login_required
-def check_user_access(request):
-    id = request.user.pk
-    check = Team.objects.filter(user_name=id)
-    if not check:
-        return False
-    else:
-        return True
+from kanban.service.check_user_access import check_user_access
 
 
 @login_required
