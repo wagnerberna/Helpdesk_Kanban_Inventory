@@ -4,7 +4,6 @@ import urllib
 
 import matplotlib.pyplot as plt
 from django.contrib.auth.decorators import login_required
-from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404, redirect, render
 from helpdesk.api.serializers import SupportFilterSerializer
 from helpdesk.forms import SupportFormUpdate, SupportFormUpdateView
@@ -19,7 +18,14 @@ def report_by_techinical(request):
         if not check_access:
             return redirect("access_denied")
 
-        plt.plot(range(10))
+        demmands_leonardo = Demand.objects.filter(attendant__user_name=4).count()
+        demmands_wagner = Demand.objects.filter(attendant__user_name=2).count()
+
+        print("Demandas LEO:::", demmands_leonardo)
+        techinicals = ["Leonardo", "Wagner"]
+        total_demands = [demmands_leonardo, demmands_wagner]
+        plt.bar(techinicals, total_demands, color="blue")
+
         plt.title("Chamados por Técnico")
         fig = plt.gcf()
         # convert graph into dtring buffer and then we convert 64 bit code into image
