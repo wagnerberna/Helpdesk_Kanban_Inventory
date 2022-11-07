@@ -3,8 +3,8 @@ from django.contrib import admin
 from django.contrib.auth import views
 from django.urls import include, path
 
+from ti.views.graphic import graphics
 from ti.views.home import ChangePassword, access_denied, home, logout_user
-from ti.views.reports import reports
 
 # Importar views do Django de autenticação
 # criar Urls de login e logout
@@ -22,5 +22,5 @@ urlpatterns = [
     path("kanban/", include("kanban.urls")),
     # path("kanban/api/", include("kanban.api.urls")),
     # path("helpdesk/api/", include("helpdesk.api.urls")),
-    path("reports/", reports, name="reports"),
+    path("graphic/", graphics, name="graphic"),
 ]
