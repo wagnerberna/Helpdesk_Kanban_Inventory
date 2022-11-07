@@ -1,6 +1,4 @@
 from django.urls import path
-
-from kanban.views.kanban import manager_view
 from kanban.views.project import (
     project_view_create,
     project_view_delete,
@@ -10,7 +8,6 @@ from kanban.views.project import (
 )
 
 urlpatterns = [
-    path("manager/", manager_view, name="kanban_manager"),
     path(
         "projects_open/",
         project_view_open,
@@ -28,7 +25,4 @@ urlpatterns = [
         name="project_delete",
     ),
     path("project_add/", project_view_create, name="project_add"),
-    path("task_add/", manager_view, name="task_add"),
-    path("task_open/", manager_view, name="task_open_filter"),
-    path("task_done/", manager_view, name="task_done_filter"),
 ]

@@ -42,7 +42,7 @@ def project_view_open(request):
         projects = Project.objects.all().order_by("-id").exclude(status__name="DONE")
 
         context = {"projects": projects}
-        template_path = "kanban/pages/project_list_open.html"
+        template_path = "kanban/pages/project_open_list.html"
 
         return render(
             request,
@@ -65,7 +65,7 @@ def project_view_done(request):
         projects = Project.objects.filter(status__name="DONE").order_by("-id")
 
         context = {"projects": projects}
-        template_path = "kanban/pages/project_list_done.html"
+        template_path = "kanban/pages/project_done_list.html"
 
         return render(
             request,
