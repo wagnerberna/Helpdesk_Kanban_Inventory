@@ -7,7 +7,7 @@
             <th>Data Encerramento</th>
         </thead>
 
-        {%for project in projects%}
+        {%for project in projects_filter.qs%}
 
         <tr>
             <td>{{project.id}}</td>

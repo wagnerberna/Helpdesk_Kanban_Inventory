@@ -65,8 +65,9 @@ def project_view_done(request):
             return redirect("access_denied")
 
         projects = Project.objects.filter(status__name="DONE").order_by("-id")
+        projects_filter = ProjectFilterSerializer(request.GET, queryset=projects)
 
-        context = {"projects": projects}
+        context = {"projects": projects, "projects_filter": projects_filter}
         template_path = "kanban/pages/project_done_list.html"
 
         return render(

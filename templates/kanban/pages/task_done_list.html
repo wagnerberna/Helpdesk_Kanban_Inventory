@@ -4,6 +4,9 @@
 
     <div class="container">
 
+        <h2>Filtros:</h2>
+        {% include "kanban/partials/task_filter.html" %}
+
         <h2>Tarefas Finalizadas:</h2>    
         {%include "kanban/partials/task_done_table.html"%}
 
