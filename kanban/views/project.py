@@ -94,7 +94,7 @@ def project_view_update(request, id):
 
         if form.is_valid():
             form.save()
-            return redirect("projects_open")
+            return redirect("project_open_filter")
 
         return render(
             request,
@@ -120,7 +120,7 @@ def project_view_delete(request, id):
 
         if request.method == "POST":
             project.delete()
-            return redirect("projects_open")
+            return redirect("project_open_filter")
 
         return render(
             request,

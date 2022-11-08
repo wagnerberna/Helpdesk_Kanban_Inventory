@@ -19,8 +19,8 @@
             <td>{{task.category}}</td>
             <td>{{task.task_owner}}</td>
             <td>{{task.status}}</td>
-            <td><a href="{%url "project_update" task.id%}"><i class="fa-sharp fa-solid fa-folder-open main-logo-icon"></i></a>
-                <a href="{%url "project_delete" task.id%}"><i class="fa-sharp fa-solid fa-trash-can main-logo-icon"></i></a>
+            <td><a href="{%url "task_update" task.id%}"><i class="fa-sharp fa-solid fa-folder-open main-logo-icon"></i></a>
+                <a href="{%url "task_delete" task.id%}"><i class="fa-sharp fa-solid fa-trash-can main-logo-icon"></i></a>
             </td>
         </tr>
         {%endfor%}

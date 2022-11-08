@@ -92,7 +92,7 @@ def task_view_update(request, id):
 
         if form.is_valid():
             form.save()
-            return redirect("task_open")
+            return redirect("task_open_filter")
 
         return render(
             request,

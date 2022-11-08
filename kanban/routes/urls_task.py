@@ -2,6 +2,7 @@ from django.urls import path
 from kanban.views.kanban import manager_view
 from kanban.views.task import (
     task_view_create,
+    task_view_delete,
     task_view_done,
     task_view_open,
     task_view_update,
@@ -18,7 +19,7 @@ urlpatterns = [
     ),
     path(
         "task_delete/<int:id>/",
-        task_view_update,
+        task_view_delete,
         name="task_delete",
     ),
 ]

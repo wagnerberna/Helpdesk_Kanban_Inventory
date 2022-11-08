@@ -1,0 +1,12 @@
+{% extends 'kanban/pages/kanban_base.html' %}
+
+{% block main %}
+
+    <div class="container">
+        <h2>Confirmar deletar o projeto {{task.id}}?</h2>
+
+        {%include "kanban/partials/task_delete_confirm.html"%}
+        
+    </div>
+
+{% endblock main %}
