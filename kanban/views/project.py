@@ -41,9 +41,9 @@ def project_view_open(request):
             return redirect("access_denied")
 
         projects = Project.objects.all().order_by("-id").exclude(status__name="DONE")
-        project_filter = ProjectFilterSerializer(request.GET, queryset=projects)
+        projects_filter = ProjectFilterSerializer(request.GET, queryset=projects)
 
-        context = {"projects": projects, "projects_filter": project_filter}
+        context = {"projects": projects, "projects_filter": projects_filter}
         template_path = "kanban/pages/project_open_list.html"
 
         return render(

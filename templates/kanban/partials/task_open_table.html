@@ -10,7 +10,7 @@
             <th>Acessar</th>
         </thead>
 
-        {%for task in tasks%}
+        {%for task in tasks_filter.qs%}
 
         <tr>
             <td>{{task.id}}</td>

@@ -41,7 +41,8 @@ def task_view_open(request):
             return redirect("access_denied")
 
         tasks = Task.objects.all().order_by("-id").exclude(status__name="DONE")
-        context = {"tasks": tasks}
+        tasks_filter = TaskFilterSerializer(request.GET, queryset=tasks)
+        context = {"tasks": tasks, "tasks_filter": tasks_filter}
         template_path = "kanban/pages/task_open_list.html"
 
         return render(
