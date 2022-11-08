@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 
+from kanban.api.serializers import ProjectFilterSerializer
 from kanban.forms import ProjectForm
 from kanban.models import Project, Team
 from kanban.service.check_user_access import check_user_access
@@ -40,8 +41,9 @@ def project_view_open(request):
             return redirect("access_denied")
 
         projects = Project.objects.all().order_by("-id").exclude(status__name="DONE")
+        project_filter = ProjectFilterSerializer(request.GET, queryset=projects)
 
-        context = {"projects": projects}
+        context = {"projects": projects, "projects_filter": project_filter}
         template_path = "kanban/pages/project_open_list.html"
 
         return render(

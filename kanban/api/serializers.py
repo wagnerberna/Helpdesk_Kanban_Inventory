@@ -1,3 +1,4 @@
+import django_filters
 from kanban.models import Category, Project, Task, Team
 from rest_framework import serializers
 
@@ -24,3 +25,38 @@ class TaskSerializer(serializers.ModelSerializer):
     class Meta:
         model = Task
         fields = "__all__"
+
+
+class ProjectFilterSerializer(django_filters.FilterSet):
+    name = django_filters.CharFilter(lookup_expr="icontains", label="Nome")
+    description = django_filters.CharFilter(lookup_expr="icontains", label="Descrição")
+
+    class Meta:
+        model = Project
+        fields = ("id", "name", "status", "description")
+
+
+class TaskFilterSerializer(django_filters.FilterSet):
+    title = django_filters.CharFilter(lookup_expr="icontains", label="Título:")
+    description = django_filters.CharFilter(lookup_expr="icontains", label="Descrição:")
+    project = django_filters.ModelChoiceFilter(
+        label="Projeto:", queryset=Task.objects.all()
+    )
+    category = django_filters.ModelChoiceFilter(
+        label="Categoria:", queryset=Task.objects.all()
+    )
+    task_owner = django_filters.ModelChoiceFilter(
+        label="Dono da Tarefa:", queryset=Task.objects.all()
+    )
+
+    class Meta:
+        model = Task
+        fields = (
+            "id",
+            "title",
+            "project",
+            "category",
+            "task_owner",
+            "status",
+            "description",
+        )

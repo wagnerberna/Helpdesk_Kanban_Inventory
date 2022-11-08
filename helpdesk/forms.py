@@ -1,12 +1,9 @@
-# from django import forms
 from django.forms import ModelForm
 
 from .models import Demand
 
-# from requests import request
 
-
-# importa model para criar o formulário
+# model usado para criar o formulário
 class DemandFormCreate(ModelForm):
     class Meta:
         model = Demand
