@@ -40,13 +40,13 @@ class TaskFilterSerializer(django_filters.FilterSet):
     title = django_filters.CharFilter(lookup_expr="icontains", label="Título:")
     description = django_filters.CharFilter(lookup_expr="icontains", label="Descrição:")
     project = django_filters.ModelChoiceFilter(
-        label="Projeto:", queryset=Task.objects.all()
+        label="Projeto:", queryset=Project.objects.all()
     )
     category = django_filters.ModelChoiceFilter(
-        label="Categoria:", queryset=Task.objects.all()
+        label="Categoria:", queryset=Category.objects.all()
     )
     task_owner = django_filters.ModelChoiceFilter(
-        label="Dono da Tarefa:", queryset=Task.objects.all()
+        label="Dono da Tarefa:", queryset=Team.objects.all()
     )
 
     class Meta:
