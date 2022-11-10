@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.contrib.auth import views
 from django.urls import include, path
 
-from ti.views.graphic import graphics
+from ti.views.graphic import graphics_per_technical
 from ti.views.home import ChangePassword, access_denied, home, logout_user
 
 # Importar views do Django de autenticação
@@ -24,5 +24,7 @@ urlpatterns = [
     path("kanban/", include("kanban.routes.urls_task")),
     # path("kanban/api/", include("kanban.api.urls")),
     # path("helpdesk/api/", include("helpdesk.api.urls")),
-    path("graphic/", graphics, name="graphic"),
+    path(
+        "graphics_per_technical/", graphics_per_technical, name="graphics_per_technical"
+    ),
 ]
