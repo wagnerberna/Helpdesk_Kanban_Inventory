@@ -1,6 +1,9 @@
 Comandos:
 https://github.com/Gpzim98/django-heroku
 
+Rodar para todos na rede pelo IP local:
+python manage.py runserver 0.0.0.0:80
+
 comunicar com postgres:
 pip install psycopg2
 

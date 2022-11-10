@@ -1,31 +1,15 @@
-import base64
-import io
 import urllib
 
-import matplotlib.pyplot as plt
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import get_object_or_404, redirect, render
-from helpdesk.api.serializers import SupportFilterSerializer
-from helpdesk.forms import SupportFormUpdate, SupportFormUpdateView
+from django.shortcuts import redirect, render
 from helpdesk.models import Demand
 from helpdesk.service.check_user_access import check_user_access
 from kanban.models import Task
-
-
-def make_graphic_bar(title, techinicals, total_per_techinical):
-    plt.bar(techinicals, total_per_techinical, color="blue")
-
-    plt.title(title)
-    fig = plt.gcf()
-    buf = io.BytesIO()
-    fig.savefig(buf, format="png")
-    buf.seek(0)
-    string = base64.b64encode(buf.read())
-    return string
+from ti.service.make_graphics import make_graphic_bar
 
 
 @login_required
-def graphics(request):
+def graphics_per_technical(request):
     try:
         check_access = check_user_access(request)
         if not check_access:
@@ -38,9 +22,10 @@ def graphics(request):
         techinicals = ["Leonardo.susin", "Wagner.berna"]
         demands_total_per_techinical = [demmands_leonardo, demmands_wagner]
         title = "Chamados por Técnico"
+        color = "blue"
 
         graphic_demands = make_graphic_bar(
-            title, techinicals, demands_total_per_techinical
+            title, color, techinicals, demands_total_per_techinical
         )
 
         # Gráfico Projetos
@@ -49,9 +34,10 @@ def graphics(request):
 
         tasks_total_per_techinical = [tasks_leonardo, tasks_wagner]
         title = "Projetos: Tarefas por Técnico"
+        color = "red"
 
         graphic_projects = make_graphic_bar(
-            title, techinicals, tasks_total_per_techinical
+            title, color, techinicals, tasks_total_per_techinical
         )
 
         context = {
@@ -59,13 +45,6 @@ def graphics(request):
             "graphic_projects": urllib.parse.quote(graphic_projects),
         }
 
-        # return render(request,'home.html',{'data':uri})
-
-        #     demands = Demand.objects.filter(status__name="Finalizado").order_by("-id")
-        #     demand_filter = SupportFilterSerializer(request.GET, queryset=demands)
-
-        #     # print(demand_filter)
-        #     context = {"all_demands": demands, "demand_filter": demand_filter}
         template_path = "ti/pages/graphic.html"
 
         return render(
