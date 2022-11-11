@@ -39,6 +39,7 @@
     --font-primary: sans-serif;
     --font-headings: "Roboto Slab", serif;
 
+    --spacing-gutter-small: 1rem;
     --spacing-gutter-medium: 3rem;
     --spacing-gutter-large: 4rem;
 }
@@ -79,22 +80,26 @@ body {
     background: var(--color-gray-1);
 }
 
-.demand-table {
-    border: 1px solid black;
+.table-default {
+    border: 2px solid black;
     padding: 15px;
-    text-align: left;
 }
 
-.small-tables {
-    border: 1px solid black;
-    padding: 15px;
-    text-align: left;
+.join-small-tables {
+    display: flex;
+    flex-direction: row;
 }
 
 .container {
     max-width: 144rem;
     margin: 0 auto;
     padding: var(--spacing-gutter-medium);
+}
+
+.small-container {
+    max-width: 70rem;
+    margin: 0 auto;
+    padding: var(--spacing-gutter-small);
 }
 
 .main-header-container {
