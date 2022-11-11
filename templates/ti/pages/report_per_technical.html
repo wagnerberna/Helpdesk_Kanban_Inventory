@@ -1,0 +1,19 @@
+{% extends 'helpdesk/pages/helpdesk_base.html' %}
+
+{% block main %}
+
+    <div class="container">
+        <h2>Atividades por Técnico:</h2>
+
+        {%include "ti/partials/graphic_per_techical.html"%}
+        <div class="small-tables">
+            {%include "ti/partials/demands_per_techical_table.html"%}
+    
+            {%include "ti/partials/tasks_per_techical_table.html"%}
+        </div>
+
+    </div>
+
+    
+
+{% endblock main %}

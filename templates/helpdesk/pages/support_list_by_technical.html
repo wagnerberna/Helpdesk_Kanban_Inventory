@@ -2,11 +2,17 @@
 
 {% block main %}
 
-<div class="container">
-    
-    <h2>Meus Chamados:</h2>    
-    {%include "helpdesk/partials/support_demands_technical_table.html"%}
+    <div class="container">
+        
+        <h2>Meus Chamados:</h2>    
+        {%include "helpdesk/partials/support_demands_technical_table.html"%}
 
-</div>
+    </div>
+
+    <script type="text/javascript">
+        setTimeout(function() {
+            location.reload()
+        }, 300000);
+    </script>
 
 {% endblock main %}

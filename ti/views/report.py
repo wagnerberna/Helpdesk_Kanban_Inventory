@@ -9,7 +9,7 @@ from ti.service.make_graphics import make_graphic_bar
 
 
 @login_required
-def graphics_per_technical(request):
+def report_per_technical(request):
     try:
         check_access = check_user_access(request)
         if not check_access:
@@ -43,9 +43,13 @@ def graphics_per_technical(request):
         context = {
             "graphic_demands": urllib.parse.quote(graphic_demands),
             "graphic_projects": urllib.parse.quote(graphic_projects),
+            "demmands_leonardo": demmands_leonardo,
+            "demmands_wagner": demmands_wagner,
+            "tasks_leonardo": tasks_leonardo,
+            "tasks_wagner": tasks_wagner,
         }
 
-        template_path = "ti/pages/graphic.html"
+        template_path = "ti/pages/report_per_technical.html"
 
         return render(
             request,
