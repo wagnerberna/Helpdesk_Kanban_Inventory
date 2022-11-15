@@ -70,14 +70,14 @@ def report_per_project(request):
             return redirect("access_denied")
 
         # Gráfico Projeto
-        all_projects = list(Project.objects.all().values_list("name"))
+        projects_names = list(Project.objects.all().values_list("name"))
         all_tasks_per_project = Task.objects.all().values_list(
             "project__name", "status__name"
         )
-        print("all_projects:", all_projects)
-        print("contagem projetos:", len(all_projects))
+        print("projects_names:", projects_names)
+        print("contagem projetos:", len(projects_names))
         print("all_tasks:", all_tasks_per_project)
-        print("contagem tarefas:", all_tasks_per_project.count())
+        # print("contagem tarefas:", all_tasks_per_project.count())
 
         project_tasks_total_count = Task.objects.filter(
             project__name="Migração Servidor Impressão"
@@ -91,7 +91,37 @@ def report_per_project(request):
         print("project_tasks_count migração Done:::", project_tasks_done_count)
         print("project_tasks_count migração active:::", project_tasks_active)
 
-        
+        projects_list = []
+
+        for project in projects_names:
+            print(project[0])
+
+            project_tasks_total_count = Task.objects.filter(
+                project__name=project[0]
+            ).count()
+            project_tasks_done_count = Task.objects.filter(
+                project__name=project[0], status__name="DONE"
+            ).count()
+            project_tasks_active = project_tasks_total_count - project_tasks_done_count
+            project_percentage = (
+                project_tasks_done_count / project_tasks_total_count
+            ) * 100
+            projects_list.append(
+                # [
+                {
+                    "name": project[0],
+                    "task_active": project_tasks_active,
+                    "task_done": project_tasks_done_count,
+                    "task_total": project_tasks_total_count,
+                    "project_percentage": project_percentage,
+                }
+                # ]
+            )
+
+        print(projects_list)
+
+        for el in projects_list:
+            print(el["name"])
 
         techinicals = ["Leonardo.susin", "Wagner.berna"]
         demands_total_per_techinical = ["demmands_leonardo", "demmands_wagner"]
@@ -117,10 +147,7 @@ def report_per_project(request):
         context = {
             # "graphic_demands": urllib.parse.quote(graphic_demands),
             # "graphic_projects": urllib.parse.quote(graphic_projects),
-            # "demmands_leonardo": demmands_leonardo,
-            "demmands_wagner": demmands_wagner,
-            "tasks_leonardo": tasks_leonardo,
-            "tasks_wagner": tasks_wagner,
+            "projects": projects_list,
         }
 
         template_path = "ti/pages/report_per_project.html"

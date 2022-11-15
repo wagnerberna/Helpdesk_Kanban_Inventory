@@ -1,0 +1,23 @@
+<div class="container">
+    <table class="table-default">
+        <thead>
+            <th>Projeto</th>
+            <th>Tarefas Ativas</th>
+            <th>Tarefas Finalizadas</th>
+            <th>Total de Tarefas</th>
+            <th>Percentual de Conclusão</th>
+        </thead>
+
+        {%for project in projects%}
+
+        <tr>
+            <td>{{project["name"]}}</td>
+            <td>{{project["task_active"]}}</td>
+            <td>{{project["task_done"]}}</td>
+            <td>{{project["task_total"]}}</td>
+            <td>{{project["project_percentage"]}}</td>
+        </tr>
+        {%endfor%}
+    </table>
+    
+</div>
