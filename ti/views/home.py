@@ -3,16 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm
 from django.shortcuts import redirect, render
 from helpdesk.models import Support
-
-
-@login_required
-def check_user_access(request):
-    id = request.user.pk
-    check = Support.objects.filter(user_name=id)
-    if not check:
-        return False
-    else:
-        return True
+from ti.service.check_user_access import check_user_access
 
 
 @login_required

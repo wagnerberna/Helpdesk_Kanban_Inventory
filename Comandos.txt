@@ -36,3 +36,8 @@ pip install django-bootstrap-form
 installed_apps add: "bootstrapform"
 {%load bootstrap%}
 {{form|bootstrap}}
+
+---------------------------------------------------
+Acesso Query Django:
+#  <QuerySet [<Support: wagner.berna>]>
+# print("check:::", check.values("user_name")[0])

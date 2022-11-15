@@ -4,7 +4,7 @@ from django.contrib.auth import views
 from django.urls import include, path
 
 from ti.views.home import ChangePassword, access_denied, home, logout_user
-from ti.views.report import report_per_technical
+from ti.views.report import report_per_project, report_per_technical
 
 # Importar views do Django de autenticação
 # criar Urls de login e logout
@@ -25,4 +25,5 @@ urlpatterns = [
     # path("kanban/api/", include("kanban.api.urls")),
     # path("helpdesk/api/", include("helpdesk.api.urls")),
     path("report_per_technical/", report_per_technical, name="report_per_technical"),
+    path("report_per_project/", report_per_project, name="report_per_project"),
 ]

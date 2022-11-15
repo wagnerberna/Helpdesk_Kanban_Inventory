@@ -1,10 +1,10 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
+from ti.service.check_user_access import check_user_access
 
 from kanban.api.serializers import TaskFilterSerializer
 from kanban.forms import TaskForm
 from kanban.models import Task
-from kanban.service.check_user_access import check_user_access
 
 
 @login_required
