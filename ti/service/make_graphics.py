@@ -23,10 +23,11 @@ def make_graphic_bar(title, color, techinicals, total_per_techinical):
 
 
 # Gráfico em barra horizontal
-def make_graphic_barh(title, color, techinicals, total_per_techinical):
-    plt.barh(techinicals, total_per_techinical, color=color)
+def make_graphic_barh(title, color, projects_names, project_percent_to_graphic):
+    plt.barh(projects_names, project_percent_to_graphic, color=color)
 
     plt.title(title)
+    plt.rcParams["font.size"] = "16"
     fig = plt.gcf()
     buf = io.BytesIO()
     fig.savefig(buf, format="png")

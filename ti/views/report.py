@@ -81,6 +81,7 @@ def report_per_project(request):
 
         projects_list_to_table = []
         project_percent_to_graphic = []
+        project_name_to_graphic = []
 
         for project in projects_names:
             print(project[0])
@@ -110,6 +111,7 @@ def report_per_project(request):
                 }
             )
 
+            project_name_to_graphic.append(project[0])
             project_percent_to_graphic.append(project_percentage)
 
         # print("PROJECT LIST:::", projects_list_to_table)
@@ -118,12 +120,13 @@ def report_per_project(request):
         title = "Projetos Percentual de Conclusão"
         color = "red"
 
-        # graphic_projects = make_graphic_barh(
-        #     title, color, projects_names, project_percent_to_graphic
-        # )
+        print(project_name_to_graphic, project_percent_to_graphic)
+        graphic_projects = make_graphic_barh(
+            title, color, project_name_to_graphic, project_percent_to_graphic
+        )
 
         context = {
-            # "graphic_projects": urllib.parse.quote(graphic_projects),
+            "graphic_projects": urllib.parse.quote(graphic_projects),
             "projects": projects_list_to_table,
         }
 
