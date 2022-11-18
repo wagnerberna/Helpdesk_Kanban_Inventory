@@ -1,4 +1,6 @@
 from django import views
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.auth import views
 from django.urls import include, path
@@ -26,4 +28,4 @@ urlpatterns = [
     # path("helpdesk/api/", include("helpdesk.api.urls")),
     path("report_per_technical/", report_per_technical, name="report_per_technical"),
     path("report_per_project/", report_per_project, name="report_per_project"),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

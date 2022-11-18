@@ -45,12 +45,15 @@ class Status(models.Model):
 
 
 class Demand(models.Model):
+    def image_upload(self, filename):
+        return "demand_images/" + str(self.user_name) + "-" + str(filename)
+
     id = models.AutoField(primary_key=True)
     user_name = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     title = models.CharField(max_length=70, null=True)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
     description = models.TextField(null=True)
-    image = models.ImageField(upload_to="demand_images", null=True, blank=True)
+    image = models.ImageField(upload_to=image_upload, null=True, blank=True)
     attendant = models.ForeignKey(
         Support, on_delete=models.SET_NULL, null=True, blank=True
     )
