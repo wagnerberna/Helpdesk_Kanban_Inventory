@@ -1,14 +1,17 @@
 {% extends 'global/base.html' %}
 {% block head_title %}Sistemas TI{% endblock head_title %}
 {% block header_title %}Sistemas TI{% endblock header_title %}
+{%load bootstrap%}
 
 {% block main %}
-    <main class="main-container">
+    <main class="container">
         <h2>Login</h2>
         
         <form method="POST">
             {%csrf_token%}
-            {{form.as_p}}
+            {% comment %} {{form.as_p}} {% endcomment %}
+            {{form|bootstrap}}
+
             <button type="submit" class="btn btn-primary">Login</button>
         </form>
 {% endblock main %}
