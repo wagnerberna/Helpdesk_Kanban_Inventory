@@ -40,3 +40,8 @@ def ChangePassword(request):
 def access_denied(request):
     template_path = "global/access_denied.html"
     return render(request, template_path)
+
+
+def about(request):
+    template_path = "global/about.html"
+    return render(request, template_path)

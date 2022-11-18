@@ -30,12 +30,16 @@
             
             <div>
                 <a class="main-logo-left" href={%url "changepassword"%}>
-                    <i class="fa-sharp fa-solid fa-user "></i>
+                    <i class="fa-sharp fa-solid fa-user"></i>
                     {{user.username}}
+                </a>
+
+                <a class="main-logo-left" href="{%url "about"%}">
+                    <i class="fa-sharp fa-solid fa-circle-question main-logo-icon"></i>
                 </a>
                 
                 <a class="main-logo-left" href="{%url "logout"%}">
-                    <i class="fa-sharp fa-solid fa-right-from-bracket main-logo-icon"></i>
+                    <i class="fa-sharp fa-solid fa-right-from-bracket"></i>
                 </a>
             </div>
 
