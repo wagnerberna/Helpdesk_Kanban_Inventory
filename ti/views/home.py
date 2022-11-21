@@ -3,13 +3,13 @@ from django.contrib.auth import authenticate, login, logout, update_session_auth
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from django.shortcuts import redirect, render
-from helpdesk.models import Support
 from ti.service.check_user_access import check_user_access
 
 
 def login_user(request):
     if request.method == "POST":
         form = AuthenticationForm(request, data=request.POST)
+
         if form.is_valid():
             username = form.cleaned_data.get("username")
             password = form.cleaned_data.get("password")
@@ -19,6 +19,9 @@ def login_user(request):
                 login(request, user)
                 return redirect("home")
     form = AuthenticationForm()
+    form.fields["username"].label = "Usuário"
+    form.fields["password"].label = "Senha"
+
     return render(
         request=request,
         template_name="registration/login.html",
