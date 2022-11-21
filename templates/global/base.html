@@ -16,7 +16,7 @@
     
 </head>
 <body>
-    <header class="main-HEader-container">
+    <header>
         <div class= "main-header-container">
 
             <div>
@@ -39,7 +39,7 @@
                 </a>
                 
                 <a class="main-logo-left" href="{%url "logout"%}">
-                    <i class="fa-sharp fa-solid fa-right-from-bracket"></i>
+                    <i class="fa-sharp fa-solid fa-right-from-bracket main-logo-icon-right"></i>
                 </a>
             </div>
 
@@ -51,7 +51,15 @@
     
     
     {% endblock main %}
-    </main>
+
+</main>
+<footer>
+    <div class="main-footer">
+        
+        <a class="main-logo-footer" href="https://github.com/wagnerberna">@WB</a>
+    </div>
+    
+</footer>
 
     {% comment %} <script src="{% static 'js/reload.js' %}" type="text/javascript"></script> {% endcomment %}
 

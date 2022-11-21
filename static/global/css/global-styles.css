@@ -140,6 +140,11 @@ body {
     text-decoration: none;
 }
 
+.main-logo-icon-right {
+    margin-right: 2rem;
+    text-decoration: none;
+}
+
 .main-logo-left {
     font-size: 2rem;
     color: var(--color-white);
@@ -161,6 +166,19 @@ body {
     text-align: center;
 }
 
-/* .tab-link:hover {
-    color: var(--color-merco-azul);
-} */
+.main-footer {
+    background: var(--color-merco-azul);
+    color: var(--color-white);
+    bottom: 0;
+    position: fixed;
+    text-align: right;
+    width: 100%;
+}
+
+.main-logo-footer {
+    font-size: 1rem;
+    margin-right: 1rem;
+    margin-left: 2rem;
+    color: var(--color-white);
+    text-decoration: none;
+}
