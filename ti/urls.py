@@ -5,7 +5,14 @@ from django.contrib import admin
 from django.contrib.auth import views
 from django.urls import include, path
 
-from ti.views.home import ChangePassword, about, access_denied, home, login, logout_user
+from ti.views.home import (
+    ChangePassword,
+    about,
+    access_denied,
+    home,
+    login_user,
+    logout_user,
+)
 from ti.views.report import report_per_project, report_per_technical
 
 # Importar views do Django de autenticação
@@ -14,7 +21,7 @@ from ti.views.report import report_per_project, report_per_technical
 urlpatterns = [
     path("admin/", admin.site.urls),
     # path("login/", views.LoginView.as_view(), name="login"),
-    path("login/", login, name="login"),
+    path("login/", login_user, name="login"),
     path("logout/", logout_user, name="logout"),
     path("changepassword/", ChangePassword, name="changepassword"),
     path("access_denied/", access_denied, name="access_denied"),
