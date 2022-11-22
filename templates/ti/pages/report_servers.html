@@ -1,0 +1,14 @@
+{% extends 'helpdesk/pages/helpdesk_base.html' %}
+
+{% block main %}
+
+    <div class="container">
+        <h2>Servidores:</h2>
+
+        {% comment %} {%include "ti/partials/graphic_per_project.html"%} {% endcomment %}
+
+        {%include "ti/partials/servers_table.html"%}
+        
+    </div>
+
+{% endblock main %}

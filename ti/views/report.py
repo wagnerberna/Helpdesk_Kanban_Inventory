@@ -1,5 +1,7 @@
+import json
 import urllib
 
+import pandas
 from django.contrib.auth.decorators import login_required
 from django.db.models import Count
 from django.shortcuts import redirect, render
@@ -144,5 +146,35 @@ def report_per_project(request):
 
 @login_required
 def topology(request):
-    template_path = "ti/pages/topology.html"
-    return render(request, template_path)
+    try:
+        check_access = check_user_access(request)
+        if not check_access:
+            return redirect("access_denied")
+
+        template_path = "ti/pages/topology.html"
+        return render(request, template_path)
+    except Exception as error:
+        print("Internal error:", error)
+        raise
+
+
+@login_required
+def servers(request):
+    try:
+        check_access = check_user_access(request)
+        if not check_access:
+            return redirect("access_denied")
+
+        df = pandas.read_excel("doc/vmware.xlsx")
+        print(df)
+        json_records = df.reset_index().to_json(orient="records")
+        data = []
+        data = json.loads(json_records)
+
+        print(data)
+
+        template_path = "ti/pages/report_servers.html"
+        return render(request, template_path, data)
+    except Exception as error:
+        print("Internal error:", error)
+        raise
