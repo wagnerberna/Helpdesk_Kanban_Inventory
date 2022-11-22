@@ -1,6 +1,7 @@
 from django.urls import path
-from kanban.views.kanban import manager_view
+from ti.views.report import report_per_project, report_per_technical
 
 urlpatterns = [
-    path("manager/", manager_view, name="kanban_manager"),
+    path("report_per_technical/", report_per_technical, name="report_per_technical"),
+    path("report_per_project/", report_per_project, name="report_per_project"),
 ]

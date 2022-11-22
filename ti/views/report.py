@@ -120,7 +120,7 @@ def report_per_project(request):
         title = "Projetos Percentual de Conclusão"
         color = "red"
 
-        print(project_name_to_graphic, project_percent_to_graphic)
+        # print(project_name_to_graphic, project_percent_to_graphic)
         graphic_projects = make_graphic_barh(
             title, color, project_name_to_graphic, project_percent_to_graphic
         )
