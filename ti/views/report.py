@@ -140,3 +140,9 @@ def report_per_project(request):
     except Exception as error:
         print("Internal error:", error)
         raise
+
+
+@login_required
+def topology(request):
+    template_path = "ti/pages/topology.html"
+    return render(request, template_path)
