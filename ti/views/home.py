@@ -32,7 +32,7 @@ def login_user(request):
 @login_required
 def home(request):
     check_support_user = check_user_access(request)
-    print("check_support_user:::", check_support_user)
+    # print("check_support_user:::", check_support_user)
     template_path = "global/home.html"
     context = {"support_check": check_support_user}
 
