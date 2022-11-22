@@ -13,7 +13,6 @@ from ti.views.home import (
     login_user,
     logout_user,
 )
-from ti.views.report import report_per_project, report_per_technical
 
 # Importar views do Django de autenticação
 # criar Urls de login e logout
@@ -32,8 +31,7 @@ urlpatterns = [
     path("kanban/", include("kanban.routes.urls_kanban")),
     path("kanban/", include("kanban.routes.urls_project")),
     path("kanban/", include("kanban.routes.urls_task")),
+    path("report/", include("ti.routes.urls_report")),
     # path("kanban/api/", include("kanban.api.urls")),
     # path("helpdesk/api/", include("helpdesk.api.urls")),
-    path("report_per_technical/", report_per_technical, name="report_per_technical"),
-    path("report_per_project/", report_per_project, name="report_per_project"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

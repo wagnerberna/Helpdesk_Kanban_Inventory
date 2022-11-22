@@ -131,3 +131,6 @@ dmypy.json
 #Excel
 .xls
 .xlsx
+
+# company flies
+.static/company/
