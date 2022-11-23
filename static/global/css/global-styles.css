@@ -182,3 +182,7 @@ body {
     color: var(--color-white);
     text-decoration: none;
 }
+
+.cel-active {
+    color: var(--color-success-dark)
+}

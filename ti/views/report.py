@@ -1,13 +1,12 @@
-import json
 import urllib
 
-import pandas
 from django.contrib.auth.decorators import login_required
 from django.db.models import Count
 from django.shortcuts import redirect, render
 from helpdesk.models import Demand
 from kanban.models import Project, Task
 from ti.service.check_user_access import check_user_access
+from ti.service.dataframe import open_excel_dataframe
 from ti.service.make_graphics import make_graphic_bar, make_graphic_barh
 
 
@@ -159,25 +158,36 @@ def topology(request):
 
 
 @login_required
-def servers(request):
+def servers_list(request):
     try:
         check_access = check_user_access(request)
         if not check_access:
             return redirect("access_denied")
 
-        df = pandas.read_excel("doc/vmware.xlsx")
-        print(df)
-        json_records = df.reset_index().to_json(orient="records")
-        data = []
-        data = json.loads(json_records)
-
-        print(data)
-        for el in data:
-            print(el)
-            print(el["IP Interno"])
+        file = "doc/vmware.xlsx"
+        data = open_excel_dataframe(file)
 
         template_path = "ti/pages/report_servers.html"
-        return render(request, template_path, data)
+        context = {"data": data}
+        return render(request, template_path, context)
+    except Exception as error:
+        print("Internal error:", error)
+        raise
+
+
+@login_required
+def desktops_list(request):
+    try:
+        check_access = check_user_access(request)
+        if not check_access:
+            return redirect("access_denied")
+
+        file = "doc/resume.xlsx"
+        data = open_excel_dataframe(file)
+
+        template_path = "ti/pages/report_servers.html"
+        context = {"data": data}
+        return render(request, template_path, context)
     except Exception as error:
         print("Internal error:", error)
         raise

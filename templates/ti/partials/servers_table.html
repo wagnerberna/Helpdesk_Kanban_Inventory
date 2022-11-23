@@ -2,24 +2,29 @@
     <table class="table-default">
         <thead>
             <th>Servidor</th>
-            {% comment %} <th>IP Interno</th> {% endcomment %}
+            <th>IP Interno</th>
             <th>SO</th>
             <th>Versão</th>
             <th>Sistema</th>
             <th>Status</th>
         </thead>
-
         <tbody>
             {%if data%}
                 {%for el in data%}
     
                 <tr>
                     <td>{{el.Servidor}}</td>
-                    {% comment %} <td>{{el.IP Interno}}</td> {% endcomment %}
+                    <td>{{el.IP_Interno}}</td>
                     <td>{{el.SO}}</td>
                     <td>{{el.Versao}}</td>
                     <td>{{el.Sistema}}</td>
-                    <td>{{el.Status}}</td>
+                    {%if el.Status == "Ativo"%}
+                        <td bgcolor="Lime">{{el.Status}}</td>
+                        {%elif el.Status == "Migrar"%}
+                            <td bgcolor="yellow">{{el.Status}}</td>
+                        {%elif el.Status == "Desativado"%}
+                            <td bgcolor="LightGray">{{el.Status}}</td>
+                    {%endif%}
                 </tr>
                 {%endfor%}
             {%endif%}
