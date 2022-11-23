@@ -172,6 +172,9 @@ def servers(request):
         data = json.loads(json_records)
 
         print(data)
+        for el in data:
+            print(el)
+            print(el["IP Interno"])
 
         template_path = "ti/pages/report_servers.html"
         return render(request, template_path, data)

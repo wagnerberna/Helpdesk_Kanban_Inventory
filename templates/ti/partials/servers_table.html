@@ -2,27 +2,28 @@
     <table class="table-default">
         <thead>
             <th>Servidor</th>
-            <th>IP Interno</th>
+            {% comment %} <th>IP Interno</th> {% endcomment %}
             <th>SO</th>
             <th>Versão</th>
             <th>Sistema</th>
             <th>Status</th>
-
         </thead>
 
-        {%if data%}
-            {%for el in data%}
-
-            <tr>
-                <td>{{el.Servidor}}</td>
-                <td>{{el.IP Interno}}</td>
-                <td>{{el.SO}}</td>
-                <td>{{el.Versao}}</td>
-                <td>{{el.Sistema}}</td>
-                <td>{{el.Status}}%</td>
-            </tr>
-            {%endfor%}
-        {%endif%}
+        <tbody>
+            {%if data%}
+                {%for el in data%}
+    
+                <tr>
+                    <td>{{el.Servidor}}</td>
+                    {% comment %} <td>{{el.IP Interno}}</td> {% endcomment %}
+                    <td>{{el.SO}}</td>
+                    <td>{{el.Versao}}</td>
+                    <td>{{el.Sistema}}</td>
+                    <td>{{el.Status}}</td>
+                </tr>
+                {%endfor%}
+            {%endif%}
+        </tbody>
     </table>
     
 </div>

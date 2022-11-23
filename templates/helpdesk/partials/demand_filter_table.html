@@ -10,22 +10,22 @@
             <th>Status</th>
             <th>Acessar</th>
         </thead>
-        {%for demand in demand_filter.qs%}
-        <tr>
-            <td>{{demand.id}}</td>
-            <td>{{demand.created_at|date:"d-m-y"}}</td>
-            <td>{{demand.updated_at|date:"d-m-y"}}</td>
-            <td>{{demand.title}}</td>
-            <td>{{demand.category}}</td>
-            <td>{{demand.attendant}}</td>
-            <td>{{demand.status}}</td>
-            <td>
-                <a href="{%url "demand_details" demand.id%}"><i class="fa-sharp fa-solid fa-folder-open main-logo-icon"></i></a>
-            </td>
-
-            
-        </tr>
-        {%endfor%}
+        <tbody>
+            {%for demand in demand_filter.qs%}
+            <tr>
+                <td>{{demand.id}}</td>
+                <td>{{demand.created_at|date:"d-m-y"}}</td>
+                <td>{{demand.updated_at|date:"d-m-y"}}</td>
+                <td>{{demand.title}}</td>
+                <td>{{demand.category}}</td>
+                <td>{{demand.attendant}}</td>
+                <td>{{demand.status}}</td>
+                <td>
+                    <a href="{%url "demand_details" demand.id%}"><i class="fa-sharp fa-solid fa-folder-open main-logo-icon"></i></a>
+                </td>
+            </tr>
+            {%endfor%}
+        </tbody>
     </table>
     
 </div>

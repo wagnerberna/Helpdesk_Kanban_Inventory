@@ -6,15 +6,17 @@
             <th>Status</th>
             <th>Data Encerramento</th>
         </thead>
+        <tbody>
+            {%for project in projects_filter.qs%}
+    
+            <tr>
+                <td>{{project.id}}</td>
+                <td>{{project.name}}</td>
+                <td>{{project.status}}</td>
+                <td>{{project.updated_at|date:"d-m-y"}}</td>
+            </tr>
+            {%endfor%}
+        </tbody>
 
-        {%for project in projects_filter.qs%}
-
-        <tr>
-            <td>{{project.id}}</td>
-            <td>{{project.name}}</td>
-            <td>{{project.status}}</td>
-            <td>{{project.updated_at|date:"d-m-y"}}</td>
-        </tr>
-        {%endfor%}
     </table>
 </div>

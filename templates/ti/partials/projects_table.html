@@ -7,17 +7,18 @@
             <th>Total de Tarefas</th>
             <th>Percentual de Conclusão</th>
         </thead>
-
-        {%for project in projects%}
-
-        <tr>
-            <td>{{project.name}}</td>
-            <td>{{project.task_active}}</td>
-            <td>{{project.task_done}}</td>
-            <td>{{project.task_total}}</td>
-            <td>{{project.project_percentage}}%</td>
-        </tr>
-        {%endfor%}
+        <tbody>
+            {%for project in projects%}
+    
+            <tr>
+                <td>{{project.name}}</td>
+                <td>{{project.task_active}}</td>
+                <td>{{project.task_done}}</td>
+                <td>{{project.task_total}}</td>
+                <td>{{project.project_percentage}}%</td>
+            </tr>
+            {%endfor%}
+        </tbody>
     </table>
     
 </div>

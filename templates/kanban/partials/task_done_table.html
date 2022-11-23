@@ -9,18 +9,20 @@
             <th>Dono da Tarefa</th>
             <th>Status</th>
         </thead>
+        <tbody>
+            {%for task in tasks_filter.qs%}
+    
+            <tr>
+                <td>{{task.id}}</td>
+                <td>{{task.updated_at|date:"d-m-y"}}</td>
+                <td>{{task.title}}</td>
+                <td>{{task.project}}</td>
+                <td>{{task.category}}</td>
+                <td>{{task.task_owner}}</td>
+                <td>{{task.status}}</td>
+            </tr>
+            {%endfor%}
+        </tbody>
 
-        {%for task in tasks_filter.qs%}
-
-        <tr>
-            <td>{{task.id}}</td>
-            <td>{{task.updated_at|date:"d-m-y"}}</td>
-            <td>{{task.title}}</td>
-            <td>{{task.project}}</td>
-            <td>{{task.category}}</td>
-            <td>{{task.task_owner}}</td>
-            <td>{{task.status}}</td>
-        </tr>
-        {%endfor%}
     </table>
 </div>
