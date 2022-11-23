@@ -1,5 +1,5 @@
 <div class="container">
-    <table class="table-default">
+    <table class="table-default table table-striped table-hover">
         <thead>
             <th>Projeto</th>
             <th>Tarefas Ativas</th>
@@ -10,13 +10,13 @@
         <tbody>
             {%for project in projects%}
     
-            <tr>
-                <td>{{project.name}}</td>
-                <td>{{project.task_active}}</td>
-                <td>{{project.task_done}}</td>
-                <td>{{project.task_total}}</td>
-                <td>{{project.project_percentage}}%</td>
-            </tr>
+                <tr>
+                    <td>{{project.name}}</td>
+                    <td>{{project.task_active}}</td>
+                    <td>{{project.task_done}}</td>
+                    <td>{{project.task_total}}</td>
+                    <td>{{project.project_percentage}}%</td>
+                </tr>
             {%endfor%}
         </tbody>
     </table>

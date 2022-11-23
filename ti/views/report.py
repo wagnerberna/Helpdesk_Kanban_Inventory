@@ -185,7 +185,7 @@ def desktops_list(request):
         file = "doc/resume.xlsx"
         data = open_excel_dataframe(file)
 
-        template_path = "ti/pages/report_servers.html"
+        template_path = "ti/pages/report_desktops.html"
         context = {"data": data}
         return render(request, template_path, context)
     except Exception as error:
