@@ -6,8 +6,12 @@ from django.shortcuts import redirect, render
 from helpdesk.models import Demand
 from kanban.models import Project, Task
 from ti.service.check_user_access import check_user_access
-from ti.service.dataframe import open_excel_dataframe
-from ti.service.make_graphics import make_graphic_bar, make_graphic_barh
+from ti.service.dataframe import dataframe_desktop_ranking, open_excel_dataframe
+from ti.service.make_graphics import (
+    make_graphic_bar,
+    make_graphic_barh,
+    make_graphic_pie,
+)
 
 
 @login_required
@@ -21,13 +25,13 @@ def report_per_technical(request):
         demmands_leonardo = Demand.objects.filter(attendant__user_name=4).count()
         demmands_wagner = Demand.objects.filter(attendant__user_name=2).count()
 
-        techinicals = ["Leonardo.susin", "Wagner.berna"]
+        techinicals_labels = ["Leonardo.susin", "Wagner.berna"]
         demands_total_per_techinical = [demmands_leonardo, demmands_wagner]
         title = "Chamados por Técnico"
         color = "blue"
 
         graphic_demands = make_graphic_bar(
-            title, color, techinicals, demands_total_per_techinical
+            title, color, techinicals_labels, demands_total_per_techinical
         )
 
         # Gráfico Tarefas Projetos
@@ -39,7 +43,7 @@ def report_per_technical(request):
         color = "red"
 
         graphic_projects = make_graphic_bar(
-            title, color, techinicals, tasks_total_per_techinical
+            title, color, techinicals_labels, tasks_total_per_techinical
         )
 
         context = {
@@ -82,7 +86,7 @@ def report_per_project(request):
 
         projects_list_to_table = []
         project_percent_to_graphic = []
-        project_name_to_graphic = []
+        projects_labels = []
 
         for project in projects_names:
             print(project[0])
@@ -112,7 +116,7 @@ def report_per_project(request):
                 }
             )
 
-            project_name_to_graphic.append(project[0])
+            projects_labels.append(project[0])
             project_percent_to_graphic.append(project_percentage)
 
         # print("PROJECT LIST:::", projects_list_to_table)
@@ -121,9 +125,9 @@ def report_per_project(request):
         title = "Projetos Percentual de Conclusão"
         color = "red"
 
-        # print(project_name_to_graphic, project_percent_to_graphic)
+        # print(projects_labels, project_percent_to_graphic)
         graphic_projects = make_graphic_barh(
-            title, color, project_name_to_graphic, project_percent_to_graphic
+            title, color, projects_labels, project_percent_to_graphic
         )
 
         context = {
@@ -185,8 +189,15 @@ def desktops_list(request):
         file = "doc/resume.xlsx"
         data = open_excel_dataframe(file)
 
+        # ranking:
+        title = "Ranking Desktops"
+        ranking_labels = ["A", "B", "C", "D", "E"]
+        ranking_values = dataframe_desktop_ranking(file)
+        print("PONTO0")
+        graphic_ranking = make_graphic_pie(title, ranking_labels, ranking_values)
+
         template_path = "ti/pages/report_desktops.html"
-        context = {"data": data}
+        context = {"data": data, "graphic_ranking": urllib.parse.quote(graphic_ranking)}
         return render(request, template_path, context)
     except Exception as error:
         print("Internal error:", error)
