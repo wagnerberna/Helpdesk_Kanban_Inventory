@@ -180,7 +180,7 @@ def servers_list(request):
 
 
 @login_required
-def desktops_list(request):
+def workstations_list(request):
     try:
         check_access = check_user_access(request)
         if not check_access:
@@ -190,13 +190,12 @@ def desktops_list(request):
         data = open_excel_dataframe(file)
 
         # ranking:
-        title = "Ranking Desktops"
-        ranking_labels = ["A", "B", "C", "D", "E"]
+        # title = "Workstations"
+        ranking_labels = ["A-i7", "B-i5", " C-i3", "D-Core ", "E-Celeron"]
         ranking_values = dataframe_desktop_ranking(file)
-        print("PONTO0")
-        graphic_ranking = make_graphic_pie(title, ranking_labels, ranking_values)
+        graphic_ranking = make_graphic_pie(ranking_labels, ranking_values)
 
-        template_path = "ti/pages/report_desktops.html"
+        template_path = "ti/pages/report_workstations.html"
         context = {"data": data, "graphic_ranking": urllib.parse.quote(graphic_ranking)}
         return render(request, template_path, context)
     except Exception as error:
