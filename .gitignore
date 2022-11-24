@@ -136,5 +136,8 @@ dmypy.json
 static/company/
 doc/
 
+# script import
+script/
+
 # DB Test
 *.sqlite3
