@@ -191,7 +191,7 @@ def workstations_list(request):
 
         # ranking:
         # title = "Workstations"
-        ranking_labels = ["A-i7", "B-i5", " C-i3", "D-Core ", "E-Celeron"]
+        ranking_labels = ["A-i7", "B-i5", "C-i3", "D-Core", "E-Celeron"]
         ranking_values = dataframe_desktop_ranking(file)
         graphic_ranking = make_graphic_pie(ranking_labels, ranking_values)
 

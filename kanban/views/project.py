@@ -4,7 +4,7 @@ from ti.service.check_user_access import check_user_access
 
 from kanban.api.serializers import ProjectFilterSerializer
 from kanban.forms import ProjectForm
-from kanban.models import Project, Team
+from kanban.models import Project
 
 
 @login_required
@@ -97,7 +97,7 @@ def project_view_update(request, id):
 
         if form.is_valid():
             form.save()
-            return redirect("project_open_filter")
+            return redirect("projects_open")
 
         return render(
             request,
@@ -123,7 +123,7 @@ def project_view_delete(request, id):
 
         if request.method == "POST":
             project.delete()
-            return redirect("project_open_filter")
+            return redirect("")
 
         return render(
             request,
