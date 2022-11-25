@@ -191,12 +191,34 @@ def workstations_list(request):
 
         # ranking:
         # title = "Workstations"
+        # ranking_labels = ["A-i7", "B-i5", "C-i3", "D-Core", "E-Celeron"]
+        # ranking_values = dataframe_desktop_ranking(file)
+        # graphic_ranking = make_graphic_pie(ranking_labels, ranking_values)
+
+        template_path = "ti/pages/report_workstations.html"
+        context = {"data": data}
+        return render(request, template_path, context)
+    except Exception as error:
+        print("Internal error:", error)
+        raise
+
+
+@login_required
+def workstations_ranking(request):
+    try:
+        check_access = check_user_access(request)
+        if not check_access:
+            return redirect("access_denied")
+
+        file = "doc/resume.xlsx"
+        # ranking:
+        # title = "Workstations"
         ranking_labels = ["A-i7", "B-i5", "C-i3", "D-Core", "E-Celeron"]
         ranking_values = dataframe_desktop_ranking(file)
         graphic_ranking = make_graphic_pie(ranking_labels, ranking_values)
 
-        template_path = "ti/pages/report_workstations.html"
-        context = {"data": data, "graphic_ranking": urllib.parse.quote(graphic_ranking)}
+        template_path = "ti/pages/ranking_workstations.html"
+        context = {"graphic_ranking": urllib.parse.quote(graphic_ranking)}
         return render(request, template_path, context)
     except Exception as error:
         print("Internal error:", error)

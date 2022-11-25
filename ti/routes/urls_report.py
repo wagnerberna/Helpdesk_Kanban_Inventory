@@ -1,10 +1,11 @@
 from django.urls import path
 from ti.views.report import (
-    workstations_list,
     report_per_project,
     report_per_technical,
     servers_list,
     topology,
+    workstations_list,
+    workstations_ranking,
 )
 
 urlpatterns = [
@@ -13,4 +14,5 @@ urlpatterns = [
     path("topology/", topology, name="topology"),
     path("servers/", servers_list, name="servers"),
     path("workstations/", workstations_list, name="workstations"),
+    path("ranking/", workstations_ranking, name="ranking"),
 ]

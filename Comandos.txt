@@ -41,3 +41,9 @@ installed_apps add: "bootstrapform"
 Acesso Query Django:
 #  <QuerySet [<Support: wagner.berna>]>
 # print("check:::", check.values("user_name")[0])
+
+--------------------------------------------------
+-Executar Script Django com acesso aos models
+ex.: popular o db
+Diretório e nome da fn padrão "scripts", "run"
+python manage.py runscript populate_db
