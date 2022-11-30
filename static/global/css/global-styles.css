@@ -94,7 +94,7 @@ body {
 .container {
     max-width: 144rem;
     margin: 0 auto;
-    padding: var(--spacing-gutter-medium);
+    padding: var(--spacing-gutter-small);
 }
 
 .small-container {
@@ -111,6 +111,7 @@ body {
 
 .main-container {
     background: --color-black;
+    margin-bottom: 2rem;
 }
 
 .main-logo {
@@ -184,17 +185,22 @@ body {
 
 .span_blue {
     font-family: var(--font-primary);
-
     color: var(--color-info-graphic)
 }
 
-.column-img {
-    float: left;
-    width: 50%;
+.container-gallery {
+    display: flex;
+    flex-direction: column;
 }
 
-.row-img::after {
-    content: "";
-    clear: both;
-    display: table;
+.container-row-gallery {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+}
+
+.img-gallery {
+    margin: var(--spacing-gutter-small);
+    width: 100%
 }
