@@ -196,6 +196,20 @@ def topology(request):
 
 
 @login_required
+def network_racks(request):
+    try:
+        check_access = check_user_access(request)
+        if not check_access:
+            return redirect("access_denied")
+
+        template_path = "ti/pages/network_racks.html"
+        return render(request, template_path)
+    except Exception as error:
+        print("Internal error:", error)
+        raise
+
+
+@login_required
 def servers_list(request):
     try:
         check_access = check_user_access(request)

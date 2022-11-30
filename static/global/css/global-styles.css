@@ -187,3 +187,14 @@ body {
 
     color: var(--color-info-graphic)
 }
+
+.column-img {
+    float: left;
+    width: 50%;
+}
+
+.row-img::after {
+    content: "";
+    clear: both;
+    display: table;
+}
