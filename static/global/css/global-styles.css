@@ -18,6 +18,7 @@
     --color-error-light: #f8d7da;
 
     --color-info-dark: #4d86c4;
+    --color-info-graphic: #0000FF;
     --color-debug-dark: #4d86c4;
     --color-success-dark: #4a9c5d;
     --color-alert-dark: #927f40;
@@ -116,12 +117,6 @@ body {
     font-size: 3rem;
     color: var(--color-white);
     text-decoration: none;
-    /* align-items: center; */
-    /* display: flex; */
-    /* justify-content: center; */
-    /* text-align: center; */
-    /* flex-flow: row nowrap; */
-    /* width: fit-content; */
 }
 
 .main-logo-client {
@@ -185,4 +180,10 @@ body {
 
 .cel-active {
     color: var(--color-success-dark)
+}
+
+.span_blue {
+    font-family: var(--font-primary);
+
+    color: var(--color-info-graphic)
 }

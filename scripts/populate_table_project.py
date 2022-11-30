@@ -11,10 +11,18 @@ def run():
             # print(index, row)
             print(index, row.project, row.status)
 
+            name_table = row.project
+            status_table = row.status
+            description_table = row.description
+
+            status_id_find = Status.objects.filter(name=status_table)
+            status_id = status_id_find.values("id")[0].get("id")
+            print("STATUS ID:::", status_id)
+
             Project.objects.create(
-                name=row.project,
-                status=Status.objects.get(id=row.status),
-                description=row.description,
+                name=name_table,
+                status=Status.objects.get(id=status_id),
+                description=description_table,
             )
 
     except Exception as error:

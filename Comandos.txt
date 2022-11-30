@@ -42,6 +42,27 @@ Acesso Query Django:
 #  <QuerySet [<Support: wagner.berna>]>
 # print("check:::", check.values("user_name")[0])
 
+ex: capturar id do status pelo nome
+status = Status.objects.filter(name="TO DO")
+print(status)
+# Retorna uma Query
+#<QuerySet [<Status: TO DO>]>
+
+# Busca na query pelo campo
+print(status.values("name"))
+print(status.values("id"))
+# Retorna a query com uma lista e dentro um dict
+#<QuerySet [{'name': 'TO DO'}]>
+<QuerySet [{'id': 1}]>
+
+# Acessar o dict:
+print(status.values("id")[0])
+# {'id': 1}
+
+Acessar o ID:
+print(status.values("id")[0].get("id"))
+# 1
+
 --------------------------------------------------
 -Executar Script Django com acesso aos models
 ex.: popular o db

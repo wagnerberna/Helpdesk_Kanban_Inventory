@@ -1,3 +1,4 @@
+import datetime
 import urllib
 
 from django.contrib.auth.decorators import login_required
@@ -7,6 +8,7 @@ from helpdesk.models import Demand
 from kanban.models import Project, Task
 from ti.service.check_user_access import check_user_access
 from ti.service.dataframe import dataframe_desktop_ranking, open_excel_dataframe
+from ti.service.format_time import format_time_delta
 from ti.service.make_graphics import (
     make_graphic_bar,
     make_graphic_barh,
@@ -20,6 +22,37 @@ def report_per_technical(request):
         check_access = check_user_access(request)
         if not check_access:
             return redirect("access_denied")
+
+        # demands_all = Demand.objects.filter(status__name="Finalizado")
+        # SLA
+        demands_all = Demand.objects.filter(status__name="Finalizado").values(
+            "created_at", "updated_at"
+        )
+
+        demands_count = demands_all.count()
+        print("demands_all:::", demands_all, demands_count)
+
+        demands_sum = datetime.timedelta(days=0, minutes=0, seconds=0)
+        sla_average = datetime.timedelta(days=0, minutes=0, seconds=0)
+
+        print("demands_sum timedelta:::", demands_sum)
+        for el in demands_all:
+            created_at = el.get("created_at")
+            updated_at = el.get("updated_at")
+            difference_between_days = updated_at - created_at
+            # convert = difference_between_days
+            demands_sum += difference_between_days
+
+            print("difference_between_days", difference_between_days)
+            # print("convert::", convert)
+            print("demands_sum", demands_sum)
+
+        sla_average = demands_sum / demands_count
+
+        sla_format = format_time_delta(sla_average)
+
+        print("SLA:::", sla_average)
+        print("sla_format:::", sla_format)
 
         # Gráfico Demandas
         demmands_leonardo = Demand.objects.filter(attendant__user_name=4).count()
@@ -53,6 +86,7 @@ def report_per_technical(request):
             "demmands_wagner": demmands_wagner,
             "tasks_leonardo": tasks_leonardo,
             "tasks_wagner": tasks_wagner,
+            "sla": sla_format,
         }
 
         template_path = "ti/pages/report_per_technical.html"

@@ -6,7 +6,7 @@ class Support(models.Model):
     id = models.AutoField(primary_key=True)
     user_name = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         managed = True
@@ -20,7 +20,7 @@ class Category(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=70, null=False)
     created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         managed = True
@@ -34,7 +34,7 @@ class Status(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=30, null=False)
     created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         managed = True
@@ -60,7 +60,7 @@ class Demand(models.Model):
     status = models.ForeignKey(Status, on_delete=models.SET_NULL, null=True, default=1)
     solution = models.TextField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         managed = True
