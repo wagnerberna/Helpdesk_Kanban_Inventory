@@ -9,11 +9,11 @@ def run():
         print(df)
         for index, row in df.iterrows():
             # print(index, row)
-            print(index, row.project, row.status)
+            print(index, row.projeto, row.status, row.descricao)
 
-            name_table = row.project
+            name_table = row.projeto
             status_table = row.status
-            description_table = row.description
+            description_table = row.descricao
 
             status_id_find = Status.objects.filter(name=status_table)
             status_id = status_id_find.values("id")[0].get("id")
