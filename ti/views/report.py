@@ -154,14 +154,16 @@ def report_per_project(request):
                 }
             )
 
-            projects_labels.append(project[0])
-            project_percent_to_graphic.append(project_percentage)
+            print(project_percent_to_graphic)
+            if project_percentage != 100:
+                projects_labels.append(project[0])
+                project_percent_to_graphic.append(project_percentage)
 
         projects_list_sorted = sorted(
             projects_list, key=lambda k: k["project_percentage"]
         )
 
-        print("PROJECT LIST:::", projects_list)
+        # print("PROJECT LIST:::", projects_list)
         print("projects_list_sorted", projects_list_sorted)
 
         # Graphic projects
