@@ -30,12 +30,12 @@ def report_per_technical(request):
         )
 
         demands_count = demands_all.count()
-        print("demands_all:::", demands_all, demands_count)
+        # print("demands_all:::", demands_all, demands_count)
 
         demands_sum = datetime.timedelta(days=0, minutes=0, seconds=0)
         sla_average = datetime.timedelta(days=0, minutes=0, seconds=0)
 
-        print("demands_sum timedelta:::", demands_sum)
+        # print("demands_sum timedelta:::", demands_sum)
         for el in demands_all:
             created_at = el.get("created_at")
             updated_at = el.get("updated_at")
@@ -43,16 +43,18 @@ def report_per_technical(request):
             # convert = difference_between_days
             demands_sum += difference_between_days
 
-            print("difference_between_days", difference_between_days)
+            # print("difference_between_days", difference_between_days)
             # print("convert::", convert)
             print("demands_sum", demands_sum)
 
-        sla_average = demands_sum / demands_count
+        if sla_average:
+            sla_average = demands_sum / demands_count
+            sla_format = format_time_delta(sla_average)
+        else:
+            sla_format = ""
 
-        sla_format = format_time_delta(sla_average)
-
-        print("SLA:::", sla_average)
-        print("sla_format:::", sla_format)
+        # print("SLA:::", sla_average)
+        # print("sla_format:::", sla_format)
 
         # Gráfico Demandas
         demmands_leonardo = Demand.objects.filter(attendant__user_name=4).count()
