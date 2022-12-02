@@ -154,7 +154,6 @@ def report_per_project(request):
                 }
             )
 
-            print(project_percent_to_graphic)
             if project_percentage != 100:
                 projects_labels.append(project[0])
                 project_percent_to_graphic.append(project_percentage)
@@ -164,7 +163,7 @@ def report_per_project(request):
         )
 
         # print("PROJECT LIST:::", projects_list)
-        print("projects_list_sorted", projects_list_sorted)
+        # print("projects_list_sorted", projects_list_sorted)
 
         # Graphic projects
         title = "Projetos Percentual de Conclusão"

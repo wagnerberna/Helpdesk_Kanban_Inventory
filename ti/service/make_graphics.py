@@ -31,7 +31,7 @@ def make_graphic_barh(title, color, labels, data):
     plt.grid(color="#95a5a6", linestyle="--", linewidth=2, axis="x", alpha=0.7)
 
     fig = plt.gcf()
-    fig.set_size_inches(18, 4, forward=True)
+    fig.set_size_inches(20, 4, forward=True)
     # fig.set_dpi(100)
     buf = io.BytesIO()
     fig.savefig(buf, format="png")
