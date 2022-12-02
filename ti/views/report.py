@@ -112,6 +112,8 @@ def report_per_project(request):
 
         # Table Projects
         projects_names = list(Project.objects.all().values_list("name"))
+
+        # .exclude(status__name="DONE")
         # all_tasks_per_project = Task.objects.all().values_list(
         #     "project__name", "status__name"
         # )
@@ -120,7 +122,7 @@ def report_per_project(request):
         # print("all_tasks:", all_tasks_per_project)
         # print("contagem tarefas:", all_tasks_per_project.count())
 
-        projects_list_to_table = []
+        projects_list = []
         project_percent_to_graphic = []
         projects_labels = []
 
@@ -142,7 +144,7 @@ def report_per_project(request):
             project_percentage = (
                 project_tasks_done_count / project_tasks_total_count
             ) * 100
-            projects_list_to_table.append(
+            projects_list.append(
                 {
                     "name": project[0],
                     "task_active": project_tasks_active,
@@ -155,7 +157,12 @@ def report_per_project(request):
             projects_labels.append(project[0])
             project_percent_to_graphic.append(project_percentage)
 
-        # print("PROJECT LIST:::", projects_list_to_table)
+        projects_list_sorted = sorted(
+            projects_list, key=lambda k: k["project_percentage"]
+        )
+
+        print("PROJECT LIST:::", projects_list)
+        print("projects_list_sorted", projects_list_sorted)
 
         # Graphic projects
         title = "Projetos Percentual de Conclusão"
@@ -168,7 +175,7 @@ def report_per_project(request):
 
         context = {
             "graphic_projects": urllib.parse.quote(graphic_projects),
-            "projects": projects_list_to_table,
+            "projects": projects_list_sorted,
         }
 
         template_path = "ti/pages/report_per_project.html"
