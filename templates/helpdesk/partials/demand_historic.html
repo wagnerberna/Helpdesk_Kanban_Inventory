@@ -1,0 +1,7 @@
+<ol>
+    {%for el in historic%}
+    <li>
+        {{el.created_at|date:"d-m-y"}} - {{el.historic}}
+    </li>
+    {%endfor%}
+</ol>

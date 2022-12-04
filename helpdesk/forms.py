@@ -1,6 +1,7 @@
+from django import forms
 from django.forms import ModelForm
 
-from .models import Demand
+from .models import Demand, Historic
 
 
 # model usado para criar o formulário
@@ -70,8 +71,16 @@ class SupportFormUpdate(ModelForm):
             "status",
             "solution",
         ]
+        # widgets = {"solutin": forms.TextInput}
         labels = {
             "attendant": "Técnico:",
             "status": "Status:",
             "solution": "Solução",
         }
+
+
+class HistoricFormAdd(ModelForm):
+    class Meta:
+        model = Historic
+        fields = ["demand_id", "historic"]
+        labels = {"historic": "Histórico:"}

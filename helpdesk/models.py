@@ -67,4 +67,20 @@ class Demand(models.Model):
         db_table = "helpdesk_demand"
 
     def __str__(self):
-        return "Solicitação: %s / Descrição: %s" % (self.user_name, self.description)
+        return self.title
+        # return "Solicitação: %s / Descrição: %s" % (self.user_name, self.description)
+
+
+class Historic(models.Model):
+    id = models.AutoField(primary_key=True)
+    demand_id = models.ForeignKey(Demand, on_delete=models.SET_NULL, null=True)
+    historic = models.CharField(max_length=200, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        managed = True
+        db_table = "helpdesk_historic"
+
+    def __str__(self):
+        return self.historic

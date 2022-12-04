@@ -1,9 +1,10 @@
+from django import forms
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404, redirect, render
 from helpdesk.api.serializers import SupportFilterSerializer
-from helpdesk.forms import SupportFormUpdate, SupportFormUpdateView
-from helpdesk.models import Demand, Support
+from helpdesk.forms import HistoricFormAdd, SupportFormUpdate, SupportFormUpdateView
+from helpdesk.models import Demand, Historic
 from ti.service.check_user_access import check_user_access
 
 
@@ -107,13 +108,29 @@ def support_view_update(request, id):
         form_view.fields["title"].widget.attrs["disabled"] = True
         form_view.fields["description"].widget.attrs["disabled"] = True
 
-        # template =
-        context = {"form": form, "form_view": form_view}
+        # histórico
+        form_historic = HistoricFormAdd(request.POST or None)
+        form_historic.fields["demand_id"].initial = id
+        form_historic.fields["demand_id"].widget = forms.HiddenInput()
+
+        historic = Historic.objects.filter(demand_id=id)
+        # print(historic)
+
+        context = {
+            "form": form,
+            "form_view": form_view,
+            "form_historic": form_historic,
+            "historic": historic,
+        }
         template_path = "helpdesk/pages/support_update_demand.html"
 
         if form.is_valid():
             form.save()
             return redirect("support_list_all")
+
+        if form_historic.is_valid():
+            form_historic.clean()
+            form_historic.save()
 
         return render(request, template_path, context)
     except Exception as error:
