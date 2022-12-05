@@ -83,4 +83,4 @@ class HistoricFormAdd(ModelForm):
     class Meta:
         model = Historic
         fields = ["demand_id", "historic"]
-        labels = {"historic": "Histórico:"}
+        labels = {"historic": "Adicionar Histórico:"}

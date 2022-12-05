@@ -36,6 +36,8 @@
     --color-gray-8: #323232;
     --color-gray-9: #191919;
     --color-merco-azul: #1F1D41;
+    --color-form-django: #E9ECEF;
+    --color-border-form-django: #CED4DA;
 
     --font-primary: sans-serif;
     --font-headings: "Roboto Slab", serif;
@@ -216,4 +218,17 @@ body {
 .img-gallery {
     margin: var(--spacing-gutter-small);
     width: 100%
+}
+
+.container-box {
+    border-width: 1px;
+    border-color: var(--color-border-form-django);
+    border-style: solid;
+    border-radius: 10px;
+    background: var(--color-form-django);
+    text-align: left;
+}
+
+.order-list {
+    margin: var(--spacing-gutter-small);
 }

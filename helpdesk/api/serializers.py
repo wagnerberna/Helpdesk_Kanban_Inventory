@@ -52,9 +52,15 @@ class DemandFilterSerializer(django_filters.FilterSet):
 
 
 class SupportFilterSerializer(django_filters.FilterSet):
-    title = django_filters.CharFilter(lookup_expr="icontains")
-    description = django_filters.CharFilter(lookup_expr="icontains")
-    solution = django_filters.CharFilter(lookup_expr="icontains")
+    title = django_filters.CharFilter(lookup_expr="icontains", label="Título:")
+    category = django_filters.ModelChoiceFilter(
+        label="Categoria:", queryset=Category.objects.all()
+    )
+    attendant = django_filters.ModelChoiceFilter(
+        label="Técnico:", queryset=Support.objects.all()
+    )
+    description = django_filters.CharFilter(lookup_expr="icontains", label="Descrição:")
+    solution = django_filters.CharFilter(lookup_expr="icontains", label="Solução:")
 
     class Meta:
         model = Demand

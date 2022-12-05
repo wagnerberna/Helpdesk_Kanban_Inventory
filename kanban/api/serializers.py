@@ -28,8 +28,8 @@ class TaskSerializer(serializers.ModelSerializer):
 
 
 class ProjectFilterSerializer(django_filters.FilterSet):
-    name = django_filters.CharFilter(lookup_expr="icontains", label="Nome")
-    description = django_filters.CharFilter(lookup_expr="icontains", label="Descrição")
+    name = django_filters.CharFilter(lookup_expr="icontains", label="Nome:")
+    description = django_filters.CharFilter(lookup_expr="icontains", label="Descrição:")
 
     class Meta:
         model = Project
