@@ -200,6 +200,19 @@ body {
     justify-content: space-evenly;
 }
 
+.container-main-division {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+}
+
+.containers-child-division {
+    display: flex;
+    flex-direction: column;
+
+}
+
 .img-gallery {
     margin: var(--spacing-gutter-small);
     width: 100%
