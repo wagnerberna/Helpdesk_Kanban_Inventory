@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 from helpdesk.api.serializers import DemandFilterSerializer
 from helpdesk.forms import DemandFormCreate, DemandFormUpdate
-from helpdesk.models import Demand
+from helpdesk.models import Demand, Historic
 
 
 @login_required
@@ -95,7 +95,9 @@ def demand_view_details(request, id):
         form.fields["status"].widget.attrs["disabled"] = True
         form.fields["solution"].widget.attrs["disabled"] = True
 
-        context = {"form": form}
+        historic = Historic.objects.filter(demand_id=id)
+
+        context = {"form": form, "historic": historic}
         template_path = "helpdesk/pages/demand_details.html"
 
         return render(request, template_path, context)

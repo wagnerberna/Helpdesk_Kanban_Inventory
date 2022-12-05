@@ -74,7 +74,7 @@ class Demand(models.Model):
 class Historic(models.Model):
     id = models.AutoField(primary_key=True)
     demand_id = models.ForeignKey(Demand, on_delete=models.SET_NULL, null=True)
-    historic = models.CharField(max_length=200, null=True)
+    historic = models.CharField(max_length=250, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

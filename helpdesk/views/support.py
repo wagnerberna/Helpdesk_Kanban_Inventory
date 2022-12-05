@@ -3,7 +3,8 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404, redirect, render
 from helpdesk.api.serializers import SupportFilterSerializer
-from helpdesk.forms import HistoricFormAdd, SupportFormUpdate, SupportFormUpdateView
+from helpdesk.forms import (HistoricFormAdd, SupportFormUpdate,
+                            SupportFormUpdateView)
 from helpdesk.models import Demand, Historic
 from ti.service.check_user_access import check_user_access
 
@@ -129,8 +130,8 @@ def support_view_update(request, id):
             return redirect("support_list_all")
 
         if form_historic.is_valid():
-            form_historic.clean()
             form_historic.save()
+            return redirect("support_update", id)
 
         return render(request, template_path, context)
     except Exception as error:

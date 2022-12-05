@@ -158,6 +158,7 @@ def report_per_project(request):
                 projects_labels.append(project[0])
                 project_percent_to_graphic.append(project_percentage)
 
+        # ordenar os valores da lista pela chave do dict
         projects_list_sorted = sorted(
             projects_list, key=lambda k: k["project_percentage"]
         )
