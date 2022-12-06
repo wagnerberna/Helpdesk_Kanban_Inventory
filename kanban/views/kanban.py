@@ -1,6 +1,6 @@
 # from django import forms
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from ti.service.check_user_access import check_user_access
 
 # from kanban.forms import ProjectForm
@@ -30,50 +30,43 @@ def manager_view(request):
 
 
 @login_required
-def kanban_board(request):
+def kanban_list(request):
     try:
         check_access = check_user_access(request)
         if not check_access:
             return redirect("access_denied")
 
-        projects_names = list(
-            Project.objects.all().values_list("name").exclude(status__name="DONE")
+        projects = Project.objects.all().order_by("-id").exclude(status__name="DONE")
+
+        context = {"projects": projects}
+        template_path = "kanban/pages/kanban_list.html"
+
+        return render(
+            request,
+            template_path,
+            context,
         )
-        print("projects_names:::", projects_names)
-        projects_list = []
 
-        for project in projects_names:
-            task_list = []
-            project_name = project[0]
-            # print(project_name)
-            project_tasks_to_do = Task.objects.filter(
-                project__name=project_name, status__name="TO DO"
-            )
-            # title_to_do = project_tasks_to_do.values("title")
+    except Exception as error:
+        print("Internal error:", error)
+        raise
 
-            project_tasks_doing = Task.objects.filter(
-                project__name=project_name, status__name="DOING"
-            )
-            project_tasks_done = Task.objects.filter(
-                project__name=project_name, status__name="DONE"
-            )
 
-            # print("project_tasks_to_do:::", project_tasks_to_do)
+@login_required
+def kanban_board(request, id):
+    try:
+        check_access = check_user_access(request)
+        if not check_access:
+            return redirect("access_denied")
 
-            for el in projects_list:
-                print(el)
+        project = Project.objects.filter(id=id).values("name")
+        project_name = project.values("name")[0].get("name")
 
-            projects_list.append(
-                {
-                    "project_name": project_name,
-                    "tasks_active": project_tasks_to_do,
-                    "tasks_doing": project_tasks_doing,
-                    "tasks_done": project_tasks_done,
-                }
-            )
+        tasks = Task.objects.filter(project__id=id)
 
-        print(projects_list)
-        context = {"projects_list": projects_list}
+        print("project:::", project_name)
+
+        context = {"project": project_name, "tasks": tasks}
         template_path = "kanban/pages/kanban_board.html"
 
         return render(

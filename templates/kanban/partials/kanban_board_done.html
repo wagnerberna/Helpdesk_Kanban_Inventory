@@ -1,0 +1,19 @@
+{%for task in tasks%}
+
+    {%if task.status|stringformat:'s' == "DONE"%}
+        <div class="containers-child-division">
+            <table class="table-default table table-info">
+                <thead>
+                    <th>{{task.title}}</th>
+                </thead>
+    
+                <tbody>
+                    <tr>
+                        <td>{{task.description}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    {%endif%}
+
+{%endfor%}

@@ -3,10 +3,31 @@
 {% block main %}
 
     <div class="container">
-        <h2>Quadro Kanban</h2>
+        <h2>Quadro Kanban - {{project}}</h2>
 
-        {%include "kanban/partials/kanban_board.html"%}
-        
+        <div class="container-kanban-division">
+            <div>
+                <h2>TO DO</h2>
+                {%include "kanban/partials/kanban_board_to_do.html"%}
+            </div>
+    
+            <div>
+                <h2>TO DO</h2>
+                {%include "kanban/partials/kanban_board_doing.html"%}
+            </div>
+
+            <div>
+                <h2>BLOCKED</h2>
+                {%include "kanban/partials/kanban_board_blocked.html"%}
+            </div>
+
+            <div>
+                <h2>DONE</h2>
+                {%include "kanban/partials/kanban_board_done.html"%}
+            </div>
+        </div>
+
+
     </div>
 
 {% endblock main %}
