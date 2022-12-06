@@ -35,7 +35,7 @@ class DemandFilterSerializer(django_filters.FilterSet):
     )
     description = django_filters.CharFilter(lookup_expr="icontains", label="Descrição:")
     attendant = django_filters.ModelChoiceFilter(
-        label="Técnico:", queryset=Support.objects.all()
+        queryset=Support.objects.all(), label="Técnico:"
     )
     solution = django_filters.CharFilter(lookup_expr="icontains", label="Solução:")
 
@@ -52,6 +52,9 @@ class DemandFilterSerializer(django_filters.FilterSet):
 
 
 class SupportFilterSerializer(django_filters.FilterSet):
+    user_name = django_filters.ModelChoiceFilter(
+        queryset=User.objects.all(), label="Nome:"
+    )
     title = django_filters.CharFilter(lookup_expr="icontains", label="Título:")
     category = django_filters.ModelChoiceFilter(
         label="Categoria:", queryset=Category.objects.all()
