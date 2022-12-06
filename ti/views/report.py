@@ -32,6 +32,7 @@ def report_per_technical(request):
         demands_count = demands_all.count()
         # print("demands_all:::", demands_all, demands_count)
 
+        # SLA
         demands_sum = datetime.timedelta(days=0, minutes=0, seconds=0)
         sla_average = datetime.timedelta(days=0, minutes=0, seconds=0)
 
@@ -112,15 +113,6 @@ def report_per_project(request):
 
         # Table Projects
         projects_names = list(Project.objects.all().values_list("name"))
-
-        # .exclude(status__name="DONE")
-        # all_tasks_per_project = Task.objects.all().values_list(
-        #     "project__name", "status__name"
-        # )
-        # print("projects_names:", projects_names)
-        # print("contagem projetos:", len(projects_names))
-        # print("all_tasks:", all_tasks_per_project)
-        # print("contagem tarefas:", all_tasks_per_project.count())
 
         projects_list = []
         project_percent_to_graphic = []
