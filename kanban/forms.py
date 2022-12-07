@@ -1,3 +1,4 @@
+from django import forms
 from django.forms import ModelForm
 
 from .models import Project, Task
@@ -28,7 +29,5 @@ class TaskForm(ModelForm):
         }
 
 
-class KanbanStatus(ModelForm):
-    class Meta:
-        model = Task
-        fields = ["status"]
+class KanbanStatusFormNext(forms.Form):
+    id_task = forms.CharField(required=False)

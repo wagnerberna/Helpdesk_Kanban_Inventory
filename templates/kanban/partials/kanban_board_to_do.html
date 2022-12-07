@@ -1,3 +1,5 @@
+{%load bootstrap%}
+
 {%for task in tasks%}
 
     {%if task.status|stringformat:'s' == "TO DO"%}
@@ -13,9 +15,16 @@
                     </tr>
                 </tbody>
             </table>
+            <form action="" method="post" >
+                <input name="id_task" type="text" value="{{task.id}}">
+                {%csrf_token%}
+                {% comment %} {{form}} {% endcomment %}
+                <button type=submit class="btn btn-primary">Update</button>
+            </form>
+
         </div>
     {%endif%}
-
 {%endfor%}
 
- 
+{% comment %} hidden {% endcomment %}
+
