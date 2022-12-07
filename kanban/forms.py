@@ -26,3 +26,9 @@ class TaskForm(ModelForm):
             "status": "Status:",
             "description": "Descrição:",
         }
+
+
+class KanbanStatus(ModelForm):
+    class Meta:
+        model = Task
+        fields = ["status"]

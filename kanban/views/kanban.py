@@ -3,6 +3,8 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 from ti.service.check_user_access import check_user_access
 
+from kanban.forms import KanbanStatus
+
 # from kanban.forms import ProjectForm
 from kanban.models import Category, Project, Task, Team
 

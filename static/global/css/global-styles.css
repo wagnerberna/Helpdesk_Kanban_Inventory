@@ -35,9 +35,16 @@
     --color-gray-7: #4b4b4b;
     --color-gray-8: #323232;
     --color-gray-9: #191919;
+
     --color-merco-azul: #1F1D41;
     --color-form-django: #E9ECEF;
     --color-border-form-django: #CED4DA;
+    --color-kanban-green: #00FF00;
+    --color-kanban-yellow: #FFFF00;
+    --color-kanban-red: #FF0000;
+    --color-kanban-blue: #00BFFF;
+
+
 
     --font-primary: sans-serif;
     --font-headings: "Roboto Slab", serif;
@@ -112,7 +119,7 @@ body {
 }
 
 .main-container {
-    background: --color-black;
+    /* background: var(--color-black); */
     margin-bottom: 2rem;
 }
 
@@ -241,4 +248,36 @@ body {
 
 .order-list {
     margin: var(--spacing-gutter-small);
+}
+
+.table-kanban-to-do {
+    width: 200px;
+    font-size: 15px;
+    background-color: var(--color-kanban-green);
+}
+
+.table-kanban-doing {
+    width: 200px;
+    font-size: 15px;
+    background-color: var(--color-kanban-yellow);
+}
+
+.table-kanban-blocked {
+    width: 200px;
+    font-size: 15px;
+    background-color: var(--color-kanban-red);
+}
+
+.table-kanban-done {
+    width: 200px;
+    font-size: 15px;
+    background-color: var(--color-kanban-blue);
+}
+
+.table_th_kanban {
+    height: 30px;
+}
+
+.table_td_kanban {
+    height: 100px;
 }

@@ -2,14 +2,14 @@
 
     {%if task.status|stringformat:'s' == "BLOCKED"%}
         <div class="containers-child-division">
-            <table class="table-default table table-danger">
+            <table class="table-default table table-hover table-kanban-blocked">
                 <thead>
-                    <th>{{task.title}}</th>
+                    <th class="table_th_kanban">{{task.title}}</th>
                 </thead>
     
                 <tbody>
                     <tr>
-                        <td>{{task.description}}</td>
+                        <td class="table_td_kanban">{{task.description}}</td>
                     </tr>
                 </tbody>
             </table>
