@@ -3,7 +3,7 @@
 {%for task in tasks%}
 
     {%if task.status|stringformat:'s' == "TO DO"%}
-        <div class="containers-child-division">
+        <div class="containers-kanban-form">
             <table class="table-default table table-hover table-kanban-to-do">
                 <thead>
                     <th class="table_th_kanban">{{task.title}}</th>
@@ -15,16 +15,16 @@
                     </tr>
                 </tbody>
             </table>
-            <form action="" method="post" >
-                <input name="id_task" type="hidden" value="{{task.id}}">
-                {%csrf_token%}
-                
-                <button type=submit class="btn btn-primary">Update</button>
-            </form>
-
+            <div>
+                <form action="" method="post" >
+                    <input name="id_task" type="hidden" value="{{task.id}}">
+                    {%csrf_token%}
+                    <button class="button-invisible" type=submit><i class="fa-solid fa-circle-right"></i></button>     
+                </form>
+            </div>
         </div>
     {%endif%}
 {%endfor%}
 
-{% comment %} hidden {% endcomment %}
+
 

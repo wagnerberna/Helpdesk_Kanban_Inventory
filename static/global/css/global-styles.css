@@ -232,6 +232,19 @@ body {
     flex-direction: row;
 }
 
+.containers-kanban-form {
+    font-size: 25px;
+    display: flex;
+    flex-direction: row;
+}
+
+.button-invisible {
+    background-color: var(--color-gray-1);
+    border: none;
+    overflow: hidden;
+    outline: none;
+}
+
 .img-gallery {
     margin: var(--spacing-gutter-small);
     width: 100%

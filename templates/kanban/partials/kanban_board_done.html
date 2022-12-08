@@ -1,7 +1,7 @@
 {%for task in tasks%}
 
     {%if task.status|stringformat:'s' == "DONE"%}
-        <div class="containers-child-division">
+        <div class="containers-kanban-form">
             <table class="table-default table table-hover table-kanban-done">
                 <thead>
                     <th class="table_th_kanban">{{task.title}}</th>
@@ -13,6 +13,13 @@
                     </tr>
                 </tbody>
             </table>
+            <div>
+                <form action="" method="post" >
+                    <input name="id_task" type="hidden" value="{{task.id}}">
+                    {%csrf_token%}
+                    <button class="button-invisible" type=submit><i class="fa-solid fa-circle-right"></i></button>     
+                </form>
+            </div>
         </div>
     {%endif%}
 

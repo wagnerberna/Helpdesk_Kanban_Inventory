@@ -5,7 +5,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from ti.service.check_user_access import check_user_access
 
 from kanban.forms import KanbanStatusFormNext
-from kanban.models import Category, Project, Task, Team
+from kanban.models import Category, Project, Status, Task, Team
 
 # from kanban.api.serializers import KanbanFilterSerializer
 # from kanban.forms import
@@ -73,11 +73,22 @@ def kanban_board(request, id):
         if request.method == "POST":
             req = request.POST
             id_task = req.get("id_task")
-
             print("clicou")
-
             print(req)
             print(id_task)
+            task_status_id = (
+                Task.objects.filter(pk=id_task).values("status")[0].get("status")
+            )
+
+            print(task_status_id)
+            if task_status_id == 1:
+                Task.objects.filter(pk=id_task).update(status=2)
+            elif task_status_id == 2:
+                Task.objects.filter(pk=id_task).update(status=3)
+            elif task_status_id == 3:
+                Task.objects.filter(pk=id_task).update(status=4)
+            elif task_status_id == 4:
+                Task.objects.filter(pk=id_task).update(status=1)
 
         return render(
             request,
