@@ -39,10 +39,14 @@
     --color-merco-azul: #1F1D41;
     --color-form-django: #E9ECEF;
     --color-border-form-django: #CED4DA;
-    --color-kanban-green: #00FF00;
-    --color-kanban-yellow: #FFFF00;
-    --color-kanban-red: #FF0000;
-    --color-kanban-blue: #00BFFF;
+    /* --color-kanban-green: #00FF00; */
+    /* --color-kanban-yellow: #FFFF00; */
+    /* --color-kanban-blue: #00BFFF; */
+    /* --color-kanban-red: #FF0000; */
+    --color-kanban-green: #7fe686;
+    --color-kanban-yellow: #ffe97f;
+    --color-kanban-blue: #86cbf9;
+    --color-kanban-red: #fe7167;
 
 
 
