@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 from ti.service.check_user_access import check_user_access
 
-from kanban.forms import KanbanStatusFormNext
+from kanban.forms import KanbanStatusFormNext, TaskForm
 from kanban.models import Category, Project, Status, Task, Team
 
 # from kanban.api.serializers import KanbanFilterSerializer
@@ -65,9 +65,14 @@ def kanban_board(request, id):
 
         tasks = Task.objects.filter(project__id=id)
 
-        # print("project:::", project_name)
+        # print("project:::", project)
         form = KanbanStatusFormNext(request.POST)
-        context = {"project": project_name, "tasks": tasks, "form": form}
+        context = {
+            "project_name": project_name,
+            "project_id": id,
+            "tasks": tasks,
+            "form": form,
+        }
         template_path = "kanban/pages/kanban_board.html"
 
         if request.method == "POST":
@@ -89,6 +94,35 @@ def kanban_board(request, id):
                 Task.objects.filter(pk=id_task).update(status=4)
             elif task_status_id == 4:
                 Task.objects.filter(pk=id_task).update(status=1)
+
+        return render(
+            request,
+            template_path,
+            context,
+        )
+
+    except Exception as error:
+        print("Internal error:", error)
+        raise
+
+
+@login_required
+def kanban_task_view_create(request, id):
+    try:
+        check_access = check_user_access(request)
+        if not check_access:
+            return redirect("access_denied")
+
+        form = TaskForm(request.POST or None)
+        form.fields["project"].initial = id
+        # form.fields["user_name"].widget = forms.HiddenInput()
+
+        context = {"form": form}
+        template_path = "kanban/pages/task_create.html"
+
+        if form.is_valid():
+            form.save()
+            return redirect("kanban_manager")
 
         return render(
             request,

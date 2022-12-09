@@ -3,26 +3,32 @@
 {% block main %}
 
     <div class="container">
-        <h2>Quadro Kanban - {{project}}</h2>
+        <h2>Quadro Kanban - {{project_name}}</h2>
+        <h3>
+            <a class="link-black" href="{%url "kanban_task_add" project_id%}">
+                <i class="fa-sharp fa-solid fa-circle-plus icon-kanban"></i>
+                Adicionar Tarefa
+            </a>
+        </h3>
 
         <div class="container-kanban-division">
             <div>
-                <h2>TO DO</h2>
+                <h2 class="title-kanban">TO DO</h2>
                 {%include "kanban/partials/kanban_board_to_do.html"%}
             </div>
     
             <div>
-                <h2>DOING</h2>
+                <h2 class="title-kanban">DOING</h2>
                 {%include "kanban/partials/kanban_board_doing.html"%}
             </div>
 
             <div>
-                <h2>BLOCKED</h2>
+                <h2 class="title-kanban">BLOCKED</h2>
                 {%include "kanban/partials/kanban_board_blocked.html"%}
             </div>
 
             <div>
-                <h2>DONE</h2>
+                <h2 class="title-kanban">DONE</h2>
                 {%include "kanban/partials/kanban_board_done.html"%}
             </div>
         </div>

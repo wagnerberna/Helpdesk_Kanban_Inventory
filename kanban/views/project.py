@@ -3,7 +3,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from ti.service.check_user_access import check_user_access
 
 from kanban.api.serializers import ProjectFilterSerializer
-from kanban.forms import ProjectForm
+from kanban.forms import ProjectForm, TaskForm
 from kanban.models import Project
 
 

@@ -3,24 +3,30 @@
 {%for task in tasks%}
 
     {%if task.status|stringformat:'s' == "TO DO"%}
-        <div class="containers-kanban-form">
+        <div class="containers-kanban-card">
             <table class="table-default table table-hover table-kanban-to-do">
                 <thead>
-                    <th class="table_th_kanban">{{task.title}}</th>
+                    <th class="table-th-kanban">{{task.title}}</th>
                 </thead>
     
                 <tbody>
                     <tr>
-                        <td class="table_td_kanban">{{task.description}}</td>
+                        <td class="table-td-kanban">{{task.description}}</td>
                     </tr>
                 </tbody>
             </table>
-            <div>
+            <div class="containers-kanban-form">
                 <form action="" method="post" >
                     <input name="id_task" type="hidden" value="{{task.id}}">
                     {%csrf_token%}
                     <button class="button-invisible" type=submit><i class="fa-solid fa-circle-right"></i></button>     
                 </form>
+                <div>
+                    <a href="{%url "task_update" task.id%}"><i class="fa-sharp fa-solid fa-folder-open icon-kanban"></i></a>
+                </div>
+                <div>
+                    <a href="{%url "task_delete" task.id%}"><i class="fa-sharp fa-solid fa-trash-can icon-kanban"></i></a>
+                </div>
             </div>
         </div>
     {%endif%}

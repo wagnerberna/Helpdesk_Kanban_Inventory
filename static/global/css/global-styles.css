@@ -236,10 +236,16 @@ body {
     flex-direction: row;
 }
 
-.containers-kanban-form {
+.containers-kanban-card {
     font-size: 25px;
     display: flex;
     flex-direction: row;
+}
+
+.containers-kanban-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
 .button-invisible {
@@ -291,10 +297,25 @@ body {
     background-color: var(--color-kanban-blue);
 }
 
-.table_th_kanban {
+.table-th-kanban {
     height: 30px;
 }
 
-.table_td_kanban {
+.table-td-kanban {
     height: 100px;
+}
+
+.title-kanban {
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.icon-kanban {
+    margin-left: 2px;
+    font-size: 20px;
+    color: var(--color-black);
+}
+
+.link-black {
+    color: var(--color-black);
 }
