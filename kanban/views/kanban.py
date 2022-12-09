@@ -1,6 +1,7 @@
 # from django import forms
 from django import forms
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect, render
 from ti.service.check_user_access import check_user_access
 
@@ -107,22 +108,84 @@ def kanban_board(request, id):
 
 
 @login_required
-def kanban_task_view_create(request, id):
+def kanban_task_view_create(request, id_project):
     try:
         check_access = check_user_access(request)
         if not check_access:
             return redirect("access_denied")
 
         form = TaskForm(request.POST or None)
-        form.fields["project"].initial = id
+        form.fields["project"].initial = id_project
         # form.fields["user_name"].widget = forms.HiddenInput()
 
         context = {"form": form}
         template_path = "kanban/pages/task_create.html"
 
+        print("id_project", id_project)
+
         if form.is_valid():
             form.save()
-            return redirect("kanban_manager")
+            return redirect("kanban_board", id=id_project)
+
+        return render(
+            request,
+            template_path,
+            context,
+        )
+
+    except Exception as error:
+        print("Internal error:", error)
+        raise
+
+
+@login_required
+def kanban_task_view_delete(request, id):
+    try:
+        check_access = check_user_access(request)
+        if not check_access:
+            return redirect("access_denied")
+
+        task = get_object_or_404(Task, pk=id)
+        project_id = task.project.id
+
+        context = {"project": task}
+        template_path = "kanban/pages/task_delete.html"
+
+        if request.method == "POST":
+            task.delete()
+            return redirect("kanban_board", id=project_id)
+
+        return render(
+            request,
+            template_path,
+            context,
+        )
+
+    except Exception as error:
+        print("Internal error:", error)
+        raise
+
+
+@login_required
+def kanban_task_view_update(request, id):
+    try:
+        check_access = check_user_access(request)
+        if not check_access:
+            return redirect("access_denied")
+
+        task = get_object_or_404(Task, pk=id)
+        project_id = task.project.id
+
+        form = TaskForm(request.POST or None, instance=task)
+
+        context = {"form": form}
+        template_path = "kanban/pages/task_update.html"
+
+        print("task:::", task.project.id)
+
+        if form.is_valid():
+            form.save()
+            return redirect("kanban_board", id=project_id)
 
         return render(
             request,
