@@ -1,0 +1,5 @@
+<ul>
+    {%for project in projects_done%}
+       <li><a href="{%url "kanban_board" project.id%}">{{project.name}}</a></li>
+    {%endfor%}
+</ul>

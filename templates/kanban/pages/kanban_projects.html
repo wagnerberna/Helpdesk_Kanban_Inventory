@@ -1,0 +1,16 @@
+{% extends 'kanban/pages/kanban_base.html' %}
+
+{% block main %}
+
+    <div class="container">
+        <h2>Kanban</h2>
+        <h3>Projetos em Andamento:</h3>
+        {%include "kanban/partials/kanban_projects_doing.html"%}
+        <h3>Projetos Finalizados:</h3>
+        {%include "kanban/partials/kanban_projects_done.html"%}
+
+
+        
+    </div>
+
+{% endblock main %}

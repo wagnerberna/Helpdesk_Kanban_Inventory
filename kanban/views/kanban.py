@@ -32,16 +32,19 @@ def manager_view(request):
 
 
 @login_required
-def kanban_list(request):
+def kanban_projects(request):
     try:
         check_access = check_user_access(request)
         if not check_access:
             return redirect("access_denied")
 
-        projects = Project.objects.all().order_by("-id").exclude(status__name="DONE")
+        projects_doing = (
+            Project.objects.all().order_by("id").exclude(status__name="DONE")
+        )
+        projects_done = Project.objects.filter(status__name="DONE").order_by("id")
 
-        context = {"projects": projects}
-        template_path = "kanban/pages/kanban_list.html"
+        context = {"projects_doing": projects_doing, "projects_done": projects_done}
+        template_path = "kanban/pages/kanban_projects.html"
 
         return render(
             request,
@@ -123,11 +126,14 @@ def kanban_task_view_create(request, id_project):
         context = {"form": form}
         template_path = "kanban/pages/task_create.html"
 
-        print("id_project", id_project)
+        print("id_project:::", id_project)
 
         if form.is_valid():
+            print("ponto0")
             form.save()
+            print("ponto1")
             return redirect("kanban_board", id=id_project)
+            # return HttpResponseRedirect("kanban_board", id=id_project)
 
         return render(
             request,
