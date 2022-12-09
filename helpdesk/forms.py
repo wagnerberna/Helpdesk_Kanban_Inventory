@@ -8,11 +8,11 @@ from .models import Demand, Historic
 class DemandFormCreate(ModelForm):
     class Meta:
         model = Demand
-        fields = ["user_name", "category", "title", "description", "image"]
+        fields = ["user_name", "title", "category", "description", "image"]
         labels = {
             "user_name": "Nome",
-            "category": "Categoria:",
             "title": "Título:",
+            "category": "Categoria:",
             "description": "Descrição:",
             "image": "Imagem:",
         }
