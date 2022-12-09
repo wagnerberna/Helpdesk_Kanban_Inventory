@@ -116,6 +116,8 @@ def kanban_task_view_create(request, id_project):
 
         form = TaskForm(request.POST or None)
         form.fields["project"].initial = id_project
+        form.fields["status"].initial = 1
+
         # form.fields["user_name"].widget = forms.HiddenInput()
 
         context = {"form": form}
