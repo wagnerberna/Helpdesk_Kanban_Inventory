@@ -82,14 +82,14 @@ def kanban_board(request, id):
         if request.method == "POST":
             req = request.POST
             id_task = req.get("id_task")
-            print("clicou")
-            print(req)
+            # print("clicou")
+            # print(req)
             print(id_task)
             task_status_id = (
                 Task.objects.filter(pk=id_task).values("status")[0].get("status")
             )
 
-            print(task_status_id)
+            # print(task_status_id)
             if task_status_id == 1:
                 Task.objects.filter(pk=id_task).update(status=2)
             elif task_status_id == 2:
@@ -129,9 +129,8 @@ def kanban_task_view_create(request, id_project):
         print("id_project:::", id_project)
 
         if form.is_valid():
-            print("ponto0")
             form.save()
-            print("ponto1")
+
             return redirect("kanban_board", id=id_project)
             # return HttpResponseRedirect("kanban_board", id=id_project)
 

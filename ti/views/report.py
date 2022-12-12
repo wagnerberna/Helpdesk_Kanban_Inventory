@@ -1,5 +1,6 @@
 import datetime
 import urllib
+from multiprocessing import Process
 
 from django.contrib.auth.decorators import login_required
 from django.db.models import Count
@@ -14,6 +15,9 @@ from ti.service.make_graphics import (
     make_graphic_barh,
     make_graphic_pie,
 )
+from ti.service.resume_hardware import ProcessHardwareFiles
+
+convert_files = ProcessHardwareFiles()
 
 
 @login_required
@@ -231,6 +235,29 @@ def servers_list(request):
 
 
 @login_required
+def workstations_table_update(request):
+    try:
+        check_access = check_user_access(request)
+        if not check_access:
+            return redirect("access_denied")
+
+        # processo em segundo plano
+        start_process = False
+
+        if request.method == "POST":
+            process = Process(target=convert_files.process_file, args=())
+            process.start()
+            start_process = True
+
+        template_path = "ti/pages/update_workstations.html"
+        context = {"start_process": start_process}
+        return render(request, template_path, context)
+    except Exception as error:
+        print("Internal error:", error)
+        raise
+
+
+@login_required
 def workstations_list(request):
     try:
         check_access = check_user_access(request)
@@ -239,12 +266,6 @@ def workstations_list(request):
 
         file = "doc/resume.xlsx"
         data = open_excel_dataframe(file)
-
-        # ranking:
-        # title = "Workstations"
-        # ranking_labels = ["A-i7", "B-i5", "C-i3", "D-Core", "E-Celeron"]
-        # ranking_values = dataframe_desktop_ranking(file)
-        # graphic_ranking = make_graphic_pie(ranking_labels, ranking_values)
 
         template_path = "ti/pages/report_workstations.html"
         context = {"data": data}

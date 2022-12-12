@@ -7,6 +7,7 @@ from ti.views.report import (
     topology,
     workstations_list,
     workstations_ranking,
+    workstations_table_update,
 )
 
 urlpatterns = [
@@ -16,5 +17,6 @@ urlpatterns = [
     path("network_racks/", network_racks, name="network_racks"),
     path("servers/", servers_list, name="servers"),
     path("workstations/", workstations_list, name="workstations"),
+    path("workstations_update/", workstations_table_update, name="workstations_update"),
     path("ranking/", workstations_ranking, name="ranking"),
 ]
