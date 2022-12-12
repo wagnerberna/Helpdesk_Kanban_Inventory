@@ -133,7 +133,7 @@ dmypy.json
 .xlsx
 
 # venv
-# venv
+venv
 
 # company flies
 static/company/
