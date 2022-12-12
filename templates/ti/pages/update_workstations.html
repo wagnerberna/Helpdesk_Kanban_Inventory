@@ -15,33 +15,32 @@
     {%endif%}
         
     <script type="text/javascript">
-        var minutes, seconds;		
-        minutes = 0;		
-        seconds = 20;		
-        function timer(){			
-            if((minutes > 0) || (seconds > 0)){				
-                if(seconds == 0){					
-                    seconds = 59;					
-                    minutes = minutes - 1	
-                }				
-                else{					
-                    seconds = seconds - 1;				
-                }				
-                if(minutes.toString().length == 1){					
-                    minutes = "0" + minutes;				
-                }				
-                if(seconds.toString().length == 1){					
-                    seconds = "0" + seconds;				
-                }				
-                document.getElementById('span-timer').innerHTML = "Atualição em andamento, aguarde " + seconds + " segundos.";				
-                setTimeout('timer()', 1000);			
-            }			
-            else{				
-                document.getElementById('span-timer').innerHTML = "Sistema atualizado!";			
-            }		
-        }	
+        let minutes, seconds;
+        minutes = 0;
+        seconds = 20;
+        function timer(){
+            if((minutes > 0) || (seconds > 0)){
+                if(seconds == 0){
+                    seconds = 59;
+                    minutes = minutes - 1
+                }
+                else{
+                    seconds = seconds - 1;
+                }
+                if(minutes.toString().length == 1){
+                    minutes = "0" + minutes;		
+                }
+                if(seconds.toString().length == 1){
+                    seconds = "0" + seconds;
+                }
+                document.getElementById('span-timer').innerHTML = "Atualição em andamento, aguarde " + seconds + " segundos.";
+                setTimeout('timer()', 1000);
+            }
+            else{
+                document.getElementById('span-timer').innerHTML = "Sistema atualizado!";
+            }
+        }
         timer()
-    
     </script>
     
 {% endblock main %}
