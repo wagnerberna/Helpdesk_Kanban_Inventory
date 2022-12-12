@@ -4,6 +4,7 @@ from os import listdir
 
 import openpyxl
 import pandas
+from decouple import config
 from openpyxl.styles import Font
 from openpyxl.styles.borders import Border, Side
 
@@ -183,14 +184,13 @@ class ProcessHardwareFiles:
         workbook.save(self.file_name)
 
     def clean_user_name(self, data):
+        domain = config("domain")
         find_user_name = list(filter(lambda el: "UserName=" in el, data))
         if not find_user_name:
             self.user_name = ""
         else:
             user_name = find_user_name[0]
-            user_name = (
-                user_name.strip("UserName=MERCOSULMOTORES").strip("\\").strip("\n")
-            )
+            user_name = user_name.strip("UserName=" + domain).strip("\\").strip("\n")
             self.user_name = user_name.strip("\n")
 
     def check_user_sector(self, user):
