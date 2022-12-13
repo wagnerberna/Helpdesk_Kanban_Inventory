@@ -3,10 +3,12 @@ import urllib
 from multiprocessing import Process
 
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.db.models import Count
 from django.shortcuts import redirect, render
 from helpdesk.models import Demand
 from kanban.models import Project, Task
+from ti.models import Department, Profile
 from ti.service.check_user_access import check_user_access
 from ti.service.dataframe import dataframe_desktop_ranking, open_excel_dataframe
 from ti.service.format_time import format_time_delta
@@ -291,6 +293,37 @@ def workstations_ranking(request):
 
         template_path = "ti/pages/ranking_workstations.html"
         context = {"graphic_ranking": urllib.parse.quote(graphic_ranking)}
+        return render(request, template_path, context)
+    except Exception as error:
+        print("Internal error:", error)
+        raise
+
+
+@login_required
+def report_per_departament(request):
+    try:
+        check_access = check_user_access(request)
+        if not check_access:
+            return redirect("access_denied")
+
+        departaments = list(Department.objects.all().values_list("name"))
+        print("departaments:::", departaments)
+
+        # users_per_departaments = User.objects.filter(username__profile__department=1)
+        users_per_departaments = Profile.objects.filter(department__name="RH")
+        print("users_per_departaments:::", users_per_departaments)
+        print("users_per_departaments2:::", users_per_departaments.values("user"))
+
+        users_per_departaments3 = Profile.objects.filter(user__username=1)
+        print("users_per_departaments3:::", users_per_departaments3)
+        # print("users_per_departaments3:::", users_per_departaments3.values("user"))
+
+        # demands = Demand.objects.filter(user_name__username__profile__department="RH")
+
+        # print("rh_demands", demands)
+
+        template_path = "ti/pages/report_per_departament.html"
+        context = {"data": "data"}
         return render(request, template_path, context)
     except Exception as error:
         print("Internal error:", error)
