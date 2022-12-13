@@ -1,5 +1,3 @@
-import math
-
 import pandas
 from django.contrib.auth.models import User
 from kanban.models import Category, Project, Status, Task, Team
@@ -7,7 +5,7 @@ from kanban.models import Category, Project, Status, Task, Team
 
 def run():
     try:
-        path_file = "doc/projects_tasks.xlsx"
+        path_file = "doc/populate/projects_tasks.xlsx"
         df = pandas.read_excel(path_file)
         # print(df)
         for index, row in df.iterrows():
