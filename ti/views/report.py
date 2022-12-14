@@ -54,13 +54,14 @@ def report_per_technical(request):
             # print("convert::", convert)
             print("demands_sum", demands_sum)
 
-        if sla_average:
-            sla_average = demands_sum / demands_count
-            sla_format = format_time_delta(sla_average)
-        else:
-            sla_format = ""
+        # if sla_average:
+        sla_average = demands_sum / demands_count
+        sla_format = format_time_delta(sla_average)
+        # else:
+        # sla_format = ""
 
-        # print("SLA:::", sla_average)
+        # wagner
+        print("SLA:::", sla_average, sla_average, sla_format)
         # print("sla_format:::", sla_format)
 
         # Gráfico Demandas
