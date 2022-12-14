@@ -52,7 +52,7 @@ def report_per_technical(request):
 
             # print("difference_between_days", difference_between_days)
             # print("convert::", convert)
-            print("demands_sum", demands_sum)
+            # print("demands_sum", demands_sum)
 
         # if sla_average:
         sla_average = demands_sum / demands_count
@@ -60,13 +60,21 @@ def report_per_technical(request):
         # else:
         # sla_format = ""
 
-        # wagner
-        print("SLA:::", sla_average, sla_average, sla_format)
         # print("sla_format:::", sla_format)
-
+        techinical_Wagner_id = (
+            User.objects.filter(username="wagner.berna").values("id")[0].get("id")
+        )
+        techinical_leonardo_id = (
+            User.objects.filter(username="leonardo.susin").values("id")[0].get("id")
+        )
+        # print(techinical_Wagner_id, techinical_leonardo_id)
         # Gráfico Demandas
-        demmands_leonardo = Demand.objects.filter(attendant__user_name=4).count()
-        demmands_wagner = Demand.objects.filter(attendant__user_name=2).count()
+        demmands_leonardo = Demand.objects.filter(
+            attendant__user_name=techinical_leonardo_id
+        ).count()
+        demmands_wagner = Demand.objects.filter(
+            attendant__user_name=techinical_Wagner_id
+        ).count()
 
         techinicals_labels = ["Leonardo.susin", "Wagner.berna"]
         demands_total_per_techinical = [demmands_leonardo, demmands_wagner]
