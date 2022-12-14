@@ -309,18 +309,24 @@ def report_per_departament(request):
         departaments = list(Department.objects.all().values_list("name"))
         print("departaments:::", departaments)
 
-        # users_per_departaments = User.objects.filter(username__profile__department=1)
-        users_per_departaments = Profile.objects.filter(department__name="RH")
-        print("users_per_departaments:::", users_per_departaments)
-        print("users_per_departaments2:::", users_per_departaments.values("user"))
+        # users_per_departments = User.objects.filter(username__profile__department=1)
+        users_per_departments = Profile.objects.filter(department__name="RH")
+        print("users_per_departments:::", users_per_departments)
+        print("users_per_departments2:::", users_per_departments.values("user"))
 
-        users_per_departaments3 = Profile.objects.filter(user__username=1)
-        print("users_per_departaments3:::", users_per_departaments3)
-        # print("users_per_departaments3:::", users_per_departaments3.values("user"))
+        users_per_departments3 = Profile.objects.filter(user=3)
+        print("users_per_departments3:::", users_per_departments3)
+        print("users_per_departments3:::", users_per_departments3[0])
 
-        # demands = Demand.objects.filter(user_name__username__profile__department="RH")
-
-        # print("rh_demands", demands)
+        print(
+            "users_per_departments3:::",
+            users_per_departments3.values("department")[0].get("department"),
+        )
+        print("users_per_departments3:::", users_per_departments3.values("department"))
+        print(
+            "users_per_departments3:::",
+            users_per_departments3.values_list("department"),
+        )
 
         template_path = "ti/pages/report_per_departament.html"
         context = {"data": "data"}

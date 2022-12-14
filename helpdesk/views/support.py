@@ -3,8 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404, redirect, render
 from helpdesk.api.serializers import SupportFilterSerializer
-from helpdesk.forms import (HistoricFormAdd, SupportFormUpdate,
-                            SupportFormUpdateView)
+from helpdesk.forms import HistoricFormAdd, SupportFormUpdate, SupportFormUpdateView
 from helpdesk.models import Demand, Historic
 from ti.service.check_user_access import check_user_access
 
@@ -105,9 +104,11 @@ def support_view_update(request, id):
         form = SupportFormUpdate(request.POST or None, instance=demand)
 
         form_view.fields["user_name"].widget.attrs["disabled"] = True
+        form_view.fields["department"].widget.attrs["disabled"] = True
         form_view.fields["category"].widget.attrs["disabled"] = True
         form_view.fields["title"].widget.attrs["disabled"] = True
         form_view.fields["description"].widget.attrs["disabled"] = True
+        form_view.fields["image"].widget.attrs["disabled"] = True
 
         # histórico
         form_historic = HistoricFormAdd(request.POST or None)

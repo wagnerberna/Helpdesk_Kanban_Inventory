@@ -8,15 +8,22 @@ from .models import Demand, Historic
 class DemandFormCreate(ModelForm):
     class Meta:
         model = Demand
-        fields = ["user_name", "title", "category", "description", "image"]
+        fields = [
+            "user_name",
+            "department",
+            "title",
+            "category",
+            "description",
+            "image",
+        ]
         labels = {
-            "user_name": "Nome",
+            "user_name": "Nome:",
+            "department": "Setor:",
             "title": "Título:",
             "category": "Categoria:",
             "description": "Descrição:",
             "image": "Imagem:",
         }
-        # widget = {"user_name": forms.HiddenInput()}
 
 
 class DemandFormUpdate(ModelForm):
@@ -24,6 +31,7 @@ class DemandFormUpdate(ModelForm):
         model = Demand
         fields = [
             "user_name",
+            "department",
             "category",
             "title",
             "description",
@@ -33,7 +41,8 @@ class DemandFormUpdate(ModelForm):
             "solution",
         ]
         labels = {
-            "user_name": "Nome",
+            "user_name": "Nome:",
+            "department": "Setor:",
             "category": "Categoria:",
             "title": "Título:",
             "description": "Descrição:",
@@ -49,13 +58,15 @@ class SupportFormUpdateView(ModelForm):
         model = Demand
         fields = [
             "user_name",
+            "department",
             "category",
             "title",
             "description",
             "image",
         ]
         labels = {
-            "user_name": "Nome",
+            "user_name": "Nome:",
+            "department": "Setor:",
             "category": "Categoria:",
             "title": "Título:",
             "description": "Descrição:",

@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
+from ti.models import Department
 
 
 class Support(models.Model):
@@ -50,6 +51,7 @@ class Demand(models.Model):
 
     id = models.AutoField(primary_key=True)
     user_name = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    department = models.ForeignKey(Department, on_delete=models.CASCADE, null=True)
     title = models.CharField(max_length=70, null=True)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
     description = models.TextField(null=True)
