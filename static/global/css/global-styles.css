@@ -185,9 +185,13 @@ body {
 }
 
 .main-logo-footer {
-    font-size: 1rem;
-    margin-right: 1rem;
-    margin-left: 2rem;
+    font-size: 1.3rem;
+    margin-right: 2rem;
+    color: var(--color-white);
+    text-decoration: none;
+}
+
+.main-logo-footer-link {
     color: var(--color-white);
     text-decoration: none;
 }
