@@ -323,3 +323,7 @@ body {
 .link-black {
     color: var(--color-black);
 }
+
+.li-historic {
+    margin-bottom: var(--spacing-gutter-small);
+}
