@@ -2,7 +2,10 @@
     <ol class="order-list">
         {%for el in historic%}
         <li class="li-historic">
-            {{el.created_at|date:"d-m-y - H:i"}} : {{el.historic}}
+            {{el.created_at|date:"d-m-y - H:i"}}:
+            <span class="span-historic">
+                 {{el.historic}}
+            </span> 
         </li>
         {%endfor%}
     </ol>

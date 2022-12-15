@@ -326,4 +326,9 @@ body {
 
 .li-historic {
     margin-bottom: var(--spacing-gutter-small);
+    font-weight: bold;
+}
+
+.span-historic {
+    font-weight: normal;
 }
