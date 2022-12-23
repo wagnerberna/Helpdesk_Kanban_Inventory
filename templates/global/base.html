@@ -19,7 +19,7 @@
     <header>
         <div class= "main-header-container">
 
-            <div>
+            <div class="rigth">
                 <a class="main-logo" href="/">
                     <i class="fa-sharp fa-solid fa-house main-logo-icon"></i>{% block header_title %}{% endblock header_title %}
                 </a>
@@ -28,7 +28,7 @@
                 <img class="main-logo-client" src="{%static "company/logo/logo-client.jpg"%}" alt="logo-principal">
             </div>
             
-            <div>
+            <div class="left">
                 <a class="main-logo-left" href={%url "changepassword"%}>
                     <i class="fa-sharp fa-solid fa-user"></i>
                     {{user.username}}
