@@ -9,33 +9,6 @@
     --color-white: #ffffff;
     --color-black: #0B0A24;
 
-    --color-dark-text: #444;
-    --color-info-light: #cce5ff;
-    --color-debug-light: #cce5ff;
-    --color-success-light: #d4edda;
-    --color-alert-light: #fff3cd;
-    --color-warning-light: #fff3cd;
-    --color-error-light: #f8d7da;
-
-    --color-info-dark: #4d86c4;
-    --color-info-graphic: #0000FF;
-    --color-debug-dark: #4d86c4;
-    --color-success-dark: #4a9c5d;
-    --color-alert-dark: #927f40;
-    --color-warning-dark: #927f40;
-    --color-error-dark: #da525d;
-
-    --color-gray-0: #f9f9f9;
-    --color-gray-1: #e0e0e0;
-    --color-gray-2: #c7c7c7;
-    --color-gray-3: #aeaeae;
-    --color-gray-4: #959595;
-    --color-gray-5: #7d7d7d;
-    --color-gray-6: #646464;
-    --color-gray-7: #4b4b4b;
-    --color-gray-8: #323232;
-    --color-gray-9: #191919;
-
     --color-merco-azul: #1F1D41;
     --color-form-django: #E9ECEF;
     --color-border-form-django: #CED4DA;
@@ -43,7 +16,6 @@
     --color-kanban-yellow: #ffe97f;
     --color-kanban-blue: #86cbf9;
     --color-kanban-red: #fe7167;
-
 
     /* cores mercosul */
     --color-a1: #E8E7F0;
@@ -84,14 +56,10 @@ a {
 
 h1,
 h2,
-h3,
-h4,
-h5,
-h6 {
+h3 {
     font-family: var(--font-primary);
     color: var(--color-a3);
     margin: 25px 0 20px 0;
-
 }
 
 table,
@@ -123,7 +91,7 @@ body {
 
 .container {
     max-width: 144rem;
-    margin: 40px 80px;
+    margin: 40px auto;
     padding: var(--spacing-gutter-small);
     background-color: var(--color-a6);
 }
@@ -140,11 +108,15 @@ header {
 }
 
 .main-header-container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 15px 0;
     background-color: var(--color-a6);
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
-    height: 100px;
-    margin: 0 140px;
+    align-items: center;
+    /* height: 100px; */
 }
 
 .main-container {
@@ -154,23 +126,22 @@ header {
 
 .rigth,
 .left {
-    margin-top: 34px;
+    /* margin-top: auto; */
 }
 
 .main-logo {
-    font-size: 2rem;
+    font-size: 1.5rem;
     color: var(--color-a2);
     text-decoration: none;
 }
 
-
 .main-logo-client {
-    font-size: 4rem;
+    /* font-size: 4rem; */
     color: var(--color-white);
     text-decoration: none;
     width: 270px;
     position: relative;
-    top: 20%
+    /* top: 20% */
 }
 
 
@@ -186,21 +157,21 @@ header {
 }
 
 .main-logo-left {
-    font-size: 2rem;
+    /* font-size: 2rem; */
     color: var(--color-a2);
     text-decoration: none;
     text-align: left;
 }
 
 .main-logo-right {
-    font-size: 2rem;
+    /* font-size: 2rem; */
     color: var(--color-white);
     text-decoration: none;
     text-align: right;
 }
 
 .main-logo-center {
-    font-size: 2rem;
+    /* font-size: 2rem; */
     color: var(--color-white);
     text-decoration: none;
     text-align: center;
@@ -259,12 +230,18 @@ header {
     display: flex;
     flex-direction: column;
     margin: 2px;
+    margin-right: 20px;
 }
+
 
 .container-kanban-division {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+
+h3 {
+    font-size: 20px;
 }
 
 .containers-kanban-child {
