@@ -2,6 +2,7 @@ import base64
 import io
 
 import matplotlib
+import seaborn as sns
 
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
@@ -11,6 +12,11 @@ import matplotlib.pyplot as plt
 def make_graphic_bar(title, color, labels, data):
     plt.bar(labels, data, color=color)
 
+    sns.set_theme()
+    # sns.despine()
+    # sns.set(style="whitegrid")
+    # sns.set_color_codes("pastel")
+    # sns.despine(left=True, bottom=True)
     plt.title(title)
     plt.rcParams["font.size"] = "16"
     fig = plt.gcf()
