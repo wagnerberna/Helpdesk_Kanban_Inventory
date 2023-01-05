@@ -10,10 +10,15 @@ from helpdesk.models import Demand
 from kanban.models import Project, Task
 from ti.models import Department, Profile
 from ti.service.check_user_access import check_user_access
-from ti.service.dataframe import dataframe_desktop_ranking, open_excel_dataframe
+from ti.service.dataframe import (
+    dataframe_desktop_ranking,
+    excel_to_dataframe,
+    excel_to_json,
+)
 from ti.service.format_time import format_time_delta
 from ti.service.make_graphics import (
     make_graphic_bar,
+    make_graphic_bar_group,
     make_graphic_barh,
     make_graphic_pie,
 )
@@ -235,7 +240,7 @@ def servers_list(request):
             return redirect("access_denied")
 
         file = "doc/vmware.xlsx"
-        data = open_excel_dataframe(file)
+        data = excel_to_json(file)
 
         template_path = "ti/pages/report_servers.html"
         context = {"data": data}
@@ -276,7 +281,7 @@ def workstations_list(request):
             return redirect("access_denied")
 
         file = "doc/resume.xlsx"
-        data = open_excel_dataframe(file)
+        data = excel_to_json(file)
 
         template_path = "ti/pages/report_workstations.html"
         context = {"data": data}
@@ -300,8 +305,19 @@ def workstations_ranking(request):
         ranking_values = dataframe_desktop_ranking(file)
         graphic_ranking = make_graphic_pie(ranking_labels, ranking_values)
 
+        # ranking sector:
+        df = excel_to_dataframe(file)
+        print(df)
+        ylabel = "Quantidade"
+        xlabel = "Setores"
+        title = "Qtde de Estações de Trabalho por Setor"
+        graphic_departaments = make_graphic_bar_group(title, xlabel, ylabel, df)
+
         template_path = "ti/pages/ranking_workstations.html"
-        context = {"graphic_ranking": urllib.parse.quote(graphic_ranking)}
+        context = {
+            "graphic_ranking": urllib.parse.quote(graphic_ranking),
+            "graphic_departaments": urllib.parse.quote(graphic_departaments),
+        }
         return render(request, template_path, context)
     except Exception as error:
         print("Internal error:", error)

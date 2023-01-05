@@ -3,7 +3,17 @@ import json
 import pandas
 
 
-def open_excel_dataframe(path_file):
+def excel_to_dataframe(path_file):
+    try:
+        df = pandas.read_excel(path_file)
+        return df
+
+    except Exception as error:
+        print("Internal error:", error)
+        raise
+
+
+def excel_to_json(path_file):
     try:
         df = pandas.read_excel(path_file)
         # print(df)
