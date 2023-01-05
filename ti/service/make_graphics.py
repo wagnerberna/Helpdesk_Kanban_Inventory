@@ -35,22 +35,27 @@ def make_graphic_bar(title, color, labels, data):
 # Gráfico em barra vertical de grupos
 def make_graphic_bar_group(title, xlabel, ylabel, df):
     # plt.bar(data)
+    colors = ["#86cbf9", "#7fe686", "#ffe97f", "#fe7167", "#0B0A24"]
 
     plt.figure(figsize=(15, 5))
-    sns.countplot(x="Setor", hue="Ranking", data=df)
+    sns.countplot(
+        x="Setor",
+        hue="Ranking",
+        data=df,
+    )
+    sns.set_theme()
+    sns.despine()
+    sns.set_context("poster")
+
     plt.title(title)
     plt.xlabel(xlabel)
     plt.ylabel(ylabel)
-
-    sns.set_theme()
-    sns.despine()
-    sns.set_context("talk")
 
     # sns.set(style="whitegrid")
     # sns.set_color_codes("pastel")
     # sns.despine(left=True, bottom=True)
 
-    plt.rcParams["font.size"] = "16"
+    # plt.rcParams["font.size"] = "16"
     fig = plt.gcf()
     buf = io.BytesIO()
     fig.savefig(buf, format="png")
@@ -87,7 +92,7 @@ def make_graphic_barh(title, color, labels, data):
 # autopct (número de casas após a vírgula)
 def make_graphic_pie(labels, data):
     explode = [0.2, 0, 0, 0, 0]
-    colors = ["blue", "green", "yellow", "red", "black"]
+    colors = ["#86cbf9", "#7fe686", "#ffe97f", "#fe7167", "#0B0A24"]
 
     sns.set_theme()
     sns.despine()

@@ -306,12 +306,30 @@ def workstations_ranking(request):
         graphic_ranking = make_graphic_pie(ranking_labels, ranking_values)
 
         # ranking sector:
+        departments_adm = [
+            "Comercial",
+            "Compras",
+            "Engenharia",
+            "Direcao",
+            "Controladoria",
+            "Fiscal",
+            "Contabilidade",
+            "Financeiro",
+            "TI",
+            "RH",
+            "Marketing",
+            "Juridico",
+            "Zeladoria",
+        ]
+        departments_fab = []
+
         df = excel_to_dataframe(file)
-        print(df)
+        df_adm = df.loc[df["Setor"].isin(departments_adm)]
+        print(df_adm)
         ylabel = "Quantidade"
         xlabel = "Setores"
-        title = "Qtde de Estações de Trabalho por Setor"
-        graphic_departaments = make_graphic_bar_group(title, xlabel, ylabel, df)
+        title = "Quantidade de Estações de Trabalho por Setor"
+        graphic_departaments = make_graphic_bar_group(title, xlabel, ylabel, df_adm)
 
         template_path = "ti/pages/ranking_workstations.html"
         context = {
