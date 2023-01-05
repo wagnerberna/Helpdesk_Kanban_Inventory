@@ -9,11 +9,15 @@ import matplotlib.pyplot as plt
 
 
 # Gráfico em barra vertical
+# theme: darkgrid, whitegrid, dark, white, ticks
+# context: notebook, paper, talk, poster
 def make_graphic_bar(title, color, labels, data):
     plt.bar(labels, data, color=color)
 
     sns.set_theme()
-    # sns.despine()
+    sns.despine()
+    sns.set_context("talk")
+
     # sns.set(style="whitegrid")
     # sns.set_color_codes("pastel")
     # sns.despine(left=True, bottom=True)
@@ -32,8 +36,12 @@ def make_graphic_bar(title, color, labels, data):
 def make_graphic_barh(title, color, labels, data):
     plt.barh(labels, data, color=color)
 
-    plt.title(title)
-    plt.rcParams["font.size"] = "14"
+    sns.set_theme()
+    sns.despine()
+    sns.set_context("notebook")
+
+    # plt.title(title)
+    plt.rcParams["font.size"] = "16"
     plt.grid(color="#95a5a6", linestyle="--", linewidth=2, axis="x", alpha=0.7)
 
     fig = plt.gcf()
@@ -52,13 +60,18 @@ def make_graphic_barh(title, color, labels, data):
 def make_graphic_pie(labels, data):
     explode = [0.2, 0, 0, 0, 0]
     colors = ["blue", "green", "yellow", "red", "black"]
+
+    sns.set_theme()
+    sns.despine()
+    sns.set_context("notebook")
+
     plt.pie(
         data,
         labels=labels,
         # radius=2,
         autopct="%0.0f%%",
-        pctdistance=1.1,
-        labeldistance=1.2,
+        pctdistance=1.12,
+        labeldistance=1.25,
         colors=colors,
         explode=explode,
         radius=1,
