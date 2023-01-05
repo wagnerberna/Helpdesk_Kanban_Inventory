@@ -34,14 +34,21 @@ def make_graphic_bar(title, color, labels, data):
 
 # Gráfico em barra vertical de grupos
 def make_graphic_bar_group(title, xlabel, ylabel, df):
-    # plt.bar(data)
-    colors = ["#86cbf9", "#7fe686", "#ffe97f", "#fe7167", "#0B0A24"]
+    colors = [
+        "#86cbf9-azul",
+        "#7fe686-verde",
+        "#ffe97f-amarelo",
+        "#fe7167-vermelho",
+        "#0B0A24",
+    ]
+    # plt.bar()
 
     plt.figure(figsize=(15, 5))
     sns.countplot(
         x="Setor",
         hue="Ranking",
         data=df,
+        palette=["#fe7167", "#ffe97f", "#7fe686", "#86cbf9"],
     )
     sns.set_theme()
     sns.despine()
