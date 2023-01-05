@@ -328,7 +328,7 @@ def workstations_ranking(request):
         print(df_adm)
         ylabel = "Quantidade"
         xlabel = "Setores"
-        title = "Quantidade de Estações de Trabalho por Setor"
+        title = "ADM Qtde de Estações de Trabalho por Setor"
         graphic_departaments = make_graphic_bar_group(title, xlabel, ylabel, df_adm)
 
         template_path = "ti/pages/ranking_workstations.html"

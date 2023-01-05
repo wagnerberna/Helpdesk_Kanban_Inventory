@@ -49,10 +49,11 @@ def make_graphic_bar_group(title, xlabel, ylabel, df):
         hue="Ranking",
         data=df,
         palette=["#fe7167", "#ffe97f", "#7fe686", "#86cbf9"],
+        # order=["A", "B", "C", "D", "E"],
     )
     sns.set_theme()
     sns.despine()
-    sns.set_context("poster")
+    sns.set_context("talk")
 
     plt.title(title)
     plt.xlabel(xlabel)
@@ -62,7 +63,7 @@ def make_graphic_bar_group(title, xlabel, ylabel, df):
     # sns.set_color_codes("pastel")
     # sns.despine(left=True, bottom=True)
 
-    # plt.rcParams["font.size"] = "16"
+    # plt.rcParams["font.size"] = "12"
     fig = plt.gcf()
     buf = io.BytesIO()
     fig.savefig(buf, format="png")
