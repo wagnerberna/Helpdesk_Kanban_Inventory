@@ -84,7 +84,7 @@ def report_per_technical(request):
         techinicals_labels = ["Leonardo.susin", "Wagner.berna"]
         demands_total_per_techinical = [demmands_leonardo, demmands_wagner]
         title = "Chamados por Técnico"
-        color = "blue"
+        color = "#86cbf9"
 
         graphic_demands = make_graphic_bar(
             title, color, techinicals_labels, demands_total_per_techinical
@@ -96,7 +96,7 @@ def report_per_technical(request):
 
         tasks_total_per_techinical = [tasks_leonardo, tasks_wagner]
         title = "Projetos: Tarefas por Técnico"
-        color = "red"
+        color = "#fe7167"
 
         graphic_projects = make_graphic_bar(
             title, color, techinicals_labels, tasks_total_per_techinical
@@ -180,7 +180,7 @@ def report_per_project(request):
 
         # Graphic projects
         title = "Projetos Percentual de Conclusão"
-        color = "red"
+        color = "#fe7167"
 
         # print(projects_labels, project_percent_to_graphic)
         graphic_projects = make_graphic_barh(
