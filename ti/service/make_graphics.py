@@ -43,12 +43,21 @@ def make_graphic_bar_group(title, xlabel, ylabel, df):
     ]
     # plt.bar()
 
-    plt.figure(figsize=(15, 5))
+    plt.figure(figsize=(17, 7))
     sns.countplot(
         x="Setor",
         hue="Ranking",
         data=df,
-        palette=["#fe7167", "#ffe97f", "#7fe686", "#86cbf9", "#0B0A24"],
+        palette={
+            "A": "#86cbf9",
+            "B": "#7fe686",
+            "C": "#ffe97f",
+            "D": "#fe7167",
+            "E": "#0B0A24",
+        },
+        hue_order=["A", "B", "C", "D", "E"]
+        # order=df["Ranking"].values_counts(ascending=True)
+        # palette=["#fe7167", "#ffe97f", "#7fe686", "#86cbf9", "#0B0A24"],
         # order=["A", "B", "C", "D", "E"],
     )
     sns.set_theme()
