@@ -69,9 +69,8 @@ def make_graphic_barh(title, color, labels, data):
     sns.set_theme()
     sns.despine()
     sns.set_context("notebook")
-
     # plt.title(title)
-    plt.rcParams["font.size"] = "16"
+    # plt.rcParams["font.size"] = "16"
     # plt.grid(color="#95a5a6", linestyle="--", linewidth=2, axis="x", alpha=0.7)
 
     fig = plt.gcf()
