@@ -2,6 +2,7 @@ import datetime
 import urllib
 from multiprocessing import Process
 
+import pandas as pd
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.db.models import Count
@@ -18,7 +19,8 @@ from ti.service.dataframe import (
 from ti.service.format_time import format_time_delta
 from ti.service.make_graphics import (
     make_graphic_bar,
-    make_graphic_bar_group,
+    make_graphic_bar_project,
+    make_graphic_bar_ranking,
     make_graphic_barh,
     make_graphic_pie,
 )
@@ -187,8 +189,24 @@ def report_per_project(request):
             title, color, projects_labels, project_percent_to_graphic
         )
 
+        # gráfico por tarefa
+        df_projects_tasks_status = pd.DataFrame(
+            list(Task.objects.all().exclude(project__status__name="DONE").values())
+        )
+        print(df_projects_tasks_status)
+
+        ylabel = "Quantidade"
+        xlabel = "Status"
+        title = "Administrativo Qtde de Estações por Categoria"
+        # graphic_projects_tasks_status = make_graphic_bar_project(
+        #     title, xlabel, ylabel, df_projects_tasks_status
+        # )
+
         context = {
             "graphic_projects": urllib.parse.quote(graphic_projects),
+            # "graphic_projects_tasks_status": urllib.parse.quote(
+            #     graphic_projects_tasks_status
+            # ),
             "projects": projects_list_sorted,
         }
 
@@ -340,15 +358,15 @@ def workstations_ranking(request):
         df_adm = df.loc[df["Setor"].isin(departments_adm)]
         df_fab = df.loc[df["Setor"].isin(departments_fab)]
 
-        print(df_adm)
+        # print(df_adm)
         ylabel = "Quantidade"
         xlabel = "Setores"
         title_adm = "Administrativo Qtde de Estações por Categoria"
         title_fab = "Fabrica Qtde de Estações por Categoria"
-        graphic_departaments_adm = make_graphic_bar_group(
+        graphic_departaments_adm = make_graphic_bar_ranking(
             title_adm, xlabel, ylabel, df_adm
         )
-        graphic_departaments_fab = make_graphic_bar_group(
+        graphic_departaments_fab = make_graphic_bar_ranking(
             title_fab, xlabel, ylabel, df_fab
         )
 
@@ -364,6 +382,7 @@ def workstations_ranking(request):
         raise
 
 
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 @login_required
 def report_per_departament(request):
     try:
@@ -372,26 +391,26 @@ def report_per_departament(request):
             return redirect("access_denied")
 
         departaments = list(Department.objects.all().values_list("name"))
-        print("departaments:::", departaments)
+        # print("departaments:::", departaments)
 
         # users_per_departments = User.objects.filter(username__profile__department=1)
         users_per_departments = Profile.objects.filter(department__name="RH")
-        print("users_per_departments:::", users_per_departments)
-        print("users_per_departments2:::", users_per_departments.values("user"))
+        # print("users_per_departments:::", users_per_departments)
+        # print("users_per_departments2:::", users_per_departments.values("user"))
 
         users_per_departments3 = Profile.objects.filter(user=3)
-        print("users_per_departments3:::", users_per_departments3)
-        print("users_per_departments3:::", users_per_departments3[0])
+        # print("users_per_departments3:::", users_per_departments3)
+        # print("users_per_departments3:::", users_per_departments3[0])
 
-        print(
-            "users_per_departments3:::",
-            users_per_departments3.values("department")[0].get("department"),
-        )
-        print("users_per_departments3:::", users_per_departments3.values("department"))
-        print(
-            "users_per_departments3:::",
-            users_per_departments3.values_list("department"),
-        )
+        # print(
+        #     "users_per_departments3:::",
+        #     users_per_departments3.values("department")[0].get("department"),
+        # )
+        # print("users_per_departments3:::", users_per_departments3.values("department"))
+        # print(
+        #     "users_per_departments3:::",
+        #     users_per_departments3.values_list("department"),
+        # )
 
         template_path = "ti/pages/report_per_departament.html"
         context = {"data": "data"}

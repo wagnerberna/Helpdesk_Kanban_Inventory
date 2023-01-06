@@ -30,7 +30,7 @@ def make_graphic_bar(title, color, labels, data):
 
 
 # Gráfico em barra vertical de grupos
-def make_graphic_bar_group(title, xlabel, ylabel, df):
+def make_graphic_bar_ranking(title, xlabel, ylabel, df):
     plt.figure(figsize=(17, 7))
     sns.countplot(
         x="Setor",
@@ -44,6 +44,38 @@ def make_graphic_bar_group(title, xlabel, ylabel, df):
             "E": "#ff80ff",
         },
         hue_order=["A", "B", "C", "D", "E"],
+    )
+    sns.set_theme()
+    sns.despine()
+    sns.set_context("talk")
+
+    plt.title(title)
+    plt.xlabel(xlabel)
+    plt.ylabel(ylabel)
+
+    fig = plt.gcf()
+    buf = io.BytesIO()
+    fig.savefig(buf, format="png")
+    buf.seek(0)
+    string = base64.b64encode(buf.read())
+    plt.close()
+    return string
+
+
+# Gráfico em barra vertical de grupos
+def make_graphic_bar_project(title, xlabel, ylabel, df):
+    plt.figure(figsize=(17, 7))
+    sns.countplot(
+        x="Setor",
+        hue="Project",
+        data=df,
+        palette={
+            "TO DO": "#7fe686",
+            "DOING": "#ffe97f",
+            "BLOCKED": "#fe7167",
+            "DONE": "#86cbf9",
+        },
+        hue_order=["TO DO", "DOING", "BLOCKED", "DONE"],
     )
     sns.set_theme()
     sns.despine()
