@@ -55,10 +55,7 @@ def make_graphic_bar_group(title, xlabel, ylabel, df):
             "D": "#fe7167",
             "E": "#0B0A24",
         },
-        hue_order=["A", "B", "C", "D", "E"]
-        # order=df["Ranking"].values_counts(ascending=True)
-        # palette=["#fe7167", "#ffe97f", "#7fe686", "#86cbf9", "#0B0A24"],
-        # order=["A", "B", "C", "D", "E"],
+        hue_order=["A", "B", "C", "D", "E"],
     )
     sns.set_theme()
     sns.despine()
