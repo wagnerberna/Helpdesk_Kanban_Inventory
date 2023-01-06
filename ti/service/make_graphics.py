@@ -39,7 +39,7 @@ def make_graphic_bar_group(title, xlabel, ylabel, df):
         "#7fe686-verde",
         "#ffe97f-amarelo",
         "#fe7167-vermelho",
-        "#0B0A24-preto",
+        "#ff80ff-preto",
     ]
     # plt.bar()
 
@@ -53,7 +53,7 @@ def make_graphic_bar_group(title, xlabel, ylabel, df):
             "B": "#7fe686",
             "C": "#ffe97f",
             "D": "#fe7167",
-            "E": "#0B0A24",
+            "E": "#ff80ff",
         },
         hue_order=["A", "B", "C", "D", "E"],
     )
@@ -106,7 +106,7 @@ def make_graphic_barh(title, color, labels, data):
 # autopct (número de casas após a vírgula)
 def make_graphic_pie(labels, data):
     explode = [0.2, 0, 0, 0, 0]
-    colors = ["#86cbf9", "#7fe686", "#ffe97f", "#fe7167", "#0B0A24"]
+    colors = ["#86cbf9", "#7fe686", "#ffe97f", "#fe7167", "#ff80ff"]
 
     sns.set_theme()
     sns.despine()
