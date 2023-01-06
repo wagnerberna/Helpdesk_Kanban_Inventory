@@ -39,7 +39,7 @@ def make_graphic_bar_group(title, xlabel, ylabel, df):
         "#7fe686-verde",
         "#ffe97f-amarelo",
         "#fe7167-vermelho",
-        "#0B0A24",
+        "#0B0A24-preto",
     ]
     # plt.bar()
 
@@ -48,7 +48,7 @@ def make_graphic_bar_group(title, xlabel, ylabel, df):
         x="Setor",
         hue="Ranking",
         data=df,
-        palette=["#fe7167", "#ffe97f", "#7fe686", "#86cbf9"],
+        palette=["#fe7167", "#ffe97f", "#7fe686", "#86cbf9", "#0B0A24"],
         # order=["A", "B", "C", "D", "E"],
     )
     sns.set_theme()

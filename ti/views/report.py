@@ -308,7 +308,6 @@ def workstations_ranking(request):
         # ranking sector:
         departments_adm = [
             "Comercial",
-            "Compras",
             "Engenharia",
             "Direcao",
             "Controladoria",
@@ -320,21 +319,44 @@ def workstations_ranking(request):
             "Marketing",
             "Juridico",
             "Zeladoria",
+            "SESMT",
+            "Qualidade",
         ]
-        departments_fab = []
+        departments_fab = [
+            "Ferramentaria",
+            "Fundidos",
+            "Almoxarifado",
+            "Compras",
+            "Lideres",
+            "PCP",
+            "Bobinagem",
+            "Expedicao",
+            "Industrial",
+            "Montagem",
+            "Manutencao",
+        ]
 
         df = excel_to_dataframe(file)
         df_adm = df.loc[df["Setor"].isin(departments_adm)]
+        df_fab = df.loc[df["Setor"].isin(departments_fab)]
+
         print(df_adm)
         ylabel = "Quantidade"
         xlabel = "Setores"
-        title = "ADM Qtde de Estações de Trabalho por Setor"
-        graphic_departaments = make_graphic_bar_group(title, xlabel, ylabel, df_adm)
+        title_adm = "Administrativo Qtde de Estações por Categoria"
+        title_fab = "Fabrica Qtde de Estações por Categoria"
+        graphic_departaments_adm = make_graphic_bar_group(
+            title_adm, xlabel, ylabel, df_adm
+        )
+        graphic_departaments_fab = make_graphic_bar_group(
+            title_fab, xlabel, ylabel, df_fab
+        )
 
         template_path = "ti/pages/ranking_workstations.html"
         context = {
             "graphic_ranking": urllib.parse.quote(graphic_ranking),
-            "graphic_departaments": urllib.parse.quote(graphic_departaments),
+            "graphic_departaments_adm": urllib.parse.quote(graphic_departaments_adm),
+            "graphic_departaments_fab": urllib.parse.quote(graphic_departaments_fab),
         }
         return render(request, template_path, context)
     except Exception as error:
