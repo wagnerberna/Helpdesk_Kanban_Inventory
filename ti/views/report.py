@@ -141,7 +141,7 @@ def report_per_project(request):
         projects_labels = []
 
         for project in projects_names:
-            print(project[0])
+            # print(project[0])
 
             project_tasks_total_count = Task.objects.filter(
                 project__name=project[0]
@@ -180,7 +180,7 @@ def report_per_project(request):
         # print("PROJECT LIST:::", projects_list)
         # print("projects_list_sorted", projects_list_sorted)
 
-        # Graphic projects
+        # Graphic projects percent DONE
         title = "Projetos Percentual de Conclusão"
         color = "#86cbf9"
 
@@ -189,24 +189,26 @@ def report_per_project(request):
             title, color, projects_labels, project_percent_to_graphic
         )
 
-        # gráfico por tarefa
+        # graphics projects per task's status
         df_projects_tasks_status = pd.DataFrame(
-            list(Task.objects.all().exclude(project__status__name="DONE").values())
+            Task.objects.all()
+            .exclude(project__status__name="DONE")
+            .values("id", "project__name", "status__name")
         )
         print(df_projects_tasks_status)
 
         ylabel = "Quantidade"
-        xlabel = "Status"
-        title = "Administrativo Qtde de Estações por Categoria"
-        # graphic_projects_tasks_status = make_graphic_bar_project(
-        #     title, xlabel, ylabel, df_projects_tasks_status
-        # )
+        xlabel = "Projetos"
+        title = "Projetos Qtde e Status das Tarefas"
+        graphic_projects_tasks_status = make_graphic_bar_project(
+            title, xlabel, ylabel, df_projects_tasks_status
+        )
 
         context = {
             "graphic_projects": urllib.parse.quote(graphic_projects),
-            # "graphic_projects_tasks_status": urllib.parse.quote(
-            #     graphic_projects_tasks_status
-            # ),
+            "graphic_projects_tasks_status": urllib.parse.quote(
+                graphic_projects_tasks_status
+            ),
             "projects": projects_list_sorted,
         }
 
