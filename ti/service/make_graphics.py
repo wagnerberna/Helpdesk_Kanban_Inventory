@@ -81,9 +81,9 @@ def make_graphic_bar_project(title, xlabel, ylabel, df):
     sns.despine()
     sns.set_context("poster")
 
-    plt.title(title)
-    plt.xlabel(xlabel)
-    plt.ylabel(ylabel)
+    plt.title(title, fontsize=35)
+    plt.xlabel(xlabel, fontsize=25)
+    plt.ylabel(ylabel, fontsize=25)
     plt.legend(
         title="Status", loc="upper left", labels=["TO DO", "DOING", "BLOCKED", "DONE"]
     )
@@ -104,7 +104,8 @@ def make_graphic_barh(title, color, labels, data):
     sns.set_theme()
     sns.despine()
     sns.set_context("notebook")
-    # plt.title(title)
+    plt.title(title, fontsize=25)
+
     # plt.rcParams["font.size"] = "16"
     # plt.grid(color="#95a5a6", linestyle="--", linewidth=2, axis="x", alpha=0.7)
 

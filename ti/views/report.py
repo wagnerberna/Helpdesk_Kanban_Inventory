@@ -11,19 +11,13 @@ from helpdesk.models import Demand
 from kanban.models import Project, Task
 from ti.models import Department, Profile
 from ti.service.check_user_access import check_user_access
-from ti.service.dataframe import (
-    dataframe_desktop_ranking,
-    excel_to_dataframe,
-    excel_to_json,
-)
+from ti.service.dataframe import (dataframe_desktop_ranking,
+                                  excel_to_dataframe, excel_to_json)
 from ti.service.format_time import format_time_delta
-from ti.service.make_graphics import (
-    make_graphic_bar,
-    make_graphic_bar_project,
-    make_graphic_bar_ranking,
-    make_graphic_barh,
-    make_graphic_pie,
-)
+from ti.service.make_graphics import (make_graphic_bar,
+                                      make_graphic_bar_project,
+                                      make_graphic_bar_ranking,
+                                      make_graphic_barh, make_graphic_pie)
 from ti.service.resume_hardware import ProcessHardwareFiles
 
 convert_files = ProcessHardwareFiles()
@@ -181,7 +175,7 @@ def report_per_project(request):
         # print("projects_list_sorted", projects_list_sorted)
 
         # Graphic projects percent DONE
-        title = "Projetos Percentual de Conclusão"
+        title = "Projetos: Percentual de Conclusão"
         color = "#86cbf9"
 
         # print(projects_labels, project_percent_to_graphic)
@@ -199,7 +193,7 @@ def report_per_project(request):
 
         ylabel = "Quantidade"
         xlabel = "Projetos"
-        title = "Projetos Qtde e Status das Tarefas"
+        title = "Projetos: Qtde e Status das Tarefas"
         graphic_projects_tasks_status = make_graphic_bar_project(
             title, xlabel, ylabel, df_projects_tasks_status
         )
