@@ -64,7 +64,7 @@ def make_graphic_bar_ranking(title, xlabel, ylabel, df):
 
 # Gráfico em barra vertical de grupos
 def make_graphic_bar_project(title, xlabel, ylabel, df):
-    plt.figure(figsize=(30, 10))
+    plt.figure(figsize=(22, 7))
     sns.countplot(
         x="project__name",
         hue="status__name",
@@ -80,6 +80,8 @@ def make_graphic_bar_project(title, xlabel, ylabel, df):
     sns.set_theme()
     sns.despine()
     sns.set_context("poster")
+    # sns.set_theme(font_scale=3.5)
+    # sns.set(font_scale=1)
 
     plt.title(title, fontsize=35)
     plt.xlabel(xlabel, fontsize=25)
