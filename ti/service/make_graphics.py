@@ -63,7 +63,7 @@ def make_graphic_bar_ranking(title, xlabel, ylabel, df):
 
 
 # Gráfico em barra vertical de grupos
-def make_graphic_bar_project(title, xlabel, ylabel, df):
+def make_graphic_bar_project(title, xlabel, ylabel, df, size=12):
     plt.figure(figsize=(30, 10))
     sns.countplot(
         x="project__name",
