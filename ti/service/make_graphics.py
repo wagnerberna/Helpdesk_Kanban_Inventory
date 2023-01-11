@@ -64,7 +64,7 @@ def make_graphic_bar_ranking(title, xlabel, ylabel, df):
 
 # Gráfico em barra vertical de grupos
 def make_graphic_bar_project(title, xlabel, ylabel, df):
-    plt.figure(figsize=(22, 7))
+    plt.figure(figsize=(38, 10))
     sns.countplot(
         x="project__name",
         hue="status__name",
@@ -89,6 +89,7 @@ def make_graphic_bar_project(title, xlabel, ylabel, df):
     plt.legend(
         title="Status", loc="upper left", labels=["TO DO", "DOING", "BLOCKED", "DONE"]
     )
+    # plt.tick_params(labelsize=20)
 
     fig = plt.gcf()
     buf = io.BytesIO()
@@ -105,14 +106,14 @@ def make_graphic_barh(title, color, labels, data):
 
     sns.set_theme()
     sns.despine()
-    sns.set_context("notebook")
-    plt.title(title, fontsize=25)
+    plt.title(title, fontsize=35)
+    sns.set_context("talk")
 
     # plt.rcParams["font.size"] = "16"
     # plt.grid(color="#95a5a6", linestyle="--", linewidth=2, axis="x", alpha=0.7)
 
     fig = plt.gcf()
-    fig.set_size_inches(20, 5, forward=True)
+    fig.set_size_inches(32, 7)
     # fig.set_dpi(100)
     buf = io.BytesIO()
     fig.savefig(buf, format="png")
