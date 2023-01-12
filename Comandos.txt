@@ -1,8 +1,15 @@
-Comandos:
-https://github.com/Gpzim98/django-heroku
+Ativar Ambiente Virtual:
+python3 -m venv .venv && source .venv/bin/activate
+
+Rodar:
+python manage.py runserver
 
 Rodar para todos na rede pelo IP local:
 python manage.py runserver 0.0.0.0:80
+
+Comandos:
+https://github.com/Gpzim98/django-heroku
+
 
 comunicar com postgres:
 pip install psycopg2

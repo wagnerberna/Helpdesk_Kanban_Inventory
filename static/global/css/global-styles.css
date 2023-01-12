@@ -62,6 +62,12 @@ h3 {
     margin: 25px 0 20px 0;
 }
 
+h2 {
+    display: flex;
+    justify-content: center;
+}
+
+
 table,
 thead,
 th,
@@ -86,14 +92,24 @@ body {
 
 .join-small-tables {
     display: flex;
+    flex-wrap: nowrap;
     flex-direction: row;
+    justify-content: space-evenly;
 }
 
 .container {
     max-width: 144rem;
-    margin: 40px auto;
+    margin: 30px auto;
     padding: var(--spacing-gutter-small);
     background-color: var(--color-a6);
+}
+
+.tasks {
+    text-align: center;
+}
+
+.workstations {
+    text-align: center;
 }
 
 .small-container {
@@ -108,7 +124,7 @@ header {
 }
 
 .main-header-container {
-    max-width: 960px;
+    max-width: 1150px;
     margin: 0 auto;
     padding: 15px 0;
     background-color: var(--color-a6);
@@ -116,7 +132,6 @@ header {
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    /* height: 100px; */
 }
 
 .main-container {
@@ -146,7 +161,7 @@ header {
 
 
 .main-logo-icon {
-    margin-right: 2rem;
+    margin-right: 1rem;
     margin-left: 2rem;
     text-decoration: none;
 }
@@ -226,16 +241,18 @@ header {
     margin: 0 140px;
 }
 
-.containers-child-division {
+.container-child-division {
     display: flex;
     flex-direction: column;
     margin: 2px;
     margin-right: 20px;
+    width: 500px;
 }
 
 
 .container-kanban-division {
     display: flex;
+    flex-wrap: wrap;
     flex-direction: row;
     justify-content: space-between;
 }
@@ -270,7 +287,18 @@ h3 {
 
 .img-gallery {
     margin: var(--spacing-gutter-small);
-    width: 100%
+    width: 100%;
+    max-width: 380px;
+}
+
+.img-graphic {
+    max-width: 101%;
+    margin: 0px;
+    padding: 0px;
+}
+
+.sla-report {
+    margin-left: 235px;
 }
 
 .container-box {
@@ -284,6 +312,10 @@ h3 {
 
 .order-list {
     margin: var(--spacing-gutter-small);
+}
+
+.activity-technician {
+    margin: 50px 10px;
 }
 
 .table-kanban-to-do {

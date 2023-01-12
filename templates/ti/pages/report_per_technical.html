@@ -3,7 +3,9 @@
 {% block main %}
 
     <div class="container">
-        <h2>Atividades por Técnico:</h2>
+        <h2 class="activity-technician">Atividades por Técnico:</h2>
+
+        <h3 class="sla-report">SLA médio de atendimento por chamado: <span class="span_blue">{{sla}}</span></h3>
 
         {%include "ti/partials/graphic_per_techical.html"%}
         
@@ -13,7 +15,6 @@
             {%include "ti/partials/tasks_per_techical_table.html"%}
         </div>
         
-        <h2>SLA médio de atendimento por chamado: <span class="span_blue">{{sla}}</span></h2>
 
     </div>
 
