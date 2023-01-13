@@ -19,6 +19,10 @@ pip install python-decouple
 from decouple import config
 SECRET_KEY = config('SECRET_KEY')
 
+Erro decouple:
+pip uninstall decouple
+pip install decouple
+
 configurações do DB:
 pip install dj-database-url
 from dj_database_url import parse as dburl
