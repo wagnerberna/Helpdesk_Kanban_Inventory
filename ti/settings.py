@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     "ti",
     "kanban",
     "helpdesk",
+    "inventory",
 ]
 
 MIDDLEWARE = [
