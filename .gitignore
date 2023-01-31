@@ -138,6 +138,8 @@ venv
 # company flies
 static/company/
 doc/
+staticfiles/
+staticfiles/static/
 
 # DB Test
 *.sqlite3
