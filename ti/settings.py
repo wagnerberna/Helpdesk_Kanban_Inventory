@@ -31,8 +31,8 @@ SECRET_KEY = config("SECRET_KEY")
 # Caso não encontre no env envia como falso do tipo booleano
 DEBUG = config("DEBUG", default=False, cast=bool)
 
-ALLOWED_HOSTS = ["*"]
-
+# ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["10.1.10.9"]
 
 # Application definition
 

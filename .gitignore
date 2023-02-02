@@ -140,6 +140,7 @@ static/company/
 doc/
 staticfiles/
 staticfiles/static/
+image/
 
 # DB Test
 *.sqlite3
