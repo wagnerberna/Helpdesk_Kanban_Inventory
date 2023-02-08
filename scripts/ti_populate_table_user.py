@@ -17,7 +17,7 @@ def run():
 
             print("department_id", row.setor, department_id)
 
-            User.objects.create(
+            User.objects.create_user(
                 username=row.login,
                 email=row.email,
                 password="merco@123",
