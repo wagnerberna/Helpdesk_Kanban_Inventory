@@ -37,7 +37,7 @@ def report_per_technical(request):
             return redirect("access_denied")
 
         # SLA
-        demands_all = Demand.objects.filter(status__name="Finalizado").values(
+        demands_all = Demand.objects.filter(status__name="Concluído").values(
             "created_at", "updated_at"
         )
         demands_count = demands_all.count()

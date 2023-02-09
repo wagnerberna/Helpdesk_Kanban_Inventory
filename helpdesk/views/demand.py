@@ -12,7 +12,7 @@ def demand_view_list_by_user(request):
     try:
         id = request.user.pk
         # user_name = request.user.username
-        demands = Demand.objects.filter(user_name=id).exclude(status__name="Finalizado")
+        demands = Demand.objects.filter(user_name=id).exclude(status__name="Concluído")
 
         context = {"demands": demands}
         template_path = "helpdesk/pages/demand_list_open.html"
@@ -33,7 +33,7 @@ def demand_view_list_done(request):
         id = request.user.pk
         demands = (
             Demand.objects.filter(user_name=id)
-            .filter(status__name="Finalizado")
+            .filter(status__name="Concluído")
             .order_by("-id")
         )
 

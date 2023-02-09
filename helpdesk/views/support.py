@@ -15,9 +15,7 @@ def support_view_list_open(request):
         if not check_access:
             return redirect("access_denied")
 
-        demands = (
-            Demand.objects.all().order_by("-id").exclude(status__name="Finalizado")
-        )
+        demands = Demand.objects.all().order_by("-id").exclude(status__name="Concluído")
         demand_filter = SupportFilterSerializer(request.GET, queryset=demands)
 
         context = {"all_demands": demands, "demand_filter": demand_filter}
@@ -40,7 +38,7 @@ def support_view_list_done(request):
         if not check_access:
             return redirect("access_denied")
 
-        demands = Demand.objects.filter(status__name="Finalizado").order_by("-id")
+        demands = Demand.objects.filter(status__name="Concluído").order_by("-id")
         demand_filter = SupportFilterSerializer(request.GET, queryset=demands)
 
         context = {"all_demands": demands, "demand_filter": demand_filter}
