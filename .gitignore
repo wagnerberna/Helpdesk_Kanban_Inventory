@@ -142,5 +142,8 @@ staticfiles/
 staticfiles/static/
 image/
 
+# cache
+__pycache__/
+
 # DB Test
 *.sqlite3
