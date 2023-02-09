@@ -144,7 +144,9 @@ media/
 image/
 
 # cache
+__pycache__
 __pycache__/
+
 
 # DB Test
 *.sqlite3
