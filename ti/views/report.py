@@ -83,8 +83,12 @@ def report_per_technical(request):
         )
 
         # Gráfico Tarefas Projetos
-        tasks_leonardo = Task.objects.filter(task_owner__user_name=4).count()
-        tasks_wagner = Task.objects.filter(task_owner__user_name=2).count()
+        tasks_leonardo = Task.objects.filter(
+            task_owner__user_name=techinical_leonardo_id
+        ).count()
+        tasks_wagner = Task.objects.filter(
+            task_owner__user_name=techinical_Wagner_id
+        ).count()
 
         tasks_total_per_techinical = [tasks_leonardo, tasks_wagner]
         title = "Projetos: Tarefas por Técnico"
