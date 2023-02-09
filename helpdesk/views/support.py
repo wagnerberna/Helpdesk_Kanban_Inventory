@@ -65,7 +65,9 @@ def support_view_list_by_technical(request):
         id = request.user.pk
         # user_name = request.user.username
 
-        demands = Demand.objects.filter(attendant__user_name=id)
+        demands = Demand.objects.filter(attendant__user_name=id).exclude(
+            status__name="Concluído"
+        )
 
         context = {"demands": demands}
         template_path = "helpdesk/pages/support_list_by_technical.html"

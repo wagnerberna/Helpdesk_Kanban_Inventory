@@ -385,7 +385,6 @@ class ProcessHardwareFiles:
 
             for file in files_list:
                 file_path = self.path_files + file
-                # print(file)
 
                 with open(file_path, "r", encoding="utf-16") as file:
                     data = file.readlines()
