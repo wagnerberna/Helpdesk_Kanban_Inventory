@@ -62,8 +62,7 @@ class ProcessHardwareFiles:
         workbook = openpyxl.load_workbook(self.file_name)
         worksheet = workbook["Sheet"]
         row = len(worksheet["A"]) + 1
-        # print(row)
-        # print(data)
+
         column_a = "A" + str(row)
         column_b = "B" + str(row)
         column_c = "C" + str(row)
@@ -201,10 +200,8 @@ class ProcessHardwareFiles:
             if row["login"] == user_format:
                 self.sector = row["OU_1"]
 
-                # print(user, self.sector)
         if user == "apontamento" or user == "metrologia":
             self.sector = "Fabrica"
-            # print(user, self.sector)
 
     def clean_computer_name(self, data):
         find_computer_name = list(filter(lambda el: "Name=" in el, data))
@@ -299,7 +296,6 @@ class ProcessHardwareFiles:
         else:
             serial = find_serial[0]
             self.serial_number = serial.strip("SerialNumber=").strip("\n")
-            # print(self.serial_number)
 
     def cpu_all_fields(self):
         if not self.cpu_description:
@@ -389,7 +385,7 @@ class ProcessHardwareFiles:
 
             for file in files_list:
                 file_path = self.path_files + file
-                print(file)
+                # print(file)
 
                 with open(file_path, "r", encoding="utf-16") as file:
                     data = file.readlines()
@@ -439,9 +435,9 @@ class ProcessHardwareFiles:
             self.format_border()
             # os.startfile(self.file_name)
 
-            print("Lista de arquivos processados:", self.name_computers_process)
-            print("Total de arquivos processados:", len(self.name_computers_process))
-            print("Erro ao processar os seguintes arquivos:", self.name_computers_error)
+            # print("Lista de arquivos processados:", self.name_computers_process)
+            # print("Total de arquivos processados:", len(self.name_computers_process))
+            # print("Erro ao processar os seguintes arquivos:", self.name_computers_error)
             # input(message_finish)
         except Exception as error:
             print("Internal error:", error)

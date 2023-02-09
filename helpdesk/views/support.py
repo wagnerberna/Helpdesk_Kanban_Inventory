@@ -20,7 +20,6 @@ def support_view_list_open(request):
         )
         demand_filter = SupportFilterSerializer(request.GET, queryset=demands)
 
-        print(demand_filter)
         context = {"all_demands": demands, "demand_filter": demand_filter}
         template_path = "helpdesk/pages/support_list_demands_open.html"
 
@@ -44,7 +43,6 @@ def support_view_list_done(request):
         demands = Demand.objects.filter(status__name="Finalizado").order_by("-id")
         demand_filter = SupportFilterSerializer(request.GET, queryset=demands)
 
-        # print(demand_filter)
         context = {"all_demands": demands, "demand_filter": demand_filter}
         template_path = "helpdesk/pages/support_list_demands_done.html"
 
@@ -69,10 +67,7 @@ def support_view_list_by_technical(request):
         id = request.user.pk
         # user_name = request.user.username
 
-        # print("REQUEST::::", id)
-
         demands = Demand.objects.filter(attendant__user_name=id)
-        print(demands)
 
         context = {"demands": demands}
         template_path = "helpdesk/pages/support_list_by_technical.html"
@@ -96,10 +91,8 @@ def support_view_update(request, id):
         if not check_access:
             return redirect("access_denied")
 
-        # print("ID:::", id)
         demand = get_object_or_404(Demand, pk=id)
-        # demand = get_object_or_404(Demand, pk=id)
-        # print(demand)
+
         form_view = SupportFormUpdateView(request.POST or None, instance=demand)
         form = SupportFormUpdate(request.POST or None, instance=demand)
 
@@ -116,7 +109,6 @@ def support_view_update(request, id):
         form_historic.fields["demand_id"].widget = forms.HiddenInput()
 
         historic = Historic.objects.filter(demand_id=id)
-        # print(historic)
 
         context = {
             "form": form,

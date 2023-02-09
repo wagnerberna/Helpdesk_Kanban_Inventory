@@ -11,13 +11,19 @@ from helpdesk.models import Demand
 from kanban.models import Project, Task
 from ti.models import Department, Profile
 from ti.service.check_user_access import check_user_access
-from ti.service.dataframe import (dataframe_desktop_ranking,
-                                  excel_to_dataframe, excel_to_json)
+from ti.service.dataframe import (
+    dataframe_desktop_ranking,
+    excel_to_dataframe,
+    excel_to_json,
+)
 from ti.service.format_time import format_time_delta
-from ti.service.make_graphics import (make_graphic_bar,
-                                      make_graphic_bar_project,
-                                      make_graphic_bar_ranking,
-                                      make_graphic_barh, make_graphic_pie)
+from ti.service.make_graphics import (
+    make_graphic_bar,
+    make_graphic_bar_project,
+    make_graphic_bar_ranking,
+    make_graphic_barh,
+    make_graphic_pie,
+)
 from ti.service.resume_hardware import ProcessHardwareFiles
 
 convert_files = ProcessHardwareFiles()
@@ -30,30 +36,21 @@ def report_per_technical(request):
         if not check_access:
             return redirect("access_denied")
 
-        # demands_all = Demand.objects.filter(status__name="Finalizado")
         # SLA
         demands_all = Demand.objects.filter(status__name="Finalizado").values(
             "created_at", "updated_at"
         )
-
         demands_count = demands_all.count()
-        # print("demands_all:::", demands_all, demands_count)
 
         # SLA
         demands_sum = datetime.timedelta(days=0, minutes=0, seconds=0)
         sla_average = datetime.timedelta(days=0, minutes=0, seconds=0)
 
-        # print("demands_sum timedelta:::", demands_sum)
         for el in demands_all:
             created_at = el.get("created_at")
             updated_at = el.get("updated_at")
             difference_between_days = updated_at - created_at
-            # convert = difference_between_days
             demands_sum += difference_between_days
-
-            # print("difference_between_days", difference_between_days)
-            # print("convert::", convert)
-            # print("demands_sum", demands_sum)
 
         # if sla_average:
         sla_average = demands_sum / demands_count
@@ -61,14 +58,13 @@ def report_per_technical(request):
         # else:
         # sla_format = ""
 
-        # print("sla_format:::", sla_format)
         techinical_Wagner_id = (
             User.objects.filter(username="wagner.berna").values("id")[0].get("id")
         )
         techinical_leonardo_id = (
             User.objects.filter(username="leonardo.susin").values("id")[0].get("id")
         )
-        # print(techinical_Wagner_id, techinical_leonardo_id)
+
         # Gráfico Demandas
         demmands_leonardo = Demand.objects.filter(
             attendant__user_name=techinical_leonardo_id
@@ -135,7 +131,6 @@ def report_per_project(request):
         projects_labels = []
 
         for project in projects_names:
-            # print(project[0])
 
             project_tasks_total_count = Task.objects.filter(
                 project__name=project[0]
@@ -171,14 +166,10 @@ def report_per_project(request):
             projects_list, key=lambda k: k["project_percentage"]
         )
 
-        # print("PROJECT LIST:::", projects_list)
-        # print("projects_list_sorted", projects_list_sorted)
-
         # Graphic projects percent DONE
         title = "Projetos: Percentual de Conclusão"
         color = "#86cbf9"
 
-        # print(projects_labels, project_percent_to_graphic)
         graphic_projects = make_graphic_barh(
             title, color, projects_labels, project_percent_to_graphic
         )
@@ -189,7 +180,7 @@ def report_per_project(request):
             .exclude(project__status__name="DONE")
             .values("id", "project__name", "status__name")
         )
-        print(df_projects_tasks_status)
+        # print(df_projects_tasks_status)
 
         ylabel = "Quantidade"
         xlabel = "Projetos"
@@ -354,7 +345,6 @@ def workstations_ranking(request):
         df_adm = df.loc[df["Setor"].isin(departments_adm)]
         df_fab = df.loc[df["Setor"].isin(departments_fab)]
 
-        # print(df_adm)
         ylabel = "Quantidade"
         xlabel = "Setores"
         title_adm = "Administrativo Qtde de Estações por Categoria"
@@ -378,7 +368,7 @@ def workstations_ranking(request):
         raise
 
 
-# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# !!!!!!!!!!!!! verificar !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 @login_required
 def report_per_departament(request):
     try:

@@ -12,9 +12,7 @@ def demand_view_list_by_user(request):
     try:
         id = request.user.pk
         # user_name = request.user.username
-        # print("REQUEST::::", user_id, user_name)
         demands = Demand.objects.filter(user_name=id).exclude(status__name="Finalizado")
-        # print("Demands:::", demands)
 
         context = {"demands": demands}
         template_path = "helpdesk/pages/demand_list_open.html"
@@ -38,7 +36,6 @@ def demand_view_list_done(request):
             .filter(status__name="Finalizado")
             .order_by("-id")
         )
-        # print("Demands:::", demands)
 
         demand_filter = DemandFilterSerializer(request.GET, queryset=demands)
 
@@ -63,7 +60,6 @@ def demand_view_list_done(request):
 def demand_view_create(request):
     try:
         user_id = request.user.pk
-        print(user_id)
 
         department_id = (
             Profile.objects.filter(user=user_id)
@@ -75,9 +71,6 @@ def demand_view_create(request):
         # department_id = profile_user.values("department")[0].get("department")
         # department_id2 = profile_user.values_list("department")
 
-        # print("department_id:::", department_id)
-        # print("department_id2:::", department_id2)
-
         form = DemandFormCreate(request.POST or None, request.FILES or None)
         form.fields["user_name"].initial = user_id
         # form.fields["user_name"].widget.attrs["disabled"] = True
@@ -86,7 +79,6 @@ def demand_view_create(request):
         form.fields["department"].widget = forms.HiddenInput()
 
         # form.fields["department"].widget.attrs["disabled"] = True
-
         # form.fields["department"].initial = department_id
 
         context = {"form": form}
@@ -106,9 +98,7 @@ def demand_view_create(request):
 @login_required
 def demand_view_details(request, id):
     try:
-        # print("ID:::", id)
         demand = get_object_or_404(Demand, pk=id)
-        # user_id = request.user.pk
         form = DemandFormUpdate(request.POST or None, instance=demand)
         form.fields["user_name"].widget.attrs["disabled"] = True
         form.fields["department"].widget.attrs["disabled"] = True

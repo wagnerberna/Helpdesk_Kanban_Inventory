@@ -69,7 +69,6 @@ def kanban_board(request, id):
 
         tasks = Task.objects.filter(project__id=id)
 
-        # print("project:::", project)
         form = KanbanStatusFormNext(request.POST)
         context = {
             "project_name": project_name,
@@ -79,17 +78,15 @@ def kanban_board(request, id):
         }
         template_path = "kanban/pages/kanban_board.html"
 
+        # click for move task
         if request.method == "POST":
             req = request.POST
             id_task = req.get("id_task")
-            # print("clicou")
-            # print(req)
             print(id_task)
             task_status_id = (
                 Task.objects.filter(pk=id_task).values("status")[0].get("status")
             )
 
-            # print(task_status_id)
             if task_status_id == 1:
                 Task.objects.filter(pk=id_task).update(status=2)
             elif task_status_id == 2:
@@ -120,19 +117,14 @@ def kanban_task_view_create(request, id_project):
         form = TaskForm(request.POST or None)
         form.fields["project"].initial = id_project
         form.fields["status"].initial = 1
-
         # form.fields["user_name"].widget = forms.HiddenInput()
 
         context = {"form": form}
         template_path = "kanban/pages/task_create.html"
 
-        print("id_project:::", id_project)
-
         if form.is_valid():
             form.save()
-
             return redirect("kanban_board", id=id_project)
-            # return HttpResponseRedirect("kanban_board", id=id_project)
 
         return render(
             request,
@@ -187,8 +179,6 @@ def kanban_task_view_update(request, id):
 
         context = {"form": form}
         template_path = "kanban/pages/task_update.html"
-
-        print("task:::", task.project.id)
 
         if form.is_valid():
             form.save()
