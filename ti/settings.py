@@ -148,9 +148,8 @@ STATICFILES_DIRS = [
 
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles/static/")
 
-# MEDIA_ROOT = "image"
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
-MEDIA_URL = "/image/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media/media/")
+MEDIA_URL = "media/"
 
 # rota de login e redirecionamento após o login
 LOGIN_URL = "/login/"
