@@ -346,6 +346,10 @@ h3 {
     height: 30px;
 }
 
+.table-td-kanban-small {
+    height: 20px;
+}
+
 .table-td-kanban {
     height: 100px;
 }
