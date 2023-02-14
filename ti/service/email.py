@@ -2,15 +2,15 @@ from decouple import config
 from django.core.mail import send_mail
 
 
-def send_mail2():
+def send_email(recipient_list, subject, message):
     try:
-        MAIL_TEST = config("MAIL_TEST")
+        EMAIL_SUPPORT = config("EMAIL_SUPPORT")
         send_mail(
-            subject="title",
-            message="teste teste",
-            from_email=MAIL_TEST,
-            recipient_list=[MAIL_TEST],
-            auth_user=MAIL_TEST,
+            subject=subject,
+            message=message,
+            from_email=EMAIL_SUPPORT,
+            recipient_list=recipient_list,
+            auth_user=EMAIL_SUPPORT,
             auth_password=config("EMAIL_HOST_PASSWORD"),
             fail_silently=False,
         )

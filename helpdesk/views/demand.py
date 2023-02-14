@@ -1,3 +1,4 @@
+from decouple import config
 from django import forms
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
@@ -5,7 +6,7 @@ from helpdesk.api.serializers import DemandFilterSerializer
 from helpdesk.forms import DemandFormCreate, DemandFormUpdate
 from helpdesk.models import Demand, Historic
 from ti.models import Department, Profile
-from ti.service.mail import send_mail2
+from ti.service.email import send_email
 
 
 @login_required
@@ -13,8 +14,8 @@ def demand_view_list_by_user(request):
     try:
         id = request.user.pk
         # user_name = request.user.username
+        # email = request.user.email
         demands = Demand.objects.filter(user_name=id).exclude(status__name="Concluído")
-        send_mail2()
 
         context = {"demands": demands}
         template_path = "helpdesk/pages/demand_list_open.html"
@@ -62,6 +63,13 @@ def demand_view_list_done(request):
 def demand_view_create(request):
     try:
         user_id = request.user.pk
+        user_name = request.user.username
+        user_email = request.user.email
+        email_support = config("EMAIL_SUPPORT")
+        recipient_list = [user_email, email_support]
+        # subject = "Abertura de Chamado"
+        # message = f"Chamado do usuário: {user_name} aberto com sucesso!"
+        print(user_name, recipient_list)
 
         department_id = (
             Profile.objects.filter(user=user_id)
@@ -87,8 +95,12 @@ def demand_view_create(request):
         template_path = "helpdesk/pages/demand_create.html"
 
         if form.is_valid():
-            form.save()
-            # send_mail1()
+            object = form.save()
+            pk = object.pk
+            subject = "Abertura de Chamado"
+            message = f"Chamado aberto com sucesso! \n ID: {pk} \n Usuário: {user_name}"
+
+            send_email(recipient_list, subject, message)
             return redirect("demands_list_by_user")
 
         return render(request, template_path, context)
