@@ -4,7 +4,7 @@ from django.core.mail import send_mail
 
 def send_email(recipient_list, subject, message):
     try:
-        EMAIL_SUPPORT = config("EMAIL_SUPPORT")
+        # EMAIL_SUPPORT = config("EMAIL_SUPPORT")
         EMAIL_HOST_USER = config("EMAIL_HOST_USER")
 
         send_mail(

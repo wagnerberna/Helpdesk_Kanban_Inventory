@@ -69,7 +69,7 @@ def demand_view_create(request):
         recipient_list = [user_email, email_support]
         # subject = "Abertura de Chamado"
         # message = f"Chamado do usuário: {user_name} aberto com sucesso!"
-        print(user_name, recipient_list)
+        # print(user_name, recipient_list)
 
         department_id = (
             Profile.objects.filter(user=user_id)

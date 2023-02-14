@@ -1,11 +1,13 @@
 from django import forms
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404, redirect, render
 from helpdesk.api.serializers import SupportFilterSerializer
 from helpdesk.forms import HistoricFormAdd, SupportFormUpdate, SupportFormUpdateView
 from helpdesk.models import Demand, Historic
 from ti.service.check_user_access import check_user_access
+from ti.service.email import send_email
 
 
 @login_required
@@ -92,6 +94,14 @@ def support_view_update(request, id):
             return redirect("access_denied")
 
         demand = get_object_or_404(Demand, pk=id)
+        pk = demand.pk
+
+        user_id_find = User.objects.filter(username=demand.user_name)
+        user_email = user_id_find.values("email")[0].get("email")
+
+        recipient_list = [user_email]
+        subject = "Chamado atualizado"
+        message = f"Chamado atualizado! \n ID: {pk}"
 
         form_view = SupportFormUpdateView(request.POST or None, instance=demand)
         form = SupportFormUpdate(request.POST or None, instance=demand)
@@ -120,10 +130,14 @@ def support_view_update(request, id):
 
         if form.is_valid():
             form.save()
+
+            send_email(recipient_list, subject, message)
             return redirect("support_list_all")
 
         if form_historic.is_valid():
             form_historic.save()
+
+            send_email(recipient_list, subject, message)
             return redirect("support_update", id)
 
         return render(request, template_path, context)
