@@ -10,7 +10,7 @@ def send_email(recipient_list, subject, message):
         send_mail(
             subject=subject,
             message=message,
-            from_email=EMAIL_SUPPORT,
+            from_email=EMAIL_HOST_USER,
             recipient_list=recipient_list,
             auth_user=EMAIL_HOST_USER,
             auth_password=config("EMAIL_HOST_PASSWORD"),
