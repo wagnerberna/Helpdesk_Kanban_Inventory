@@ -5,6 +5,7 @@ from helpdesk.api.serializers import DemandFilterSerializer
 from helpdesk.forms import DemandFormCreate, DemandFormUpdate
 from helpdesk.models import Demand, Historic
 from ti.models import Department, Profile
+from ti.service.mail import send_mail2
 
 
 @login_required
@@ -13,6 +14,7 @@ def demand_view_list_by_user(request):
         id = request.user.pk
         # user_name = request.user.username
         demands = Demand.objects.filter(user_name=id).exclude(status__name="Concluído")
+        send_mail2()
 
         context = {"demands": demands}
         template_path = "helpdesk/pages/demand_list_open.html"
@@ -86,6 +88,7 @@ def demand_view_create(request):
 
         if form.is_valid():
             form.save()
+            # send_mail1()
             return redirect("demands_list_by_user")
 
         return render(request, template_path, context)
