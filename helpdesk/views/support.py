@@ -101,7 +101,7 @@ def support_view_update(request, id):
 
         recipient_list = [user_email]
         subject = "Chamado atualizado"
-        message = f"Chamado atualizado! \n ID: {pk}"
+        message = f"Chamado Atualizado! \n ID: {pk}"
 
         form_view = SupportFormUpdateView(request.POST or None, instance=demand)
         form = SupportFormUpdate(request.POST or None, instance=demand)
