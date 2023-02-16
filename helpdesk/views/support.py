@@ -6,6 +6,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from helpdesk.api.serializers import SupportFilterSerializer
 from helpdesk.forms import HistoricFormAdd, SupportFormUpdate, SupportFormUpdateView
 from helpdesk.models import Demand, Historic
+from helpdesk.service.sla import sla_save
 from ti.service.check_user_access import check_user_access
 from ti.service.email import send_email
 
@@ -131,8 +132,15 @@ def support_view_update(request, id):
         if form.is_valid():
             form.save()
 
+            # status = form["status"].value()
+            # print("status:::", status)
+            # if status != "1":
+            #     print("if em antendimento")
+            #     test = sla_save(pk, status)
+            #     print(test)
+
             send_email(recipient_list, subject, message)
-            return redirect("support_list_all")
+            return redirect("support_update", id)
 
         if form_historic.is_valid():
             form_historic.save()
