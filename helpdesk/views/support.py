@@ -133,11 +133,8 @@ def support_view_update(request, id):
             form.save()
 
             # status = form["status"].value()
-            # print("status:::", status)
-            # if status != "1":
-            #     print("if em antendimento")
-            #     test = sla_save(pk, status)
-            #     print(test)
+            # test = sla_save(pk, status)
+            # print(test)
 
             send_email(recipient_list, subject, message)
             return redirect("support_update", id)

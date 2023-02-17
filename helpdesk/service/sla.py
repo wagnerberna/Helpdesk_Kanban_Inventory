@@ -11,7 +11,8 @@ def sla_save(pk, status):
     if os.path.isfile(file_path):
         print("arquivo existe")
         sla_file = pd.read_csv(file_path)
-        sla_file = pd.DataFrame(data)
+        sla_file.append(data, ignore_index=True, sort=False)
+
         sla_file.to_csv(file_path)
 
     else:
@@ -20,4 +21,3 @@ def sla_save(pk, status):
         sla_file = pd.DataFrame(data)
 
         sla_file.to_csv(file_path)
-    return True
