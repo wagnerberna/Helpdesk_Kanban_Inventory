@@ -132,8 +132,8 @@ def support_view_update(request, id):
         if form.is_valid():
             form.save()
 
-            # status = form["status"].value()
-            # test = sla_save(pk, status)
+            status = form["status"].value()
+            sla_save(pk, status)
             # print(test)
 
             send_email(recipient_list, subject, message)
