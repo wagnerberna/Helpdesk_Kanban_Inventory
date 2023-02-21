@@ -44,7 +44,7 @@ def support_view_list_done(request):
         demands = Demand.objects.filter(status__name="Concluído").order_by("-id")
         demand_filter = SupportFilterSerializer(request.GET, queryset=demands)
 
-        paginator_demands = Paginator(demand_filter.qs, 2)
+        paginator_demands = Paginator(demand_filter.qs, 50)
         page = request.GET.get("page")
         demands_page = paginator_demands.get_page(page)
 
