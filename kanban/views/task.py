@@ -69,11 +69,11 @@ def task_view_done(request):
         tasks = Task.objects.filter(status__name="DONE").order_by("-id")
         tasks_filter = TaskFilterSerializer(request.GET, queryset=tasks)
 
-        print("tasks", type(tasks), "LEN:::", len(tasks))
-        print("tasks_filter", type(tasks_filter))
-        print(tasks_filter.qs)
+        # print("tasks", type(tasks), "LEN:::", len(tasks))
+        # print("tasks_filter", type(tasks_filter))
+        # print(tasks_filter.qs)
 
-        paginator_tasks = Paginator(tasks_filter.qs, 10)
+        paginator_tasks = Paginator(tasks_filter.qs, 50)
         # print(paginator_tasks.count)
         # print(paginator_tasks.num_pages)
         # print(paginator_tasks.page_range)
