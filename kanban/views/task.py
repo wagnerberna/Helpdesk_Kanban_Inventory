@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404, redirect, render
 from ti.service.check_user_access import check_user_access
 
@@ -57,6 +58,7 @@ def task_view_open(request):
         raise
 
 
+# .qs (query set)
 @login_required
 def task_view_done(request):
     try:
@@ -67,7 +69,23 @@ def task_view_done(request):
         tasks = Task.objects.filter(status__name="DONE").order_by("-id")
         tasks_filter = TaskFilterSerializer(request.GET, queryset=tasks)
 
-        context = {"tasks": tasks, "tasks_filter": tasks_filter}
+        print("tasks", type(tasks), "LEN:::", len(tasks))
+        print("tasks_filter", type(tasks_filter))
+        print(tasks_filter.qs)
+
+        paginator_tasks = Paginator(tasks_filter.qs, 10)
+        # print(paginator_tasks.count)
+        # print(paginator_tasks.num_pages)
+        # print(paginator_tasks.page_range)
+        # print(paginator_tasks.count)
+        # print(paginator_tasks.get_page(2))
+
+        page = request.GET.get("page")
+        tasks_page = paginator_tasks.get_page(page)
+
+        # context = {"tasks": tasks, "tasks_filter": tasks_filter}
+        context = {"tasks_filter": tasks_page, "tasks_form": tasks_filter}
+
         template_path = "kanban/pages/task_done_list.html"
 
         return render(

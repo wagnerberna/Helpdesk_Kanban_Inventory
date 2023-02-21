@@ -1,4 +1,18 @@
 <div class="container">
+    <span class="step-links">
+        {% if tasks_filter.has_previous %}
+            <a href="?page={{ tasks_filter.previous_page_number }}">Anterior</a>
+        {% endif %}
+    
+        <span class="current">
+            {{ tasks_filter.number }} de {{ tasks_filter.paginator.num_pages }}
+        </span>
+    
+        {% if tasks_filter.has_next %}
+            <a href="?page={{ tasks_filter.next_page_number }}">Próxima</a>
+        {% endif %}
+    </span>
+    
     <table class="table-default table table-striped table-hover">
         <thead>
             <th >ID</th>
@@ -10,7 +24,7 @@
             <th>Status</th>
         </thead>
         <tbody>
-            {%for task in tasks_filter.qs%}
+            {%for task in tasks_filter%}
     
             <tr>
                 <td>{{task.id}}</td>
@@ -26,3 +40,4 @@
 
     </table>
 </div>
+
