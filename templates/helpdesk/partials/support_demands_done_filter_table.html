@@ -1,4 +1,18 @@
 <div class="container">
+    <span class="step-links">
+        {% if demand_filter.has_previous %}
+            <a href="?page={{ demand_filter.previous_page_number }}">Anterior</a>
+        {% endif %}
+    
+        <span class="current">
+            {{ demand_filter.number }} de {{ demand_filter.paginator.num_pages }}
+        </span>
+    
+        {% if demand_filter.has_next %}
+            <a href="?page={{ demand_filter.next_page_number }}">Próxima</a>
+        {% endif %}
+    </span>
+
     <table class="table-default table table-striped table-hover">
         <thead>
             <th >ID</th>
@@ -12,7 +26,7 @@
             <th>Acessar</th>
         </thead>
         <tbody>
-            {%for demand in demand_filter.qs%}
+            {%for demand in demand_filter%}
     
             <tr>
                 <td>{{demand.id}}</td>
