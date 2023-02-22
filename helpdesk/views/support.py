@@ -19,9 +19,10 @@ def support_view_list_open(request):
             return redirect("access_denied")
 
         demands = Demand.objects.all().order_by("-id").exclude(status__name="Concluído")
-        demand_filter = SupportFilterSerializer(request.GET, queryset=demands)
+        demands_filter = SupportFilterSerializer(request.GET, queryset=demands)
 
-        context = {"all_demands": demands, "demand_filter": demand_filter}
+        # context = {"all_demands": demands, "demand_filter": demand_filter}
+        context = {"demands_filter": demands_filter.qs, "demand_form": demands_filter}
         template_path = "helpdesk/pages/support_list_demands_open.html"
 
         return render(
