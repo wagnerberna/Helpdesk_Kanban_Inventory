@@ -41,14 +41,14 @@ def demand_view_list_done(request):
             .order_by("-id")
         )
 
-        demand_filter = DemandFilterSerializer(request.GET, queryset=demands)
+        demands_filter = DemandFilterSerializer(request.GET, queryset=demands)
 
-        paginator_demands = Paginator(demand_filter.qs, 50)
+        paginator_demands = Paginator(demands_filter.qs, 50)
         page = request.GET.get("page")
         demands_page = paginator_demands.get_page(page)
 
-        # context = {"demands": demands, "demand_filter": demand_filter}
-        context = {"demand_filter": demands_page, "demand_form": demand_filter}
+        # context = {"demands": demands, "demands_filter": demands_filter}
+        context = {"demands_filter": demands_page, "demand_form": demands_filter}
 
         template_path = "helpdesk/pages/demand_list_done_filter.html"
 
