@@ -1,6 +1,7 @@
 from decouple import config
 from django import forms
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404, redirect, render
 from helpdesk.api.serializers import DemandFilterSerializer
 from helpdesk.forms import DemandFormCreate, DemandFormUpdate
@@ -42,7 +43,13 @@ def demand_view_list_done(request):
 
         demand_filter = DemandFilterSerializer(request.GET, queryset=demands)
 
-        context = {"demands": demands, "demand_filter": demand_filter}
+        paginator_demands = Paginator(demand_filter.qs, 50)
+        page = request.GET.get("page")
+        demands_page = paginator_demands.get_page(page)
+
+        # context = {"demands": demands, "demand_filter": demand_filter}
+        context = {"demand_filter": demands_page, "demand_form": demand_filter}
+
         template_path = "helpdesk/pages/demand_list_done_filter.html"
 
         return render(
