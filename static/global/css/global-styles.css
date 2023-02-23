@@ -381,7 +381,7 @@ h3 {
 /* Menu */
 .menu-container {
     position: fixed;
-    top: 0;
+    top: 85px;
     left: 0;
     bottom: 0;
     width: 260px;
@@ -403,7 +403,7 @@ h3 {
 .button-show-menu {
     position: fixed;
     left: 265px;
-    top: 100px;
+    top: 85px;
     color: var(--color-white);
     background-color: var(--color-a2);
     border: none;

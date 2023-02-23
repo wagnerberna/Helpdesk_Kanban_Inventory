@@ -1,48 +1,49 @@
 {% extends 'kanban/pages/kanban_base.html' %}
 
 {% block main %}
-<div class="container">
-    <h1>Gerenciamento Kanban</h1>
-        <h2>Projetos:</h2>
-        <h3>
-            <a href="{%url "projects_open"%}">
-                <i class="fa-sharp fa-solid fa-list-check main-logo-icon"></i>
-                Projetos Abertos
-            </a>
-        </h3>
-        <h3>
-            <a href="{%url "project_add"%}">
-                <i class="fa-sharp fa-solid fa-circle-check main-logo-icon"></i>
-                Adicionar Projeto
-            </a>
-        </h3>
-        <h3>
-            <a href="{%url "projects_done"%}">
-                <i class="fa-sharp fa-solid fa-check-double main-logo-icon"></i>
-                Projetos Concluídos
-            </a>
-        </h3>
+    {% include "global/menu.html" %}
+    <div class="container">
+        <h1>Gerenciamento Kanban</h1>
+            <h2>Projetos:</h2>
+            <h3>
+                <a href="{%url "projects_open"%}">
+                    <i class="fa-sharp fa-solid fa-list-check main-logo-icon"></i>
+                    Projetos Abertos
+                </a>
+            </h3>
+            <h3>
+                <a href="{%url "project_add"%}">
+                    <i class="fa-sharp fa-solid fa-circle-check main-logo-icon"></i>
+                    Adicionar Projeto
+                </a>
+            </h3>
+            <h3>
+                <a href="{%url "projects_done"%}">
+                    <i class="fa-sharp fa-solid fa-check-double main-logo-icon"></i>
+                    Projetos Concluídos
+                </a>
+            </h3>
 
-        <h2>Tarefas:</h2>
-        <h3>
-            <a href="{%url "task_open_filter"%}">
-                <i class="fa-sharp fa-solid fa-list-check main-logo-icon"></i>
-                Tarefas em Aberto
-            </a>
-        </h3>
-        <h3>
-            <a href="{%url "task_add"%}">
-                <i class="fa-sharp fa-solid fa-circle-check main-logo-icon"></i>
-                Adicionar Tarefa
-            </a>
-        </h3>
-        <h3>
-            <a href="{%url "task_done_filter"%}">
-                <i class="fa-sharp fa-solid fa-check-double main-logo-icon"></i>
-                Tarefas Finalizadas
-            </a>
-        </h3>
+            <h2>Tarefas:</h2>
+            <h3>
+                <a href="{%url "task_open_filter"%}">
+                    <i class="fa-sharp fa-solid fa-list-check main-logo-icon"></i>
+                    Tarefas em Aberto
+                </a>
+            </h3>
+            <h3>
+                <a href="{%url "task_add"%}">
+                    <i class="fa-sharp fa-solid fa-circle-check main-logo-icon"></i>
+                    Adicionar Tarefa
+                </a>
+            </h3>
+            <h3>
+                <a href="{%url "task_done_filter"%}">
+                    <i class="fa-sharp fa-solid fa-check-double main-logo-icon"></i>
+                    Tarefas Finalizadas
+                </a>
+            </h3>
+        </div>
+
     </div>
-
-</div>
 {% endblock main %}
