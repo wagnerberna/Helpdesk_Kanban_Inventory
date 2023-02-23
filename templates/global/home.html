@@ -2,6 +2,11 @@
 {% block head_title %}Sistemas TI{% endblock head_title %}
 {% block header_title %}Sistemas TI{% endblock header_title %}
 {% block main %}
+
+{%if support_check%}
+    {% include "global/menu.html" %}
+{%endif%}
+
     <div class="container-main-division">
         <div class="container-child-division">
             <div class="container">
@@ -27,6 +32,7 @@
                 </h3>
             </div>
             {%if support_check%}
+                
                 <div class="container">
                     <h2>Supporte</h2>
                     <h3>

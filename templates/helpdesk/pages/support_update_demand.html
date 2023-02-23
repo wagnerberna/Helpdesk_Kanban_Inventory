@@ -3,16 +3,35 @@
 {% block main %}
 
     <div class="container container-main-division">
+
         <div class="container containers-child-division">
+
             <h2>Atualizar Chamado</h2>
             {%include "helpdesk/partials/support_update_form.html"%}
+
+
+                <a href="{%url "support_by_technical"%}">
+                    <i class="fa-sharp fa-solid fa-user-secret main-logo-icon"></i>
+                    Meus Chamados
+                </a>
+
         </div>
 
         <div class="container containers-child-division">
             <h2>Histórico do Chamado:</h2>
             {%include "helpdesk/partials/historic_demand.html"%}
             {%include "helpdesk/partials/support_historic_add_form.html"%}
+            
+
+                <a href="{%url "support_by_technical"%}">
+                    <i class="fa-sharp fa-solid fa-user-secret main-logo-icon"></i>
+                    Meus Chamados
+                </a>
+
+            
         </div>
         
+        
+
     </div>
 {% endblock main %}

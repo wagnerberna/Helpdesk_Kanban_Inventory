@@ -1,0 +1,29 @@
+<button class="button-show-menu button-show-menu-visible">
+    <i class="fas fa-bars"></i>
+</button>
+
+<div class="menu-container menu-hidden">
+    <button class="button-close-menu button-close-menu-visible">
+        <i class="fas fa-times-circle"></i>
+    </button>
+
+    <div class="menu-content">
+        <nav class="menu-nav">
+            <a href="{%url "support_list_all"%}">
+                <i class="fa-sharp fa-solid fa-list main-logo-icon"></i>
+                Fila de Chamados
+            </a>
+
+            <a href="{%url "support_by_technical"%}">
+                <i class="fa-sharp fa-solid fa-user-secret main-logo-icon"></i>
+                Meus Chamados
+            </a>
+
+            <a href="{%url "kanban_projects"%}">
+                <i class="fa-solid fa-table-columns main-logo-icon"></i>
+                Quadro Kanban
+            </a>
+
+        </nav>
+    </div>
+</div>
