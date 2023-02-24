@@ -1,0 +1,31 @@
+{% extends 'ti/pages/ti_base.html' %}
+{% load static %}
+{% comment %} load static para gráfico {% endcomment %}
+
+{% block main %}
+    {% include "global/menu.html" %}
+
+    <div class="container">
+        <h2 class="activity-technician">Atividades por Técnico:</h2>
+
+        <h3 class="sla-report">SLA médio de atendimento por chamado: <span class="span_blue">{{sla}}</span></h3>
+
+        {% comment %} {%include "ti/partials/graphic_per_techical.html"%} {% endcomment %}
+        
+                  <canvas id="despesas_mensal" width="250" height="200"></canvas>
+        
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{% static 'js/make_graphics.js' %}" type="text/javascript"></script>
+
+    {% comment %} <script src="{% static 'js/make_graphics.js' %}"></script> {% endcomment %}
+
+    <script>
+        window.onload = function(e){
+        renderiza_despesas_mensal()
+    }
+    </script>
+
+{% endblock main %}

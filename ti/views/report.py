@@ -5,11 +5,13 @@ from multiprocessing import Process
 import pandas as pd
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.db.models import Count
+
+# from django.db.models import Count
 from django.shortcuts import redirect, render
 from helpdesk.models import Demand
 from kanban.models import Project, Task
-from ti.models import Department, Profile
+
+# from ti.models import Department, Profile
 from ti.service.check_user_access import check_user_access
 from ti.service.dataframe import (
     dataframe_desktop_ranking,
@@ -373,38 +375,38 @@ def workstations_ranking(request):
 
 
 # !!!!!!!!!!!!! verificar !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-@login_required
-def report_per_departament(request):
-    try:
-        check_access = check_user_access(request)
-        if not check_access:
-            return redirect("access_denied")
+# @login_required
+# def report_per_departament(request):
+#     try:
+#         check_access = check_user_access(request)
+#         if not check_access:
+#             return redirect("access_denied")
 
-        departaments = list(Department.objects.all().values_list("name"))
-        # print("departaments:::", departaments)
+# departaments = list(Department.objects.all().values_list("name"))
+# print("departaments:::", departaments)
 
-        # users_per_departments = User.objects.filter(username__profile__department=1)
-        users_per_departments = Profile.objects.filter(department__name="RH")
-        # print("users_per_departments:::", users_per_departments)
-        # print("users_per_departments2:::", users_per_departments.values("user"))
+# users_per_departments = User.objects.filter(username__profile__department=1)
+# users_per_departments = Profile.objects.filter(department__name="RH")
+# print("users_per_departments:::", users_per_departments)
+# print("users_per_departments2:::", users_per_departments.values("user"))
 
-        users_per_departments3 = Profile.objects.filter(user=3)
-        # print("users_per_departments3:::", users_per_departments3)
-        # print("users_per_departments3:::", users_per_departments3[0])
+# users_per_departments3 = Profile.objects.filter(user=3)
+# print("users_per_departments3:::", users_per_departments3)
+# print("users_per_departments3:::", users_per_departments3[0])
 
-        # print(
-        #     "users_per_departments3:::",
-        #     users_per_departments3.values("department")[0].get("department"),
-        # )
-        # print("users_per_departments3:::", users_per_departments3.values("department"))
-        # print(
-        #     "users_per_departments3:::",
-        #     users_per_departments3.values_list("department"),
-        # )
+# print(
+#     "users_per_departments3:::",
+#     users_per_departments3.values("department")[0].get("department"),
+# )
+# print("users_per_departments3:::", users_per_departments3.values("department"))
+# print(
+#     "users_per_departments3:::",
+#     users_per_departments3.values_list("department"),
+# )
 
-        template_path = "ti/pages/report_per_departament.html"
-        context = {"data": "data"}
-        return render(request, template_path, context)
-    except Exception as error:
-        print("Internal error:", error)
-        raise
+#     template_path = "ti/pages/report_per_departament.html"
+#     context = {"data": "data"}
+#     return render(request, template_path, context)
+# except Exception as error:
+#     print("Internal error:", error)
+#     raise
