@@ -16,7 +16,7 @@ def send_email(recipient_list, subject, message):
             auth_password=config("EMAIL_HOST_PASSWORD"),
             fail_silently=True,
         )
-        print("send mail!!!!")
+        # print("send mail!!!!")
 
     except Exception as error:
         print("Internal error:", error)
