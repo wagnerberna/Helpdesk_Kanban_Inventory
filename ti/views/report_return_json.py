@@ -42,7 +42,7 @@ def return_total_technicals_demand(request):
 
 
 @login_required
-def return_total_technicals_tasks_project(request):
+def return_total_technicals_tasks(request):
     try:
         check_access = check_user_access(request)
         if not check_access:
