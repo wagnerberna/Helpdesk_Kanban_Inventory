@@ -1,4 +1,4 @@
-function bar_demands() {
+function bar_demands_test() {
     const ctx = document.getElementById('bar_demands').getContext('2d');
     const myChart = new Chart(ctx, {
         type: 'bar',
@@ -31,7 +31,7 @@ function bar_demands() {
     });
 }
 
-function pie_demands() {
+function pie_demands_test() {
     const ctx = document.getElementById('pie_demands').getContext('2d');
     const myChart = new Chart(ctx, {
         type: 'doughnut',

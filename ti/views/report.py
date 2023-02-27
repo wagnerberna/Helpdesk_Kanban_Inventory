@@ -19,15 +19,10 @@ from ti.service.dataframe import (
     excel_to_json,
 )
 from ti.service.format_time import format_time_delta
-from ti.service.make_graphics import (
-    make_graphic_bar,
-    make_graphic_bar_project,
-    make_graphic_bar_ranking,
-    make_graphic_barh,
-    make_graphic_pie,
-)
+from ti.service.make_graphics import MakeGraphics
 from ti.service.resume_hardware import ProcessHardwareFiles
 
+make_graphics = MakeGraphics()
 convert_files = ProcessHardwareFiles()
 
 
@@ -80,7 +75,7 @@ def report_per_technical(request):
         title = "Chamados por Técnico"
         color = "#7fe686"
 
-        graphic_demands = make_graphic_bar(
+        graphic_demands = make_graphics.bar(
             title, color, techinicals_labels, demands_total_per_techinical
         )
 
@@ -96,7 +91,7 @@ def report_per_technical(request):
         title = "Projetos: Tarefas por Técnico"
         color = "#86cbf9"
 
-        graphic_projects = make_graphic_bar(
+        graphic_projects = make_graphics.bar(
             title, color, techinicals_labels, tasks_total_per_techinical
         )
 
@@ -176,7 +171,7 @@ def report_per_project(request):
         title = "Projetos: Percentual de Conclusão"
         color = "#86cbf9"
 
-        graphic_projects = make_graphic_barh(
+        graphic_projects = make_graphics.barh(
             title, color, projects_labels, project_percent_to_graphic
         )
 
@@ -191,7 +186,7 @@ def report_per_project(request):
         ylabel = "Quantidade"
         xlabel = "Projetos"
         title = "Projetos: Qtde e Status das Tarefas"
-        graphic_projects_tasks_status = make_graphic_bar_project(
+        graphic_projects_tasks_status = make_graphics.bar_project(
             title, xlabel, ylabel, df_projects_tasks_status
         )
 
@@ -314,7 +309,7 @@ def workstations_ranking(request):
         # title = "Workstations"
         ranking_labels = ["A-i7", "B-i5", "C-i3", "D-Core", "E-Celeron"]
         ranking_values = dataframe_desktop_ranking(file)
-        graphic_ranking = make_graphic_pie(ranking_labels, ranking_values)
+        graphic_ranking = make_graphics.pie_ranking(ranking_labels, ranking_values)
 
         # ranking sector:
         departments_adm = [
@@ -355,10 +350,10 @@ def workstations_ranking(request):
         xlabel = "Setores"
         title_adm = "Administrativo Qtde de Estações por Categoria"
         title_fab = "Fabrica Qtde de Estações por Categoria"
-        graphic_departaments_adm = make_graphic_bar_ranking(
+        graphic_departaments_adm = make_graphics.bar_ranking(
             title_adm, xlabel, ylabel, df_adm
         )
-        graphic_departaments_fab = make_graphic_bar_ranking(
+        graphic_departaments_fab = make_graphics.bar_ranking(
             title_fab, xlabel, ylabel, df_fab
         )
 
