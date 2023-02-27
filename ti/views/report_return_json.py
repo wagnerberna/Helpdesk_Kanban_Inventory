@@ -5,6 +5,7 @@ from django.shortcuts import redirect, render
 from helpdesk.models import Demand
 from kanban.models import Project, Task
 from ti.service.check_user_access import check_user_access
+from ti.service.dataframe import dataframe_desktop_ranking
 
 
 @login_required
@@ -33,9 +34,10 @@ def return_total_technicals_demand(request):
         demands_total_per_technical = [demmands_leonardo, demmands_wagner]
 
         context = {"data": demands_total_per_technical, "labels": techinicals_labels}
-        print(context)
+        # print(context)
 
         return JsonResponse(context)
+
     except Exception as error:
         print("Internal error:", error)
         raise
@@ -67,9 +69,33 @@ def return_total_technicals_tasks(request):
         tasks_total_per_techinical = [tasks_leonardo, tasks_wagner]
 
         context = {"data": tasks_total_per_techinical, "labels": techinicals_labels}
-        print(context)
+        # print(context)
 
         return JsonResponse(context)
+
+    except Exception as error:
+        print("Internal error:", error)
+        raise
+
+
+@login_required
+def return_total_workstations_ranking(request):
+    try:
+        check_access = check_user_access(request)
+        if not check_access:
+            return redirect("access_denied")
+
+        file = "doc/resume.xlsx"
+        # ranking:
+        # title = "Workstations"
+        ranking_labels = ["A-i7", "B-i5", "C-i3", "D-Core", "E-Celeron"]
+        ranking_values = dataframe_desktop_ranking(file)
+
+        context = {"data": ranking_values, "labels": ranking_labels}
+        # print(context)
+
+        return JsonResponse(context)
+
     except Exception as error:
         print("Internal error:", error)
         raise

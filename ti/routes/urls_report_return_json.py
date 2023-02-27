@@ -2,6 +2,7 @@ from django.urls import path
 from ti.views.report_return_json import (
     return_total_technicals_demand,
     return_total_technicals_tasks,
+    return_total_workstations_ranking,
 )
 
 urlpatterns = [
@@ -14,5 +15,10 @@ urlpatterns = [
         "return_total_technicals_tasks/",
         return_total_technicals_tasks,
         name="return_total_technicals_tasks",
+    ),
+    path(
+        "return_total_workstations_ranking/",
+        return_total_workstations_ranking,
+        name="return_total_workstations_ranking",
     ),
 ]

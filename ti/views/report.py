@@ -309,6 +309,8 @@ def workstations_ranking(request):
         # title = "Workstations"
         ranking_labels = ["A-i7", "B-i5", "C-i3", "D-Core", "E-Celeron"]
         ranking_values = dataframe_desktop_ranking(file)
+        # print(ranking_values)
+
         graphic_ranking = make_graphics.pie_ranking(ranking_labels, ranking_values)
 
         # ranking sector:

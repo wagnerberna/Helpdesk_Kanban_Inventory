@@ -37,7 +37,14 @@ def dataframe_desktop_ranking(path_file):
         ranking_c = ranking_count_values.get("C")
         ranking_d = ranking_count_values.get("D")
         ranking_e = ranking_count_values.get("E")
-        ranking_values = [ranking_a, ranking_b, ranking_c, ranking_d, ranking_e]
+        ranking_values = [
+            int(ranking_a),
+            int(ranking_b),
+            int(ranking_c),
+            int(ranking_d),
+            int(ranking_e),
+        ]
+        # print(ranking_values)
 
         return ranking_values
 

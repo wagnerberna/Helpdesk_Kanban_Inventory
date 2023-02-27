@@ -13,6 +13,8 @@
         {% comment %} <canvas id="pie_demands" width="250" height="200"></canvas> {% endcomment %}
         <canvas id="bar_demands_by_technical" width="250" height="200"></canvas>
         <canvas id="bar_tasks_by_technical" width="250" height="200"></canvas>
+        <canvas id="pie_workstations_ranking" width="250" height="200"></canvas>
+
 
 
     </div>
@@ -27,6 +29,8 @@
             {% comment %} pie_demands_test() {% endcomment %}
             bar_demands_by_technical("{% url 'return_total_techicals_demand'%} ")
             bar_tasks_by_technical("{% url 'return_total_technicals_tasks'%} ")
+            pie_workstations_ranking("{% url 'return_total_workstations_ranking'%} ")
+
     }
     </script>
 
