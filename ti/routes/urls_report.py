@@ -9,7 +9,6 @@ from ti.views.report import (
     workstations_ranking,
     workstations_table_update,
 )
-from ti.views.report_interactive import report_interactive
 
 urlpatterns = [
     path("report_per_technical/", report_per_technical, name="report_per_technical"),
@@ -20,5 +19,4 @@ urlpatterns = [
     path("workstations/", workstations_list, name="workstations"),
     path("workstations_update/", workstations_table_update, name="workstations_update"),
     path("ranking/", workstations_ranking, name="ranking"),
-    path("new/", report_interactive, name="new"),
 ]
