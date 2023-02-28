@@ -22,6 +22,8 @@ def return_total_technicals_demand(request):
             User.objects.filter(username="leonardo.susin").values("id")[0].get("id")
         )
 
+        demands_total = techinical_leonardo_id + techinical_Wagner_id
+
         # Gráfico Demandas
         demmands_leonardo = Demand.objects.filter(
             attendant__user_name=techinical_leonardo_id
@@ -33,8 +35,12 @@ def return_total_technicals_demand(request):
         techinicals_labels = ["Leonardo.susin", "Wagner.berna"]
         demands_total_per_technical = [demmands_leonardo, demmands_wagner]
 
-        context = {"data": demands_total_per_technical, "labels": techinicals_labels}
-        # print(context)
+        context = {
+            "data": demands_total_per_technical,
+            "labels": techinicals_labels,
+            "demands_total": demands_total,
+        }
+        print(context)
 
         return JsonResponse(context)
 

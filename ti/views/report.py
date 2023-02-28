@@ -185,7 +185,7 @@ def report_per_project(request):
 
         ylabel = "Quantidade"
         xlabel = "Projetos"
-        title = "Projetos: Qtde e Status das Tarefas"
+        title = "Projetos: Quantidade e Status das Tarefas"
         graphic_projects_tasks_status = make_graphics.bar_project(
             title, xlabel, ylabel, df_projects_tasks_status
         )
@@ -350,8 +350,8 @@ def workstations_ranking(request):
 
         ylabel = "Quantidade"
         xlabel = "Setores"
-        title_adm = "Administrativo Qtde de Estações por Categoria"
-        title_fab = "Fabrica Qtde de Estações por Categoria"
+        title_adm = "Administrativo Quantidade de Estações por Categoria"
+        title_fab = "Fabrica Quantidade de Estações por Categoria"
         graphic_departaments_adm = make_graphics.bar_ranking(
             title_adm, xlabel, ylabel, df_adm
         )

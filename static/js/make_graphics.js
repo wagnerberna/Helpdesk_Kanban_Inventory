@@ -5,9 +5,6 @@ function fetch_url(url) {
 
 async function bar_demands_by_technical(url) {
     const data = await fetch_url(url)
-    // console.log(data)
-    // console.log(data.labels[0])
-    // console.log(data.data[0])
 
     const ctx = document.getElementById('bar_demands_by_technical').getContext('2d');
     const myChart = new Chart(ctx, {
@@ -19,10 +16,10 @@ async function bar_demands_by_technical(url) {
                     label: "Chamados por Técnico",
                     data: data.data,
                     backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
+                        '#7fe686',
                     ],
                     borderColor: [
-                        'rgb(255, 99, 132)',
+                        '#2ad535',
                     ],
                     borderWidth: 1
                 },
@@ -34,9 +31,6 @@ async function bar_demands_by_technical(url) {
 
 async function bar_tasks_by_technical(url) {
     const data = await fetch_url(url)
-    console.log(data)
-    console.log(data.labels[1])
-    console.log(data.data[1])
 
     const ctx = document.getElementById('bar_tasks_by_technical').getContext('2d');
     const myChart = new Chart(ctx, {
@@ -48,10 +42,10 @@ async function bar_tasks_by_technical(url) {
                     label: "Tarefas de Projetos por Técnico",
                     data: data.data,
                     backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
+                        '#86cbf9',
                     ],
                     borderColor: [
-                        'rgb(255, 99, 132)',
+                        '#0b97f4',
                     ],
                     borderWidth: 1
                 },
@@ -63,9 +57,6 @@ async function bar_tasks_by_technical(url) {
 
 async function pie_workstations_ranking(url) {
     const data = await fetch_url(url)
-    console.log(data)
-    console.log(data.labels[1])
-    console.log(data.data[1])
 
     const ctx = document.getElementById('pie_workstations_ranking').getContext('2d');
     const myChart = new Chart(ctx, {
@@ -77,18 +68,18 @@ async function pie_workstations_ranking(url) {
                     label: "Ranking Workstations",
                     data: data.data,
                     backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(255, 159, 64, 0.2)',
-                        'rgba(255, 205, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
+                        '#86cbf9',
+                        '#7fe686',
+                        '#ffe97f',
+                        '#fe7167',
+                        '#ff80ff',
                     ],
                     borderColor: [
-                        'rgb(255, 99, 132)',
-                        'rgb(255, 159, 64)',
-                        'rgb(255, 205, 86)',
-                        'rgb(75, 192, 192)',
-                        'rgb(54, 162, 235)',
+                        '#0b97f4',
+                        '#2ad535',
+                        '#ffd500',
+                        '#fe1201',
+                        '#ff00ff',
                     ],
                     borderWidth: 1
                 },
