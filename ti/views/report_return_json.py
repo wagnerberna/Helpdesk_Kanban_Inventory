@@ -22,8 +22,6 @@ def return_total_technicals_demand(request):
             User.objects.filter(username="leonardo.susin").values("id")[0].get("id")
         )
 
-        demands_total = techinical_leonardo_id + techinical_Wagner_id
-
         # Gráfico Demandas
         demmands_leonardo = Demand.objects.filter(
             attendant__user_name=techinical_leonardo_id
@@ -38,9 +36,8 @@ def return_total_technicals_demand(request):
         context = {
             "data": demands_total_per_technical,
             "labels": techinicals_labels,
-            "demands_total": demands_total,
         }
-        print(context)
+        # print(context)
 
         return JsonResponse(context)
 
@@ -76,6 +73,64 @@ def return_total_technicals_tasks(request):
 
         context = {"data": tasks_total_per_techinical, "labels": techinicals_labels}
         # print(context)
+
+        return JsonResponse(context)
+
+    except Exception as error:
+        print("Internal error:", error)
+        raise
+
+
+@login_required
+def return_total_project_tasks(request):
+    try:
+        check_access = check_user_access(request)
+        if not check_access:
+            return redirect("access_denied")
+
+        # Table Projects
+        projects_names = list(Project.objects.all().values_list("name"))
+
+        projects_list = []
+        project_percent_to_graphic = []
+        projects_labels = []
+
+        for project in projects_names:
+
+            project_tasks_total_count = Task.objects.filter(
+                project__name=project[0]
+            ).count()
+            if not project_tasks_total_count:
+                project_tasks_total_count = 1
+
+            project_tasks_done_count = Task.objects.filter(
+                project__name=project[0], status__name="DONE"
+            ).count()
+
+            project_tasks_active = project_tasks_total_count - project_tasks_done_count
+
+            project_percentage = (
+                project_tasks_done_count / project_tasks_total_count
+            ) * 100
+            projects_list.append(
+                {
+                    "name": project[0],
+                    "task_active": project_tasks_active,
+                    "task_done": project_tasks_done_count,
+                    "task_total": project_tasks_total_count,
+                    "project_percentage": round(project_percentage),
+                }
+            )
+
+            if project_percentage != 100:
+                projects_labels.append(project[0])
+                project_percent_to_graphic.append(project_percentage)
+
+        context = {
+            "data": projects_list,
+            "labels": projects_labels,
+        }
+        print(context)
 
         return JsonResponse(context)
 

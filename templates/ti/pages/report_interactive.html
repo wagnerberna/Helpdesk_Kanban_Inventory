@@ -13,7 +13,7 @@
         {% comment %} <canvas id="pie_demands" width="250" height="200"></canvas> {% endcomment %}
         <canvas class="canvas" id="bar_demands_by_technical"></canvas>
         <canvas class="canvas" id="bar_tasks_by_technical"></canvas>
-        <canvas class="canvas" id="bar_tasks_by_technical2"></canvas>
+        <canvas class="canvas" id="pie_tasks_projects"></canvas>
         <canvas class="canvas" id="pie_workstations_ranking"></canvas>
 
     </div>
@@ -30,6 +30,8 @@
             bar_demands_by_technical("{% url 'return_total_techicals_demand'%} ")
             bar_tasks_by_technical("{% url 'return_total_technicals_tasks'%} ")
             pie_workstations_ranking("{% url 'return_total_workstations_ranking'%} ")
+            pie_tasks_projects("{% url 'return_total_project_tasks'%} ")
+
 
     }
     </script>
