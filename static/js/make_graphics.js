@@ -91,6 +91,7 @@ async function pie_workstations_ranking(url) {
 
 async function pie_tasks_projects(url) {
     const data = await fetch_url(url)
+    console.log(data)
 
     const ctx = document.getElementById('pie_tasks_projects').getContext('2d');
     const myChart = new Chart(ctx, {
@@ -99,8 +100,8 @@ async function pie_tasks_projects(url) {
             labels: data.labels,
             datasets: [
                 {
-                    label: "Ranking Workstations",
-                    data: data.data,
+                    label: "Projetos",
+                    data: data.tasks_total,
                     backgroundColor: [
                         '#86cbf9',
                         '#7fe686',

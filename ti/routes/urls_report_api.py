@@ -1,5 +1,5 @@
 from django.urls import path
-from ti.views.report_return_json import (
+from ti.views.report_api import (
     return_total_project_tasks,
     return_total_technicals_demand,
     return_total_technicals_tasks,

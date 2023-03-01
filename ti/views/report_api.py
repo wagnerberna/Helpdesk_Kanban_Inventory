@@ -91,9 +91,11 @@ def return_total_project_tasks(request):
         # Table Projects
         projects_names = list(Project.objects.all().values_list("name"))
 
-        projects_list = []
-        project_percent_to_graphic = []
         projects_labels = []
+        project_tasks_active = []
+        project_tasks_done = []
+        project_tasks_total = []
+        project_percentage = []
 
         for project in projects_names:
 
@@ -106,29 +108,29 @@ def return_total_project_tasks(request):
             project_tasks_done_count = Task.objects.filter(
                 project__name=project[0], status__name="DONE"
             ).count()
+            # if not project_tasks_done_count:
+            #     project_tasks_done_count = 0
 
-            project_tasks_active = project_tasks_total_count - project_tasks_done_count
+            tasks_active_count = project_tasks_total_count - project_tasks_done_count
 
-            project_percentage = (
-                project_tasks_done_count / project_tasks_total_count
-            ) * 100
-            projects_list.append(
-                {
-                    "name": project[0],
-                    "task_active": project_tasks_active,
-                    "task_done": project_tasks_done_count,
-                    "task_total": project_tasks_total_count,
-                    "project_percentage": round(project_percentage),
-                }
+            percentage = round(
+                (project_tasks_done_count / project_tasks_total_count) * 100
             )
 
-            if project_percentage != 100:
+            if percentage != 100:
                 projects_labels.append(project[0])
-                project_percent_to_graphic.append(project_percentage)
+                project_tasks_total.append(project_tasks_total_count)
+                project_tasks_active.append(tasks_active_count)
+                project_tasks_done.append(project_tasks_done_count)
+                project_percentage.append(percentage)
 
+            print(project_tasks_done)
         context = {
-            "data": projects_list,
             "labels": projects_labels,
+            "tasks_total": project_tasks_total,
+            "tasks_active": project_tasks_active,
+            "tasks_done": project_tasks_done,
+            "project_percentage": project_percentage,
         }
         print(context)
 
