@@ -55,6 +55,65 @@ async function bar_tasks_by_technical(url) {
     });
 }
 
+async function bar_tasks_status_project(url) {
+    const data = await fetch_url(url)
+
+    const ctx = document.getElementById('bar_tasks_status_project').getContext('2d');
+    const myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: data.labels,
+            datasets: [
+                {
+                    label: data.label_status[0],
+                    data: data.tasks_to_do,
+                    backgroundColor: [
+                        '#7fe686',
+                    ],
+                    borderColor: [
+                        '#2ad535',
+                    ],
+                    borderWidth: 1
+                },
+                {
+                    label: data.label_status[1],
+                    data: data.tasks_doing,
+                    backgroundColor: [
+                        '#ffe97f',
+                    ],
+                    borderColor: [
+                        '#ffd500',
+                    ],
+                    borderWidth: 1
+                },
+                {
+                    label: data.label_status[2],
+                    data: data.tasks_blocked,
+                    backgroundColor: [
+                        '#fe7167',
+                    ],
+                    borderColor: [
+                        '#fe1201',
+                    ],
+                    borderWidth: 1
+                },
+                {
+                    label: data.label_status[3],
+                    data: data.tasks_done,
+                    backgroundColor: [
+                        '#86cbf9',
+                    ],
+                    borderColor: [
+                        '#0b97f4',
+                    ],
+                    borderWidth: 1
+                },
+            ]
+
+        },
+    });
+}
+
 async function pie_workstations_ranking(url) {
     const data = await fetch_url(url)
 
@@ -100,7 +159,7 @@ async function pie_tasks_projects(url) {
             labels: data.labels,
             datasets: [
                 {
-                    label: "Projetos",
+                    label: "Total de Tarefas",
                     data: data.tasks_total,
                     backgroundColor: [
                         '#86cbf9',

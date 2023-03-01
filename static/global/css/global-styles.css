@@ -448,9 +448,22 @@ h3 {
 
 /* Fim Menu */
 
-.canvas {
-    max-width: 550px;
+.canvas-bar-small {
+    max-width: 250px;
+    max-height: 300px;
+}
+
+.canvas-bar-great {
+    max-width: 1000px;
     max-height: 500px;
-    /* width: 250;
-    height: 200; */
+}
+
+.canvas-pie-small {
+    max-width: 500px;
+    max-height: 500px;
+}
+
+.canvas-pie-great {
+    max-width: 650px;
+    max-height: 650px;
 }

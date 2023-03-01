@@ -92,44 +92,62 @@ def api_total_project_tasks(request):
         projects_names = list(Project.objects.all().values_list("name"))
 
         projects_labels = []
-        project_tasks_active = []
-        project_tasks_done = []
-        project_tasks_total = []
+        tasks_to_do = []
+        tasks_doing = []
+        tasks_blocked = []
+        tasks_done = []
+        tasks_active = []
+        tasks_done = []
+        tasks_total = []
         project_percentage = []
+        label_status = ["TO DO", "DOING", "BLOCKED", "DONE"]
 
         for project in projects_names:
 
-            project_tasks_total_count = Task.objects.filter(
-                project__name=project[0]
-            ).count()
-            if not project_tasks_total_count:
-                project_tasks_total_count = 1
+            tasks_total_count = Task.objects.filter(project__name=project[0]).count()
+            if not tasks_total_count:
+                tasks_total_count = 1
 
-            project_tasks_done_count = Task.objects.filter(
+            tasks_to_do_count = Task.objects.filter(
+                project__name=project[0], status__name="TO DO"
+            ).count()
+
+            tasks_doing_count = Task.objects.filter(
+                project__name=project[0], status__name="DOING"
+            ).count()
+
+            tasks_blocked_count = Task.objects.filter(
+                project__name=project[0], status__name="BLOCKED"
+            ).count()
+
+            tasks_done_count = Task.objects.filter(
                 project__name=project[0], status__name="DONE"
             ).count()
-            # if not project_tasks_done_count:
-            #     project_tasks_done_count = 0
 
-            tasks_active_count = project_tasks_total_count - project_tasks_done_count
+            tasks_active_count = tasks_total_count - tasks_done_count
 
-            percentage = round(
-                (project_tasks_done_count / project_tasks_total_count) * 100
-            )
+            percentage = round((tasks_done_count / tasks_total_count) * 100)
 
             if percentage != 100:
                 projects_labels.append(project[0])
-                project_tasks_total.append(project_tasks_total_count)
-                project_tasks_active.append(tasks_active_count)
-                project_tasks_done.append(project_tasks_done_count)
+                tasks_total.append(tasks_total_count)
+                tasks_active.append(tasks_active_count)
+                tasks_to_do.append(tasks_to_do_count)
+                tasks_doing.append(tasks_doing_count)
+                tasks_blocked.append(tasks_blocked_count)
+                tasks_done.append(tasks_done_count)
                 project_percentage.append(percentage)
 
-            print(project_tasks_done)
+            print(tasks_done)
         context = {
             "labels": projects_labels,
-            "tasks_total": project_tasks_total,
-            "tasks_active": project_tasks_active,
-            "tasks_done": project_tasks_done,
+            "label_status": label_status,
+            "tasks_total": tasks_total,
+            "tasks_active": tasks_active,
+            "tasks_to_do": tasks_to_do,
+            "tasks_doing": tasks_doing,
+            "tasks_blocked": tasks_blocked,
+            "tasks_done": tasks_done,
             "project_percentage": project_percentage,
         }
         print(context)

@@ -25,6 +25,6 @@ urlpatterns = [
     path(
         "api_total_project_tasks/",
         api_total_project_tasks,
-        name="return_total_project_tasks",
+        name="api_total_project_tasks",
     ),
 ]
