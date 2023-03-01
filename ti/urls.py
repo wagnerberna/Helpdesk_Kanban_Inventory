@@ -33,7 +33,7 @@ urlpatterns = [
     path("kanban/", include("kanban.routes.urls_task")),
     path("report/", include("ti.routes.urls_report")),
     path("report_interactive/", include("ti.routes.url_report_interactive")),
-    path("report_return_json/", include("ti.routes.urls_report_api")),
+    path("report_api/", include("ti.routes.urls_report_api")),
     # path("kanban/api/", include("kanban.api.urls")),
     # path("helpdesk/api/", include("helpdesk.api.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

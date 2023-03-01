@@ -9,7 +9,7 @@ from ti.service.dataframe import dataframe_desktop_ranking
 
 
 @login_required
-def return_total_technicals_demand(request):
+def api_total_technicals_demand(request):
     try:
         check_access = check_user_access(request)
         if not check_access:
@@ -47,7 +47,7 @@ def return_total_technicals_demand(request):
 
 
 @login_required
-def return_total_technicals_tasks(request):
+def api_total_technicals_tasks(request):
     try:
         check_access = check_user_access(request)
         if not check_access:
@@ -82,7 +82,7 @@ def return_total_technicals_tasks(request):
 
 
 @login_required
-def return_total_project_tasks(request):
+def api_total_project_tasks(request):
     try:
         check_access = check_user_access(request)
         if not check_access:
@@ -142,7 +142,7 @@ def return_total_project_tasks(request):
 
 
 @login_required
-def return_total_workstations_ranking(request):
+def api_total_workstations_ranking(request):
     try:
         check_access = check_user_access(request)
         if not check_access:
