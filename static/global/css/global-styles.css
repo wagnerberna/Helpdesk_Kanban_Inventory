@@ -467,6 +467,7 @@ h3 {
 .canvas-pie-small {
     min-width: 200px;
     min-height: 200px;
+    max-height: 350px;
 }
 
 .canvas-pie-great {
