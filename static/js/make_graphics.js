@@ -193,47 +193,46 @@ async function pie_tasks_projects(url) {
     });
 }
 
-async function pie_percentage_projects(url) {
+async function bar_percentage_projects(url) {
     const data = await fetch_url(url)
-    // console.log(data)
 
-    const ctx = document.getElementById('pie_percentage_projects').getContext('2d');
+    const ctx = document.getElementById('bar_percentage_projects').getContext('2d');
     const myChart = new Chart(ctx, {
         type: 'bar',
         data: {
             labels: data.labels,
             datasets: [
                 {
-                    label: "Total de Tarefas",
+                    axis: "y",
+                    label: "Percentual",
                     data: data.project_percentage,
                     backgroundColor: [
                         '#86cbf9',
-                        '#7fe686',
-                        '#ffe97f',
-                        '#fe7167',
-                        '#ff80ff',
-                        '#80ffff',
-                        '#ffcc80',
-                        '#ff9f80',
-                        '#ccccb3',
-                        '#b3cccc',
                     ],
                     borderColor: [
                         '#0b97f4',
-                        '#2ad535',
-                        '#ffd500',
-                        '#fe1201',
-                        '#ff00ff',
-                        '#00e6e6',
-                        '#ff9900',
-                        '#ff4000',
-                        '#999966',
-                        '#669999',
                     ],
                     borderWidth: 1
                 },
             ]
 
         },
+        options: {
+            indexAxis: 'y',
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        min: 0,
+                        max: 120,
+                        callback: function (value) { return value + "%" }
+                    },
+                    scaleLabel: {
+                        display: true,
+                        labelString: "Percentage"
+                    }
+                }]
+            }
+        }
+
     });
 }

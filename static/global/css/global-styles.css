@@ -463,7 +463,6 @@ h3 {
     min-width: 500px;
     min-height: 400px;
     background-color: var(--color-a6);
-
 }
 
 .canvas-pie-small {
@@ -471,14 +470,12 @@ h3 {
     min-height: 200px;
     max-height: 350px;
     background-color: var(--color-a6);
-
 }
 
 .canvas-pie-great {
     min-width: 250px;
     min-height: 250px;
     background-color: var(--color-a6);
-
 }
 
 .container-dashboard-small {
@@ -504,13 +501,6 @@ h3 {
     justify-content: space-between;
     align-items: center;
 }
-
-/* .container-dashboard-small-child { */
-/* max-height: 30px; */
-/* height: 250px; */
-/* width: 250px; */
-/* } */
-
 
 .container-dashboard-total {
     background-color: var(--color-primary-hover);

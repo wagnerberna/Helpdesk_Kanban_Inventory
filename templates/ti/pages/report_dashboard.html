@@ -11,16 +11,10 @@
         {%include "ti/partials/dashboard_projects.html"%}
 
         
-        
-        
-        
-        <h2>Percentual de Conclusão por Projeto</h2>
-        <canvas class="canvas-bar-great" id="pie_percentage_projects"></canvas>
-        
-
         <h2>Ranking de Works</h2>
         <canvas class="canvas-pie-small" id="pie_workstations_ranking"></canvas>
-
+        
+        
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -35,6 +29,8 @@
             bar_tasks_status_project("{% url 'api_total_project_tasks'%} ")
 
             pie_workstations_ranking("{% url 'api_total_workstations_ranking'%} ")
+            
+            bar_percentage_projects("{% url 'api_total_project_tasks'%} ")
         }
     </script>
 
