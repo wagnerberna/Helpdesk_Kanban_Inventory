@@ -462,17 +462,23 @@ h3 {
 .canvas-bar-great {
     min-width: 500px;
     min-height: 400px;
+    background-color: var(--color-a6);
+
 }
 
 .canvas-pie-small {
     min-width: 200px;
     min-height: 200px;
     max-height: 350px;
+    background-color: var(--color-a6);
+
 }
 
 .canvas-pie-great {
     min-width: 250px;
     min-height: 250px;
+    background-color: var(--color-a6);
+
 }
 
 .container-dashboard-small {
