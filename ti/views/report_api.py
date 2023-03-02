@@ -37,7 +37,6 @@ def api_total_technicals_demand(request):
             "data": demands_total_per_technical,
             "labels": techinicals_labels,
         }
-        # print(context)
 
         return JsonResponse(context)
 
@@ -138,7 +137,6 @@ def api_total_project_tasks(request):
                 tasks_done.append(tasks_done_count)
                 project_percentage.append(percentage)
 
-            print(tasks_done)
         context = {
             "labels": projects_labels,
             "label_status": label_status,
@@ -150,7 +148,6 @@ def api_total_project_tasks(request):
             "tasks_done": tasks_done,
             "project_percentage": project_percentage,
         }
-        print(context)
 
         return JsonResponse(context)
 
@@ -173,7 +170,6 @@ def api_total_workstations_ranking(request):
         ranking_values = dataframe_desktop_ranking(file)
 
         context = {"data": ranking_values, "labels": ranking_labels}
-        # print(context)
 
         return JsonResponse(context)
 

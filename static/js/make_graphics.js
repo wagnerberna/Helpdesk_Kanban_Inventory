@@ -150,7 +150,7 @@ async function pie_workstations_ranking(url) {
 
 async function pie_tasks_projects(url) {
     const data = await fetch_url(url)
-    console.log(data)
+    // console.log(data)
 
     const ctx = document.getElementById('pie_tasks_projects').getContext('2d');
     const myChart = new Chart(ctx, {
@@ -167,6 +167,11 @@ async function pie_tasks_projects(url) {
                         '#ffe97f',
                         '#fe7167',
                         '#ff80ff',
+                        '#80ffff',
+                        '#ffcc80',
+                        '#ff9f80',
+                        '#ccccb3',
+                        '#b3cccc',
                     ],
                     borderColor: [
                         '#0b97f4',
@@ -174,6 +179,56 @@ async function pie_tasks_projects(url) {
                         '#ffd500',
                         '#fe1201',
                         '#ff00ff',
+                        '#00e6e6',
+                        '#ff9900',
+                        '#ff4000',
+                        '#999966',
+                        '#669999',
+                    ],
+                    borderWidth: 1
+                },
+            ]
+
+        },
+    });
+}
+
+async function pie_percentage_projects(url) {
+    const data = await fetch_url(url)
+    // console.log(data)
+
+    const ctx = document.getElementById('pie_percentage_projects').getContext('2d');
+    const myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: data.labels,
+            datasets: [
+                {
+                    label: "Total de Tarefas",
+                    data: data.project_percentage,
+                    backgroundColor: [
+                        '#86cbf9',
+                        '#7fe686',
+                        '#ffe97f',
+                        '#fe7167',
+                        '#ff80ff',
+                        '#80ffff',
+                        '#ffcc80',
+                        '#ff9f80',
+                        '#ccccb3',
+                        '#b3cccc',
+                    ],
+                    borderColor: [
+                        '#0b97f4',
+                        '#2ad535',
+                        '#ffd500',
+                        '#fe1201',
+                        '#ff00ff',
+                        '#00e6e6',
+                        '#ff9900',
+                        '#ff4000',
+                        '#999966',
+                        '#669999',
                     ],
                     borderWidth: 1
                 },

@@ -10,7 +10,7 @@ def report_interactive(request):
         if not check_access:
             return redirect("access_denied")
 
-        template_path = "ti/pages/report_interactive.html"
+        template_path = "ti/pages/report_dashboard.html"
         return render(request, template_path)
     except Exception as error:
         print("Internal error:", error)
