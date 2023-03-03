@@ -488,7 +488,7 @@ h3 {
     display: flex;
     /* flex-wrap: wrap; */
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
 }
 
@@ -500,7 +500,7 @@ h3 {
     display: flex;
     /* flex-wrap: wrap; */
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
 }
 
@@ -518,6 +518,13 @@ h3 {
     border-radius: 10px;
     width: 200px;
     height: 150px;
+}
+
+.container-dashboard-ranking {
+    background-color: var(--color-primary-hover);
+    border-radius: 10px;
+    width: 250px;
+    height: 350px;
 }
 
 .title-center {

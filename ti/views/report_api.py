@@ -1,3 +1,4 @@
+import pandas as pd
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http.response import JsonResponse
@@ -165,11 +166,14 @@ def api_total_workstations_ranking(request):
 
         file = "doc/resume.xlsx"
         # ranking:
-        # title = "Workstations"
+
         ranking_labels = ["A-i7", "B-i5", "C-i3", "D-Core", "E-Celeron"]
         ranking_values = dataframe_desktop_ranking(file)
 
-        context = {"data": ranking_values, "labels": ranking_labels}
+        context = {
+            "data": ranking_values,
+            "labels": ranking_labels,
+        }
 
         return JsonResponse(context)
 
