@@ -3,14 +3,6 @@ from django.db import models
 from ti.models import Department
 
 
-# NF
-class Invoice(models.Model):
-    id = models.AutoField(primary_key=True)
-    number = models.IntegerField(null=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-
 # Hardware
 class WorkstationType(models.Model):
     id = models.AutoField(primary_key=True)
@@ -149,5 +141,29 @@ class Software(models.Model):
     architecture_unit = models.ForeignKey(
         MetricUnit, on_delete=models.CASCADE, null=True
     )
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+
+# Inventory - NF
+class Invoice(models.Model):
+    id = models.AutoField(primary_key=True)
+    invoice = models.IntegerField(null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+
+class Zone(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=20, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+
+class Inventory(models.Model):
+    id = models.AutoField(primary_key=True)
+    inventory = models.CharField(max_length=20, null=True)
+    hardware = models.ForeignKey(Hardware, on_delete=models.CASCADE, null=True)
+    software = models.ForeignKey(Software, on_delete=models.CASCADE, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
