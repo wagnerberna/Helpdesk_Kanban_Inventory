@@ -41,7 +41,7 @@ class CpuModel(models.Model):
 
 class CpuGeneration(models.Model):
     id = models.AutoField(primary_key=True)
-    generation = models.IntegerField(null=True)
+    name = models.IntegerField(null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -67,16 +67,16 @@ class HardDiskSize(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
 
-class MetricUnit(models.Model):
-    id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=20, null=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+# class MetricUnit(models.Model):
+#     id = models.AutoField(primary_key=True)
+#     name = models.CharField(max_length=20, null=True)
+#     created_at = models.DateTimeField(auto_now_add=True)
+#     updated_at = models.DateTimeField(auto_now=True)
 
 
 class Ranking(models.Model):
     id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=5, null=True)
+    name = models.CharField(max_length=20, null=True)
     description = models.CharField(max_length=20, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -107,9 +107,9 @@ class Hardware(models.Model):
     hard_disk_size = models.ForeignKey(
         HardDiskSize, on_delete=models.CASCADE, null=True
     )
-    hard_disk_unit = models.ForeignKey(MetricUnit, on_delete=models.CASCADE, null=True)
+    # hard_disk_unit = models.ForeignKey(MetricUnit, on_delete=models.CASCADE, null=True)
     memory_size = models.ForeignKey(MemorySize, on_delete=models.CASCADE, null=True)
-    memory_unit = models.ForeignKey(MetricUnit, on_delete=models.CASCADE, null=True)
+    # memory_unit = models.ForeignKey(MetricUnit, on_delete=models.CASCADE, null=True)
     ranking = models.ForeignKey(Ranking, on_delete=models.CASCADE, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -125,7 +125,7 @@ class OperationalSystem(models.Model):
 
 class SystemArchitecture(models.Model):
     id = models.AutoField(primary_key=True)
-    architecture = models.IntegerField(null=True)
+    architecture = models.CharField(max_length=20, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -138,9 +138,9 @@ class Software(models.Model):
     architecture = models.ForeignKey(
         SystemArchitecture, on_delete=models.CASCADE, null=True
     )
-    architecture_unit = models.ForeignKey(
-        MetricUnit, on_delete=models.CASCADE, null=True
-    )
+    # architecture_unit = models.ForeignKey(
+    #     MetricUnit, on_delete=models.CASCADE, null=True
+    # )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

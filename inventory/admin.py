@@ -10,7 +10,6 @@ from inventory.models import (
     Inventory,
     Invoice,
     MemorySize,
-    MetricUnit,
     OperationalSystem,
     Ranking,
     Software,
@@ -18,7 +17,6 @@ from inventory.models import (
     WorkstationManufacturer,
     WorkstationModel,
     WorkstationType,
-    Zone,
 )
 
 # Register your models here.
@@ -31,7 +29,6 @@ admin.site.register(Hardware)
 admin.site.register(Inventory)
 admin.site.register(Invoice)
 admin.site.register(MemorySize)
-admin.site.register(MetricUnit)
 admin.site.register(OperationalSystem)
 admin.site.register(Ranking)
 admin.site.register(Software)
@@ -39,4 +36,3 @@ admin.site.register(SystemArchitecture)
 admin.site.register(WorkstationManufacturer)
 admin.site.register(WorkstationModel)
 admin.site.register(WorkstationType)
-admin.site.register(Zone)
