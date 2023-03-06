@@ -35,28 +35,28 @@ class WorkstationModel(models.Model):
 
 class CpuManufacturer(models.Model):
     id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=15, null=True)
+    name = models.CharField(max_length=20, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
 
 class CpuModel(models.Model):
     id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=15, null=True)
+    name = models.CharField(max_length=20, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
 
 class CpuGeneration(models.Model):
     id = models.AutoField(primary_key=True)
-    name = models.IntegerField(null=True)
+    generation = models.IntegerField(null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
 
 class CpuDescription(models.Model):
     id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=100, null=True)
+    name = models.CharField(max_length=80, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -126,10 +126,25 @@ class Hardware(models.Model):
 # Software
 class OperatingSystem(models.Model):
     id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=15, null=True)
+    name = models.CharField(max_length=35, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-class version
+
+class SystemArchitecture(models.Model):
+    id = models.AutoField(primary_key=True)
+    architecture = models.IntegerField(null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
 
+class software(models.Model):
+    id = models.AutoField(primary_key=True)
+    operating_system = models.ForeignKey(
+        OperatingSystem, on_delete=models.CASCADE, null=True
+    )
+    architecture = models.ForeignKey(
+        SystemArchitecture, on_delete=models.CASCADE, null=True
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
