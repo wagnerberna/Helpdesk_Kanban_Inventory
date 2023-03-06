@@ -153,17 +153,12 @@ class Invoice(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
 
-class Zone(models.Model):
-    id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=20, null=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-
 class Inventory(models.Model):
     id = models.AutoField(primary_key=True)
     inventory = models.IntegerField(null=True)
-    zone = models.ForeignKey(Zone, on_delete=models.CASCADE, null=True)
+    hostname = models.CharField(max_length=20, null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    department = models.ForeignKey(Department, on_delete=models.CASCADE, null=True)
     invoice = models.ForeignKey(Invoice, on_delete=models.CASCADE, null=True)
     hardware = models.ForeignKey(Hardware, on_delete=models.CASCADE, null=True)
     software = models.ForeignKey(Software, on_delete=models.CASCADE, null=True)
