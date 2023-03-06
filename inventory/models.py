@@ -77,7 +77,7 @@ class HardDiskSize(models.Model):
 
 class MetricUnit(models.Model):
     id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=5, null=True)
+    name = models.CharField(max_length=20, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -124,7 +124,7 @@ class Hardware(models.Model):
 
 
 # Software
-class OperatingSystem(models.Model):
+class OperationalSystem(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=35, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -138,13 +138,16 @@ class SystemArchitecture(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
 
-class software(models.Model):
+class Software(models.Model):
     id = models.AutoField(primary_key=True)
     operating_system = models.ForeignKey(
-        OperatingSystem, on_delete=models.CASCADE, null=True
+        OperationalSystem, on_delete=models.CASCADE, null=True
     )
     architecture = models.ForeignKey(
         SystemArchitecture, on_delete=models.CASCADE, null=True
+    )
+    architecture_unit = models.ForeignKey(
+        MetricUnit, on_delete=models.CASCADE, null=True
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
