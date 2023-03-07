@@ -1,0 +1,13 @@
+{% extends 'inventory/pages/inventory_base.html' %}
+
+{% block main %}
+    {% include "global/menu.html" %}
+
+    <div class="container">
+        <h2>Tabela Workstations</h2>
+
+        {%include "ti/partials/workstations_table.html"%}
+        
+    </div>
+
+{% endblock main %}

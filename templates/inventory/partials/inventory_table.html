@@ -1,0 +1,44 @@
+<div class="container">
+    <table class="table-default table table-striped table-hover">
+        <thead>
+            <th>Usuario</th>
+            <th>Setor</th>
+            <th>Computador</th>
+            <th>Tipo</th>
+            <th>Ranking</th>
+            <th>CPU_Fabricante</th>
+            <th>CPU_Modelo</th>
+            <th>CPU_Geracao</th>
+            <th>HD</th>
+            <th>SO</th>
+            <th>SO_bits</th>
+            <th>Fabricante</th>
+            <th>Modelo</th>
+            <th>Serial</th>
+        </thead>
+        <tbody>
+            {%if data%}
+                {%for el in data%}
+    
+                    <tr>
+                        <td>{{el.Usuario}}</td>
+                        <td>{{el.Setor}}</td>
+                        <td>{{el.Computador}}</td>
+                        <td>{{el.Tipo}}</td>
+                        <td>{{el.Ranking}}</td>
+                        <td>{{el.CPU_Fabricante}}</td>
+                        <td>{{el.CPU_Modelo}}</td>
+                        <td>{{el.CPU_Geracao}}</td>
+                        <td>{{el.HD}}</td>
+                        <td>{{el.SO}}</td>
+                        <td>{{el.SO_bits}}</td>
+                        <td>{{el.Fabricante}}</td>
+                        <td>{{el.Modelo}}</td>
+                        <td>{{el.Serial}}</td>
+                    </tr>
+                {%endfor%}
+            {%endif%}
+        </tbody>
+    </table>
+    
+</div>
