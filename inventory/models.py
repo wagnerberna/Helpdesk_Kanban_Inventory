@@ -299,7 +299,9 @@ class Inventory(models.Model):
     hardware = models.ForeignKey(Hardware, on_delete=models.CASCADE, null=True)
     workstation_serial = models.CharField(max_length=25, null=True, unique=True)
     software = models.ForeignKey(Software, on_delete=models.CASCADE, null=True)
-    invoice = models.ForeignKey(Invoice, on_delete=models.CASCADE, null=True)
+    invoice = models.ForeignKey(
+        Invoice, on_delete=models.CASCADE, null=True, blank=True
+    )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
