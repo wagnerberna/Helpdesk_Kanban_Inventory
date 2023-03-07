@@ -163,7 +163,6 @@ class Hardware(models.Model):
     workstation_model = models.ForeignKey(
         WorkstationModel, on_delete=models.CASCADE, null=True
     )
-    workstation_serial = models.CharField(max_length=25, null=True, unique=True)
     cpu_manufacturer = models.ForeignKey(
         CpuManufacturer, on_delete=models.CASCADE, null=True
     )
@@ -182,6 +181,37 @@ class Hardware(models.Model):
     # memory_unit = models.ForeignKey(MetricUnit, on_delete=models.CASCADE, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        managed = True
+        db_table = "inventory_hardware"
+        constraints = [
+            models.UniqueConstraint(
+                fields=[
+                    "workstation_type",
+                    "workstation_manufacturer",
+                    "cpu_manufacturer",
+                    "cpu_model",
+                    "cpu_generation",
+                    "hard_disk_size",
+                    "memory_size",
+                    "workstation_model",
+                ],
+                name="unique_hardware_group",
+            )
+        ]
+
+    def __str__(self):
+        return "%s -%s -%s %s %s -HD:%s -Mem:%s -Modelo:%s" % (
+            self.workstation_type,
+            self.workstation_manufacturer,
+            self.cpu_manufacturer,
+            self.cpu_model,
+            self.cpu_generation,
+            self.hard_disk_size,
+            self.memory_size,
+            self.workstation_model,
+        )
 
 
 # Software
@@ -230,6 +260,15 @@ class Software(models.Model):
     class Meta:
         managed = True
         db_table = "inventory_software"
+        constraints = [
+            models.UniqueConstraint(
+                fields=[
+                    "operating_system",
+                    "architecture",
+                ],
+                name="unique_software_group",
+            )
+        ]
 
     def __str__(self):
         return "%s %s" % (self.operating_system, self.architecture)
@@ -258,6 +297,7 @@ class Inventory(models.Model):
     department = models.ForeignKey(Department, on_delete=models.CASCADE, null=True)
     ranking = models.ForeignKey(Ranking, on_delete=models.CASCADE, null=True)
     hardware = models.ForeignKey(Hardware, on_delete=models.CASCADE, null=True)
+    workstation_serial = models.CharField(max_length=25, null=True, unique=True)
     software = models.ForeignKey(Software, on_delete=models.CASCADE, null=True)
     invoice = models.ForeignKey(Invoice, on_delete=models.CASCADE, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
