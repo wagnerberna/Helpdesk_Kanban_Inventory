@@ -4,7 +4,7 @@ from django.db import models
 
 class Status(models.Model):
     id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=20, null=False)
+    name = models.CharField(max_length=20, null=False, unique=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -21,7 +21,7 @@ class Status(models.Model):
 # on_delete set_null (quando uma categoria for apagada o campo se torna nulo)
 class Project(models.Model):
     id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=70, null=False)
+    name = models.CharField(max_length=70, null=False, unique=True)
     status = models.ForeignKey(Status, on_delete=models.SET_NULL, null=True)
     description = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
@@ -38,7 +38,7 @@ class Project(models.Model):
 
 class Category(models.Model):
     id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=70, null=False)
+    name = models.CharField(max_length=70, null=False, unique=True)
     description = models.CharField(max_length=150)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
