@@ -6,7 +6,8 @@ from django.shortcuts import get_object_or_404, redirect, render
 from helpdesk.api.serializers import SupportFilterSerializer
 from helpdesk.forms import HistoricFormAdd, SupportFormUpdate, SupportFormUpdateView
 from helpdesk.models import Demand, Historic
-from helpdesk.service.sla import sla_save
+
+# from helpdesk.service.sla import sla_save
 from ti.service.check_user_access import check_user_access
 from ti.service.email import send_email
 

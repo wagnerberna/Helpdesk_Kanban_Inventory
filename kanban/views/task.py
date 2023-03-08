@@ -58,7 +58,7 @@ def task_view_open(request):
         raise
 
 
-# .qs (query set)
+# .qs (QuerySet)
 @login_required
 def task_view_done(request):
     try:

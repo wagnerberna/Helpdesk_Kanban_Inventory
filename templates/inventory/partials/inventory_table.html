@@ -1,40 +1,46 @@
 <div class="container">
     <table class="table-default table table-striped table-hover">
         <thead>
+            <th>Patrimônio</th>
             <th>Usuario</th>
             <th>Setor</th>
             <th>Computador</th>
             <th>Tipo</th>
             <th>Ranking</th>
-            <th>CPU_Fabricante</th>
-            <th>CPU_Modelo</th>
-            <th>CPU_Geracao</th>
+            <th>Fabricante</th>
+            <th>CPU Fabricante</th>
+            <th>CPU Modelo</th>
+            <th>CPU Geracao</th>
+            <th>Memória</th>
             <th>HD</th>
             <th>SO</th>
             <th>SO_bits</th>
-            <th>Fabricante</th>
             <th>Modelo</th>
             <th>Serial</th>
+            <th>Nota Fiscal</th>
         </thead>
         <tbody>
             {%if data%}
                 {%for el in data%}
     
                     <tr>
-                        <td>{{el.Usuario}}</td>
-                        <td>{{el.Setor}}</td>
-                        <td>{{el.Computador}}</td>
-                        <td>{{el.Tipo}}</td>
-                        <td>{{el.Ranking}}</td>
-                        <td>{{el.CPU_Fabricante}}</td>
-                        <td>{{el.CPU_Modelo}}</td>
-                        <td>{{el.CPU_Geracao}}</td>
-                        <td>{{el.HD}}</td>
-                        <td>{{el.SO}}</td>
-                        <td>{{el.SO_bits}}</td>
-                        <td>{{el.Fabricante}}</td>
-                        <td>{{el.Modelo}}</td>
-                        <td>{{el.Serial}}</td>
+                        <td>{{el.inventory}}</td>
+                        <td>{{el.user}}</td>
+                        <td>{{el.department}}</td>
+                        <td>{{el.hostname}}</td>
+                        <td>{{el.hardware.workstation_type}}</td>
+                        <td>{{el.ranking}}</td>
+                        <td>{{el.hardware.workstation_manufacturer}}</td>
+                        <td>{{el.hardware.cpu_manufacturer}}</td>
+                        <td>{{el.hardware.cpu_model}}</td>
+                        <td>{{el.hardware.cpu_generation}}</td>
+                        <td>{{el.hardware.memory_size}}</td>
+                        <td>{{el.hardware.hard_disk_size}}</td>
+                        <td>{{el.software.operating_system}}</td>
+                        <td>{{el.software.architecture}}</td>
+                        <td>{{el.hardware.workstation_model}}</td>
+                        <td>{{el.workstation_serial}}</td>
+                        <td>{{el.invoice}}</td>
                     </tr>
                 {%endfor%}
             {%endif%}
