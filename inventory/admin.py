@@ -13,6 +13,9 @@ from inventory.models import (
     OperationalSystem,
     Ranking,
     Software,
+    Status,
+    StatusDescription,
+    StatusSituation,
     SystemArchitecture,
     WorkstationManufacturer,
     WorkstationModel,
@@ -36,3 +39,6 @@ admin.site.register(SystemArchitecture)
 admin.site.register(WorkstationManufacturer)
 admin.site.register(WorkstationModel)
 admin.site.register(WorkstationType)
+admin.site.register(Status)
+admin.site.register(StatusSituation)
+admin.site.register(StatusDescription)

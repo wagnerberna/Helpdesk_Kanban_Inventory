@@ -130,13 +130,6 @@ class HardDiskSize(models.Model):
         return "%s" % (self.size)
 
 
-# class MetricUnit(models.Model):
-#     id = models.AutoField(primary_key=True)
-#     name = models.CharField(max_length=20, null=True)
-#     created_at = models.DateTimeField(auto_now_add=True)
-#     updated_at = models.DateTimeField(auto_now=True)
-
-
 class Ranking(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=20, null=True, unique=True)
@@ -158,17 +151,17 @@ class Hardware(models.Model):
         WorkstationType, on_delete=models.CASCADE, null=True
     )
     workstation_manufacturer = models.ForeignKey(
-        WorkstationManufacturer, on_delete=models.CASCADE, null=True
+        WorkstationManufacturer, on_delete=models.CASCADE, null=True, blank=True
     )
     workstation_model = models.ForeignKey(
-        WorkstationModel, on_delete=models.CASCADE, null=True
+        WorkstationModel, on_delete=models.CASCADE, null=True, blank=True
     )
     cpu_manufacturer = models.ForeignKey(
         CpuManufacturer, on_delete=models.CASCADE, null=True
     )
     cpu_model = models.ForeignKey(CpuModel, on_delete=models.CASCADE, null=True)
     cpu_generation = models.ForeignKey(
-        CpuGeneration, on_delete=models.CASCADE, null=True
+        CpuGeneration, on_delete=models.CASCADE, null=True, blank=True
     )
     cpu_description = models.ForeignKey(
         CpuDescription, on_delete=models.CASCADE, null=True
@@ -176,9 +169,7 @@ class Hardware(models.Model):
     hard_disk_size = models.ForeignKey(
         HardDiskSize, on_delete=models.CASCADE, null=True
     )
-    # hard_disk_unit = models.ForeignKey(MetricUnit, on_delete=models.CASCADE, null=True)
     memory_size = models.ForeignKey(MemorySize, on_delete=models.CASCADE, null=True)
-    # memory_unit = models.ForeignKey(MetricUnit, on_delete=models.CASCADE, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -251,9 +242,6 @@ class Software(models.Model):
     architecture = models.ForeignKey(
         SystemArchitecture, on_delete=models.CASCADE, null=True
     )
-    # architecture_unit = models.ForeignKey(
-    #     MetricUnit, on_delete=models.CASCADE, null=True
-    # )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -289,19 +277,62 @@ class Invoice(models.Model):
         return "%s" % (self.number)
 
 
+class StatusSituation(models.Model):
+    name = models.CharField(max_length=20, null=True, unique=True)
+
+    class Meta:
+        managed = True
+        db_table = "inventory_status_situation"
+
+    def __str__(self):
+        return "%s" % (self.name)
+
+
+class StatusDescription(models.Model):
+    name = models.CharField(max_length=200, null=True)
+
+    class Meta:
+        managed = True
+        db_table = "inventory_status_description"
+
+    def __str__(self):
+        return "%s" % (self.name)
+
+
+class Status(models.Model):
+    status = models.ForeignKey(StatusSituation, on_delete=models.CASCADE, null=True)
+    description = models.ForeignKey(
+        StatusDescription, on_delete=models.CASCADE, null=True, blank=True
+    )
+
+    class Meta:
+        managed = True
+        db_table = "inventory_status"
+
+    def __str__(self):
+        return "%s" % (self.name)
+
+
 class Inventory(models.Model):
     id = models.AutoField(primary_key=True)
     inventory = models.IntegerField(null=True, unique=True)
-    hostname = models.CharField(max_length=20, null=True, unique=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-    department = models.ForeignKey(Department, on_delete=models.CASCADE, null=True)
-    ranking = models.ForeignKey(Ranking, on_delete=models.CASCADE, null=True)
+    hostname = models.CharField(max_length=20, null=True, unique=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    department = models.ForeignKey(
+        Department, on_delete=models.CASCADE, null=True, blank=True
+    )
+    ranking = models.ForeignKey(
+        Ranking, on_delete=models.CASCADE, null=True, blank=True
+    )
     hardware = models.ForeignKey(Hardware, on_delete=models.CASCADE, null=True)
-    workstation_serial = models.CharField(max_length=25, null=True, unique=True)
+    workstation_serial = models.CharField(
+        max_length=25, null=True, unique=True, blank=True
+    )
     software = models.ForeignKey(Software, on_delete=models.CASCADE, null=True)
     invoice = models.ForeignKey(
         Invoice, on_delete=models.CASCADE, null=True, blank=True
     )
+    status = models.ForeignKey(Status, on_delete=models.CASCADE, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
