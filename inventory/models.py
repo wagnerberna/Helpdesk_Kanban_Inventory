@@ -301,21 +301,6 @@ class StatusDescription(models.Model):
         return "%s" % (self.name)
 
 
-class Status(models.Model):
-    id = models.AutoField(primary_key=True)
-    status = models.ForeignKey(StatusSituation, on_delete=models.CASCADE, null=True)
-    description = models.ForeignKey(
-        StatusDescription, on_delete=models.CASCADE, null=True, blank=True
-    )
-
-    class Meta:
-        managed = True
-        db_table = "inventory_status"
-
-    def __str__(self):
-        return "%s" % (self.status)
-
-
 class Inventory(models.Model):
     id = models.AutoField(primary_key=True)
     inventory = models.IntegerField(null=True, unique=True)
@@ -335,7 +320,10 @@ class Inventory(models.Model):
     invoice = models.ForeignKey(
         Invoice, on_delete=models.CASCADE, null=True, blank=True
     )
-    status = models.ForeignKey(Status, on_delete=models.CASCADE, null=True)
+    status = models.ForeignKey(StatusSituation, on_delete=models.CASCADE, null=True)
+    description = models.ForeignKey(
+        StatusDescription, on_delete=models.CASCADE, null=True, blank=True
+    )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
