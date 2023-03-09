@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from inventory.models import (  # StatusDescription,; StatusSituation,
+from inventory.models import (
     CpuDescription,
     CpuGeneration,
     CpuManufacturer,
@@ -13,6 +13,8 @@ from inventory.models import (  # StatusDescription,; StatusSituation,
     OperationalSystem,
     Ranking,
     Software,
+    StatusDescription,
+    StatusSituation,
     SystemArchitecture,
     WorkstationManufacturer,
     WorkstationModel,
@@ -36,5 +38,5 @@ admin.site.register(SystemArchitecture)
 admin.site.register(WorkstationManufacturer)
 admin.site.register(WorkstationModel)
 admin.site.register(WorkstationType)
-# admin.site.register(StatusSituation)
-# admin.site.register(StatusDescription)
+admin.site.register(StatusSituation)
+admin.site.register(StatusDescription)

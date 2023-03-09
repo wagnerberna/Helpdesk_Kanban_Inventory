@@ -277,28 +277,28 @@ class Invoice(models.Model):
         return "%s" % (self.number)
 
 
-# class StatusSituation(models.Model):
-#     id = models.AutoField(primary_key=True)
-#     name = models.CharField(max_length=20, null=True, unique=True)
+class StatusSituation(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=20, null=True, unique=True)
 
-#     class Meta:
-#         managed = True
-#         db_table = "inventory_status_situation"
+    class Meta:
+        managed = True
+        db_table = "inventory_status_situation"
 
-#     def __str__(self):
-#         return "%s" % (self.name)
+    def __str__(self):
+        return "%s" % (self.name)
 
 
-# class StatusDescription(models.Model):
-#     id = models.AutoField(primary_key=True)
-#     name = models.CharField(max_length=200, null=True)
+class StatusDescription(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=200, null=True)
 
-#     class Meta:
-#         managed = True
-#         db_table = "inventory_status_description"
+    class Meta:
+        managed = True
+        db_table = "inventory_status_description"
 
-#     def __str__(self):
-#         return "%s" % (self.name)
+    def __str__(self):
+        return "%s" % (self.name)
 
 
 class Inventory(models.Model):
@@ -320,10 +320,10 @@ class Inventory(models.Model):
     invoice = models.ForeignKey(
         Invoice, on_delete=models.CASCADE, null=True, blank=True
     )
-    # status = models.ForeignKey(StatusSituation, on_delete=models.CASCADE, null=True)
-    # description = models.ForeignKey(
-    #     StatusDescription, on_delete=models.CASCADE, null=True, blank=True
-    # )
+    status = models.ForeignKey(StatusSituation, on_delete=models.CASCADE, null=True)
+    description = models.ForeignKey(
+        StatusDescription, on_delete=models.CASCADE, null=True, blank=True
+    )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
