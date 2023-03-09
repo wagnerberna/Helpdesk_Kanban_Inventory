@@ -320,7 +320,7 @@ class Inventory(models.Model):
     invoice = models.ForeignKey(
         Invoice, on_delete=models.CASCADE, null=True, blank=True
     )
-    # status = models.ForeignKey(StatusSituation, on_delete=models.CASCADE, null=True)
+    status = models.ForeignKey(StatusSituation, on_delete=models.CASCADE, null=True)
     # description = models.ForeignKey(
     #     StatusDescription, on_delete=models.CASCADE, null=True, blank=True
     # )
