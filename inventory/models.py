@@ -313,7 +313,7 @@ class Status(models.Model):
         db_table = "inventory_status"
 
     def __str__(self):
-        return "%s" % (self.name)
+        return "%s" % (self.status)
 
 
 class Inventory(models.Model):
@@ -341,7 +341,7 @@ class Inventory(models.Model):
 
     class Meta:
         managed = True
-        db_table = "inventory_iventory"
+        db_table = "inventory"
 
     def __str__(self):
-        return "%s" % (self.hostname)
+        return "%s : %s" % (self.inventory, self.hostname)
