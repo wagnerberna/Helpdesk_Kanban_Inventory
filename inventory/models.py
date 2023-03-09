@@ -278,6 +278,7 @@ class Invoice(models.Model):
 
 
 class StatusSituation(models.Model):
+    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=20, null=True, unique=True)
 
     class Meta:
@@ -289,6 +290,7 @@ class StatusSituation(models.Model):
 
 
 class StatusDescription(models.Model):
+    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=200, null=True)
 
     class Meta:
@@ -300,6 +302,7 @@ class StatusDescription(models.Model):
 
 
 class Status(models.Model):
+    id = models.AutoField(primary_key=True)
     status = models.ForeignKey(StatusSituation, on_delete=models.CASCADE, null=True)
     description = models.ForeignKey(
         StatusDescription, on_delete=models.CASCADE, null=True, blank=True
