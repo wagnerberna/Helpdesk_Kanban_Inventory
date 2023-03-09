@@ -333,3 +333,6 @@ class Inventory(models.Model):
 
     def __str__(self):
         return "%s : %s" % (self.inventory, self.hostname)
+
+
+# teste
