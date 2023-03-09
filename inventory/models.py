@@ -320,10 +320,10 @@ class Inventory(models.Model):
     invoice = models.ForeignKey(
         Invoice, on_delete=models.CASCADE, null=True, blank=True
     )
-    status = models.ForeignKey(StatusSituation, on_delete=models.CASCADE, null=True)
-    description = models.ForeignKey(
-        StatusDescription, on_delete=models.CASCADE, null=True, blank=True
-    )
+    # status = models.ForeignKey(StatusSituation, on_delete=models.CASCADE, null=True)
+    # description = models.ForeignKey(
+    #     StatusDescription, on_delete=models.CASCADE, null=True, blank=True
+    # )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
