@@ -149,6 +149,3 @@ __pycache__/
 
 # DB Test
 *.sqlite3
-helpdesk/__pycache__/
-
-helpdesk/routes/__pycache__/__init__.cpython-310.pyc
