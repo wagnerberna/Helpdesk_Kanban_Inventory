@@ -146,6 +146,7 @@ image/
 # cache
 __pycache__
 __pycache__/
+kanban/api/__pycache__/
 
 # DB Test
 *.sqlite3
