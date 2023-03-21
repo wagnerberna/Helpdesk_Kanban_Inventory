@@ -208,7 +208,7 @@ class Hardware(models.Model):
 # Software
 class OperationalSystem(models.Model):
     id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=35, null=True, unique=True)
+    name = models.CharField(max_length=20, null=True, unique=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -219,10 +219,36 @@ class OperationalSystem(models.Model):
     def __str__(self):
         return "%s" % (self.name)
 
+class OperationalSystemVersion(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=20, null=True, unique=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        managed = True
+        db_table = "inventory_operational_system_version"
+
+    def __str__(self):
+        return "%s" % (self.name)
+
+class OperationalSystemYear(models.Model):
+    id = models.AutoField(primary_key=True)
+    year = models.IntegerField(null=True, unique=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        managed = True
+        db_table = "inventory_operational_system_year"
+
+    def __str__(self):
+        return "%s" % (self.name)
+
 
 class SystemArchitecture(models.Model):
     id = models.AutoField(primary_key=True)
-    architecture = models.CharField(max_length=20, null=True, unique=True)
+    architecture = models.CharField(max_length=20, null=True, unique=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -238,6 +264,12 @@ class Software(models.Model):
     id = models.AutoField(primary_key=True)
     operating_system = models.ForeignKey(
         OperationalSystem, on_delete=models.CASCADE, null=True
+    )
+    operating_system_version = models.ForeignKey(
+        OperationalSystemVersion, on_delete=models.CASCADE, null=True
+    )
+    operating_system_year = models.ForeignKey(
+        OperationalSystemYear, on_delete=models.CASCADE, null=True
     )
     architecture = models.ForeignKey(
         SystemArchitecture, on_delete=models.CASCADE, null=True
@@ -289,16 +321,16 @@ class StatusSituation(models.Model):
         return "%s" % (self.name)
 
 
-class StatusDescription(models.Model):
-    id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=200, null=True)
+# class StatusDescription(models.Model):
+#     id = models.AutoField(primary_key=True)
+#     name = models.CharField(max_length=200, null=True)
 
-    class Meta:
-        managed = True
-        db_table = "inventory_status_description"
+#     class Meta:
+#         managed = True
+#         db_table = "inventory_status_description"
 
-    def __str__(self):
-        return "%s" % (self.name)
+#     def __str__(self):
+#         return "%s" % (self.name)
 
 
 class Inventory(models.Model):
@@ -321,9 +353,7 @@ class Inventory(models.Model):
         Invoice, on_delete=models.CASCADE, null=True, blank=True
     )
     status = models.ForeignKey(StatusSituation, on_delete=models.CASCADE, null=True)
-    description = models.ForeignKey(
-        StatusDescription, on_delete=models.CASCADE, null=True, blank=True
-    )
+    detail = models.CharField(max_length=200, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -335,4 +365,33 @@ class Inventory(models.Model):
         return "%s : %s" % (self.inventory, self.hostname)
 
 
-# teste
+class ServerStatus(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=20, null=True, unique=True)
+
+    class Meta:
+        managed = True
+        db_table = "inventory_status_server"
+
+    def __str__(self):
+        return "%s" % (self.name)
+
+
+class Server(models.Model):
+    id = models.AutoField(primary_key=True)
+    hostname = models.CharField(max_length=20, null=True, unique=True, blank=True)
+    IP = models.CharField(max_length=15, null=True, blank=True)
+    software = models.ForeignKey(Software, on_delete=models.CASCADE, null=True)
+    status = models.ForeignKey(ServerStatus, on_delete=models.CASCADE, null=True)
+    serviceRun = models.CharField(max_length=50, null=True, blank=True)
+    link = models.CharField(max_length=120, null=True, blank=True)
+    detail = models.CharField(max_length=200, null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        managed = True
+        db_table = "inventory_server"
+
+    def __str__(self):
+        return "%s" % (self.hostname)

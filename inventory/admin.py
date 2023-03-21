@@ -11,14 +11,16 @@ from inventory.models import (
     Invoice,
     MemorySize,
     OperationalSystem,
+    OperationalSystemYear,
     Ranking,
     Software,
-    StatusDescription,
     StatusSituation,
     SystemArchitecture,
     WorkstationManufacturer,
     WorkstationModel,
     WorkstationType,
+    ServerStatus,
+    Server
 )
 
 # Register your models here.
@@ -39,4 +41,7 @@ admin.site.register(WorkstationManufacturer)
 admin.site.register(WorkstationModel)
 admin.site.register(WorkstationType)
 admin.site.register(StatusSituation)
-admin.site.register(StatusDescription)
+admin.site.register(OperationalSystemYear)
+admin.site.register(ServerStatus)
+admin.site.register(Server)
+
