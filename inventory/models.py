@@ -321,18 +321,6 @@ class StatusSituation(models.Model):
         return "%s" % (self.name)
 
 
-# class StatusDescription(models.Model):
-#     id = models.AutoField(primary_key=True)
-#     name = models.CharField(max_length=200, null=True)
-
-#     class Meta:
-#         managed = True
-#         db_table = "inventory_status_description"
-
-#     def __str__(self):
-#         return "%s" % (self.name)
-
-
 class Inventory(models.Model):
     id = models.AutoField(primary_key=True)
     inventory = models.IntegerField(null=True, unique=True)

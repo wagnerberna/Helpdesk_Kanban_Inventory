@@ -11,6 +11,7 @@ from inventory.models import (
     Invoice,
     MemorySize,
     OperationalSystem,
+    OperationalSystemVersion,
     OperationalSystemYear,
     Ranking,
     Software,
@@ -34,6 +35,8 @@ admin.site.register(Inventory)
 admin.site.register(Invoice)
 admin.site.register(MemorySize)
 admin.site.register(OperationalSystem)
+admin.site.register(OperationalSystemYear)
+admin.site.register(OperationalSystemVersion)
 admin.site.register(Ranking)
 admin.site.register(Software)
 admin.site.register(SystemArchitecture)
@@ -41,7 +44,5 @@ admin.site.register(WorkstationManufacturer)
 admin.site.register(WorkstationModel)
 admin.site.register(WorkstationType)
 admin.site.register(StatusSituation)
-admin.site.register(OperationalSystemYear)
 admin.site.register(ServerStatus)
 admin.site.register(Server)
-
