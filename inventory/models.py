@@ -232,19 +232,6 @@ class OperationalSystemVersion(models.Model):
     def __str__(self):
         return "%s" % (self.name)
 
-class OperationalSystemYear(models.Model):
-    id = models.AutoField(primary_key=True)
-    year = models.IntegerField(null=True, unique=True, blank=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    class Meta:
-        managed = True
-        db_table = "inventory_operational_system_year"
-
-    def __str__(self):
-        return "%s" % (self.name)
-
 
 class SystemArchitecture(models.Model):
     id = models.AutoField(primary_key=True)
@@ -268,11 +255,8 @@ class Software(models.Model):
     operating_system_version = models.ForeignKey(
         OperationalSystemVersion, on_delete=models.CASCADE, null=True
     )
-    operating_system_year = models.ForeignKey(
-        OperationalSystemYear, on_delete=models.CASCADE, null=True
-    )
     architecture = models.ForeignKey(
-        SystemArchitecture, on_delete=models.CASCADE, null=True
+        SystemArchitecture, on_delete=models.CASCADE, null=True, blank=True
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -291,7 +275,7 @@ class Software(models.Model):
         ]
 
     def __str__(self):
-        return "%s %s" % (self.operating_system, self.architecture)
+        return "%s %s %s" % (self.operating_system, self.operating_system_version, self.architecture)
 
 
 # Inventory - NF
@@ -359,7 +343,7 @@ class ServerStatus(models.Model):
 
     class Meta:
         managed = True
-        db_table = "inventory_status_server"
+        db_table = "inventory_server_status"
 
     def __str__(self):
         return "%s" % (self.name)
