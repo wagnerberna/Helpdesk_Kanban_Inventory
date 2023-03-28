@@ -355,7 +355,7 @@ class Server(models.Model):
     IP = models.CharField(max_length=15, null=True, blank=True)
     software = models.ForeignKey(Software, on_delete=models.CASCADE, null=True)
     status = models.ForeignKey(ServerStatus, on_delete=models.CASCADE, null=True)
-    serviceRun = models.CharField(max_length=50, null=True, blank=True)
+    serviceRun = models.CharField(max_length=80, null=True, blank=True)
     link = models.CharField(max_length=120, null=True, blank=True)
     detail = models.CharField(max_length=200, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
