@@ -268,6 +268,7 @@ class Software(models.Model):
             models.UniqueConstraint(
                 fields=[
                     "operating_system",
+                    "operating_system_version",
                     "architecture",
                 ],
                 name="unique_software_group",
