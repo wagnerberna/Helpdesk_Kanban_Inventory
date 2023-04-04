@@ -1,0 +1,30 @@
+<div class="container">
+    <table class="table-default table table-striped table-hover">
+        <thead>
+            <th>Servidor</th>
+            <th>Status</th>
+            <th>IP</th>
+            <th>SO</th>
+            <th>Versão</th>
+            <th>Sistema</th>
+            <th>Link</th>
+        </thead>
+        <tbody>
+            {%if data%}
+                {%for el in data%}
+    
+                    <tr>
+                        <td>{{el.hostname}}</td>
+                        <td>{{el.status}}</td>
+                        <td>{{el.ip}}</td>
+                        <td>{{el.software.operating_system}}</td>
+                        <td>{{el.software.operating_system_version}}</td>
+                        <td>{{el.serviceRun}}</td>
+                        <td>{{el.link}}</td>
+                    </tr>
+                {%endfor%}
+            {%endif%}
+        </tbody>
+    </table>
+    
+</div>
