@@ -8,6 +8,7 @@
             <th>Versão</th>
             <th>Sistema</th>
             <th>Link</th>
+            <th>Detalhes</th>
         </thead>
         <tbody>
             {%if data%}
@@ -20,7 +21,14 @@
                         <td>{{el.software.operating_system}}</td>
                         <td>{{el.software.operating_system_version}}</td>
                         <td>{{el.serviceRun}}</td>
-                        <td>{{el.link}}</td>
+                        <td>
+                            <a href={{el.link}}>
+                                {{el.link}}
+                            </a>
+                        </td>
+                        <td>{{el.detail}}</td>
+
+                            
                     </tr>
                 {%endfor%}
             {%endif%}

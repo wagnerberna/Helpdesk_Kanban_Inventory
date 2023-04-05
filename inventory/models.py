@@ -353,7 +353,7 @@ class ServerStatus(models.Model):
 class Server(models.Model):
     id = models.AutoField(primary_key=True)
     hostname = models.CharField(max_length=20, null=True, unique=True, blank=True)
-    IP = models.CharField(max_length=15, null=True, blank=True)
+    ip = models.CharField(max_length=15, null=True, blank=True)
     software = models.ForeignKey(Software, on_delete=models.CASCADE, null=True)
     status = models.ForeignKey(ServerStatus, on_delete=models.CASCADE, null=True)
     serviceRun = models.CharField(max_length=80, null=True, blank=True)
