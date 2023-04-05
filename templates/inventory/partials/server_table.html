@@ -18,17 +18,19 @@
                         <td>{{el.hostname}}</td>
                         <td>{{el.status}}</td>
                         <td>{{el.ip}}</td>
-                        <td>{{el.software.operating_system}}</td>
+                        <td>{{el.software.operating_system}}</td>    
                         <td>{{el.software.operating_system_version}}</td>
                         <td>{{el.serviceRun}}</td>
                         <td>
-                            <a href={{el.link}}>
-                                {{el.link}}
-                            </a>
+                            {%if el.link is not None%}
+                                <a href={{el.link}}>{{el.link}}</a>
+                            {%endif%}      
                         </td>
-                        <td>{{el.detail}}</td>
-
-                            
+                        <td>
+                            {%if el.link is not None%}
+                                {{el.detail}}
+                            {%endif%}      
+                        </td>  
                     </tr>
                 {%endfor%}
             {%endif%}
