@@ -219,6 +219,7 @@ class OperationalSystem(models.Model):
     def __str__(self):
         return "%s" % (self.name)
 
+
 class OperationalSystemVersion(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=20, null=True, unique=True)
@@ -276,7 +277,11 @@ class Software(models.Model):
         ]
 
     def __str__(self):
-        return "%s %s %s" % (self.operating_system, self.operating_system_version, self.architecture)
+        return "%s %s %s" % (
+            self.operating_system,
+            self.operating_system_version,
+            self.architecture,
+        )
 
 
 # Inventory - NF
@@ -357,7 +362,8 @@ class Server(models.Model):
     software = models.ForeignKey(Software, on_delete=models.CASCADE, null=True)
     status = models.ForeignKey(ServerStatus, on_delete=models.CASCADE, null=True)
     serviceRun = models.CharField(max_length=80, null=True, blank=True)
-    link = models.CharField(max_length=120, null=True, blank=True)
+    url_internal = models.CharField(max_length=120, null=True, blank=True)
+    url_external = models.CharField(max_length=120, null=True, blank=True)
     detail = models.CharField(max_length=200, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
