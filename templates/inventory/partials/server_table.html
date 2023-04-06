@@ -7,7 +7,8 @@
             <th>SO</th>
             <th>Versão</th>
             <th>Sistema</th>
-            <th>Link</th>
+            <th>Link Interno</th>
+            <th>Link Externo</th>
             <th>Detalhes</th>
         </thead>
         <tbody>
@@ -22,12 +23,17 @@
                         <td>{{el.software.operating_system_version}}</td>
                         <td>{{el.serviceRun}}</td>
                         <td>
-                            {%if el.link is not None%}
-                                <a href={{el.link}}>{{el.link}}</a>
+                            {%if el.url_internal is not None%}
+                                <a href={{el.url_internal}}>{{el.url_internal}}</a>
                             {%endif%}      
                         </td>
                         <td>
-                            {%if el.link is not None%}
+                            {%if el.url_external is not None%}
+                                <a href={{el.url_external}}>{{el.url_external}}</a>
+                            {%endif%}      
+                        </td>
+                        <td>
+                            {%if el.detail is not None%}
                                 {{el.detail}}
                             {%endif%}      
                         </td>  
