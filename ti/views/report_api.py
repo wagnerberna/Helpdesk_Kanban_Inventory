@@ -7,6 +7,7 @@ from helpdesk.models import Demand
 from kanban.models import Project, Task
 from ti.service.check_user_access import check_user_access
 from ti.service.dataframe import dataframe_desktop_ranking
+from inventory.models import Inventory
 
 
 @login_required
@@ -164,14 +165,17 @@ def api_total_workstations_ranking(request):
         if not check_access:
             return redirect("access_denied")
 
-        file = "doc/resume.xlsx"
-        # ranking:
+        ranking_a = Inventory.objects.filter(ranking__name="A").count()
+        ranking_b = Inventory.objects.filter(ranking__name="B").count()
+        ranking_c = Inventory.objects.filter(ranking__name="C").count()
+        ranking_d = Inventory.objects.filter(ranking__name="D").count()
+        ranking_e = Inventory.objects.filter(ranking__name="E").count()
 
+        ranking_workstation = [ranking_a, ranking_b, ranking_c, ranking_d, ranking_e]
         ranking_labels = ["A-i7", "B-i5", "C-i3", "D-Core", "E-Celeron"]
-        ranking_values = dataframe_desktop_ranking(file)
 
         context = {
-            "data": ranking_values,
+            "data": ranking_workstation,
             "labels": ranking_labels,
         }
 
