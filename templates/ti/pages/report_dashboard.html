@@ -18,15 +18,15 @@
 
     <script>
         window.onload = function(e){
-            bar_demands_by_technical("{% url 'api_total_techicals_demand'%} ")
-            bar_tasks_by_technical("{% url 'api_total_technicals_tasks'%} ")
+            bar_demands_by_technical("{% url 'api_techicals_demand'%} ")
+            bar_tasks_by_technical("{% url 'api_technicals_tasks'%} ")
             
-            pie_tasks_projects("{% url 'api_total_project_tasks'%} ")
-            bar_tasks_status_project("{% url 'api_total_project_tasks'%} ")
+            pie_tasks_projects("{% url 'api_project_tasks'%} ")
+            bar_tasks_status_project("{% url 'api_project_tasks'%} ")
 
-            pie_workstations_ranking("{% url 'api_total_workstations_ranking'%} ")
+            pie_workstations_ranking("{% url 'api_workstations_ranking'%} ")
             
-            bar_percentage_projects("{% url 'api_total_project_tasks'%} ")
+            bar_percentage_projects("{% url 'api_project_tasks'%} ")
         }
     </script>
 

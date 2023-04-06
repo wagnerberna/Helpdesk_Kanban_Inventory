@@ -34,6 +34,7 @@ def inventory_view_workstation(request):
         raise
 
 
+@login_required
 def inventory_view_server(request):
     try:
         check_access = check_user_access(request)

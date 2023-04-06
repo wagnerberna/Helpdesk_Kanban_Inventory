@@ -8,10 +8,11 @@ from kanban.models import Project, Task
 from ti.service.check_user_access import check_user_access
 from ti.service.dataframe import dataframe_desktop_ranking
 from inventory.models import Inventory
+from ti.models import Department
 
 
 @login_required
-def api_total_technicals_demand(request):
+def api_technicals_demand(request):
     try:
         check_access = check_user_access(request)
         if not check_access:
@@ -48,7 +49,7 @@ def api_total_technicals_demand(request):
 
 
 @login_required
-def api_total_technicals_tasks(request):
+def api_technicals_tasks(request):
     try:
         check_access = check_user_access(request)
         if not check_access:
@@ -83,7 +84,7 @@ def api_total_technicals_tasks(request):
 
 
 @login_required
-def api_total_project_tasks(request):
+def api_project_tasks(request):
     try:
         check_access = check_user_access(request)
         if not check_access:
@@ -159,7 +160,7 @@ def api_total_project_tasks(request):
 
 
 @login_required
-def api_total_workstations_ranking(request):
+def api_workstations_ranking(request):
     try:
         check_access = check_user_access(request)
         if not check_access:
@@ -177,6 +178,27 @@ def api_total_workstations_ranking(request):
         context = {
             "data": ranking_workstation,
             "labels": ranking_labels,
+        }
+
+        return JsonResponse(context)
+
+    except Exception as error:
+        print("Internal error:", error)
+        raise
+
+
+def api_workstations_department_ranking(request):
+    try:
+        check_access = check_user_access(request)
+        if not check_access:
+            return redirect("access_denied")
+
+        departments = Department.objects.all().values("name")
+        print(departments)
+
+        context = {
+            "data": "ranking_workstation",
+            "labels": "ranking_labels",
         }
 
         return JsonResponse(context)
