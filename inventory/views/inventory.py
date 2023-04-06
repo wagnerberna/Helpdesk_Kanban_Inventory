@@ -33,17 +33,18 @@ def inventory_view_workstation(request):
         print("Internal error:", error)
         raise
 
+
 def inventory_view_server(request):
     try:
         check_access = check_user_access(request)
         if not check_access:
             return redirect("access_denied")
-        
+
         data = Server.objects.all()
 
         context = {"data": data}
         template_path = "inventory/pages/inventory_server.html"
-        
+
         return render(
             request,
             template_path,
