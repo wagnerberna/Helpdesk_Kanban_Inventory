@@ -105,7 +105,6 @@ def api_project_tasks(request):
         label_status = ["TO DO", "DOING", "BLOCKED", "DONE"]
 
         for project in projects_names:
-
             tasks_total_count = Task.objects.filter(project__name=project[0]).count()
             if not tasks_total_count:
                 tasks_total_count = 1
@@ -194,7 +193,42 @@ def api_workstations_department_ranking(request):
             return redirect("access_denied")
 
         departments = Department.objects.all().values("name")
+        inventory = Inventory.objects.all()
         print(departments)
+        # print(inventory)
+
+        ranking_labels = ["A", "B", "C", "D", "E"]
+        departments_labels = []
+        ranking_a = []
+        ranking_b = []
+        ranking_c = []
+        ranking_d = []
+        ranking_e = []
+
+        # print(inventory.filter(department__name="TI", ranking__name="A").count())
+
+        for department in departments:
+            print(department)
+            print(department["name"])
+            count_a = inventory.filter(
+                department__name=department["name"], ranking__name="A"
+            ).count()
+            count_b = inventory.filter(
+                department__name=department["name"], ranking__name="B"
+            ).count()
+            count_c = inventory.filter(
+                department__name=department["name"], ranking__name="C"
+            ).count()
+            count_d = inventory.filter(
+                department__name=department["name"], ranking__name="D"
+            ).count()
+            count_e = inventory.filter(
+                department__name=department["name"], ranking__name="E"
+            ).count()
+            departments_labels.append(department["name"])
+            print(count_a, count_b, count_c, count_d, count_e)
+
+        print(departments_labels)
 
         context = {
             "data": "ranking_workstation",
