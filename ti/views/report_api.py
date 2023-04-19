@@ -194,7 +194,7 @@ def api_workstations_department_ranking(request):
 
         departments = Department.objects.all().values("name")
         inventory = Inventory.objects.all()
-        print(departments)
+        # print(departments)
         # print(inventory)
 
         ranking_labels = ["A", "B", "C", "D", "E"]
@@ -232,9 +232,9 @@ def api_workstations_department_ranking(request):
             ranking_e.append(count_e)
 
             print(count_a, count_b, count_c, count_d, count_e)
-            print(department["name"])
+            # print(department["name"])
 
-        print(departments_labels)
+        # print(departments_labels)
 
         context = {
             "departments_labels": departments_labels,

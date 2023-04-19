@@ -237,9 +237,9 @@ async function pie_workstations_ranking(url) {
     });
 }
 
-async function bar_workstations_ranking(url) {
+async function bar_workstations_department_ranking(url) {
     const data = await fetch_url(url)
-    console.log(data)
+    // console.log(data)
 
     const ctx = document.getElementById('bar_workstations_ranking').getContext('2d');
     const myChart = new Chart(ctx, {
