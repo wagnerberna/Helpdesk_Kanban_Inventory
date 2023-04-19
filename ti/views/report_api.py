@@ -208,8 +208,6 @@ def api_workstations_department_ranking(request):
         # print(inventory.filter(department__name="TI", ranking__name="A").count())
 
         for department in departments:
-            print(department)
-            print(department["name"])
             count_a = inventory.filter(
                 department__name=department["name"], ranking__name="A"
             ).count()
@@ -225,14 +223,27 @@ def api_workstations_department_ranking(request):
             count_e = inventory.filter(
                 department__name=department["name"], ranking__name="E"
             ).count()
+
             departments_labels.append(department["name"])
+            ranking_a.append(count_a)
+            ranking_b.append(count_b)
+            ranking_c.append(count_c)
+            ranking_d.append(count_d)
+            ranking_e.append(count_e)
+
             print(count_a, count_b, count_c, count_d, count_e)
+            print(department["name"])
 
         print(departments_labels)
 
         context = {
-            "data": "ranking_workstation",
-            "labels": "ranking_labels",
+            "departments_labels": departments_labels,
+            "ranking_labels": ranking_labels,
+            "ranking_a": ranking_a,
+            "ranking_b": ranking_b,
+            "ranking_c": ranking_c,
+            "ranking_d": ranking_d,
+            "ranking_e": ranking_e,
         }
 
         return JsonResponse(context)
