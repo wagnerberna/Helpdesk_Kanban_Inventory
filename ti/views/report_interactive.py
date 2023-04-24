@@ -1,6 +1,9 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 from ti.service.check_user_access import check_user_access
+from helpdesk.models import Demand
+from kanban.models import Task
+from inventory.models import Inventory
 
 
 @login_required
@@ -10,8 +13,21 @@ def report_interactive(request):
         if not check_access:
             return redirect("access_denied")
 
+        demands_total = Demand.objects.all().count()
+        tasks_total = Task.objects.all().count()
+        workstation_total = Inventory.objects.all().count()
+
         template_path = "ti/pages/report_dashboard.html"
-        return render(request, template_path)
+
+        context = {
+            "demands_total": demands_total,
+            "tasks_total": tasks_total,
+            "workstation_total": workstation_total,
+        }
+
+        print("context:::", context)
+
+        return render(request, template_path, context)
     except Exception as error:
         print("Internal error:", error)
         raise

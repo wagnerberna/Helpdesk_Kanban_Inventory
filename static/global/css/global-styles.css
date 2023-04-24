@@ -59,7 +59,7 @@ h2,
 h3 {
     font-family: var(--font-primary);
     color: var(--color-a3);
-    margin: 25px 0 20px 0;
+    margin: 25px 10px 20px 10px;
 }
 
 h2 {
@@ -516,7 +516,7 @@ h3 {
 .container-dashboard-total {
     background-color: var(--color-primary-hover);
     border-radius: 10px;
-    width: 200px;
+    width: 230px;
     height: 150px;
 }
 
@@ -524,7 +524,7 @@ h3 {
     background-color: var(--color-primary-hover);
     border-radius: 10px;
     width: 250px;
-    height: 350px;
+    height: 400px;
 }
 
 .title-center {
