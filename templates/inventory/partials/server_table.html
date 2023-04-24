@@ -15,14 +15,14 @@
             {%if data%}
                 {%for el in data%}
     
-                    <tr>
+                    <tr class="word-break">
                         <td>{{el.hostname}}</td>
                         <td>{{el.status}}</td>
                         <td>{{el.ip}}</td>
                         <td>{{el.software.operating_system}}</td>    
                         <td>{{el.software.operating_system_version}}</td>
                         <td>{{el.serviceRun}}</td>
-                        <td>
+                        <td class="word-break">
                             {%if el.url_internal is not None%}
                                 <a href={{el.url_internal}}>{{el.url_internal}}</a>
                             {%endif%}      
@@ -30,12 +30,12 @@
                         <td class="word-break">
                             {%if el.url_external is not None%}
                                 <a href={{el.url_external}}>{{el.url_external}}</a>
-                            {%endif%}      
+                            {%endif%}
                         </td>
-                        <td class="word-break">
+                        <td>
                             {%if el.detail is not None%}
                                 {{el.detail}}
-                            {%endif%}      
+                            {%endif%}
                         </td>  
                     </tr>
                 {%endfor%}
