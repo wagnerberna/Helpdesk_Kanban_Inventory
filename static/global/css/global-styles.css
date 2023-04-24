@@ -530,3 +530,7 @@ h3 {
 .title-center {
     text-align: center;
 }
+
+.word-break {
+    word-break: break-word;
+}
