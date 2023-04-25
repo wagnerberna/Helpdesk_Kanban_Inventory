@@ -86,13 +86,13 @@ body {
 }
 
 .title-margin-min {
-    margin: 15px 10px 10px 10px;
+    margin: 5px 5px 5px 5px;
 }
 
 .title-center {
     text-align: center;
     font-weight: bold;
-    margin: 10px 10px 15px 10px;
+    margin: 15px 10px 10px 10px;
 }
 
 .title-kanban {
@@ -511,14 +511,14 @@ h3 {
     background-color: var(--color-primary-hover);
     border-radius: 10px;
     width: 230px;
-    height: 130px;
+    height: 120px;
 }
 
 .container-dashboard-ranking {
     background-color: var(--color-primary-hover);
     border-radius: 10px;
     width: 250px;
-    height: 300px;
+    height: 280px;
 }
 /* Fim Dashboard */
 
