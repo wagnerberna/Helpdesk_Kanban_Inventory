@@ -85,6 +85,29 @@ body {
     background-color: var(--color-a1);
 }
 
+.title-margin-min {
+    margin: 15px 10px 10px 10px;
+}
+
+.title-center {
+    text-align: center;
+    font-weight: bold;
+    margin: 10px 10px 15px 10px;
+}
+
+.title-kanban {
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.text-bold {
+    font-weight: bold;
+}
+
+.word-break {
+    word-break: break-all;
+}
+
 .table-default {
     border: 4px solid black;
     padding: 15px;
@@ -135,13 +158,7 @@ header {
 }
 
 .main-container {
-    /* background: var(--color-black); */
     margin-bottom: 2rem;
-}
-
-.rigth,
-.left {
-    /* margin-top: auto; */
 }
 
 .main-logo {
@@ -151,12 +168,10 @@ header {
 }
 
 .main-logo-client {
-    /* font-size: 4rem; */
     color: var(--color-white);
     text-decoration: none;
     width: 270px;
     position: relative;
-    /* top: 20% */
 }
 
 
@@ -172,21 +187,18 @@ header {
 }
 
 .main-logo-left {
-    /* font-size: 2rem; */
     color: var(--color-a2);
     text-decoration: none;
     text-align: left;
 }
 
 .main-logo-right {
-    /* font-size: 2rem; */
     color: var(--color-white);
     text-decoration: none;
     text-align: right;
 }
 
 .main-logo-center {
-    /* font-size: 2rem; */
     color: var(--color-white);
     text-decoration: none;
     text-align: center;
@@ -354,11 +366,6 @@ h3 {
     height: 100px;
 }
 
-.title-kanban {
-    margin-top: 5px;
-    margin-bottom: 10px;
-}
-
 .icon-kanban {
     margin-left: 2px;
     font-size: 20px;
@@ -445,17 +452,12 @@ h3 {
     width: 100%;
     padding: 10px;
 }
-
 /* Fim Menu */
 
 /* Dashboard */
 .canvas-bar-small {
-    /* max-width: 300px; */
-    /* width: 250px; */
     min-height: 250px;
     min-width: 250px;
-    /* max-height: 450px; */
-    /* height: 250px; */
     background-color: var(--color-a6);
 }
 
@@ -484,9 +486,7 @@ h3 {
     background-color: var(--color-a1);
     margin: 10px;
     height: 350px;
-    /* height: 350px; */
     display: flex;
-    /* flex-wrap: wrap; */
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
@@ -496,9 +496,7 @@ h3 {
     background-color: var(--color-a1);
     margin: 10px 10px 0px 10px;
     height: 600px;
-    /* height: 350px; */
     display: flex;
-    /* flex-wrap: wrap; */
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
@@ -507,30 +505,20 @@ h3 {
 .container-dashboard-down-big {
     background-color: var(--color-a1);
     height: 900px;
-    /* height: 350px; */
-    /* display: flex; */
-    /* flex-wrap: wrap; */
-    /* align-items: center; */
 }
 
-.container-dashboard-total {
+.container-dashboard-activities {
     background-color: var(--color-primary-hover);
     border-radius: 10px;
     width: 230px;
-    height: 150px;
+    height: 130px;
 }
 
 .container-dashboard-ranking {
     background-color: var(--color-primary-hover);
     border-radius: 10px;
     width: 250px;
-    height: 380px;
+    height: 300px;
 }
+/* Fim Dashboard */
 
-.title-center {
-    text-align: center;
-}
-
-.word-break {
-    word-break: break-all;
-}
