@@ -68,6 +68,20 @@ class Team(models.Model):
         # return "%s / Time: %s" % (self.user_name, self.user_name)
 
 
+class Priority(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=1, null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        managed = True
+        db_table = "kanban_priority"
+
+    def __str__(self):
+        return "%s" % self.name
+
+
 # task_owner (pode ficar em branco(no formulário para salvar), e o valor padrão é None)
 class Task(models.Model):
     id = models.AutoField(primary_key=True)
@@ -80,6 +94,9 @@ class Task(models.Model):
         Team, on_delete=models.SET_NULL, null=True, blank=True, default=None
     )
     status = models.ForeignKey(Status, on_delete=models.SET_NULL, null=True)
+    priority = models.ForeignKey(
+        Priority, on_delete=models.SET_NULL, null=True, blank=True
+    )
     description = models.TextField(null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
