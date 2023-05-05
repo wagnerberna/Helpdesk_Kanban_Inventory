@@ -74,19 +74,12 @@ def demand_view_create(request):
         user_email = request.user.email
         email_support = config("EMAIL_SUPPORT")
         recipient_list = [user_email, email_support]
-        # subject = "Abertura de Chamado"
-        # message = f"Chamado do usuário: {user_name} aberto com sucesso!"
-        # print(user_name, recipient_list)
 
         department_id = (
             Profile.objects.filter(user=user_id)
             .values("department")[0]
             .get("department")
         )
-        # department_id = profile_user.values("user")
-        # department_id2 = profile_user.values_list("user")
-        # department_id = profile_user.values("department")[0].get("department")
-        # department_id2 = profile_user.values_list("department")
 
         form = DemandFormCreate(request.POST or None, request.FILES or None)
         form.fields["user_name"].initial = user_id
@@ -94,7 +87,6 @@ def demand_view_create(request):
         form.fields["user_name"].widget = forms.HiddenInput()
         form.fields["department"].initial = department_id
         form.fields["department"].widget = forms.HiddenInput()
-
         # form.fields["department"].widget.attrs["disabled"] = True
         # form.fields["department"].initial = department_id
 
