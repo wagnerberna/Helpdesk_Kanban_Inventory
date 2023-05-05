@@ -70,7 +70,7 @@ class Team(models.Model):
 
 class Priority(models.Model):
     id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=1, null=True, blank=True)
+    name = models.CharField(max_length=1, null=True, blank=True, unique=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
