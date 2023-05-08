@@ -1,5 +1,5 @@
 import django_filters
-from kanban.models import Category, Project, Task, Team
+from kanban.models import Category, Project, Task, Team, Priority
 from rest_framework import serializers
 
 
@@ -67,10 +67,14 @@ class KanbanFilterSerializer(django_filters.FilterSet):
     task_owner = django_filters.ModelChoiceFilter(
         label="Dono da Tarefa:", queryset=Team.objects.all()
     )
+    priority = django_filters.ModelChoiceFilter(
+        label="Prioridade da Tarefa:", queryset=Priority.objects.all()
+    )
 
     class Meta:
         model = Task
         fields = (
             "title",
             "task_owner",
+            "priority",
         )
