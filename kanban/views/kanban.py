@@ -7,6 +7,8 @@ from ti.service.check_user_access import check_user_access
 
 from kanban.forms import KanbanStatusFormNext, TaskForm
 from kanban.models import Category, Project, Status, Task, Team
+from kanban.api.serializers import KanbanFilterSerializer
+
 
 # from kanban.api.serializers import KanbanFilterSerializer
 # from kanban.forms import
@@ -67,13 +69,17 @@ def kanban_board(request, id):
         project = Project.objects.filter(id=id).values("name")
         project_name = project.values("name")[0].get("name")
 
-        tasks = Task.objects.filter(project__id=id)
+        tasks_in_project = Task.objects.filter(project__id=id)
+
+        tasks_filter = KanbanFilterSerializer(request.GET, queryset=tasks_in_project)
 
         form = KanbanStatusFormNext(request.POST)
+
         context = {
             "project_name": project_name,
             "project_id": id,
-            "tasks": tasks,
+            "tasks": tasks_filter.qs,
+            "tasks_form": tasks_filter,
             "form": form,
         }
         template_path = "kanban/pages/kanban_board.html"

@@ -60,3 +60,17 @@ class TaskFilterSerializer(django_filters.FilterSet):
             "status",
             "description",
         )
+
+
+class KanbanFilterSerializer(django_filters.FilterSet):
+    title = django_filters.CharFilter(lookup_expr="icontains", label="Título:")
+    task_owner = django_filters.ModelChoiceFilter(
+        label="Dono da Tarefa:", queryset=Team.objects.all()
+    )
+
+    class Meta:
+        model = Task
+        fields = (
+            "title",
+            "task_owner",
+        )
