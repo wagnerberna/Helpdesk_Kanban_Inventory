@@ -9,9 +9,9 @@ from ti.views.report_api import (
 
 urlpatterns = [
     path(
-        "api_techicals_demand/",
+        "api_technicals_demand/",
         api_technicals_demand,
-        name="api_techicals_demand",
+        name="api_technicals_demand",
     ),
     path(
         "api_technicals_tasks/",
