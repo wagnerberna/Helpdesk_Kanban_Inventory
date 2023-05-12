@@ -25,7 +25,7 @@ def report_interactive(request):
             "workstation_total": workstation_total,
         }
 
-        print("context:::", context)
+        # print("context:::", context)
 
         return render(request, template_path, context)
     except Exception as error:
