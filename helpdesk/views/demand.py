@@ -119,7 +119,9 @@ def demand_view_details(request, id):
         form.fields["category"].widget.attrs["disabled"] = True
         form.fields["title"].widget.attrs["disabled"] = True
         form.fields["description"].widget.attrs["disabled"] = True
-        form.fields["image"].widget.attrs["disabled"] = True
+        form.fields["file_one"].widget.attrs["disabled"] = True
+        form.fields["file_two"].widget.attrs["disabled"] = True
+        form.fields["file_three"].widget.attrs["disabled"] = True
         form.fields["attendant"].widget.attrs["disabled"] = True
         form.fields["status"].widget.attrs["disabled"] = True
         form.fields["solution"].widget.attrs["disabled"] = True

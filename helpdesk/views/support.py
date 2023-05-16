@@ -120,7 +120,9 @@ def support_view_update(request, id):
         form_view.fields["category"].widget.attrs["disabled"] = True
         form_view.fields["title"].widget.attrs["disabled"] = True
         form_view.fields["description"].widget.attrs["disabled"] = True
-        form_view.fields["image"].widget.attrs["disabled"] = True
+        form_view.fields["file_one"].widget.attrs["disabled"] = True
+        form_view.fields["file_two"].widget.attrs["disabled"] = True
+        form_view.fields["file_three"].widget.attrs["disabled"] = True
 
         # histórico
         form_historic = HistoricFormAdd(request.POST or None)

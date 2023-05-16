@@ -14,7 +14,9 @@ class DemandFormCreate(ModelForm):
             "title",
             "category",
             "description",
-            "image",
+            "file_one",
+            "file_two",
+            "file_three",
         ]
         labels = {
             "user_name": "Nome:",
@@ -22,7 +24,9 @@ class DemandFormCreate(ModelForm):
             "title": "Título:",
             "category": "Categoria:",
             "description": "Descrição:",
-            "image": "Imagem:",
+            "file_one": "Arquivo:",
+            "file_two": "Arquivo",
+            "file_three": "Arquivo",
         }
 
 
@@ -35,7 +39,9 @@ class DemandFormUpdate(ModelForm):
             "category",
             "title",
             "description",
-            "image",
+            "file_one",
+            "file_two",
+            "file_three",
             "attendant",
             "status",
             "solution",
@@ -46,7 +52,9 @@ class DemandFormUpdate(ModelForm):
             "category": "Categoria:",
             "title": "Título:",
             "description": "Descrição:",
-            "image": "Imagem:",
+            "file_one": "Arquivo:",
+            "file_two": "Arquivo",
+            "file_three": "Arquivo",
             "attendant": "Técnico:",
             "status": "Status:",
             "solution": "Solução",
@@ -62,7 +70,9 @@ class SupportFormUpdateView(ModelForm):
             "category",
             "title",
             "description",
-            "image",
+            "file_one",
+            "file_two",
+            "file_three",
         ]
         labels = {
             "user_name": "Nome:",
@@ -70,7 +80,9 @@ class SupportFormUpdateView(ModelForm):
             "category": "Categoria:",
             "title": "Título:",
             "description": "Descrição:",
-            "image": "Imagem:",
+            "file_one": "Arquivo:",
+            "file_two": "Arquivo",
+            "file_three": "Arquivo",
         }
 
 

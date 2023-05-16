@@ -46,8 +46,11 @@ class Status(models.Model):
 
 
 class Demand(models.Model):
+    def file_upload(self, filename):
+        return "demand_files/" + str(self.user_name) + "-" + str(filename)
+
     def image_upload(self, filename):
-        return "demand_images/" + str(self.user_name) + "-" + str(filename)
+        return "demand_image/" + str(self.user_name) + "-" + str(filename)
 
     id = models.AutoField(primary_key=True)
     user_name = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
@@ -56,6 +59,9 @@ class Demand(models.Model):
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
     description = models.TextField(null=True)
     image = models.ImageField(upload_to=image_upload, null=True, blank=True)
+    file_one = models.FileField(upload_to=file_upload, null=True, blank=True)
+    file_two = models.FileField(upload_to=file_upload, null=True, blank=True)
+    file_three = models.FileField(upload_to=file_upload, null=True, blank=True)
     attendant = models.ForeignKey(
         Support, on_delete=models.SET_NULL, null=True, blank=True
     )
