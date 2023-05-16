@@ -40,7 +40,7 @@ class ServerFilterSerializer(django_filters.FilterSet):
     software = django_filters.ModelChoiceFilter(
         queryset=Software.objects.all(), label="Sistema Operacional:"
     )
-    ip = django_filters.CharFilter(lookup_expr="icontains", label="IP")
+    ip = django_filters.CharFilter(lookup_expr="icontains", label="Endereço IP:")
 
     class Meta:
         model = Server
