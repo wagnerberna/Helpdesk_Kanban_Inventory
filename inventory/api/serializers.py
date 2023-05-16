@@ -13,7 +13,7 @@ class InventoryFilterSerializer(django_filters.FilterSet):
         queryset=Department.objects.all(), label="Setor:"
     )
     ranking = django_filters.ModelChoiceFilter(
-        queryset=Ranking.objects.all(), label="Setor:"
+        queryset=Ranking.objects.all(), label="Ranking:"
     )
     status = django_filters.ModelChoiceFilter(
         queryset=StatusSituation.objects.all(), label="Status:"

@@ -1,7 +1,8 @@
-from django import forms
+# from django import forms
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 from ti.service.check_user_access import check_user_access
+from inventory.api.serializers import InventoryFilterSerializer
 
 from inventory.models import (
     Inventory,
@@ -20,7 +21,9 @@ def inventory_view_workstation(request):
         # print(data[0].hardware)
         # print(data[0].hardware.cpu_model)
 
-        context = {"data": data}
+        inventory_filter = InventoryFilterSerializer(request.GET, queryset=data)
+
+        context = {"data": inventory_filter.qs, "inventory_form": inventory_filter}
         template_path = "inventory/pages/inventory_workstation.html"
 
         return render(
