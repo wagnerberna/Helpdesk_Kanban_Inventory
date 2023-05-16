@@ -4,6 +4,10 @@
     {% include "global/menu.html" %}
 
     <div class="container">
+        <h2>Filtros:</h2>
+
+        {%include "inventory/partials/server_filter.html"%}
+
         <h2>Servidores TI</h2>
 
         {%include "inventory/partials/server_table.html"%}

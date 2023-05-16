@@ -2,7 +2,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 from ti.service.check_user_access import check_user_access
-from inventory.api.serializers import InventoryFilterSerializer
+from inventory.api.serializers import InventoryFilterSerializer, ServerFilterSerializer
 
 from inventory.models import (
     Inventory,
@@ -46,7 +46,11 @@ def inventory_view_server(request):
 
         data = Server.objects.all()
 
-        context = {"data": data}
+        server_filter = ServerFilterSerializer(request.GET, queryset=data)
+
+        print(server_filter.qs)
+
+        context = {"data": server_filter.qs, "server_form": server_filter}
         template_path = "inventory/pages/inventory_server.html"
 
         return render(
