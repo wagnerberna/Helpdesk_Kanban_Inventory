@@ -25,8 +25,8 @@ class DemandFormCreate(ModelForm):
             "category": "Categoria:",
             "description": "Descrição:",
             "file_one": "Arquivo:",
-            "file_two": "Arquivo",
-            "file_three": "Arquivo",
+            "file_two": "Arquivo:",
+            "file_three": "Arquivo:",
         }
 
 
@@ -53,8 +53,8 @@ class DemandFormUpdate(ModelForm):
             "title": "Título:",
             "description": "Descrição:",
             "file_one": "Arquivo:",
-            "file_two": "Arquivo",
-            "file_three": "Arquivo",
+            "file_two": "Arquivo:",
+            "file_three": "Arquivo:",
             "attendant": "Técnico:",
             "status": "Status:",
             "solution": "Solução",
@@ -81,8 +81,8 @@ class SupportFormUpdateView(ModelForm):
             "title": "Título:",
             "description": "Descrição:",
             "file_one": "Arquivo:",
-            "file_two": "Arquivo",
-            "file_three": "Arquivo",
+            "file_two": "Arquivo:",
+            "file_three": "Arquivo:",
         }
 
 
