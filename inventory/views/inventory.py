@@ -2,7 +2,12 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 from ti.service.check_user_access import check_user_access
-from inventory.api.serializers import InventoryFilterSerializer, ServerFilterSerializer
+from inventory.api.serializers import (
+    InventoryFilterSerializer,
+    ServerFilterSerializer,
+    SwitchFilterSerializer,
+    Switch,
+)
 
 from inventory.models import (
     Inventory,
@@ -48,10 +53,37 @@ def inventory_view_server(request):
 
         server_filter = ServerFilterSerializer(request.GET, queryset=data)
 
-        print(server_filter.qs)
+        # print(server_filter.qs)
 
-        context = {"data": server_filter.qs, "server_form": server_filter}
+        context = {"data": server_filter.qs, "form_filter": server_filter}
         template_path = "inventory/pages/inventory_server.html"
+
+        return render(
+            request,
+            template_path,
+            context,
+        )
+
+    except Exception as error:
+        print("Internal error:", error)
+        raise
+
+
+@login_required
+def inventory_view_switch(request):
+    try:
+        check_access = check_user_access(request)
+        if not check_access:
+            return redirect("access_denied")
+
+        data = Switch.objects.all()
+
+        switch_filter = SwitchFilterSerializer(request.GET, queryset=data)
+
+        # print(switch_filter.qs)
+
+        context = {"data": switch_filter.qs, "form_filter": switch_filter}
+        template_path = "inventory/pages/inventory_switch.html"
 
         return render(
             request,

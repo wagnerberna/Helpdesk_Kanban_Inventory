@@ -7,9 +7,9 @@ from inventory.models import (
     Ranking,
     StatusSituation,
     Server,
-    OperationalSystemVersion,
-    OperationalSystem,
     Software,
+    SwitchHardware,
+    Switch,
 )
 from ti.models import Department
 
@@ -46,3 +46,23 @@ class ServerFilterSerializer(django_filters.FilterSet):
         model = Server
 
         fields = ("hostname", "software", "ip")
+
+
+class SwitchFilterSerializer(django_filters.FilterSet):
+    inventory = django_filters.CharFilter(lookup_expr="icontains", label="Patrimônio:")
+    switch_hardware = django_filters.ModelChoiceFilter(
+        queryset=SwitchHardware.objects.all(), label="Marca e Modelo:"
+    )
+    ip = django_filters.CharFilter(lookup_expr="icontains", label="Endereço IP:")
+    mac = django_filters.CharFilter(lookup_expr="icontains", label="Endereço MAC:")
+    status = django_filters.ModelChoiceFilter(
+        queryset=StatusSituation.objects.all(), label="Status:"
+    )
+    department = django_filters.ModelChoiceFilter(
+        queryset=Department.objects.all(), label="Setor:"
+    )
+
+    class Meta:
+        model = Switch
+
+        fields = ("inventory", "switch_hardware", "ip", "mac", "status", "department")

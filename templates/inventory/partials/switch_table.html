@@ -1,0 +1,47 @@
+<div class="container">
+    <table class="table-default table table-striped table-hover">
+        <thead>
+            <th>Patrimônio</th>
+            <th>Usuário</th>
+            <th>Senha</th>
+            <th>IP</th>
+            <th>Marca</th>
+            <th>Modelo</th>
+            <th>Status</th>
+            <th>Setor</th>
+            <th>Link de Acesso</th>
+            <th>MAC</th>
+            <th>Detalhes</th>
+
+        </thead>
+        <tbody>
+            {%if data%}
+                {%for el in data%}
+    
+                    <tr>
+                        <td>{{el.inventory}}</td>
+                        <td>{{el.user}}</td>
+                        <td>{{el.password}}</td>
+                        <td>{{el.ip}}</td>
+                        <td>{{el.switch_hardware.manufacturer}}</td>    
+                        <td>{{el.switch_hardware.model}}</td>
+                        <td>{{el.status}}</td>
+                        <td>{{el.department}}</td>
+                        <td class="word-break">
+                            {%if el.url_access is not None%}
+                                <a href={{el.url_access}}>{{el.url_access}}</a>
+                            {%endif%}      
+                        </td>
+                        <td>{{el.mac}}</td>
+                        <td>
+                            {%if el.detail is not None%}
+                                {{el.detail}}
+                            {%endif%}
+                        </td>  
+                    </tr>
+                {%endfor%}
+            {%endif%}
+        </tbody>
+    </table>
+    
+</div>
