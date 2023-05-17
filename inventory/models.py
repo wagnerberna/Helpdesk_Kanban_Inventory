@@ -374,3 +374,85 @@ class Server(models.Model):
 
     def __str__(self):
         return "%s" % (self.hostname)
+
+
+class SwitchManufacturer(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=20, null=True, unique=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        managed = True
+        db_table = "inventory_switch_manufacturer"
+
+    def __str__(self):
+        return "%s" % (self.name)
+
+
+class SwitchModel(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=30, null=True, unique=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        managed = True
+        db_table = "inventory_switch_model"
+
+    def __str__(self):
+        return "%s" % (self.name)
+
+
+class SwitchHardware(models.Model):
+    id = models.AutoField(primary_key=True)
+    manufacturer = models.ForeignKey(
+        SwitchManufacturer, on_delete=models.CASCADE, null=True
+    )
+    model = models.ForeignKey(SwitchModel, on_delete=models.CASCADE, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        managed = True
+        db_table = "inventory_switch_hardware"
+        constraints = [
+            models.UniqueConstraint(
+                fields=["manufacturer", "model"], name="unique_switch_group"
+            )
+        ]
+
+    def __str__(self):
+        return "%s - %s" % (self.manufacturer, self.model)
+
+
+class Switch(models.Model):
+    def image_upload(self, filename):
+        return "switch_image/" + "Switch - " + str(self.inventory)
+
+    id = models.AutoField(primary_key=True)
+    inventory = models.IntegerField(null=True, unique=True)
+    user = models.CharField(max_length=15, null=True, unique=False, blank=True)
+    password = models.CharField(max_length=15, null=True, unique=False, blank=True)
+    ip = models.CharField(max_length=15, null=True, blank=True, unique=False)
+    stack = models.BooleanField(default=False)
+    switch_hardware = models.ForeignKey(
+        SwitchHardware, on_delete=models.CASCADE, null=True, blank=True
+    )
+    status = models.ForeignKey(StatusSituation, on_delete=models.CASCADE, null=True)
+    department = models.ForeignKey(
+        Department, on_delete=models.CASCADE, null=True, blank=True
+    )
+    url_access = models.CharField(max_length=30, null=True, blank=True)
+    mac = models.CharField(max_length=17, null=True, blank=True)
+    detail = models.CharField(max_length=200, null=True, blank=True)
+    image = models.ImageField(upload_to=image_upload, null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        managed = True
+        db_table = "inventory_switch"
+
+    def __str__(self):
+        return "%s - %s" % (self.switch_hardware, self.ip)

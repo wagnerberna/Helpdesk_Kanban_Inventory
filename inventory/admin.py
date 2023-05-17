@@ -20,7 +20,11 @@ from inventory.models import (
     WorkstationModel,
     WorkstationType,
     ServerStatus,
-    Server
+    Server,
+    SwitchManufacturer,
+    SwitchModel,
+    SwitchHardware,
+    Switch,
 )
 
 # Register your models here.
@@ -44,3 +48,7 @@ admin.site.register(WorkstationType)
 admin.site.register(StatusSituation)
 admin.site.register(ServerStatus)
 admin.site.register(Server)
+admin.site.register(SwitchManufacturer)
+admin.site.register(SwitchModel)
+admin.site.register(SwitchHardware)
+admin.site.register(Switch)
