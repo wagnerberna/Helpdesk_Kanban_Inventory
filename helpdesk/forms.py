@@ -24,9 +24,9 @@ class DemandFormCreate(ModelForm):
             "title": "Título:",
             "category": "Categoria:",
             "description": "Descrição:",
-            "file_one": "Arquivo:",
-            "file_two": "Arquivo:",
-            "file_three": "Arquivo:",
+            "file_one": "Anexar Arquivo:",
+            "file_two": "Anexar Arquivo:",
+            "file_three": "Anexar Arquivo:",
         }
 
 
@@ -52,9 +52,9 @@ class DemandFormUpdate(ModelForm):
             "category": "Categoria:",
             "title": "Título:",
             "description": "Descrição:",
-            "file_one": "Arquivo:",
-            "file_two": "Arquivo:",
-            "file_three": "Arquivo:",
+            "file_one": "Anexar Arquivo:",
+            "file_two": "Anexar Arquivo:",
+            "file_three": "Anexar Arquivo:",
             "attendant": "Técnico:",
             "status": "Status:",
             "solution": "Solução",
@@ -80,9 +80,9 @@ class SupportFormUpdateView(ModelForm):
             "category": "Categoria:",
             "title": "Título:",
             "description": "Descrição:",
-            "file_one": "Arquivo:",
-            "file_two": "Arquivo:",
-            "file_three": "Arquivo:",
+            "file_one": "Anexar Arquivo:",
+            "file_two": "Anexar Arquivo:",
+            "file_three": "Anexar Arquivo:",
         }
 
 
