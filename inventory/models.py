@@ -431,7 +431,7 @@ class Switch(models.Model):
         return "switch_image/" + "Switch - " + str(self.inventory)
 
     id = models.AutoField(primary_key=True)
-    inventory = models.IntegerField(null=True, unique=True)
+    inventory = models.IntegerField(null=True, blank=True, unique=True)
     user = models.CharField(max_length=15, null=True, unique=False, blank=True)
     password = models.CharField(max_length=15, null=True, unique=False, blank=True)
     ip = models.CharField(max_length=15, null=True, blank=True, unique=False)
