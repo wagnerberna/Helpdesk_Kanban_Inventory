@@ -18,8 +18,9 @@ Criar o backend e frontend de um sistema de helpdesk e gerenciamento do quadro k
 - [Bootstrap](https://getbootstrap.com)
 - [Font Awesome](https://fontawesome.com)
 
+URL de Acesso: http://127.0.0.1:8000/
+
 ## 🔎 Rotas:
-URL: http://127.0.0.1:8000/
 ### Gerais:
 | Rota            | Descricao              |
 |-----------------|------------------------|
@@ -28,6 +29,23 @@ URL: http://127.0.0.1:8000/
 | /changepassword | Alteração da Senha     |
 | /about          | Sobre o Sistema        |
 | /logout         | logout                 |
+| /               | Página Inicial         |
+
+### Help Desk Usuários:
+| /helpdesk/demand               | Chamados Abertos             |
+| /helpdesk/new_demand           | Abertura de um Novo Chamados |
+| /helpdesk/demand_done          | Chamados Finalizados         |
+| /helpdesk/demand_details/{ID}  | Detalhes do Chamado pelo ID  |
+| /helpdesk/delete/{ID}          | Excluir Chamado pelo ID      |
+
+### Help Desk Atendentes:
+| /helpdesk/xxx         | logout                 |
+
+| /kanban/xxx         | logout                 |
+| /report/xxx         | logout                 |
+| /report_api/xxx         | logout                 |
+| /inventory/xxx         | logout                 |
+
 
 
 | /candidate/{ID} | Buscar por ID         |
