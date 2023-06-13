@@ -2,12 +2,15 @@
 
 ## 💡 Objetivo:
 
-Criar o backend e frontend de um sistema de helpdesk e gerenciamento do quadro kanban em Django.
+Através do Django criar um sistema de help desk, gerência de projetos e inventário de TI, fornecendo dashboards interativos dos dados com o JavaScript.
+O sistema roda em uma máquina virtual Linux Ubuntu utilizando Gunicorn e Nginx.
+
 
 ## 🛠 Tecnologias:
 
 - [Django](https://www.djangoproject.com/)
 - [django Rest](https://www.django-rest-framework.org/)
+- [JavaScript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
 - [PostgreSQL](https://www.postgresql.org/)
 - [SQLite](https://www.sqlite.org/index.html)
 - [Python-Decouple](https://pypi.org/project/python-decouple/)
@@ -17,6 +20,7 @@ Criar o backend e frontend de um sistema de helpdesk e gerenciamento do quadro k
 - [OpenPyXL](https://openpyxl.readthedocs.io/en/stable/)
 - [Bootstrap](https://getbootstrap.com)
 - [Font Awesome](https://fontawesome.com)
+
 
 URL de Acesso: http://127.0.0.1:8000/
 
@@ -48,7 +52,14 @@ URL de Acesso: http://127.0.0.1:8000/
 | /helpdesk/support_technical    | Chamados Atribuídos ao Técnico Logado |
 | /helpdesk/support/{ID}         | Detalhes do Chamado pelo ID           |
 
-
+### KANBAN Projetos:
+| Rota                           | Descricao                    |
+|--------------------------------|------------------------------|
+| /kanban/projects_open               | Chamados Abertos             |
+| /kanban/new_demand           | Abertura de um Novo Chamados |
+| /kanban/demand_done          | Chamados Finalizados         |
+| /kanban/demand_details/{ID}  | Detalhes do Chamado pelo ID  |
+| /kanban/delete/{ID}          | Excluir Chamado pelo ID      |
 
 ### XXX:
 | Rota                           | Descricao                             |
