@@ -41,28 +41,21 @@ URL de Acesso: http://127.0.0.1:8000/
 | /helpdesk/delete/{ID}          | Excluir Chamado pelo ID      |
 
 ### Help Desk Atendentes:
-| /helpdesk/xxx         | logout                 |
+| Rota                           | Descricao                             |
+|--------------------------------|---------------------------------------|
+| /helpdesk/support              | Todos Chamados Aberto                 |
+| /helpdesk/support_done         | Todos Chamados Finalizados            |
+| /helpdesk/support_technical    | Chamados Atribuídos ao Técnico Logado |
+| /helpdesk/support/{ID}         | Detalhes do Chamado pelo ID           |
 
+
+
+### XXX:
+| Rota                           | Descricao                             |
+|--------------------------------|---------------------------------------|
 | /kanban/xxx         | logout                 |
 | /report/xxx         | logout                 |
 | /report_api/xxx         | logout                 |
 | /inventory/xxx         | logout                 |
 
 
-
-| /candidate/{ID} | Buscar por ID         |
-| /register       | Adicionar             |
-| /candidate/{ID} | Atuaizar dados por ID |
-| /candidate/{ID} | Deletar por ID        |
-
-
-
-
-| Rota            | Descricao             |
-|-----------------|-----------------------|
-| /candidates     | Buscar todos          |
-| /candidates     | Buscar todos          |
-| /candidate/{ID} | Buscar por ID         |
-| /register       | Adicionar             |
-| /candidate/{ID} | Atuaizar dados por ID |
-| /candidate/{ID} | Deletar por ID        |
