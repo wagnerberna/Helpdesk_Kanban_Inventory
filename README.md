@@ -57,11 +57,11 @@ URL de Acesso: http://127.0.0.1:8000/
 ### KANBAN Projetos:
 | Rota                           | Descricao                    |
 |--------------------------------|------------------------------|
-| /kanban/projects_open               | Chamados Abertos             |
-| /kanban/new_demand           | Abertura de um Novo Chamados |
-| /kanban/demand_done          | Chamados Finalizados         |
-| /kanban/demand_details/{ID}  | Detalhes do Chamado pelo ID  |
-| /kanban/delete/{ID}          | Excluir Chamado pelo ID      |
+| /kanban/projects_open          | Chamados Abertos             |
+| /kanban/project_add            | Abertura de um Novo Chamados |
+| /kanban/projects_done          | Chamados Finalizados         |
+| /kanban/project_update/{ID}    | Detalhes do Chamado pelo ID  |
+| /kanban/project_delete/{ID}    | Excluir Chamado pelo ID      |
 
 ### XXX:
 | Rota                           | Descricao                             |
