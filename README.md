@@ -32,6 +32,8 @@ URL de Acesso: http://127.0.0.1:8000/
 | /               | Página Inicial         |
 
 ### Help Desk Usuários:
+| Rota                           | Descricao                    |
+|--------------------------------|------------------------------|
 | /helpdesk/demand               | Chamados Abertos             |
 | /helpdesk/new_demand           | Abertura de um Novo Chamados |
 | /helpdesk/demand_done          | Chamados Finalizados         |
