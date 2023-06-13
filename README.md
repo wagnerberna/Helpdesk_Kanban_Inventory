@@ -3,7 +3,7 @@
 ## 💡 Objetivo:
 
 Através do Django criar um sistema de help desk, gerência de projetos e inventário de TI, fornecendo dashboards interativos dos dados com o JavaScript.
-O sistema roda em uma máquina virtual Linux Ubuntu utilizando Gunicorn e Nginx.
+O sistema roda em uma máquina virtual Linux Ubuntu utilizando Gunicorn e Nginx, o banco de dados escolhido é o PostgreSQL.
 
 
 ## 🛠 Tecnologias:
@@ -20,6 +20,8 @@ O sistema roda em uma máquina virtual Linux Ubuntu utilizando Gunicorn e Nginx.
 - [OpenPyXL](https://openpyxl.readthedocs.io/en/stable/)
 - [Bootstrap](https://getbootstrap.com)
 - [Font Awesome](https://fontawesome.com)
+- [Gunicorn](https://pypi.org/project/gunicorn/)
+- [Nginx](https://nginx.org)
 
 
 URL de Acesso: http://127.0.0.1:8000/
