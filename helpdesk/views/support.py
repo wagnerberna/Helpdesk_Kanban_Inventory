@@ -1,4 +1,5 @@
 from django import forms
+from decouple import config
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator
@@ -108,6 +109,7 @@ def support_view_update(request, id):
         user_id_find = User.objects.filter(username=demand.user_name)
         user_email = user_id_find.values("email")[0].get("email")
 
+        enable_send_email = config("ENABLE_SEND_MAIL")
         recipient_list = [user_email]
         subject = "Chamado atualizado"
         message = f"Chamado Atualizado! \n ID: {pk}"
@@ -143,14 +145,17 @@ def support_view_update(request, id):
             form.save()
             # status = form["status"].value()
             # sla_save(pk, status)
-
-            send_email(recipient_list, subject, message)
+            if enable_send_email:
+                send_email(recipient_list, subject, message)
+            
             return redirect("support_update", id)
 
         if form_historic.is_valid():
             form_historic.save()
 
-            send_email(recipient_list, subject, message)
+            if enable_send_email:
+                send_email(recipient_list, subject, message)
+                
             return redirect("support_update", id)
 
         return render(request, template_path, context)

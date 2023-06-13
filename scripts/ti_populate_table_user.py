@@ -20,7 +20,7 @@ def run():
             User.objects.create_user(
                 username=row.login,
                 email=row.email,
-                password="merco@123",
+                password="teste@123",
                 # department=Profile.objects.get(id=department_id),
             )
 

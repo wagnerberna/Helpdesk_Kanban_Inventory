@@ -72,6 +72,7 @@ def demand_view_create(request):
         user_id = request.user.pk
         user_name = request.user.username
         user_email = request.user.email
+        enable_send_email = config("ENABLE_SEND_MAIL")
         email_support = config("EMAIL_SUPPORT")
         recipient_list = [user_email, email_support]
 
@@ -95,11 +96,12 @@ def demand_view_create(request):
 
         if form.is_valid():
             object = form.save()
-            pk = object.pk
-            subject = "Abertura de Chamado"
-            message = f"Chamado aberto com sucesso! \n ID: {pk} \n Usuário: {user_name}"
-
-            send_email(recipient_list, subject, message)
+            if enable_send_email:
+                pk = object.pk
+                subject = "Abertura de Chamado"
+                message = f"Chamado aberto com sucesso! \n ID: {pk} \n Usuário: {user_name}"
+                send_email(recipient_list, subject, message)
+            
             return redirect("demands_list_by_user")
 
         return render(request, template_path, context)
