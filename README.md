@@ -8,6 +8,7 @@ Através do Django criar um sistema de help desk, gerência de projetos com quad
 - [Django](https://www.djangoproject.com/)
 - [django Rest](https://www.django-rest-framework.org/)
 - [JavaScript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
+- [Batch](https://pt.wikipedia.org/wiki/Batch)
 - [PostgreSQL](https://www.postgresql.org/)
 - [SQLite](https://www.sqlite.org/index.html)
 - [Python-Decouple](https://pypi.org/project/python-decouple/)
