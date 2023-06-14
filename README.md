@@ -38,21 +38,31 @@ Os filtros em geral são por busca de palavras chaves ou categorias.
 
 ## 📋 Kanban:
 No quadro Kanban as tarefas forma inseridas em formato de postits coloridos sendo divididas em quatro fileiras "TO DO", "DOING", "BLOCKED", "DONE" com as respectivas cores verde, amarelo, vermelho e azul.
+
 Na lateral de cada postit existem três ícones, uma seta para passar a tarefa para o próximo status, uma pasta aberta para editar a tarefa e uma lixeira para excluir a mesma.
+
 É possível Filtrar as tarefas pelo título, dono da tarefa e prioridade.
 Novas Tarefas podem ser adicionadas pelo ícone de sinal positivo no canto superior esquerdo.
 
 ## 🤝 Help Desk:
 O sistema de help desk pode ser utilizado tanto na área de infraestrutura como para área de desenvolvimento para suporte ao sistema, o usuário comum possui um acesso limitado, que só permite controlar, visualizar e abrir seus próprios chamados, os recursos mais avançados só são permitidos aos usuários inseridos na tabela de área restrita.
+
 Na área do atendente é possível visualizar a fila geral de chamados, ou apenas os chamados que estão atribuídos ao atendente logado o qual pode inserir detalhes sobre o atendimento ou tentativas de contato na lateral direita, os status dos chamados são "Aguardando Atendimento", "Em Andamento", "Pendente" e "Concluído".
-o envio de e-mails sobre aviso de abertura de chamado e atualizações no atendimento, pode ser ativado ou desativado por intermédio de uma varíavel de ambiente, que pode ser setada com True para Habilitar ou False para desabilitar.
+
+O envio de e-mails sobre aviso de abertura de chamado e atualizações no atendimento, pode ser ativado ou desativado por intermédio de uma varíavel de ambiente, que pode ser setada com True para Habilitar ou False para desabilitar.
 
 ## 📊 Dashboard:
 O projeto foi iniciado utilizando gráficos de apoio da biblioteca Matplotlib, no entanto no dashboard principal é utilizada a biblioteca Chart.js para proporcionar maior interatividade com os gráficos, os quais permitem marcar ou desmarcar ítens para uma melhor comparação dos dados, bem como fornecem mais informações ao passar o mouse sobre os ítens.
 
-#### Gráficos sobre os projetos o de rosca com a quantidade de tarefas por projeto, permitindo comparar a dimensão de cada projeto, e o de barras com o percentual de conclusão das tarefas do projeto. Neste exemplo no gráfico de rosca desmarquei o "projeto 5" para comparar apenas os demais.
+#### Gráficos Projetos:
+O gráficos de rosca com a quantidade de tarefas por projeto, permitindo comparar a dimensão de cada projeto. Neste exemplo no gráfico de rosca desmarquei o "projeto 5" para comparar apenas os demais.
 
-![dashboard](readme/dashboard_projects.png)
+O gráfico de barras horizontal exibe o percentual de conclusão das tarefas do projeto. 
+
+O gráfico de barras vertical possui quatro colunas para cada projeto mostrando a quantidade de tarefas para cada status das tarefas.
+
+![dashboard](readme/dashboard_projects_01.png)
+![dashboard](readme/dashboard_projects_02.png)
 
 
 URL de Acesso: http://127.0.0.1:8000/
