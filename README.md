@@ -76,7 +76,6 @@ O gráfico de barras vertical possui quatro colunas para cada projeto mostrando 
 Segue exemplo desmarcando projetos e status para comparar apenas os ítens desejados:
 
 ![dashboard](readme/dashboard_projects_03.png)
-![dashboard](readme/dashboard_projects_04.png)
 
 #### Gráficos Ranking de Estações de Trabalho:
 O gráfico de rosca permite comparar a quantidade total de estações de trabalho conforme sua designação no ranking.
