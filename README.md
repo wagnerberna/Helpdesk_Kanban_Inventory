@@ -38,44 +38,57 @@ URL de Acesso: http://127.0.0.1:8000/
 | /               | Página Inicial         |
 
 ### Help Desk Usuários:
-| Rota                           | Descricao                    |
-|--------------------------------|------------------------------|
-| /helpdesk/demand               | Chamados Abertos             |
-| /helpdesk/new_demand           | Abertura de um Novo Chamados |
-| /helpdesk/demand_done          | Chamados Finalizados         |
-| /helpdesk/demand_details/{ID}  | Detalhes do Chamado pelo ID  |
-| /helpdesk/delete/{ID}          | Excluir Chamado pelo ID      |
+| Rota                            | Descricao                    |
+|---------------------------------|------------------------------|
+| /helpdesk/demand                | Chamados Abertos             |
+| /helpdesk/new_demand            | Abertura de um Novo Chamados |
+| /helpdesk/demand_done           | Chamados Finalizados         |
+| /helpdesk/demand_details/{ID}   | Detalhes do Chamado pelo ID  |
+| /helpdesk/delete/{ID}           | Excluir Chamado pelo ID      |
 
 ### Help Desk Atendentes:
-| Rota                           | Descricao                                 |
-|--------------------------------|-------------------------------------------|
-| /helpdesk/support              | Todos Chamados Aberto                     |
-| /helpdesk/support_done         | Todos Chamados Finalizados                |
-| /helpdesk/support_technical    | Chamados Atribuídos ao Técnico Logado     |
-| /helpdesk/support/{ID}         | Detalhes e Atualização do Chamado pelo ID |
+| Rota                            | Descricao                                 |
+|---------------------------------|-------------------------------------------|
+| /helpdesk/support               | Todos Chamados Aberto                     |
+| /helpdesk/support_done          | Todos Chamados Finalizados                |
+| /helpdesk/support_technical     | Chamados Atribuídos ao Técnico Logado     |
+| /helpdesk/support/{ID}          | Detalhes e Atualização do Chamado pelo ID |
+
+### Quadro Kanban:
+| Rota                            | Descricao                                   |
+|---------------------------------|---------------------------------------------|
+| /kanban/kanban_manager          | Gerenciamento de Projetos e Tarefas         |
+| /kanban/projects_open           | Acesso ao Quadro Kanban de cada Projeto     |
+| /kanban/kanban_board/{ID}       | Quadro Kanban do Projeto pelo ID            |
+| /kanban/kanban_task_add         | Criação de uma Nova Tarefa dentro do Kanban |
+| /kanban/kanban_task_update/{ID} | Atualização da Tarefa pelo ID no Postit     |
+| /kanban/kanban_task_delete/{ID} | Excluir Tarefa pelo ID no Postit            |
 
 ### Administração dos Projetos:
-| Rota                           | Descricao                      |
-|--------------------------------|--------------------------------|
-| /kanban/projects_open          | Todos Projetos Abertos         |
-| /kanban/project_add            | Criação de um Novo Projeto     |
-| /kanban/projects_done          | Todos Projetos Finalizados     |
-| /kanban/project_update/{ID}    | Atualização do Projeto pelo ID |
-| /kanban/project_delete/{ID}    | Excluir Projeto pelo ID        |
+| Rota                            | Descricao                      |
+|---------------------------------|--------------------------------|
+| /kanban/projects_open           | Todos Projetos Abertos         |
+| /kanban/project_add             | Criação de um Novo Projeto     |
+| /kanban/projects_done           | Todos Projetos Finalizados     |
+| /kanban/project_update/{ID}     | Atualização do Projeto pelo ID |
+| /kanban/project_delete/{ID}     | Excluir Projeto pelo ID        |
 
 ### Administração das Tarefas dos Projetos:
-| Rota                           | Descricao                      |
-|--------------------------------|--------------------------------|
-| /kanban/task_open              | Todas Tarefas Abertas          |
-| /kanban/task_add               | Criação de uma Nova Tarefa     |
-| /kanban/task_done              | Todos Tarefas Finalizadas      |
-| /kanban/task_update/{ID}       | Atualização da Tarefa pelo ID  |
-| /kanban/task_delete/{ID}       | Excluir Tarefa pelo ID         |
+| Rota                            | Descricao                      |
+|---------------------------------|--------------------------------|
+| /kanban/task_open               | Todas Tarefas Abertas          |
+| /kanban/task_add                | Criação de uma Nova Tarefa     |
+| /kanban/task_done               | Todos Tarefas Finalizadas      |
+| /kanban/task_update/{ID}        | Atualização da Tarefa pelo ID  |
+| /kanban/task_delete/{ID}        | Excluir Tarefa pelo ID         |
+
+
+
+
 
 ### XXX:
 | Rota                           | Descricao                             |
 |--------------------------------|---------------------------------------|
-| /kanban/xxx         | logout                 |
 | /report/xxx         | logout                 |
 | /report_api/xxx         | logout                 |
 | /inventory/xxx         | logout                 |
