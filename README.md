@@ -8,7 +8,8 @@ O sistema está setado para acesso on premise, pois é acessado apenas dentro da
 
 ## 🎲 Banco de Dados:
 O banco de dados escolhido é o PostgreSQL, caso a URL do mesmo não esteja configurada nas variáveis de ambiente, o sistema irá usar como padrão o SQLite na raiz do projeto.
-![Diagrama_ER](readme/ti_db_er_diagram.png)
+### Diagrama de Entidade e Relacionamento do Banco:
+![DER](readme/ti_db_der.png)
 
 ## ☑️ Menu Lateral:
 Na lateral esquerda, através de um ícone de um quadrado azul com três traços, é possível acessar um menu com os atalhos mais utilizados, este menu foi feito em o JS com CSS.
