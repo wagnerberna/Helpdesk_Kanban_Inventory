@@ -3,6 +3,7 @@
 ## 💡 Objetivo:
 Através do Django criar um sistema de help desk, gerência de projetos com quadro Kanban e inventário de TI, fornecendo dashboards interativos dos dados com o JavaScript.
 
+
 ## 🛠 Tecnologias:
 
 - [Django](https://www.djangoproject.com/)
@@ -32,7 +33,7 @@ O banco de dados escolhido é o PostgreSQL, caso a URL do mesmo não esteja conf
 ## ☑️ Menu Lateral:
 Na lateral esquerda, através de um ícone de um quadrado azul com três traços, é possível acessar um menu com os atalhos mais utilizados, este menu foi feito em o JS com CSS.
 
-## 📝 Paginação e Filtros:
+## 📃 Paginação e Filtros:
 Paginação e filtros foram inseridos em todas páginas que podem vir a conter uma grande quantidade de dados.
 Os filtros em geral são por busca de palavras chaves ou categorias.
 
@@ -51,8 +52,15 @@ Na área do atendente é possível visualizar a fila geral de chamados, ou apena
 
 O envio de e-mails sobre aviso de abertura de chamado e atualizações no atendimento, pode ser ativado ou desativado por intermédio de uma varíavel de ambiente, que pode ser setada com True para Habilitar ou False para desabilitar.
 
+## 📝 Inventário TI:
+
+
+
 ## 📊 Dashboard:
 O projeto foi iniciado utilizando gráficos de apoio da biblioteca Matplotlib, no entanto no dashboard principal é utilizada a biblioteca Chart.js para proporcionar maior interatividade com os gráficos, os quais permitem marcar ou desmarcar ítens para uma melhor comparação dos dados, bem como fornecem mais informações ao passar o mouse sobre os ítens.
+
+#### Gráficos Atendimentos:
+
 
 #### Gráficos Projetos:
 O gráficos de rosca com a quantidade de tarefas por projeto, permitindo comparar a dimensão de cada projeto. Neste exemplo no gráfico de rosca desmarquei o "projeto 5" para comparar apenas os demais.
@@ -63,6 +71,20 @@ O gráfico de barras vertical possui quatro colunas para cada projeto mostrando 
 
 ![dashboard](readme/dashboard_projects_01.png)
 ![dashboard](readme/dashboard_projects_02.png)
+![dashboard](readme/dashboard_projects_03.png)
+
+Segue exemplo desmarcando projetos e status para comparar apenas os ítens desejados:
+![dashboard](readme/dashboard_projects_04.png)
+
+#### Gráficos Ranking de Estações de Trabalho:
+O gráfico de rosca permite comparar a quantidade total de estações de trabalho conforme sua designação no ranking.
+
+O gráfico em barras vertical exibe para cada setor as respectivas colunas da quantidade de máquinas em cada ranking no setor.
+
+![dashboard](readme/dashboard_ranking_01.png)
+![dashboard](readme/dashboard_ranking_02.png)
+
+
 
 
 URL de Acesso: http://127.0.0.1:8000/
