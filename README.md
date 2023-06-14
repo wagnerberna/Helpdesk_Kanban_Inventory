@@ -54,7 +54,9 @@ O envio de e-mails sobre aviso de abertura de chamado e atualizações no atendi
 ## 📝 Inventário TI:
 O módulo inventário utiliza um processo **ETL** que se alimenta de dados extraídos de um script em linguagem batch rodando na inicialização das estações de trabalho através do servidor de domínio, o qual gera um arquivo de texto para cada máquina com as informações de hardware, software e usuários logado.
 
-Este arquivo é processado, realizando a limpeza dos dados o qual gera uma planilha em excel com a compilação dos dados, bem como estabece um ranking para as estações de trabalho conforme o modelo e geração do processador indo do A o mais alto nível ao D o mais baixo.
+Este arquivo é processado, realizando a limpeza dos dados o qual gera uma planilha em excel com a compilação dos dados, bem como estabece um ranking para as estações de trabalho conforme o modelo e geração do processador, indo do A o mais alto nível ao D o mais baixo.
+
+A Planilha gerada serve tanto para servir como base inicial dos dados a serem lançados no banco de dados como para comparação periódica de possíveis alterações.
 
 ## 📊 Dashboard:
 O projeto foi iniciado utilizando gráficos de apoio da biblioteca Matplotlib, no entanto no dashboard principal é utilizada a biblioteca Chart.js para proporcionar maior interatividade com os gráficos, os quais permitem marcar ou desmarcar ítens para uma melhor comparação dos dados, bem como fornecem mais informações ao passar o mouse sobre os ítens.
