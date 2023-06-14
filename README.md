@@ -12,6 +12,7 @@ Através do Django criar um sistema de help desk, gerência de projetos com quad
 - [SQLite](https://www.sqlite.org/index.html)
 - [Python-Decouple](https://pypi.org/project/python-decouple/)
 - [Matplotlib](https://matplotlib.org)
+- [Chart.js](https://www.chartjs.org/docs/latest/)
 - [Pandas](https://pandas.pydata.org)
 - [Seaborn](https://seaborn.pydata.org)
 - [OpenPyXL](https://openpyxl.readthedocs.io/en/stable/)
@@ -47,7 +48,11 @@ Na área do atendente é possível visualizar a fila geral de chamados, ou apena
 o envio de e-mails sobre aviso de abertura de chamado e atualizações no atendimento, pode ser ativado ou desativado por intermédio de uma varíavel de ambiente, que pode ser setada com True para Habilitar ou False para desabilitar.
 
 ## 📊 Dashboard:
-xxxxxx
+O projeto foi iniciado utilizando gráficos de apoio da biblioteca Matplotlib, no entanto no dashboard principal é utilizada a biblioteca Chart.js para proporcionar maior interatividade com os gráficos, os quais permitem marcar ou desmarcar ítens para uma melhor comparação dos dados, bem como fornecem mais informações ao passar o mouse sobre os ítens.
+
+#### Gráficos sobre os projetos o de rosca com a quantidade de tarefas por projeto, permitindo comparar a dimensão de cada projeto, e o de barras com o percentual de conclusão das tarefas do projeto. Neste exemplo no gráfico de rosca desmarquei o "projeto 5" para comparar apenas os demais.
+
+![dashboard](readme/dashboard_projects.png)
 
 
 URL de Acesso: http://127.0.0.1:8000/
