@@ -2,11 +2,22 @@
 
 ## 💡 Objetivo:
 
-Através do Django criar um sistema de help desk, gerência de projetos e inventário de TI, fornecendo dashboards interativos dos dados com o JavaScript.
-Paginação e filtros foram inseridos em todas páginas que podem vir a conter uma grande quantidade de dados.
+Através do Django criar um sistema de help desk, gerência de projetos com quadro Kanban e inventário de TI, fornecendo dashboards interativos dos dados com o JavaScript.
 
 ## 📌 Detalhes Técnicos:
-O sistema roda em uma máquina virtual Linux Ubuntu utilizando Gunicorn e Nginx, o banco de dados escolhido é o PostgreSQL.
+O banco de dados escolhido é o PostgreSQL, caso a URL do mesmo não esteja configurada, o sistema irá usar como padrão o SQLite na raiz do projeto.
+Paginação e filtros foram inseridos em todas páginas que podem vir a conter uma grande quantidade de dados.
+O sistema roda em um servidor, uma máquina virtual Linux Ubuntu utilizando Gunicorn e Nginx.
+
+
+## ☑️ Menu Lateral:
+Na lateral esquerda, através de um ícone de um quadrado azul com três traços, é possível acessar um menu com os atalhos mais utilizados, este menu foi feito com o JS.
+
+
+## 📋 Kanban:
+
+## 📊 Dashboard:
+
 
 
 ## 🛠 Tecnologias:
@@ -30,7 +41,7 @@ O sistema roda em uma máquina virtual Linux Ubuntu utilizando Gunicorn e Nginx,
 URL de Acesso: http://127.0.0.1:8000/
 
 ## 🔎 Rotas:
-### Gerais:
+### 🚩 Gerais:
 | Rota            | Descricao              |
 |-----------------|------------------------|
 | /admin          | Administração do Django|
@@ -40,7 +51,7 @@ URL de Acesso: http://127.0.0.1:8000/
 | /logout         | logout                 |
 | /               | Página Inicial         |
 
-### Help Desk Usuários:
+### 🙍‍♂️ Help Desk Usuários:
 | Rota                            | Descricao                    |
 |---------------------------------|------------------------------|
 | /helpdesk/demand                | Chamados Abertos             |
@@ -49,7 +60,7 @@ URL de Acesso: http://127.0.0.1:8000/
 | /helpdesk/demand_details/{ID}   | Detalhes do Chamado pelo ID  |
 | /helpdesk/delete/{ID}           | Excluir Chamado pelo ID      |
 
-### Help Desk Atendentes:
+### 🧙 Help Desk Atendentes:
 | Rota                            | Descricao                                 |
 |---------------------------------|-------------------------------------------|
 | /helpdesk/support               | Todos Chamados Aberto                     |
@@ -57,7 +68,7 @@ URL de Acesso: http://127.0.0.1:8000/
 | /helpdesk/support_technical     | Chamados Atribuídos ao Técnico Logado     |
 | /helpdesk/support/{ID}          | Detalhes e Atualização do Chamado pelo ID |
 
-### Quadro Kanban:
+###  Quadro Kanban:
 | Rota                            | Descricao                                   |
 |---------------------------------|---------------------------------------------|
 | /kanban/kanban_manager          | Gerenciamento de Projetos e Tarefas         |
