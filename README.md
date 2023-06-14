@@ -20,6 +20,11 @@ Na lateral esquerda, através de um ícone de um quadrado azul com três traços
     Novas Tarefas podem ser adicionadas pelo ícone de sinal positivo no canto superior esquerdo.
 
 
+## 🤝 Help Desk:
+    O sistema de help desk pode ser utilizado tanto na área de infraestrutura como para área de desenvolvimento para suporte ao sistema, o usuário comum possui um acesso limitado, que só permite controlar, visualizar e abrir seus próprios chamados, os recursos mais avançados só são permitidos aos usuários inseridos na tabela de área restrita.
+    Na área do atendente é possível visualizar a fila geral de chamados, ou apenas os chamados que estão atribuídos ao atendente logado o qual pode inserir detalhes sobre o atendimento ou tentativas de contato na lateral direita, os status dos chamados são "Aguardando Atendimento", "Em Andamento", "Pendente" e "Concluído".
+    o envio de e-mails sobre aviso de abertura de chamado e atualizações no atendimento, pode ser ativado ou desativado por intermédio de uma varíavel de ambiente, que pode ser setada com True para Habilitar ou False para desabilitar.
+
 ## 📊 Dashboard:
 
 
@@ -45,7 +50,7 @@ Na lateral esquerda, através de um ícone de um quadrado azul com três traços
 URL de Acesso: http://127.0.0.1:8000/
 
 ## 🔎 Rotas:
-### 🤝 Gerais:
+### ⭐⚠️🚩👍👋 Gerais:
 | Rota            | Descricao              |
 |-----------------|------------------------|
 | /admin          | Administração do Django|
