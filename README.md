@@ -11,10 +11,14 @@ O sistema roda em um servidor, uma máquina virtual Linux Ubuntu utilizando Guni
 
 
 ## ☑️ Menu Lateral:
-Na lateral esquerda, através de um ícone de um quadrado azul com três traços, é possível acessar um menu com os atalhos mais utilizados, este menu foi feito com o JS.
-
+Na lateral esquerda, através de um ícone de um quadrado azul com três traços, é possível acessar um menu com os atalhos mais utilizados, este menu foi feito em o JS com CSS.
 
 ## 📋 Kanban:
+    No quadro Kanban as tarefas forma inseridas em formato de postits coloridos sendo divididas em quatro fileiras "TO DO", "DOING", "BLOCKED", "DONE" com as respectivas cores verde, amarelo, vermelho e azul.
+    Na lateral de cada postit existem três ícones, uma seta para passar a tarefa para o próximo status, uma pasta aberta para editar a tarefa e uma lixeira para excluir a mesma.
+    É possível Filtrar as tarefas pelo título, dono da tarefa e prioridade.
+    Novas Tarefas podem ser adicionadas pelo ícone de sinal positivo no canto superior esquerdo.
+
 
 ## 📊 Dashboard:
 
@@ -41,7 +45,7 @@ Na lateral esquerda, através de um ícone de um quadrado azul com três traços
 URL de Acesso: http://127.0.0.1:8000/
 
 ## 🔎 Rotas:
-### 🚩 Gerais:
+### 🤝 Gerais:
 | Rota            | Descricao              |
 |-----------------|------------------------|
 | /admin          | Administração do Django|
@@ -68,7 +72,7 @@ URL de Acesso: http://127.0.0.1:8000/
 | /helpdesk/support_technical     | Chamados Atribuídos ao Técnico Logado     |
 | /helpdesk/support/{ID}          | Detalhes e Atualização do Chamado pelo ID |
 
-###  Quadro Kanban:
+### 📋 Quadro Kanban:
 | Rota                            | Descricao                                   |
 |---------------------------------|---------------------------------------------|
 | /kanban/kanban_manager          | Gerenciamento de Projetos e Tarefas         |
@@ -78,7 +82,7 @@ URL de Acesso: http://127.0.0.1:8000/
 | /kanban/kanban_task_update/{ID} | Atualização da Tarefa pelo ID no Postit     |
 | /kanban/kanban_task_delete/{ID} | Excluir Tarefa pelo ID no Postit            |
 
-### Administração dos Projetos:
+### ✅ Administração dos Projetos:
 | Rota                            | Descricao                      |
 |---------------------------------|--------------------------------|
 | /kanban/projects_open           | Todos Projetos Abertos         |
@@ -87,7 +91,7 @@ URL de Acesso: http://127.0.0.1:8000/
 | /kanban/project_update/{ID}     | Atualização do Projeto pelo ID |
 | /kanban/project_delete/{ID}     | Excluir Projeto pelo ID        |
 
-### Administração das Tarefas dos Projetos:
+### ✔️ Administração das Tarefas dos Projetos:
 | Rota                            | Descricao                      |
 |---------------------------------|--------------------------------|
 | /kanban/task_open               | Todas Tarefas Abertas          |
