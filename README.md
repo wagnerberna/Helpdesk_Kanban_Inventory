@@ -3,6 +3,23 @@
 ## 💡 Objetivo:
 Através do Django criar um sistema de help desk, gerência de projetos com quadro Kanban e inventário de TI, fornecendo dashboards interativos dos dados com o JavaScript.
 
+## 🛠 Tecnologias:
+
+- [Django](https://www.djangoproject.com/)
+- [django Rest](https://www.django-rest-framework.org/)
+- [JavaScript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
+- [PostgreSQL](https://www.postgresql.org/)
+- [SQLite](https://www.sqlite.org/index.html)
+- [Python-Decouple](https://pypi.org/project/python-decouple/)
+- [Matplotlib](https://matplotlib.org)
+- [Pandas](https://pandas.pydata.org)
+- [Seaborn](https://seaborn.pydata.org)
+- [OpenPyXL](https://openpyxl.readthedocs.io/en/stable/)
+- [Bootstrap](https://getbootstrap.com)
+- [Font Awesome](https://fontawesome.com)
+- [Gunicorn](https://pypi.org/project/gunicorn/)
+- [Nginx](https://nginx.org)
+
 ## ⚙️ Serviço WEB:
 O sistema está setado para acesso on premise, pois é acessado apenas dentro da rede local, sendo configurado em uma máquina virtual rodando o SO Linux Ubuntu, o acesso WEB é provido utilizando o Gunicorn e Nginx.
 
@@ -30,31 +47,13 @@ Na área do atendente é possível visualizar a fila geral de chamados, ou apena
 o envio de e-mails sobre aviso de abertura de chamado e atualizações no atendimento, pode ser ativado ou desativado por intermédio de uma varíavel de ambiente, que pode ser setada com True para Habilitar ou False para desabilitar.
 
 ## 📊 Dashboard:
-
-
-
-## 🛠 Tecnologias:
-
-- [Django](https://www.djangoproject.com/)
-- [django Rest](https://www.django-rest-framework.org/)
-- [JavaScript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
-- [PostgreSQL](https://www.postgresql.org/)
-- [SQLite](https://www.sqlite.org/index.html)
-- [Python-Decouple](https://pypi.org/project/python-decouple/)
-- [Matplotlib](https://matplotlib.org)
-- [Pandas](https://pandas.pydata.org)
-- [Seaborn](https://seaborn.pydata.org)
-- [OpenPyXL](https://openpyxl.readthedocs.io/en/stable/)
-- [Bootstrap](https://getbootstrap.com)
-- [Font Awesome](https://fontawesome.com)
-- [Gunicorn](https://pypi.org/project/gunicorn/)
-- [Nginx](https://nginx.org)
+xxxxxx
 
 
 URL de Acesso: http://127.0.0.1:8000/
 
 ## 🔎 Rotas:
-### ⭐📌🚩⚠️👍👋 Gerais:
+### 🚩 Gerais:
 | Rota            | Descricao              |
 |-----------------|------------------------|
 | /admin          | Administração do Django|
