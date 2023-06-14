@@ -47,21 +47,30 @@ URL de Acesso: http://127.0.0.1:8000/
 | /helpdesk/delete/{ID}          | Excluir Chamado pelo ID      |
 
 ### Help Desk Atendentes:
-| Rota                           | Descricao                             |
-|--------------------------------|---------------------------------------|
-| /helpdesk/support              | Todos Chamados Aberto                 |
-| /helpdesk/support_done         | Todos Chamados Finalizados            |
-| /helpdesk/support_technical    | Chamados Atribuídos ao Técnico Logado |
-| /helpdesk/support/{ID}         | Detalhes do Chamado pelo ID           |
+| Rota                           | Descricao                                 |
+|--------------------------------|-------------------------------------------|
+| /helpdesk/support              | Todos Chamados Aberto                     |
+| /helpdesk/support_done         | Todos Chamados Finalizados                |
+| /helpdesk/support_technical    | Chamados Atribuídos ao Técnico Logado     |
+| /helpdesk/support/{ID}         | Detalhes e Atualização do Chamado pelo ID |
 
-### KANBAN Projetos:
-| Rota                           | Descricao                    |
-|--------------------------------|------------------------------|
-| /kanban/projects_open          | Chamados Abertos             |
-| /kanban/project_add            | Abertura de um Novo Chamados |
-| /kanban/projects_done          | Chamados Finalizados         |
-| /kanban/project_update/{ID}    | Detalhes do Chamado pelo ID  |
-| /kanban/project_delete/{ID}    | Excluir Chamado pelo ID      |
+### Administração dos Projetos:
+| Rota                           | Descricao                      |
+|--------------------------------|--------------------------------|
+| /kanban/projects_open          | Todos Projetos Abertos         |
+| /kanban/project_add            | Criação de um Novo Projeto     |
+| /kanban/projects_done          | Todos Projetos Finalizados     |
+| /kanban/project_update/{ID}    | Atualização do Projeto pelo ID |
+| /kanban/project_delete/{ID}    | Excluir Projeto pelo ID        |
+
+### Administração das Tarefas dos Projetos:
+| Rota                           | Descricao                      |
+|--------------------------------|--------------------------------|
+| /kanban/task_open              | Todas Tarefas Abertas          |
+| /kanban/task_add               | Criação de uma Nova Tarefa     |
+| /kanban/task_done              | Todos Tarefas Finalizadas      |
+| /kanban/task_update/{ID}       | Atualização da Tarefa pelo ID  |
+| /kanban/task_delete/{ID}       | Excluir Tarefa pelo ID         |
 
 ### XXX:
 | Rota                           | Descricao                             |
