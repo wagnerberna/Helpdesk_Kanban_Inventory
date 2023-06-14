@@ -3,6 +3,9 @@
 ## 💡 Objetivo:
 
 Através do Django criar um sistema de help desk, gerência de projetos e inventário de TI, fornecendo dashboards interativos dos dados com o JavaScript.
+Paginação e filtros foram inseridos em todas páginas que podem vir a conter uma grande quantidade de dados.
+
+## 📌 Detalhes Técnicos:
 O sistema roda em uma máquina virtual Linux Ubuntu utilizando Gunicorn e Nginx, o banco de dados escolhido é o PostgreSQL.
 
 
@@ -86,11 +89,12 @@ URL de Acesso: http://127.0.0.1:8000/
 
 
 
-### XXX:
+### 📊 XXX:
 | Rota                           | Descricao                             |
 |--------------------------------|---------------------------------------|
 | /report/xxx         | logout                 |
 | /report_api/xxx         | logout                 |
+report_interactive
 | /inventory/xxx         | logout                 |
 
 
