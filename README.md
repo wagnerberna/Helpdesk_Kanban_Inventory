@@ -71,11 +71,11 @@ O gráfico de barras vertical possui quatro colunas para cada projeto mostrando 
 
 ![dashboard](readme/dashboard_projects_01.png)
 ![dashboard](readme/dashboard_projects_02.png)
-![dashboard](readme/dashboard_projects_03.png)
 
 #### Exemplo Interatividade:
 Segue exemplo desmarcando projetos e status para comparar apenas os ítens desejados:
 
+![dashboard](readme/dashboard_projects_03.png)
 ![dashboard](readme/dashboard_projects_04.png)
 
 #### Gráficos Ranking de Estações de Trabalho:
