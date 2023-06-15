@@ -150,15 +150,18 @@ URL de Acesso: http://127.0.0.1:8000/
 
 
 
-### 📊 Dashboard and API:
-| Rota                                            | Descricao                                        |
-|-------------------------------------------------|--------------------------------------------------|
-| /report_interactive/dashboard                   | Dashboard Principal                              |
-| /report_api/api_technicals_demand               | API Demandas por Atendente                       |
-| /report_api/api_technicals_tasks                | API Tarefas de Projetos por Atendente            |
-| /report_api/api_project_tasks                   | API Tarefas por Projeto                          |
-| /report_api/api_workstations_ranking            | API Total Ranking Estações de Trabalho           |
-| /report_api/api_workstations_department_ranking | API Total Ranking Estações de Trabalho por Setor |
+### 📊 Dashboard e API:
+
+As rotas descritas como **API** são saídas de dados no formato **JSON** para serem consumidas pelo dashboard principal. 
+
+| Rota                                            | Descricao                                  |
+|-------------------------------------------------|--------------------------------------------|
+| /report_interactive/dashboard                   | Dashboard Principal                        |
+| /report_api/api_technicals_demand               | API Demandas por Atendente                 |
+| /report_api/api_technicals_tasks                | API Tarefas de Projetos por Atendente      |
+| /report_api/api_project_tasks                   | API Tarefas por Projeto                    |
+| /report_api/api_workstations_ranking            | API Ranking Estações de Trabalho           |
+| /report_api/api_workstations_department_ranking | API Ranking Estações de Trabalho por Setor |
 
 
 
