@@ -41,10 +41,10 @@ Os filtros em geral são por busca de palavras chaves ou categorias.
 ## 📋 Kanban:
 No quadro Kanban as tarefas forma inseridas em formato de postits coloridos sendo divididas em quatro fileiras "TO DO", "DOING", "BLOCKED", "DONE" com as respectivas cores verde, amarelo, vermelho e azul.
 
-Na lateral de cada postit existem três ícones, uma seta para passar a tarefa para o próximo status, uma pasta aberta para editar a tarefa e uma lixeira para excluir a mesma.
+Na lateral de cada postit existe três ícones, uma seta para passar a tarefa para o próximo status, uma pasta aberta para editar a tarefa e uma lixeira para excluir a mesma.
 
-É possível Filtrar as tarefas pelo título, dono da tarefa e prioridade.
-Novas Tarefas podem ser adicionadas pelo ícone de sinal positivo no canto superior esquerdo.
+É possível filtrar as tarefas pelo título, dono da tarefa e prioridade.
+Novas tarefas podem ser adicionadas pelo ícone de sinal positivo no canto superior esquerdo.
 
 ## 🤝 Help Desk:
 O sistema de help desk pode ser utilizado tanto na área de infraestrutura como para área de desenvolvimento para suporte ao sistema, o usuário comum possui um acesso limitado, que só permite controlar, visualizar e abrir seus próprios chamados, os recursos mais avançados só são permitidos aos usuários inseridos na tabela de área restrita.
