@@ -163,7 +163,7 @@ As rotas descritas como **API** são saídas de dados no formato **JSON** para s
 | /report_api/api_workstations_ranking            | API Ranking Estações de Trabalho           |
 | /report_api/api_workstations_department_ranking | API Ranking Estações de Trabalho por Setor |
 
-###  Relatórios e Documentação:
+### 📑 Relatórios e Documentação:
 
 Nestas rotas estão incluídos relatórios, tabelas, gráficos e imagens documentando toda infraestrutura do TI.
 
@@ -178,7 +178,7 @@ Nestas rotas estão incluídos relatórios, tabelas, gráficos e imagens documen
 | /report/ranking                 | Relatório do Ranking das Estações de Trabalho |
 | /report/workstations_update     | Dispara um Processo ETL Compilando Dados      |
 
-###  Inventário de TI:
+### 📝 Inventário de TI:
 
 Inventário de estações de trabalho, servidores e switches.
 
