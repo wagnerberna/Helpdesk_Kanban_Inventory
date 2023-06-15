@@ -8,7 +8,7 @@ Através do Django criar um sistema de help desk, gerência de projetos com quad
 - [Python](https://www.python.org)
 - [JavaScript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
 - [Django](https://www.djangoproject.com/)
-- [django Rest](https://www.django-rest-framework.org/)
+- [Django Rest](https://www.django-rest-framework.org/)
 - [PostgreSQL](https://www.postgresql.org/)
 - [SQLite](https://www.sqlite.org/index.html)
 - [Python-Decouple](https://pypi.org/project/python-decouple/)
@@ -93,7 +93,7 @@ O gráfico em barras vertical exibe para cada setor as respectivas colunas da qu
 URL de Acesso: http://127.0.0.1:8000/
 
 ### 🚩 Gerais:
-| Rota            | Descricao              |
+| Rota            | Descrição              |
 |-----------------|------------------------|
 | /admin          | Administração do Django|
 | /login          | Login                  |
@@ -103,7 +103,7 @@ URL de Acesso: http://127.0.0.1:8000/
 | /               | Página Inicial         |
 
 ### 🙍‍♂️ Help Desk Usuários:
-| Rota                            | Descricao                    |
+| Rota                            | Descrição                    |
 |---------------------------------|------------------------------|
 | /helpdesk/demand                | Chamados Abertos             |
 | /helpdesk/new_demand            | Abertura de um Novo Chamados |
@@ -112,7 +112,7 @@ URL de Acesso: http://127.0.0.1:8000/
 | /helpdesk/delete/{ID}           | Excluir Chamado pelo ID      |
 
 ### 🧙 Help Desk Atendentes:
-| Rota                            | Descricao                                 |
+| Rota                            | Descrição                                 |
 |---------------------------------|-------------------------------------------|
 | /helpdesk/support               | Todos Chamados Aberto                     |
 | /helpdesk/support_done          | Todos Chamados Finalizados                |
@@ -120,7 +120,7 @@ URL de Acesso: http://127.0.0.1:8000/
 | /helpdesk/support/{ID}          | Detalhes e Atualização do Chamado pelo ID |
 
 ### 📋 Quadro Kanban:
-| Rota                            | Descricao                                   |
+| Rota                            | Descrição                                   |
 |---------------------------------|---------------------------------------------|
 | /kanban/kanban_manager          | Gerenciamento de Projetos e Tarefas         |
 | /kanban/projects_open           | Acesso ao Quadro Kanban de cada Projeto     |
@@ -130,7 +130,7 @@ URL de Acesso: http://127.0.0.1:8000/
 | /kanban/kanban_task_delete/{ID} | Excluir Tarefa pelo ID no Postit            |
 
 ### ✅ Administração dos Projetos:
-| Rota                            | Descricao                      |
+| Rota                            | Descrição                      |
 |---------------------------------|--------------------------------|
 | /kanban/projects_open           | Todos Projetos Abertos         |
 | /kanban/project_add             | Criação de um Novo Projeto     |
@@ -139,7 +139,7 @@ URL de Acesso: http://127.0.0.1:8000/
 | /kanban/project_delete/{ID}     | Excluir Projeto pelo ID        |
 
 ### ✔️ Administração das Tarefas dos Projetos:
-| Rota                            | Descricao                      |
+| Rota                            | Descrição                      |
 |---------------------------------|--------------------------------|
 | /kanban/task_open               | Todas Tarefas Abertas          |
 | /kanban/task_add                | Criação de uma Nova Tarefa     |
@@ -151,7 +151,7 @@ URL de Acesso: http://127.0.0.1:8000/
 
 As rotas descritas como **API** são saídas de dados no formato **JSON** para serem consumidas pelo dashboard principal com gráficos interativos. 
 
-| Rota                                            | Descricao                                  |
+| Rota                                            | Descrição                                  |
 |-------------------------------------------------|--------------------------------------------|
 | /report_interactive/dashboard                   | Dashboard Principal                        |
 | /report_api/api_technicals_demand               | API Demandas por Atendente                 |
@@ -164,7 +164,7 @@ As rotas descritas como **API** são saídas de dados no formato **JSON** para s
 
 Inventário de estações de trabalho, servidores e switches.
 
-| Rota                             | Descricao                             |
+| Rota                             | Descrição                             |
 |----------------------------------|---------------------------------------|
 | /inventory/inventory_workstation | Tabela Estações de Trabalho           |
 | /inventory/inventory_server      | Tabela Servidores                     |
@@ -174,7 +174,7 @@ Inventário de estações de trabalho, servidores e switches.
 
 Nestas rotas estão incluídos relatórios, tabelas, gráficos e imagens documentando toda infraestrutura do TI.
 
-| Rota                            | Descricao                                     |
+| Rota                            | Descrição                                     |
 |---------------------------------|-----------------------------------------------|
 | /report/report_per_technical    | Relatórios do Help Desk                       |
 | /report/report_per_project      | Relatórios dos Projetos                       |
