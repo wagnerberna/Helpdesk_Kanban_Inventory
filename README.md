@@ -64,7 +64,7 @@ Este arquivo é processado, realizando a limpeza dos dados o qual gera uma plani
 A Planilha gerada serve tanto para servir como base inicial dos dados a serem lançados no banco de dados como para comparação periódica de possíveis alterações.
 
 ## 📊 Dashboard:
-O projeto foi iniciado utilizando gráficos de apoio da biblioteca Matplotlib, no entanto no dashboard principal é utilizada a biblioteca Chart.js para proporcionar maior interatividade com os gráficos, os quais permitem marcar ou desmarcar ítens para uma melhor comparação dos dados, bem como fornecem mais informações ao passar o mouse sobre os ítens.
+O projeto foi iniciado utilizando gráficos de apoio da biblioteca Matplotlib, no entanto no dashboard principal é utilizada a biblioteca Chart.js para proporcionar maior interatividade com os gráficos, os quais permitem marcar ou desmarcar itens para uma melhor comparação dos dados, bem como fornecem mais informações ao passar o mouse sobre os itens.
 
 #### Gráficos Atendimentos:
 
@@ -76,7 +76,7 @@ O gráfico de barras horizontal exibe o percentual de conclusão das tarefas do 
 
 O gráfico de barras vertical possui quatro colunas para cada projeto mostrando a quantidade de tarefas para cada status das tarefas.
 
-Segue exemplo desmarcando projetos e status para comparar apenas os ítens desejados:
+Segue exemplo desmarcando projetos e status para comparar apenas os itens desejados:
 
 ![dashboard](readme/dashboard_projects_01.gif)
 ![dashboard](readme/dashboard_projects_02.gif)
