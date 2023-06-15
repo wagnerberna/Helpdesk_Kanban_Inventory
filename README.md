@@ -55,6 +55,8 @@ Na área do atendente é possível visualizar a fila geral de chamados, ou apena
 O envio de e-mails sobre aviso de abertura de chamado e atualizações no atendimento, pode ser ativado ou desativado por intermédio de uma varíavel de ambiente, que pode ser setada com True para Habilitar ou False para desabilitar.
 
 ## 📝 Inventário TI:
+Inventário de estações de trabalho, servidores e switches.
+
 O módulo inventário utiliza um processo **ETL** que se alimenta de dados extraídos de um script em linguagem batch rodando na inicialização das estações de trabalho através do servidor de domínio, o qual gera um arquivo de texto para cada máquina com as informações de hardware, software e usuários logado.
 
 Este arquivo é processado, realizando a limpeza dos dados o qual gera uma planilha em excel com a compilação dos dados, bem como estabece um ranking para as estações de trabalho conforme o modelo e geração do processador, indo do A o mais alto nível ao D o mais baixo.
@@ -148,12 +150,9 @@ URL de Acesso: http://127.0.0.1:8000/
 | /kanban/task_update/{ID}        | Atualização da Tarefa pelo ID  |
 | /kanban/task_delete/{ID}        | Excluir Tarefa pelo ID         |
 
-
-
-
 ### 📊 Dashboard e API:
 
-As rotas descritas como **API** são saídas de dados no formato **JSON** para serem consumidas pelo dashboard principal. 
+As rotas descritas como **API** são saídas de dados no formato **JSON** para serem consumidas pelo dashboard principal com gráficos interativos. 
 
 | Rota                                            | Descricao                                  |
 |-------------------------------------------------|--------------------------------------------|
@@ -164,14 +163,29 @@ As rotas descritas como **API** são saídas de dados no formato **JSON** para s
 | /report_api/api_workstations_ranking            | API Ranking Estações de Trabalho           |
 | /report_api/api_workstations_department_ranking | API Ranking Estações de Trabalho por Setor |
 
+###  Relatórios e Documentação:
 
+Nestas rotas estão incluídos relatórios, tabelas, gráficos e imagens documentando toda infraestrutura do TI.
 
+| Rota                            | Descricao                                     |
+|---------------------------------|-----------------------------------------------|
+| /report/report_per_technical    | Relatórios do Help Desk                       |
+| /report/report_per_project      | Relatórios dos Projetos                       |
+| /report/topology                | Documentação da Topologia da Rede             |
+| /report/network_racks           | Documentação dos Racks de Rede                |
+| /report/servers                 | Documentação dos Servidores                   |
+| /report/workstations            | Documentação das Estações de Trabalho         |
+| /report/ranking                 | Relatório do Ranking das Estações de Trabalho |
+| /report/workstations_update     | Dispara um Processo ETL Compilando Dados      |
 
+###  Inventário de TI:
 
+Inventário de estações de trabalho, servidores e switches.
 
-| Rota                           | Descricao                             |
-|--------------------------------|---------------------------------------|
-| /report/xxx         | xxx                 |
-| /inventory/xxx         | xxx                 |
+| Rota                             | Descricao                             |
+|----------------------------------|---------------------------------------|
+| /inventory/inventory_workstation | Tabela Estações de Trabalho           |
+| /inventory/inventory_server      | Tabela Servidores                     |
+| /inventory/inventory_switch      | Tabela Switches                       |
 
-
+### 🔒 Testes:
