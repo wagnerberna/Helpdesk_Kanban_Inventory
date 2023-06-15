@@ -163,6 +163,16 @@ As rotas descritas como **API** são saídas de dados no formato **JSON** para s
 | /report_api/api_workstations_ranking            | API Ranking Estações de Trabalho           |
 | /report_api/api_workstations_department_ranking | API Ranking Estações de Trabalho por Setor |
 
+### 📝 Inventário de TI:
+
+Inventário de estações de trabalho, servidores e switches.
+
+| Rota                             | Descricao                             |
+|----------------------------------|---------------------------------------|
+| /inventory/inventory_workstation | Tabela Estações de Trabalho           |
+| /inventory/inventory_server      | Tabela Servidores                     |
+| /inventory/inventory_switch      | Tabela Switches                       |
+
 ### 📑 Relatórios e Documentação:
 
 Nestas rotas estão incluídos relatórios, tabelas, gráficos e imagens documentando toda infraestrutura do TI.
@@ -178,14 +188,8 @@ Nestas rotas estão incluídos relatórios, tabelas, gráficos e imagens documen
 | /report/ranking                 | Relatório do Ranking das Estações de Trabalho |
 | /report/workstations_update     | Dispara um Processo ETL Compilando Dados      |
 
-### 📝 Inventário de TI:
-
-Inventário de estações de trabalho, servidores e switches.
-
-| Rota                             | Descricao                             |
-|----------------------------------|---------------------------------------|
-| /inventory/inventory_workstation | Tabela Estações de Trabalho           |
-| /inventory/inventory_server      | Tabela Servidores                     |
-| /inventory/inventory_switch      | Tabela Switches                       |
-
 ### 🔒 Testes:
+
+Os testes estão em desenvovimento.
+
+![dashboard](readme/teste.gif)
