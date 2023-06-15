@@ -29,7 +29,7 @@ O sistema está setado para acesso on premise, pois é acessado apenas dentro da
 ## 🎲 Banco de Dados:
 O banco de dados escolhido é o PostgreSQL, caso a URL do mesmo não esteja configurada nas variáveis de ambiente, o sistema irá usar como padrão o SQLite na raiz do projeto.
 ### Diagrama de Entidade e Relacionamento do Banco:
-![DER](readme/ti_db_der.png)
+![DER](readme/ti_db_der.gif)
 
 ## ☑️ Menu Lateral:
 Na lateral esquerda, através de um ícone de um quadrado azul com três traços, é possível acessar um menu com os atalhos mais utilizados, este menu foi feito em o JS com CSS.
@@ -70,27 +70,24 @@ O projeto foi iniciado utilizando gráficos de apoio da biblioteca Matplotlib, n
 
 
 #### Gráficos Projetos:
-O gráficos de rosca com a quantidade de tarefas por projeto, permitindo comparar a dimensão de cada projeto. Neste exemplo no gráfico de rosca desmarquei o "projeto 5" para comparar apenas os demais.
+O gráficos de rosca com a quantidade de tarefas por projeto, permitindo comparar a dimensão de cada projeto. 
 
 O gráfico de barras horizontal exibe o percentual de conclusão das tarefas do projeto. 
 
 O gráfico de barras vertical possui quatro colunas para cada projeto mostrando a quantidade de tarefas para cada status das tarefas.
 
-![dashboard](readme/dashboard_projects_01.png)
-![dashboard](readme/dashboard_projects_02.png)
-
-#### Exemplo Interatividade:
 Segue exemplo desmarcando projetos e status para comparar apenas os ítens desejados:
 
-![dashboard](readme/dashboard_projects_03.png)
+![dashboard](readme/dashboard_projects_01.gif)
+![dashboard](readme/dashboard_projects_02.gif)
 
 #### Gráficos Ranking de Estações de Trabalho:
 O gráfico de rosca permite comparar a quantidade total de estações de trabalho conforme sua designação no ranking.
 
 O gráfico em barras vertical exibe para cada setor as respectivas colunas da quantidade de máquinas em cada ranking no setor.
 
-![dashboard](readme/dashboard_ranking_01.png)
-![dashboard](readme/dashboard_ranking_02.png)
+![dashboard](readme/dashboard_ranking_01.gif)
+![dashboard](readme/dashboard_ranking_02.gif)
 
 ## 🔎 Rotas:
 URL de Acesso: http://127.0.0.1:8000/
