@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.http.response import JsonResponse
 from django.shortcuts import redirect, render
 from helpdesk.models import Demand, Support
-from kanban.models import Project, Task
+from kanban.models import Project, Task, Team
 from ti.service.check_user_access import check_user_access
 from ti.service.dataframe import dataframe_desktop_ranking
 from inventory.models import Inventory
@@ -59,24 +59,43 @@ def api_technicals_tasks(request):
         check_access = check_user_access(request)
         if not check_access:
             return redirect("access_denied")
+        
+        techinical = Team.objects.all()
+        techinical_ids = techinical.all().values("id")
+        techinical_user_names_ids = techinical.all().values("user_name")
 
-        techinical_Wagner_id = (
-            User.objects.filter(username="wagner.berna").values("id")[0].get("id")
-        )
-        techinical_leonardo_id = (
-            User.objects.filter(username="leonardo.susin").values("id")[0].get("id")
-        )
+        print(techinical_ids, techinical_user_names_ids)
 
-        # Gráfico Tarefas Projetos
-        tasks_leonardo = Task.objects.filter(
-            task_owner__user_name=techinical_leonardo_id
-        ).count()
-        tasks_wagner = Task.objects.filter(
-            task_owner__user_name=techinical_Wagner_id
-        ).count()
+        techinicals_labels = []
+        tasks_total_per_techinical = []
 
-        techinicals_labels = ["Leonardo.susin", "Wagner.berna"]
-        tasks_total_per_techinical = [tasks_leonardo, tasks_wagner]
+        for techinical_id in techinical_ids:
+            techinical_total_demmand = Task.objects.filter(
+            task_owner__id=techinical_id.get("id")
+            ).count()
+            tasks_total_per_techinical.append(techinical_total_demmand)
+        
+        for techinical_user_name_id in techinical_user_names_ids:
+            id_to_find = techinical_user_name_id.get("user_name")
+            user_name = User.objects.filter(id = id_to_find).values("username")[0].get("username")
+            techinicals_labels.append(user_name)
+
+        print(techinicals_labels, tasks_total_per_techinical)
+
+        # techinical_Wagner_id = (
+        #     User.objects.filter(username="wagner.berna").values("id")[0].get("id")
+        # )
+        # techinical_leonardo_id = (
+        #     User.objects.filter(username="leonardo.susin").values("id")[0].get("id")
+        # )
+
+        # # Gráfico Tarefas Projetos
+        # tasks_leonardo = Task.objects.filter(
+        #     task_owner__user_name=techinical_leonardo_id
+        # ).count()
+        # tasks_wagner = Task.objects.filter(
+        #     task_owner__user_name=techinical_Wagner_id
+        # ).count()
 
         context = {"data": tasks_total_per_techinical, "labels": techinicals_labels}
         # print(context)
