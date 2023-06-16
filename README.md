@@ -46,6 +46,9 @@ Na lateral de cada postit existe três ícones, uma seta para passar a tarefa pa
 É possível filtrar as tarefas pelo título, dono da tarefa e prioridade.
 Novas tarefas podem ser adicionadas pelo ícone de sinal positivo no canto superior esquerdo.
 
+![dashboard](readme/kanban_demo.gif)
+
+
 ## 🤝 Help Desk:
 O sistema de help desk pode ser utilizado tanto na área de infraestrutura como para área de desenvolvimento para suporte ao sistema, o usuário comum possui um acesso limitado, que só permite controlar, visualizar e abrir seus próprios chamados, os recursos mais avançados só são permitidos aos usuários inseridos na tabela de área restrita.
 
