@@ -4,7 +4,12 @@
         <div class="containers-kanban-card">
             <table class="table-default table table-hover table-kanban-done">
                 <thead>
+                    {%if task.priority is None %}
                     <th class="table-th-kanban">{{task.id}} - {{task.title}}</th>
+                    {%endif%}
+                    {%if task.priority is not None %}
+                    <th class="table-th-kanban">{{task.priority}}-{{task.id}} - {{task.title}}</th>
+                    {%endif%}
                 </thead>
     
                 <tbody>
