@@ -19,36 +19,31 @@ def api_technicals_demand(request):
             return redirect("access_denied")
         
         techinical = Support.objects.all()
-        # techinical_ids = Support.objects.all().values("id")
         techinical_ids = techinical.all().values("id")
-        techinical_user_names = techinical.all().values("user_name")
+        techinical_user_names_ids = techinical.all().values("user_name")
 
-        print(techinical_ids, techinical_user_names)
+        # print(techinical_ids, techinical_user_names_ids)
 
         techinicals_labels = []
         demands_total_per_technical = []
 
-        # techinical_Wagner_id = (
-        #     User.objects.filter(username="wagner.berna").values("id")[0].get("id")
-        # )
-        # techinical_leonardo_id = (
-        #     User.objects.filter(username="leonardo.susin").values("id")[0].get("id")
-        # )
-
-        # Gráfico Demandas
-        # demmands_leonardo = Demand.objects.filter(
-        #     attendant__user_name=techinical_leonardo_id
-        # ).count()
-        # demmands_wagner = Demand.objects.filter(
-        #     attendant__user_name=techinical_Wagner_id
-        # ).count()
-
-        # techinicals_labels = ["Leonardo.susin", "Wagner.berna"]
-        # demands_total_per_technical = [demmands_leonardo, demmands_wagner]
+        for techinical_id in techinical_ids:
+            techinical_total_demmand = Demand.objects.filter(
+            attendant__id=techinical_id.get("id")
+            ).count()
+            demands_total_per_technical.append(techinical_total_demmand)
+        
+        for techinical_user_name_id in techinical_user_names_ids:
+            id_to_find = techinical_user_name_id.get("user_name")
+            user_name = User.objects.filter(id = id_to_find).values("username")[0].get("username")
+            techinicals_labels.append(user_name)
+            
+        # print(techinicals_labels)
+        # print(demands_total_per_technical)
 
         context = {
-            "data": "demands_total_per_technical",
-            "labels": "techinicals_labels",
+            "data": demands_total_per_technical,
+            "labels": techinicals_labels,
         }
 
         return JsonResponse(context)
