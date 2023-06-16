@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http.response import JsonResponse
 from django.shortcuts import redirect, render
-from helpdesk.models import Demand
+from helpdesk.models import Demand, Support
 from kanban.models import Project, Task
 from ti.service.check_user_access import check_user_access
 from ti.service.dataframe import dataframe_desktop_ranking
@@ -17,28 +17,38 @@ def api_technicals_demand(request):
         check_access = check_user_access(request)
         if not check_access:
             return redirect("access_denied")
+        
+        techinical = Support.objects.all()
+        # techinical_ids = Support.objects.all().values("id")
+        techinical_ids = techinical.all().values("id")
+        techinical_user_names = techinical.all().values("user_name")
 
-        techinical_Wagner_id = (
-            User.objects.filter(username="wagner.berna").values("id")[0].get("id")
-        )
-        techinical_leonardo_id = (
-            User.objects.filter(username="leonardo.susin").values("id")[0].get("id")
-        )
+        print(techinical_ids, techinical_user_names)
+
+        techinicals_labels = []
+        demands_total_per_technical = []
+
+        # techinical_Wagner_id = (
+        #     User.objects.filter(username="wagner.berna").values("id")[0].get("id")
+        # )
+        # techinical_leonardo_id = (
+        #     User.objects.filter(username="leonardo.susin").values("id")[0].get("id")
+        # )
 
         # Gráfico Demandas
-        demmands_leonardo = Demand.objects.filter(
-            attendant__user_name=techinical_leonardo_id
-        ).count()
-        demmands_wagner = Demand.objects.filter(
-            attendant__user_name=techinical_Wagner_id
-        ).count()
+        # demmands_leonardo = Demand.objects.filter(
+        #     attendant__user_name=techinical_leonardo_id
+        # ).count()
+        # demmands_wagner = Demand.objects.filter(
+        #     attendant__user_name=techinical_Wagner_id
+        # ).count()
 
-        techinicals_labels = ["Leonardo.susin", "Wagner.berna"]
-        demands_total_per_technical = [demmands_leonardo, demmands_wagner]
+        # techinicals_labels = ["Leonardo.susin", "Wagner.berna"]
+        # demands_total_per_technical = [demmands_leonardo, demmands_wagner]
 
         context = {
-            "data": demands_total_per_technical,
-            "labels": techinicals_labels,
+            "data": "demands_total_per_technical",
+            "labels": "techinicals_labels",
         }
 
         return JsonResponse(context)
