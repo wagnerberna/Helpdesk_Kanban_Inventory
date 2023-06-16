@@ -67,6 +67,9 @@ A Planilha gerada serve tanto para servir como base inicial dos dados a serem la
 O projeto foi iniciado utilizando gráficos de apoio da biblioteca Matplotlib, no entanto no dashboard principal é utilizada a biblioteca Chart.js para proporcionar maior interatividade com os gráficos, os quais permitem marcar ou desmarcar itens para uma melhor comparação dos dados, bem como fornecem mais informações ao passar o mouse sobre os itens.
 
 #### Gráficos Atendimentos:
+O gráfico em barras mostra o total de atendimentos de chamados e tarefas de projeto por técnico.
+
+![dashboard](readme/dashboard_attendant_total_01.gif)
 
 
 #### Gráficos Projetos:
