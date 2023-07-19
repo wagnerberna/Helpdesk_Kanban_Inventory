@@ -4,6 +4,7 @@ from ti.service.check_user_access import check_user_access
 from helpdesk.models import Demand
 from kanban.models import Task
 from inventory.models import Inventory
+import pandas as pd
 
 
 @login_required
@@ -31,3 +32,29 @@ def report_interactive(request):
     except Exception as error:
         print("Internal error:", error)
         raise
+
+@login_required
+def report_ocs(request):
+    try:
+        check_access = check_user_access(request)
+        if not check_access:
+            return redirect("access_denied")
+        
+        data = pd.read_json("doc/resume.json")
+        print(data)
+
+        template_path = "ti/pages/report_ocs.html"
+
+        context = {
+            "demands_total": "demands_total",
+            "tasks_total": "tasks_total",
+            "workstation_total": "workstation_total",
+        }
+
+        # print("context:::", context)
+
+        return render(request, template_path, context)
+    except Exception as error:
+        print("Internal error:", error)
+        raise
+
