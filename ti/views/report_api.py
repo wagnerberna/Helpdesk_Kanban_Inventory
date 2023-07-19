@@ -275,3 +275,74 @@ def api_workstations_department_ranking(request):
     except Exception as error:
         print("Internal error:", error)
         raise
+
+
+@login_required
+def api_report_ocs(request):
+    try:
+        check_access = check_user_access(request)
+        if not check_access:
+            return redirect("access_denied")
+        
+        df = pd.read_csv("doc/ocs_export.csv", sep=";", encoding = "iso-8859-1")
+        # print(df.head())
+        df.rename({"Unnamed: 9":"remove"}, axis="columns", inplace=True)
+        df = df.drop(columns=["Last inventory", "remove"])
+        df = df.rename(columns={"Computer": "computer_name","Connected user": "user", "Operating system": "operating_system",
+           "RAM (MB)": "memory", "CPU (MHz)": "cpu", "CPU type": "cpu_type", "BIOS Manufacturer": "manufacturer", "Model": "model"})
+        so_hosts = ["Microsoft Windows 10 Pro", "Microsoft Windows 11 Pro", "Microsoft Windows 7 Ultimate", "Microsoft Windows 7 Professional", ]
+        df_hosts_all = df.loc[df.operating_system.isin(so_hosts)]
+        df_hosts_ou = df_hosts_all.loc[df_hosts_all.computer_name.str.contains("OU")]
+
+        cpu_core_i7_ou = df_hosts_ou.loc[df_hosts_ou.cpu_type.str.contains("i7")]
+        cpu_core_i5_ou = df_hosts_ou.loc[df_hosts_ou.cpu_type.str.contains("i5")]
+        cpu_core_i3_ou = df_hosts_ou.loc[df_hosts_ou.cpu_type.str.contains("i3")]
+        cpu_core_dual_ou = df_hosts_ou.loc[df_hosts_ou.cpu_type.str.contains("2 Duo|Dual|X4|Celeron")]
+
+        cpu_core_dual_count = len(cpu_core_dual_ou)
+        cpu_core_i3_count = len(cpu_core_i3_ou)
+        cpu_core_i5_count = len(cpu_core_i5_ou)
+        cpu_core_i7_count = len(cpu_core_i7_ou)
+
+        cpu_names = ["Dual_Core", "i3", "i5", "i7"]
+        cpu_counts = [cpu_core_dual_count, cpu_core_i3_count, cpu_core_i5_count, cpu_core_i7_count]
+
+        dell_count_ou = len(df_hosts_ou.loc[df_hosts_ou.manufacturer.str.contains("Dell")])
+        lenovo_count_ou = len(df_hosts_ou.loc[df_hosts_ou.manufacturer.str.contains("LENOVO")])
+        positivo_count_ou = len(df_hosts_ou.loc[df_hosts_ou.manufacturer.str.contains("Positivo")])
+        hp_count_ou = len(df_hosts_ou.loc[df_hosts_ou.manufacturer.str.contains("AMI")])
+        outros_count_ou = len(df_hosts_ou.loc[df_hosts_ou.manufacturer.str.contains("American|Intel")])
+
+        manufacturer_names = ["DELL", "LENOVO", "Positivo", "HP", "Outros"]
+        manufacturer_counts = [dell_count_ou, lenovo_count_ou, positivo_count_ou, hp_count_ou, outros_count_ou]
+
+        memory_less_3gb_ou = len(df_hosts_ou.loc[df_hosts_ou.memory <= 3319])
+        memory_equal_4gb_ou = len(df_hosts_ou.loc[df_hosts_ou.memory == 4096])
+        memory_equal_6gb_ou = len(df_hosts_ou.loc[df_hosts_ou.memory == 6144])
+        memory_equal_8gb_ou = len(df_hosts_ou.loc[df_hosts_ou.memory == 8192])
+        memory_equal_12gb_ou = len(df_hosts_ou.loc[df_hosts_ou.memory == 12288])
+        memory_equal_16gb_ou = len(df_hosts_ou.loc[df_hosts_ou.memory == 16384])
+        memory_more_16gb_ou = len(df_hosts_ou.loc[df_hosts_ou.memory > 16384])
+
+        memory_names = ["3GB", "4GB", "6GB", "8GB", "12GB", "16GB", "20GB"]
+        memory_counts = [memory_less_3gb_ou, memory_equal_4gb_ou, memory_equal_6gb_ou, memory_equal_8gb_ou, memory_equal_12gb_ou, memory_equal_16gb_ou, memory_more_16gb_ou]
+
+        # data_ou = {"cpu_names": cpu_names, "cpu_counts": cpu_counts, "manufacturer_names": manufacturer_names,
+        #  "manufacturer_counts": manufacturer_counts, "memory_names": memory_names, "memory_counts": memory_counts}
+
+        # data = pd.read_json("doc/resume.json")
+        # print(data)
+
+        context = {
+            "cpu_names": cpu_names,
+            "cpu_counts": cpu_counts,
+            "manufacturer_names": manufacturer_names,
+            "manufacturer_counts": manufacturer_counts,
+            "memory_names": memory_names,
+            "memory_counts": memory_counts,
+        }
+
+        return JsonResponse(context)
+    except Exception as error:
+        print("Internal error:", error)
+        raise
