@@ -40,10 +40,11 @@ def report_ocs(request):
         if not check_access:
             return redirect("access_denied")
         
+        print("Ponto0")
         data = pd.read_json("doc/resume.json")
         print(data)
 
-        template_path = "ti/pages/report_ocs.html"
+        template_path = "ti/pages/report_dashboard_ocs.html"
 
         context = {
             "demands_total": "demands_total",

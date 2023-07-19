@@ -88,7 +88,7 @@ def kanban_board(request, id):
         if request.method == "POST":
             req = request.POST
             id_task = req.get("id_task")
-            print(id_task)
+            # print(id_task)
             task_status_id = (
                 Task.objects.filter(pk=id_task).values("status")[0].get("status")
             )

@@ -8,7 +8,7 @@ def run():
         df = pandas.read_excel(path_file)
         print(df)
         for index, row in df.iterrows():
-            # print(index, row)
+            print(index, row)
             print(index, row.status)
 
             status_table = row.status

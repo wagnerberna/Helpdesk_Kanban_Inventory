@@ -7,11 +7,11 @@ def run():
     try:
         path_file = "doc/populate/projects_tasks.xlsx"
         df = pandas.read_excel(path_file)
-        # print(df)
+        print(df)
         for index, row in df.iterrows():
             print(row)
-            # print(index, row)
-            # print(index, row.task, row.status)
+            print(index, row)
+            print(index, row.task, row.status)
 
             title_table = row.titulo
             project_table = row.projeto
