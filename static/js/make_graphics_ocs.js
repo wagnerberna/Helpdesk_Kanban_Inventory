@@ -1,9 +1,8 @@
 function fetch_url(url) {
-    // console.log(url)
+    console.log(url)
     console.log("!!!PONTO-0!!!")
     // console.log(data)
     return fetch(url, { method: "get" }).then(data => data.json())
-
 }
 
 async function ocs_pie_workstations_ranking(url) {
