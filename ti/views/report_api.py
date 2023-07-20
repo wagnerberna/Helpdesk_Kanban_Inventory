@@ -304,7 +304,7 @@ def api_report_ocs(request):
         cpu_core_i5_count = len(cpu_core_i5_ou)
         cpu_core_i7_count = len(cpu_core_i7_ou)
 
-        cpu_names = ["A", "B", "C", "D"]
+        cpu_names = ["i7", "i5", "i3", "Dual"]
         cpu_counts = [cpu_core_i7_count, cpu_core_i5_count, cpu_core_i3_count, cpu_core_dual_count]
 
         dell_count_ou = len(df_hosts_ou.loc[df_hosts_ou.manufacturer.str.contains("Dell")])
@@ -326,12 +326,6 @@ def api_report_ocs(request):
 
         memory_names = ["20GB", "16GB", "12GB", "8GB", "6GB", "4GB", "3GB"]
         memory_counts = [memory_equal_20gb_ou, memory_equal_16gb_ou, memory_equal_12gb_ou, memory_equal_8gb_ou, memory_equal_6gb_ou, memory_equal_4gb_ou, memory_equal_3gb_ou]
-
-        # data_ou = {"cpu_names": cpu_names, "cpu_counts": cpu_counts, "manufacturer_names": manufacturer_names,
-        #  "manufacturer_counts": manufacturer_counts, "memory_names": memory_names, "memory_counts": memory_counts}
-
-        # data = pd.read_json("doc/resume.json")
-        # print(data)
 
         context = {
             "cpu_names": cpu_names,
