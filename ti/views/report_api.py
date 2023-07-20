@@ -304,8 +304,8 @@ def api_report_ocs(request):
         cpu_core_i5_count = len(cpu_core_i5_ou)
         cpu_core_i7_count = len(cpu_core_i7_ou)
 
-        cpu_names = ["Dual_Core", "i3", "i5", "i7"]
-        cpu_counts = [cpu_core_dual_count, cpu_core_i3_count, cpu_core_i5_count, cpu_core_i7_count]
+        cpu_names = ["A", "B", "C", "D"]
+        cpu_counts = [cpu_core_i7_count, cpu_core_i5_count, cpu_core_i3_count, cpu_core_dual_count]
 
         dell_count_ou = len(df_hosts_ou.loc[df_hosts_ou.manufacturer.str.contains("Dell")])
         lenovo_count_ou = len(df_hosts_ou.loc[df_hosts_ou.manufacturer.str.contains("LENOVO")])
@@ -316,16 +316,16 @@ def api_report_ocs(request):
         manufacturer_names = ["DELL", "LENOVO", "Positivo", "HP", "Outros"]
         manufacturer_counts = [dell_count_ou, lenovo_count_ou, positivo_count_ou, hp_count_ou, outros_count_ou]
 
-        memory_less_3gb_ou = len(df_hosts_ou.loc[df_hosts_ou.memory <= 3319])
+        memory_equal_3gb_ou = len(df_hosts_ou.loc[df_hosts_ou.memory <= 4096])
         memory_equal_4gb_ou = len(df_hosts_ou.loc[df_hosts_ou.memory == 4096])
         memory_equal_6gb_ou = len(df_hosts_ou.loc[df_hosts_ou.memory == 6144])
         memory_equal_8gb_ou = len(df_hosts_ou.loc[df_hosts_ou.memory == 8192])
         memory_equal_12gb_ou = len(df_hosts_ou.loc[df_hosts_ou.memory == 12288])
         memory_equal_16gb_ou = len(df_hosts_ou.loc[df_hosts_ou.memory == 16384])
-        memory_more_16gb_ou = len(df_hosts_ou.loc[df_hosts_ou.memory > 16384])
+        memory_equal_20gb_ou = len(df_hosts_ou.loc[df_hosts_ou.memory == 2048])
 
-        memory_names = ["3GB", "4GB", "6GB", "8GB", "12GB", "16GB", "20GB"]
-        memory_counts = [memory_less_3gb_ou, memory_equal_4gb_ou, memory_equal_6gb_ou, memory_equal_8gb_ou, memory_equal_12gb_ou, memory_equal_16gb_ou, memory_more_16gb_ou]
+        memory_names = ["20GB", "16GB", "12GB", "8GB", "6GB", "4GB", "3GB"]
+        memory_counts = [memory_equal_20gb_ou, memory_equal_16gb_ou, memory_equal_12gb_ou, memory_equal_8gb_ou, memory_equal_6gb_ou, memory_equal_4gb_ou, memory_equal_3gb_ou]
 
         # data_ou = {"cpu_names": cpu_names, "cpu_counts": cpu_counts, "manufacturer_names": manufacturer_names,
         #  "manufacturer_counts": manufacturer_counts, "memory_names": memory_names, "memory_counts": memory_counts}

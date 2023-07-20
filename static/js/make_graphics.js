@@ -1,5 +1,7 @@
 function fetch_url(url) {
     // console.log(url)
+    // console.log("Teste JS")
+
     return fetch(url, { method: "get" }).then(data => data.json())
 }
 
