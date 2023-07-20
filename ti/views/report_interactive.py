@@ -47,12 +47,13 @@ def report_ocs(request):
         template_path = "ti/pages/report_dashboard_ocs.html"
 
         context = {
-            "demands_total": "demands_total",
-            "tasks_total": "tasks_total",
-            "workstation_total": "workstation_total",
+            # "demands_total": "demands_total",
+            # "tasks_total": "tasks_total",
+            # "workstation_total": "workstation_total",
         }
 
         # print("context:::", context)
+        print("report_ocs!!!")
 
         return render(request, template_path, context)
     except Exception as error:

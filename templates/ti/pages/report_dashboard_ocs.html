@@ -8,16 +8,16 @@
         
         <!-- {%include "ti/partials/dashboard_per_technical.html"%} -->
         <!-- {%include "ti/partials/dashboard_projects.html"%} -->
-        <!-- {%include "ti/partials/dashboard_workstations.html"%} -->
+        {%include "ti/partials/ocs_dashboard_workstations.html"%}
         
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
     <script src="{% static 'js/make_graphics_ocs.js' %}" type="text/javascript"></script>
 
     <script>
         window.onload = function(e){
-            bar_demands_by_technical("{% url 'api_report_ocs'%} ")     
+            ocs_pie_workstations_ranking("{% url 'api_report_ocs'%} ")     
         }
     </script>
 
