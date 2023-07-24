@@ -284,14 +284,18 @@ def api_report_ocs(request):
         if not check_access:
             return redirect("access_denied")
         
-        df = pd.read_csv("doc/ocs_export.csv", sep=";", encoding = "iso-8859-1")
-        # print(df.head())
-        df.rename({"Unnamed: 9":"remove"}, axis="columns", inplace=True)
-        df = df.drop(columns=["Last inventory", "remove"])
-        df = df.rename(columns={"Computer": "computer_name","Connected user": "user", "Operating system": "operating_system",
+        df_ocs = pd.read_csv("doc/ocs_export.csv", sep=";", encoding = "utf8")
+        df_ad = pd.read_csv("../../docs_secret/ad_users.csv", sep=";", encoding = "utf8")
+        df_department = pd.read_excel("../../docs_secret/lista_setores.xlsx")
+        list_department = df_department["Setor"].values.tolist()
+        
+        df_ocs.rename({"Unnamed: 9":"remove"}, axis="columns", inplace=True)
+        df_ocs = df_ocs.drop(columns=["Last inventory", "remove"])
+        df_ocs = df_ocs.rename(columns={"Computer": "computer_name","Connected user": "user", "Operating system": "operating_system",
            "RAM (MB)": "memory", "CPU (MHz)": "cpu", "CPU type": "cpu_type", "BIOS Manufacturer": "manufacturer", "Model": "model"})
+        
         so_hosts = ["Microsoft Windows 10 Pro", "Microsoft Windows 11 Pro", "Microsoft Windows 7 Ultimate", "Microsoft Windows 7 Professional", ]
-        df_hosts_all = df.loc[df.operating_system.isin(so_hosts)]
+        df_hosts_all = df_ocs.loc[df_ocs.operating_system.isin(so_hosts)]
         df_hosts_ou = df_hosts_all.loc[df_hosts_all.computer_name.str.contains("OU")]
 
         cpu_core_i7_ou = df_hosts_ou.loc[df_hosts_ou.cpu_type.str.contains("i7")]
