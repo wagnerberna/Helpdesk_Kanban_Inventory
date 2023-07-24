@@ -285,9 +285,6 @@ def api_report_ocs(request):
             return redirect("access_denied")
         
         df_ocs = pd.read_csv("doc/ocs_export.csv", sep=";", encoding = "utf8")
-        df_ad = pd.read_csv("../../docs_secret/ad_users.csv", sep=";", encoding = "utf8")
-        df_department = pd.read_excel("../../docs_secret/lista_setores.xlsx")
-        list_department = df_department["Setor"].values.tolist()
         
         df_ocs.rename({"Unnamed: 9":"remove"}, axis="columns", inplace=True)
         df_ocs = df_ocs.drop(columns=["Last inventory", "remove"])
