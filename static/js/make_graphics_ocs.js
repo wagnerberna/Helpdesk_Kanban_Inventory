@@ -68,3 +68,47 @@ async function ocs_pie_memory(url) {
         },
     });
 }
+
+async function ocs_bar_manufacturer(url) {
+    const data = await fetch_url(url)
+
+    const ctx = document.getElementById('ocs_bar_manufacturer').getContext('2d');
+    const myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: data.manufacturer_labels,
+            datasets: [
+                {
+                    axis: "y",
+                    label: "Quantidade",
+                    data: data.manufacturer_counts,
+                    backgroundColor: [
+                        '#86cbf9',
+                    ],
+                    borderColor: [
+                        '#0b97f4',
+                    ],
+                    borderWidth: 1
+                },
+            ]
+
+        },
+        options: {
+            indexAxis: 'y',
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        min: 0,
+                        max: 120,
+                        callback: function (value) { return value + "%" }
+                    },
+                    scaleLabel: {
+                        display: true,
+                        labelString: "Percentage"
+                    }
+                }]
+            }
+        }
+
+    });
+}
