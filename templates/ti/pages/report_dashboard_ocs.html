@@ -5,8 +5,6 @@
     {% include "global/menu.html" %}
 
     <div class="container">
-        <h2>Ranking Workstations Geral</h2>
-
         <!-- {%include "ti/partials/dashboard_per_technical.html"%} -->
         <!-- {%include "ti/partials/dashboard_projects.html"%} -->
         {%include "ti/partials/ocs_graphic_hardware.html"%}
@@ -18,7 +16,8 @@
 
     <script>
         window.onload = function(e){
-            ocs_pie_general("{% url 'api_report_ocs'%} ")     
+            ocs_pie_cpu("{% url 'api_report_ocs'%} ")
+            ocs_pie_memory("{% url 'api_report_ocs'%} ")
         }
     </script>
 

@@ -296,7 +296,7 @@ def api_report_ocs(request):
         cpu_core_i5_count = len(cpu_core_i5)
         cpu_core_i7_count = len(cpu_core_i7)
 
-        cpu_names = ["i7", "i5", "i3", "Dual"]
+        cpu_labels = ["i7", "i5", "i3", "Dual"]
         cpu_counts = [cpu_core_i7_count, cpu_core_i5_count, cpu_core_i3_count, cpu_core_dual_count]
 
         dell_count = len(df_ocs.loc[df_ocs.manufacturer.str.contains("Dell")])
@@ -305,7 +305,7 @@ def api_report_ocs(request):
         hp_count = len(df_ocs.loc[df_ocs.manufacturer.str.contains("AMI")])
         outros_count = len(df_ocs.loc[df_ocs.manufacturer.str.contains("American|Intel")])
 
-        manufacturer_names = ["DELL", "LENOVO", "Positivo", "HP", "Outros"]
+        manufacturer_labels = ["DELL", "LENOVO", "Positivo", "HP", "Outros"]
         manufacturer_counts = [dell_count, lenovo_count, positivo_count, hp_count, outros_count]
 
         # memory_equal_3gb = len(df_ocs.loc[df_ocs.memory <= 4096])
@@ -317,15 +317,15 @@ def api_report_ocs(request):
         # memory_equal_16gb = len(df_ocs.loc[df_ocs.memory == 16384])
         # memory_equal_32gb = len(df_ocs.loc[df_ocs.memory > 20048])
 
-        memory_names = ["Entre 20GB e 32GB", "Entre 12GB E 16GB", "Entre 6GB and 8GB", "Entre 3GB e 4GB"]
+        memory_labels = ["Entre 20GB e 32GB", "Entre 12GB e 16GB", "Entre 6GB e 8GB", "Entre 3GB e 4GB"]
         memory_counts = [memory_between_20gb_and_32gb, memory_between_12g_and_16gb, memory_between_6gb_and_8gb, memory_equal_or_less_4gb]
 
         context = {
-            "cpu_names": cpu_names,
+            "cpu_labels": cpu_labels,
             "cpu_counts": cpu_counts,
-            "manufacturer_names": manufacturer_names,
+            "manufacturer_labels": manufacturer_labels,
             "manufacturer_counts": manufacturer_counts,
-            "memory_names": memory_names,
+            "memory_labels": memory_labels,
             "memory_counts": memory_counts,
         }
 

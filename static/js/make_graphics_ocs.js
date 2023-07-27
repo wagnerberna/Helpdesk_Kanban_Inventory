@@ -1,6 +1,6 @@
 function fetch_url(url) {
     console.log(url)
-    console.log("!!!Teste JS!!!")
+    // console.log("!!!Teste JS!!!")
     // console.log(data)
     return fetch(url, { method: "get" }).then(data => data.json())
 }
@@ -12,7 +12,7 @@ async function ocs_pie_cpu(url) {
     const myChart = new Chart(ctx, {
         type: 'doughnut',
         data: {
-            labels: data.cpu_names,
+            labels: data.cpu_labels,
             datasets: [
                 {
                     label: "Estações de Trabalho por CPU",
@@ -44,11 +44,11 @@ async function ocs_pie_memory(url) {
     const myChart = new Chart(ctx, {
         type: 'doughnut',
         data: {
-            labels: data.cpu_names,
+            labels: data.memory_labels,
             datasets: [
                 {
                     label: "Estações de Trabalho por Memória",
-                    data: data.cpu_counts,
+                    data: data.memory_counts,
                     backgroundColor: [
                         '#86cbf9',
                         '#7fe686',
