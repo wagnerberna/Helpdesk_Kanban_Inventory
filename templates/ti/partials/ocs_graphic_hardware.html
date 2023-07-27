@@ -1,15 +1,27 @@
-<div class="container">
-    <h1 class="title-center">Ranking Estações de Trabalho</h1>
-    <div class="container-dashboard-big">
+<h1 class="title-center">Dashboard Relatório OCS</h1>
+<div class="container container-dashboard-small">
+    <div>
         <div>
             <h2>Estações de Trabalho por Processador</h2>
+        </div>
         <canvas class="canvas-pie-small" id="ocs_pie_cpu"></canvas>
-        </div> 
     </div>
-    <div class="container-dashboard-big">
+
+    <!-- <div class="container-dashboard-activities">
+        <h3 class="title-center">Atividades Totais</h3>
+        <h3 class = "title-margin-min">
+            Chamados: <span class="text-bold"> {{demands_total}} </span>
+        </h3>
+        <h3 class = "title-margin-min">
+           Projetos: <span class="text-bold"> {{tasks_total}} </span>
+        </h3>
+    </div> -->
+
+    <div>
         <div>
             <h2>Estações de Trabalho por Memória</h2>
+        </div>
         <canvas class="canvas-pie-small" id="ocs_pie_memory"></canvas>
-        </div> 
     </div>
+
 </div>
