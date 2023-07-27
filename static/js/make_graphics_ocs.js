@@ -5,7 +5,7 @@ function fetch_url(url) {
     return fetch(url, { method: "get" }).then(data => data.json())
 }
 
-async function ocs_pie_general(url) {
+async function ocs_pie_cpu(url) {
     const data = await fetch_url(url)
 
     const ctx = document.getElementById('ocs_pie_cpu').getContext('2d');
@@ -15,7 +15,7 @@ async function ocs_pie_general(url) {
             labels: data.cpu_names,
             datasets: [
                 {
-                    label: "Ranking Workstations",
+                    label: "Estações de Trabalho por CPU",
                     data: data.cpu_counts,
                     backgroundColor: [
                         '#86cbf9',
@@ -40,14 +40,14 @@ async function ocs_pie_general(url) {
 async function ocs_pie_memory(url) {
     const data = await fetch_url(url)
 
-    const ctx = document.getElementById('ocs_pie_cpu').getContext('2d');
+    const ctx = document.getElementById('ocs_pie_memory').getContext('2d');
     const myChart = new Chart(ctx, {
         type: 'doughnut',
         data: {
             labels: data.cpu_names,
             datasets: [
                 {
-                    label: "Ranking Workstations",
+                    label: "Estações de Trabalho por Memória",
                     data: data.cpu_counts,
                     backgroundColor: [
                         '#86cbf9',
