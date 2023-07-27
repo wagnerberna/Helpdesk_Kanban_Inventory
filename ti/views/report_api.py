@@ -284,21 +284,12 @@ def api_report_ocs(request):
         if not check_access:
             return redirect("access_denied")
         
-        df_ocs = pd.read_csv("doc/ocs_export.csv", sep=";", encoding = "utf8")
+        df_ocs = pd.read_excel("doc/ocs_hosts_department.xlsx")
         
-        df_ocs.rename({"Unnamed: 9":"remove"}, axis="columns", inplace=True)
-        df_ocs = df_ocs.drop(columns=["Last inventory", "remove"])
-        df_ocs = df_ocs.rename(columns={"Computer": "computer_name","Connected user": "user", "Operating system": "operating_system",
-           "RAM (MB)": "memory", "CPU (MHz)": "cpu", "CPU type": "cpu_type", "BIOS Manufacturer": "manufacturer", "Model": "model"})
-        
-        so_hosts = ["Microsoft Windows 10 Pro", "Microsoft Windows 11 Pro", "Microsoft Windows 7 Ultimate", "Microsoft Windows 7 Professional", ]
-        df_hosts_all = df_ocs.loc[df_ocs.operating_system.isin(so_hosts)]
-        df_hosts_ou = df_hosts_all.loc[df_hosts_all.computer_name.str.contains("OU")]
-
-        cpu_core_i7_ou = df_hosts_ou.loc[df_hosts_ou.cpu_type.str.contains("i7")]
-        cpu_core_i5_ou = df_hosts_ou.loc[df_hosts_ou.cpu_type.str.contains("i5")]
-        cpu_core_i3_ou = df_hosts_ou.loc[df_hosts_ou.cpu_type.str.contains("i3")]
-        cpu_core_dual_ou = df_hosts_ou.loc[df_hosts_ou.cpu_type.str.contains("2 Duo|Dual|X4|Celeron")]
+        cpu_core_i7_ou = df_ocs.loc[df_ocs.cpu_type.str.contains("i7")]
+        cpu_core_i5_ou = df_ocs.loc[df_ocs.cpu_type.str.contains("i5")]
+        cpu_core_i3_ou = df_ocs.loc[df_ocs.cpu_type.str.contains("i3")]
+        cpu_core_dual_ou = df_ocs.loc[df_ocs.cpu_type.str.contains("2 Duo|Dual|X4|Celeron")]
 
         cpu_core_dual_count = len(cpu_core_dual_ou)
         cpu_core_i3_count = len(cpu_core_i3_ou)
@@ -308,22 +299,22 @@ def api_report_ocs(request):
         cpu_names = ["i7", "i5", "i3", "Dual"]
         cpu_counts = [cpu_core_i7_count, cpu_core_i5_count, cpu_core_i3_count, cpu_core_dual_count]
 
-        dell_count_ou = len(df_hosts_ou.loc[df_hosts_ou.manufacturer.str.contains("Dell")])
-        lenovo_count_ou = len(df_hosts_ou.loc[df_hosts_ou.manufacturer.str.contains("LENOVO")])
-        positivo_count_ou = len(df_hosts_ou.loc[df_hosts_ou.manufacturer.str.contains("Positivo")])
-        hp_count_ou = len(df_hosts_ou.loc[df_hosts_ou.manufacturer.str.contains("AMI")])
-        outros_count_ou = len(df_hosts_ou.loc[df_hosts_ou.manufacturer.str.contains("American|Intel")])
+        dell_count_ou = len(df_ocs.loc[df_ocs.manufacturer.str.contains("Dell")])
+        lenovo_count_ou = len(df_ocs.loc[df_ocs.manufacturer.str.contains("LENOVO")])
+        positivo_count_ou = len(df_ocs.loc[df_ocs.manufacturer.str.contains("Positivo")])
+        hp_count_ou = len(df_ocs.loc[df_ocs.manufacturer.str.contains("AMI")])
+        outros_count_ou = len(df_ocs.loc[df_ocs.manufacturer.str.contains("American|Intel")])
 
         manufacturer_names = ["DELL", "LENOVO", "Positivo", "HP", "Outros"]
         manufacturer_counts = [dell_count_ou, lenovo_count_ou, positivo_count_ou, hp_count_ou, outros_count_ou]
 
-        memory_equal_3gb_ou = len(df_hosts_ou.loc[df_hosts_ou.memory <= 4096])
-        memory_equal_4gb_ou = len(df_hosts_ou.loc[df_hosts_ou.memory == 4096])
-        memory_equal_6gb_ou = len(df_hosts_ou.loc[df_hosts_ou.memory == 6144])
-        memory_equal_8gb_ou = len(df_hosts_ou.loc[df_hosts_ou.memory == 8192])
-        memory_equal_12gb_ou = len(df_hosts_ou.loc[df_hosts_ou.memory == 12288])
-        memory_equal_16gb_ou = len(df_hosts_ou.loc[df_hosts_ou.memory == 16384])
-        memory_equal_20gb_ou = len(df_hosts_ou.loc[df_hosts_ou.memory == 2048])
+        memory_equal_3gb_ou = len(df_ocs.loc[df_ocs.memory <= 4096])
+        memory_equal_4gb_ou = len(df_ocs.loc[df_ocs.memory == 4096])
+        memory_equal_6gb_ou = len(df_ocs.loc[df_ocs.memory == 6144])
+        memory_equal_8gb_ou = len(df_ocs.loc[df_ocs.memory == 8192])
+        memory_equal_12gb_ou = len(df_ocs.loc[df_ocs.memory == 12288])
+        memory_equal_16gb_ou = len(df_ocs.loc[df_ocs.memory == 16384])
+        memory_equal_20gb_ou = len(df_ocs.loc[df_ocs.memory == 2048])
 
         memory_names = ["20GB", "16GB", "12GB", "8GB", "6GB", "4GB", "3GB"]
         memory_counts = [memory_equal_20gb_ou, memory_equal_16gb_ou, memory_equal_12gb_ou, memory_equal_8gb_ou, memory_equal_6gb_ou, memory_equal_4gb_ou, memory_equal_3gb_ou]

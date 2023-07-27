@@ -5,11 +5,13 @@
     {% include "global/menu.html" %}
 
     <div class="container">
-        
+        <h2>Ranking Workstations Geral</h2>
+
         <!-- {%include "ti/partials/dashboard_per_technical.html"%} -->
         <!-- {%include "ti/partials/dashboard_projects.html"%} -->
-        {%include "ti/partials/ocs_dashboard_workstations.html"%}
-        
+        {%include "ti/partials/ocs_graphic_hardware.html"%}
+        <!-- {%include "ti/partials/ocs_graphic_memory.html"%} -->
+
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -17,7 +19,7 @@
 
     <script>
         window.onload = function(e){
-            ocs_pie_workstations_ranking("{% url 'api_report_ocs'%} ")     
+            ocs_pie_general("{% url 'api_report_ocs'%} ")     
         }
     </script>
 
