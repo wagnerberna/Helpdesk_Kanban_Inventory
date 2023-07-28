@@ -39,10 +39,6 @@ def report_ocs(request):
         check_access = check_user_access(request)
         if not check_access:
             return redirect("access_denied")
-        
-        # print("Ponto0")
-        # data = pd.read_json("doc/resume.json")
-        # print(data)
 
         template_path = "ti/pages/report_dashboard_ocs.html"
 
@@ -51,9 +47,6 @@ def report_ocs(request):
             # "tasks_total": "tasks_total",
             # "workstation_total": "workstation_total",
         }
-
-        # print("context:::", context)
-        print("report_ocs!!!")
 
         return render(request, template_path, context)
     except Exception as error:

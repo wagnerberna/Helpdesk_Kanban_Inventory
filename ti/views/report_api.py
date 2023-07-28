@@ -278,7 +278,7 @@ def api_workstations_department_ranking(request):
 
 
 @login_required
-def api_report_ocs(request):
+def api_report_ocs_hardware(request):
     try:
         check_access = check_user_access(request)
         if not check_access:
