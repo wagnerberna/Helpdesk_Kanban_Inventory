@@ -333,3 +333,61 @@ def api_report_ocs_hardware(request):
     except Exception as error:
         print("Internal error:", error)
         raise
+
+
+@login_required
+def api_report_ocs_department(request):
+    try:
+        check_access = check_user_access(request)
+        if not check_access:
+            return redirect("access_denied")
+        
+        df_ocs = pd.read_excel("doc/ocs_hosts_department.xlsx")
+        
+        cpu_core_i7 = df_ocs.loc[df_ocs.cpu_type.str.contains("i7")]
+        cpu_core_i5 = df_ocs.loc[df_ocs.cpu_type.str.contains("i5")]
+        cpu_core_i3 = df_ocs.loc[df_ocs.cpu_type.str.contains("i3")]
+        cpu_core_dual = df_ocs.loc[df_ocs.cpu_type.str.contains("2 Duo|Dual|X4|Celeron")]
+
+        cpu_core_dual_count = len(cpu_core_dual)
+        cpu_core_i3_count = len(cpu_core_i3)
+        cpu_core_i5_count = len(cpu_core_i5)
+        cpu_core_i7_count = len(cpu_core_i7)
+
+        cpu_labels = ["i7", "i5", "i3", "Dual"]
+        cpu_counts = [cpu_core_i7_count, cpu_core_i5_count, cpu_core_i3_count, cpu_core_dual_count]
+
+        dell_count = len(df_ocs.loc[df_ocs.manufacturer.str.contains("Dell")])
+        lenovo_count = len(df_ocs.loc[df_ocs.manufacturer.str.contains("LENOVO")])
+        positivo_count = len(df_ocs.loc[df_ocs.manufacturer.str.contains("Positivo")])
+        hp_count = len(df_ocs.loc[df_ocs.manufacturer.str.contains("AMI")])
+        outros_count = len(df_ocs.loc[df_ocs.manufacturer.str.contains("American|Intel")])
+
+        manufacturer_labels = ["DELL", "LENOVO", "Positivo", "HP", "Outros"]
+        manufacturer_counts = [dell_count, lenovo_count, positivo_count, hp_count, outros_count]
+
+        # memory_equal_3gb = len(df_ocs.loc[df_ocs.memory <= 4096])
+        # memory_equal_6gb = len(df_ocs.loc[df_ocs.memory == 6144])
+        memory_equal_or_less_4gb = len(df_ocs.loc[df_ocs.memory <= 4096])
+        memory_between_6gb_and_8gb = len(df_ocs.loc[(df_ocs.memory >= 6144) & (df_ocs.memory <= 8192)])
+        memory_between_12g_and_16gb = len(df_ocs.loc[(df_ocs.memory >= 12288) & (df_ocs.memory <= 16384)])
+        memory_between_20gb_and_32gb = len(df_ocs.loc[(df_ocs.memory >= 20480) & (df_ocs.memory <= 32768)])
+        # memory_equal_16gb = len(df_ocs.loc[df_ocs.memory == 16384])
+        # memory_equal_32gb = len(df_ocs.loc[df_ocs.memory > 20048])
+
+        memory_labels = ["Entre 20GB e 32GB", "Entre 12GB e 16GB", "Entre 6GB e 8GB", "Entre 3GB e 4GB"]
+        memory_counts = [memory_between_20gb_and_32gb, memory_between_12g_and_16gb, memory_between_6gb_and_8gb, memory_equal_or_less_4gb]
+
+        context = {
+            "cpu_labels": cpu_labels,
+            "cpu_counts": cpu_counts,
+            "manufacturer_labels": manufacturer_labels,
+            "manufacturer_counts": manufacturer_counts,
+            "memory_labels": memory_labels,
+            "memory_counts": memory_counts,
+        }
+
+        return JsonResponse(context)
+    except Exception as error:
+        print("Internal error:", error)
+        raise
