@@ -350,25 +350,25 @@ def api_ocs_department(request):
         departments = df_departaments.values.tolist()
         print(departments)
         cpu_labels = ["i7", "i5", "i3", "Dual"]
-        cpu_core_i7_counts_all = []
-        cpu_core_i5_counts_all = []
-        cpu_core_i3_counts_all = []
-        cpu_core_dual_counts_all = []
+        manufacturer_labels = ["DELL", "LENOVO", "Positivo", "HP", "Outros"]
 
-        memory_between_20gb_and_32gb = [] 
-        memory_between_12g_and_16gb = [] 
-        memory_between_6gb_and_8gb = [] 
-        memory_equal_or_less_4gb = []
+        cpu_core_i7_counts_all_departments = []
+        cpu_core_i5_counts_all_departments = []
+        cpu_core_i3_counts_all_departments = []
+        cpu_core_dual_counts_all_departments = []
+
+        memory_between_20gb_and_32gb_all_departments = [] 
+        memory_between_12g_and_16gb_all_departments = [] 
+        memory_between_6gb_and_8gb_all_departments = [] 
+        memory_equal_or_less_4gb_all_departments = []
         
         # for department in departments:
 
-        
         cpu_core_i7_count = int(df_ocs.query("cpu_type.str.contains('i7')")["cpu_type"].count())
         cpu_core_i5_count = int(df_ocs.query("cpu_type.str.contains('i5')")["cpu_type"].count())
         cpu_core_i3_count = int(df_ocs.query("cpu_type.str.contains('i3')")["cpu_type"].count())
         cpu_core_dual_count = int(df_ocs.query("cpu_type.str.contains('2 Duo|Dual|X4|Celeron')")["cpu_type"].count())
 
-        cpu_labels = ["i7", "i5", "i3", "Dual"]
         cpu_counts = [cpu_core_i7_count, cpu_core_i5_count, cpu_core_i3_count, cpu_core_dual_count]
 
         dell_count = int(df_ocs["manufacturer"].loc[df_ocs.manufacturer.str.contains("Dell")].count())
@@ -377,7 +377,6 @@ def api_ocs_department(request):
         hp_count = int(df_ocs["manufacturer"].loc[df_ocs.manufacturer.str.contains("AMI")].count())
         outros_count = int(df_ocs["manufacturer"].loc[df_ocs.manufacturer.str.contains("American|Intel")].count())
 
-        manufacturer_labels = ["DELL", "LENOVO", "Positivo", "HP", "Outros"]
         manufacturer_counts = [dell_count, lenovo_count, positivo_count, hp_count, outros_count]
 
         # memory_equal_3gb = len(df_ocs.loc[df_ocs.memory <= 4096])
