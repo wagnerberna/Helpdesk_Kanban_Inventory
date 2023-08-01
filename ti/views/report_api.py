@@ -286,19 +286,20 @@ def api_ocs_hardware(request):
         
         df_ocs = pd.read_excel("doc/ocs_hosts_department.xlsx")
         
+        # CPU COUNT LOC
         cpu_core_i7_count = df_ocs["cpu_type"].loc[df_ocs.cpu_type.str.contains("i7")].count()
         cpu_core_i5_count = df_ocs["cpu_type"].loc[df_ocs.cpu_type.str.contains("i5")].count()
         cpu_core_i3_count = df_ocs["cpu_type"].loc[df_ocs.cpu_type.str.contains("i3")].count()
         cpu_core_dual_count = df_ocs["cpu_type"].loc[df_ocs.cpu_type.str.contains("2 Duo|Dual|X4|Celeron")].count()
 
-        # print("!!!!!!!!!!!!!!!!!!!!!!!")
-
-        # print(cpu_core_i7_count, cpu_core_i5_count, cpu_core_i3_count, cpu_core_i3_count)
+        # CPU Count por query:
+        cpu_core_i7_count = int(df_ocs.query("cpu_type.str.contains('i7')")["cpu_type"].count())
+        cpu_core_i5_count = int(df_ocs.query("cpu_type.str.contains('i5')")["cpu_type"].count())
+        cpu_core_i3_count = int(df_ocs.query("cpu_type.str.contains('i3')")["cpu_type"].count())
+        cpu_core_dual_count = int(df_ocs.query("cpu_type.str.contains('2 Duo|Dual|X4|Celeron')")["cpu_type"].count())
 
         cpu_labels = ["i7", "i5", "i3", "Dual"]
         cpu_counts = [int(cpu_core_i7_count), int(cpu_core_i5_count), int(cpu_core_i3_count), int(cpu_core_dual_count)]
-
-        # print("cpu_counts:::", cpu_counts)
 
         dell_count = len(df_ocs.loc[df_ocs.manufacturer.str.contains("Dell")])
         lenovo_count = len(df_ocs.loc[df_ocs.manufacturer.str.contains("LENOVO")])
@@ -317,15 +318,10 @@ def api_ocs_hardware(request):
         memory_between_20gb_and_32gb = df_ocs["memory"].loc[(df_ocs.memory >= 20480) & (df_ocs.memory <= 32768)].count()
         # memory_equal_16gb = len(df_ocs.loc[df_ocs.memory == 16384])
         # memory_equal_32gb = len(df_ocs.loc[df_ocs.memory > 20048])
-        # print("memory_equal_or_less_4gb", memory_equal_or_less_4gb, memory_between_6gb_and_8gb,  )
 
         memory_labels = ["Entre 20GB e 32GB", "Entre 12GB e 16GB", "Entre 6GB e 8GB", "Entre 3GB e 4GB"]
-        # print("!!!!!!!!!!!ponto memoria!!!!!!!!!!!!")
-        # print(memory_between_20gb_and_32gb, memory_between_12g_and_16gb, memory_between_6gb_and_8gb, memory_equal_or_less_4gb)
-
         memory_counts = [int(memory_between_20gb_and_32gb), int(memory_between_12g_and_16gb), int(memory_between_6gb_and_8gb), int(memory_equal_or_less_4gb)]
 
-        # print("memory_counts:::", memory_counts)
         context = {
             "cpu_labels": cpu_labels,
             "cpu_counts": cpu_counts,
@@ -334,10 +330,6 @@ def api_ocs_hardware(request):
             "memory_labels": memory_labels,
             "memory_counts": memory_counts,
         }
-
-        # print("!!!!!!!!!!!!!!!!!!!!!!!")
-        # print(context)
-
 
         return JsonResponse(context)
     except Exception as error:
