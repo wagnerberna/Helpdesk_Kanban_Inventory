@@ -112,3 +112,122 @@ async function ocs_bar_manufacturer(url) {
 
     });
 }
+
+
+async function bar_ocs_department_cpu(url) {
+    const data = await fetch_url(url)
+    // console.log(data)
+
+    const ctx = document.getElementById('bar_ocs_department_cpu').getContext('2d');
+    const myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: data.departments_labels,
+            datasets: [
+                {
+                    label: data.ranking_labels[0],
+                    data: data.ranking_a,
+                    backgroundColor: [
+                        '#86cbf9',
+                    ],
+                    borderColor: [
+                        '#0b97f4',
+                    ],
+                    borderWidth: 1
+                },
+                {
+                    label: data.ranking_labels[1],
+                    data: data.ranking_b,
+                    backgroundColor: [
+                        '#7fe686',
+                    ],
+                    borderColor: [
+                        '#2ad535',
+                    ],
+                    borderWidth: 1
+                },
+                {
+                    label: data.ranking_labels[2],
+                    data: data.ranking_c,
+                    backgroundColor: [
+                        '#ffe97f',
+                    ],
+                    borderColor: [
+                        '#ffd500',
+                    ],
+                    borderWidth: 1
+                },
+                {
+                    label: data.ranking_labels[3],
+                    data: data.ranking_d,
+                    backgroundColor: [
+                        '#fe7167',
+                    ],
+                    borderColor: [
+                        '#fe1201',
+                    ],
+                    borderWidth: 1
+                },
+            ]
+        },
+    });
+}
+
+async function bar_ocs_department_memory(url) {
+    const data = await fetch_url(url)
+    // console.log(data)
+
+    const ctx = document.getElementById('bar_ocs_department_memory').getContext('2d');
+    const myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: data.departments_labels,
+            datasets: [
+                {
+                    label: data.ranking_labels[0],
+                    data: data.ranking_a,
+                    backgroundColor: [
+                        '#86cbf9',
+                    ],
+                    borderColor: [
+                        '#0b97f4',
+                    ],
+                    borderWidth: 1
+                },
+                {
+                    label: data.ranking_labels[1],
+                    data: data.ranking_b,
+                    backgroundColor: [
+                        '#7fe686',
+                    ],
+                    borderColor: [
+                        '#2ad535',
+                    ],
+                    borderWidth: 1
+                },
+                {
+                    label: data.ranking_labels[2],
+                    data: data.ranking_c,
+                    backgroundColor: [
+                        '#ffe97f',
+                    ],
+                    borderColor: [
+                        '#ffd500',
+                    ],
+                    borderWidth: 1
+                },
+                {
+                    label: data.ranking_labels[3],
+                    data: data.ranking_d,
+                    backgroundColor: [
+                        '#fe7167',
+                    ],
+                    borderColor: [
+                        '#fe1201',
+                    ],
+                    borderWidth: 1
+                },
+            ]
+        },
+    });
+}
