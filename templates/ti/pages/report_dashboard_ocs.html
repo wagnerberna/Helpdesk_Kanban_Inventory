@@ -7,6 +7,7 @@
     <div class="container">
         {%include "ti/partials/ocs_dashboard_hardware.html"%}
         {%include "ti/partials/ocs_dashboard_hardware_departament.html"%}
+        {%include "ti/partials/ocs_dashboard_ranking.html"%}
 
     </div>
 
@@ -20,6 +21,8 @@
             ocs_bar_manufacturer("{% url 'api_ocs_hardware'%} ")
             bar_ocs_department_cpu("{% url 'api_ocs_department'%} ")
             bar_ocs_department_memory("{% url 'api_ocs_department'%} ")
+            ocs_pie_ranking("{% url 'api_ocs_ranking'%} ")
+            ocs_bar_ranking("{% url 'api_ocs_ranking'%} ")
         }
     </script>
 
