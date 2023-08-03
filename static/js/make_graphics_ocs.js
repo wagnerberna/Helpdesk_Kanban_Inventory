@@ -122,11 +122,11 @@ async function bar_ocs_department_cpu(url) {
     const myChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: data.departments_labels,
+            labels: data.departments,
             datasets: [
                 {
-                    label: data.ranking_labels[0],
-                    data: data.ranking_a,
+                    label: data.cpu_labels[0],
+                    data: data.cpu_core_i7_counts_all_departments,
                     backgroundColor: [
                         '#86cbf9',
                     ],
@@ -136,8 +136,8 @@ async function bar_ocs_department_cpu(url) {
                     borderWidth: 1
                 },
                 {
-                    label: data.ranking_labels[1],
-                    data: data.ranking_b,
+                    label: data.cpu_labels[1],
+                    data: data.cpu_core_i5_counts_all_departments,
                     backgroundColor: [
                         '#7fe686',
                     ],
@@ -147,8 +147,8 @@ async function bar_ocs_department_cpu(url) {
                     borderWidth: 1
                 },
                 {
-                    label: data.ranking_labels[2],
-                    data: data.ranking_c,
+                    label: data.cpu_labels[2],
+                    data: data.cpu_core_i3_counts_all_departments,
                     backgroundColor: [
                         '#ffe97f',
                     ],
@@ -158,8 +158,8 @@ async function bar_ocs_department_cpu(url) {
                     borderWidth: 1
                 },
                 {
-                    label: data.ranking_labels[3],
-                    data: data.ranking_d,
+                    label: data.cpu_labels[3],
+                    data: data.cpu_core_dual_counts_all_departments,
                     backgroundColor: [
                         '#fe7167',
                     ],
