@@ -348,7 +348,7 @@ def api_ocs_department(request):
         df_departaments = pd.read_excel("doc/departments.xlsx")
         
         departments = df_departaments["setor"].tolist()
-        print(departments)
+        # print(departments)
         cpu_labels = ["i7", "i5", "i3", "Dual"]
         memory_labels = ["Entre 20GB e 32GB", "Entre 12GB e 16GB", "Entre 8GB e 12GB", "Entre 4GB e 6GB"]
 
@@ -374,10 +374,10 @@ def api_ocs_department(request):
             cpu_core_i3_counts_all_departments.append(cpu_core_i3_count)
             cpu_core_dual_counts_all_departments.append(cpu_core_dual_count)
 
-            memory_between_4gb_and_6gb = int(df_ocs["memory"].loc[(df_ocs.memory <= 6144) & (df_ocs.department.str.contains(department))].count())
-            memory_equal_8gb = int(df_ocs["memory"].loc[(df_ocs.memory == 8192) & (df_ocs.department.str.contains(department))].count())
-            memory_between_12g_and_16gb = int(df_ocs["memory"].loc[(df_ocs.memory >= 12288) & (df_ocs.memory <= 16384) & (df_ocs.department.str.contains(department))].count())
             memory_between_20gb_and_32gb = int(df_ocs["memory"].loc[(df_ocs.memory >= 20480) & (df_ocs.memory <= 32768) & (df_ocs.department.str.contains(department))].count())
+            memory_between_12g_and_16gb = int(df_ocs["memory"].loc[(df_ocs.memory >= 12288) & (df_ocs.memory <= 16384) & (df_ocs.department.str.contains(department))].count())
+            memory_equal_8gb = int(df_ocs["memory"].loc[(df_ocs.memory == 8192) & (df_ocs.department.str.contains(department))].count())
+            memory_between_4gb_and_6gb = int(df_ocs["memory"].loc[(df_ocs.memory <= 6144) & (df_ocs.department.str.contains(department))].count())
 
             memory_between_20gb_and_32gb_all_departments.append(memory_between_20gb_and_32gb) 
             memory_between_12g_and_16gb_all_departments.append(memory_between_12g_and_16gb) 
@@ -396,6 +396,57 @@ def api_ocs_department(request):
             "memory_between_12g_and_16gb_all_departments":memory_between_12g_and_16gb_all_departments, 
             "memory_equal_8gb_all_departments":memory_equal_8gb_all_departments, 
             "memory_between_4gb_and_6gb_all_departments":memory_between_4gb_and_6gb_all_departments,
+        }
+
+        return JsonResponse(context)
+    except Exception as error:
+        print("Internal error:", error)
+        raise
+
+
+@login_required
+def api_ocs_ranking(request):
+    try:
+        check_access = check_user_access(request)
+        if not check_access:
+            return redirect("access_denied")
+        
+        df_ocs = pd.read_excel("doc/ocs_hosts_department.xlsx")
+        df_departaments = pd.read_excel("doc/departments.xlsx")
+        
+        departments = df_departaments["setor"].tolist()
+        # print(departments)
+        ranking_labels = ["A", "B", "C", "D"]
+
+        ranking_a_all_departments = []
+        ranking_b_all_departments = []
+        ranking_c_all_departments = []
+        ranking_d_all_departments = []
+        
+        for department in departments:
+
+            ranking_a_count = int(df_ocs["cpu_type"].loc[df_ocs.cpu_type.str.contains("i7|i5") & (df_ocs.department.str.contains(department)) & ].count())
+            ranking_b_count = int(df_ocs["cpu_type"].loc[df_ocs.cpu_type.str.contains("i5") & (df_ocs.department.str.contains(department))].count())
+            ranking_c_count = int(df_ocs["cpu_type"].loc[df_ocs.cpu_type.str.contains("i3") & (df_ocs.department.str.contains(department))].count())
+            ranking_d_count = int(df_ocs["cpu_type"].loc[df_ocs.cpu_type.str.contains("2 Duo|Dual|X4|Celeron") & (df_ocs.department.str.contains(department))].count())
+
+            memory_between_4gb_and_6gb = int(df_ocs["memory"].loc[(df_ocs.memory <= 6144) & (df_ocs.department.str.contains(department))].count())
+            memory_equal_8gb = int(df_ocs["memory"].loc[(df_ocs.memory == 8192) & (df_ocs.department.str.contains(department))].count())
+            memory_between_12g_and_16gb = int(df_ocs["memory"].loc[(df_ocs.memory >= 12288) & (df_ocs.memory <= 16384) & (df_ocs.department.str.contains(department))].count())
+            memory_between_20gb_and_32gb = int(df_ocs["memory"].loc[(df_ocs.memory >= 20480) & (df_ocs.memory <= 32768) & (df_ocs.department.str.contains(department))].count())
+
+            ranking_a_all_departments.append(ranking_a_count)
+            ranking_b_all_departments.append(ranking_b_count)
+            ranking_c_all_departments.append(ranking_c_count)
+            ranking_d_all_departments.append(ranking_d_count)
+            
+        context = {
+            "departments": departments,
+            "ranking_labels": ranking_labels,
+            "ranking_a_all_departments":ranking_a_all_departments,
+            "ranking_b_all_departments":ranking_b_all_departments,
+            "ranking_c_all_departments":ranking_c_all_departments,
+            "ranking_d_all_departments":ranking_d_all_departments,
         }
 
         return JsonResponse(context)
