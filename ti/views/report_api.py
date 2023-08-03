@@ -425,15 +425,15 @@ def api_ocs_ranking(request):
         
         for department in departments:
 
-            ranking_a_count = int(df_ocs["cpu_type"].loc[df_ocs.cpu_type.str.contains("i7|i5") & (df_ocs.department.str.contains(department)) & ].count())
-            ranking_b_count = int(df_ocs["cpu_type"].loc[df_ocs.cpu_type.str.contains("i5") & (df_ocs.department.str.contains(department))].count())
-            ranking_c_count = int(df_ocs["cpu_type"].loc[df_ocs.cpu_type.str.contains("i3") & (df_ocs.department.str.contains(department))].count())
+            ranking_a_count = int(df_ocs["cpu_type"].loc[df_ocs.cpu_type.str.contains("i7|i5") & (df_ocs.department.str.contains(department)) & (df_ocs.memory > 16384)].count())
+            ranking_b_count = int(df_ocs["cpu_type"].loc[df_ocs.cpu_type.str.contains("i7|i5") & (df_ocs.department.str.contains(department)) & (df_ocs.memory >= 12288) & (df_ocs.memory <= 16384)].count())
+            ranking_c_count = int(df_ocs["cpu_type"].loc[df_ocs.cpu_type.str.contains("i3|i5") & (df_ocs.memory < 12288) & (df_ocs.department.str.contains(department))].count())
             ranking_d_count = int(df_ocs["cpu_type"].loc[df_ocs.cpu_type.str.contains("2 Duo|Dual|X4|Celeron") & (df_ocs.department.str.contains(department))].count())
 
-            memory_between_4gb_and_6gb = int(df_ocs["memory"].loc[(df_ocs.memory <= 6144) & (df_ocs.department.str.contains(department))].count())
-            memory_equal_8gb = int(df_ocs["memory"].loc[(df_ocs.memory == 8192) & (df_ocs.department.str.contains(department))].count())
-            memory_between_12g_and_16gb = int(df_ocs["memory"].loc[(df_ocs.memory >= 12288) & (df_ocs.memory <= 16384) & (df_ocs.department.str.contains(department))].count())
-            memory_between_20gb_and_32gb = int(df_ocs["memory"].loc[(df_ocs.memory >= 20480) & (df_ocs.memory <= 32768) & (df_ocs.department.str.contains(department))].count())
+            # memory_between_20gb_and_32gb = int(df_ocs["memory"].loc[(df_ocs.memory >= 20480) & (df_ocs.memory <= 32768) & (df_ocs.department.str.contains(department))].count())
+            # memory_between_12g_and_16gb = int(df_ocs["memory"].loc[(df_ocs.memory >= 12288) & (df_ocs.memory <= 16384) & (df_ocs.department.str.contains(department))].count())
+            # memory_equal_8gb = int(df_ocs["memory"].loc[(df_ocs.memory == 8192) & (df_ocs.department.str.contains(department))].count())
+            # memory_between_4gb_and_6gb = int(df_ocs["memory"].loc[(df_ocs.memory <= 6144) & (df_ocs.department.str.contains(department))].count())
 
             ranking_a_all_departments.append(ranking_a_count)
             ranking_b_all_departments.append(ranking_b_count)

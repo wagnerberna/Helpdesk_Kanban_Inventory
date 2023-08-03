@@ -7,6 +7,7 @@ from ti.views.report_api import (
     api_workstations_department_ranking,
     api_ocs_hardware,
     api_ocs_department,
+    api_ocs_ranking,
 )
 
 urlpatterns = [
@@ -44,5 +45,10 @@ urlpatterns = [
         "api_ocs_department/",
         api_ocs_department,
         name="api_ocs_department",
+    ),
+    path(
+        "api_ocs_ranking/",
+        api_ocs_ranking,
+        name="api_ocs_ranking",
     ),
 ]
