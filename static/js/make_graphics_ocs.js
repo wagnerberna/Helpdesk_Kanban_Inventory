@@ -181,11 +181,11 @@ async function bar_ocs_department_memory(url) {
     const myChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: data.departments_labels,
+            labels: data.departments,
             datasets: [
                 {
-                    label: data.ranking_labels[0],
-                    data: data.ranking_a,
+                    label: data.memory_labels[0],
+                    data: data.memory_between_20gb_and_32gb_all_departments,
                     backgroundColor: [
                         '#86cbf9',
                     ],
@@ -195,8 +195,8 @@ async function bar_ocs_department_memory(url) {
                     borderWidth: 1
                 },
                 {
-                    label: data.ranking_labels[1],
-                    data: data.ranking_b,
+                    label: data.memory_labels[1],
+                    data: data.memory_between_12g_and_16gb_all_departments,
                     backgroundColor: [
                         '#7fe686',
                     ],
@@ -206,8 +206,8 @@ async function bar_ocs_department_memory(url) {
                     borderWidth: 1
                 },
                 {
-                    label: data.ranking_labels[2],
-                    data: data.ranking_c,
+                    label: data.memory_labels[2],
+                    data: data.memory_equal_8gb_all_departments,
                     backgroundColor: [
                         '#ffe97f',
                     ],
@@ -217,8 +217,8 @@ async function bar_ocs_department_memory(url) {
                     borderWidth: 1
                 },
                 {
-                    label: data.ranking_labels[3],
-                    data: data.ranking_d,
+                    label: data.memory_labels[3],
+                    data: data.memory_between_4gb_and_6gb_all_departments,
                     backgroundColor: [
                         '#fe7167',
                     ],
