@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http.response import JsonResponse
@@ -434,7 +435,15 @@ def api_ocs_ranking(request):
             ranking_b_all_departments.append(ranking_b_count)
             ranking_c_all_departments.append(ranking_c_count)
             ranking_d_all_departments.append(ranking_d_count)
-            
+
+        # Totais ranking
+        ranking_a_sum = int(np.sum(ranking_a_all_departments))
+        ranking_b_sum = int(np.sum(ranking_b_all_departments))
+        ranking_c_sum = int(np.sum(ranking_c_all_departments))
+        ranking_d_sum = int(np.sum(ranking_d_all_departments))
+
+        # print("ranking_b_sum:::", ranking_b_sum)
+
         context = {
             "departments": departments,
             "ranking_labels": ranking_labels,
@@ -442,6 +451,10 @@ def api_ocs_ranking(request):
             "ranking_b_all_departments":ranking_b_all_departments,
             "ranking_c_all_departments":ranking_c_all_departments,
             "ranking_d_all_departments":ranking_d_all_departments,
+            "ranking_a_sum":ranking_a_sum,
+            "ranking_b_sum":ranking_b_sum,
+            "ranking_c_sum":ranking_c_sum,
+            "ranking_d_sum":ranking_d_sum,
         }
 
         return JsonResponse(context)
